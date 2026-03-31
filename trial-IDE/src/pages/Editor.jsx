@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // ─── Google Fonts ───────────────────────────────────────────────────────────
 const FontLoader = () => (
@@ -8,55 +8,28 @@ const FontLoader = () => (
 );
 
 // ─── Design Tokens ──────────────────────────────────────────────────────────
-const T = {
-  void:    "#07080d",
-  deep:    "#0d0f18",
-  mid:     "#111420",
-  surface: "#161927",
-  panel:   "#131622",
-  hover:   "#1e2335",
-  active:  "#232844",
-  // Accents
-  purple:  "#7c6ee0",
-  purpleL: "#9d92e8",
-  teal:    "#5eead4",
-  warm:    "#f97316",
-  pink:    "#e879a0",
-  gold:    "#fbbf24",
-  green:   "#6fcf97",
-  red:     "#f47067",
-  // Text
-  text1:   "#e8eaf2",
-  text2:   "#8892b0",
-  text3:   "#4a5374",
-  // Borders
-  b1:      "rgba(120,130,180,0.08)",
-  b2:      "rgba(120,130,180,0.16)",
-  b3:      "rgba(124,110,224,0.35)",
-  // Code colors
-  cKw:     "#c792ea",
-  cFn:     "#82aaff",
-  cStr:    "#c3e88d",
-  cNum:    "#f78c6c",
-  cCm:     "#546e7a",
-  cOp:     "#89ddff",
-  cCls:    "#ffcb6b",
-  cTag:    "#f07178",
-  cAtr:    "#c792ea",
-  cVal:    "#c3e88d",
-  cVar:    "#eeffff",
+const themes = {
+  light: {
+    void: "#f3f4f6", deep: "#ffffff", mid: "#f8f9fb", surface: "#ffffff", panel: "#f5f7fa",
+    hover: "#e2e8f0", active: "#cbd5e1",
+    purple: "#6b7280", teal: "#1d4ed8", warm: "#374151", pink: "#6d28d9", gold: "#b45309", green: "#15803d", red: "#b91c1c",
+    text1: "#000000", text2: "#1e293b", text3: "#475569",
+    b1: "rgba(148,163,184,0.20)", b2: "rgba(148,163,184,0.12)", b3: "rgba(148,163,184,0.08)",
+    cKw: "#2563eb", cFn: "#000000", cStr: "#14b8a6", cNum: "#0284c7", cCm: "#64748b", cOp: "#475569", cCls: "#000000", cTag: "#6366f1", cAtr: "#000000", cVal: "#000000", cVar: "#000000",
+  },
+  dark: {
+    void: "#1e1e1e", deep: "#252526", mid: "#1e1e1e", surface: "#1e1e1e", panel: "#2d2d30", 
+    hover: "#2c2c2e", active: "#3c3c3f",
+    purple: "#c0c5ce", teal: "#4fd1c5", warm: "#9ca3af", pink: "#bd93f9", gold: "#f59e0b", green: "#34d399", red: "#f87171",
+    text1: "#ffffff", text2: "#e2e8f0", text3: "#94a3b8",
+    b1: "rgba(173,184,195,0.25)", b2: "rgba(173,184,195,0.12)", b3: "rgba(173,184,195,0.08)",
+    cKw: "#569cd6", cFn: "#dcdcaa", cStr: "#ce9178", cNum: "#b5cea8", cCm: "#6a9955", cOp: "#d4d4d4", cCls: "#4ec9b0", cTag: "#569cd6", cAtr: "#9cdcfe", cVal: "#b5cea8", cVar: "#9cdcfe",
+  }
 };
-
-const css = (styles) => {
-  const rules = Object.entries(styles).map(([k, v]) => {
-    const prop = k.replace(/([A-Z])/g, m => `-${m.toLowerCase()}`);
-    return `${prop}:${v}`;
-  }).join(";");
-  return rules;
-};
+let T = themes.light;
 
 // ─── SVG Icons ──────────────────────────────────────────────────────────────
-const Icon = ({ name, size = 18, color = T.text3, style = {} }) => {
+const Icon = ({ name, size = 18, color = themes.light.text3, style = {} }) => {
   const s = { width: size, height: size, flexShrink: 0, ...style };
   const paths = {
     explorer:   <><rect x="3" y="3" width="7" height="8" rx="1"/><rect x="3" y="13" width="7" height="8" rx="1"/><rect x="13" y="3" width="8" height="18" rx="1"/></>,
@@ -76,12 +49,16 @@ const Icon = ({ name, size = 18, color = T.text3, style = {} }) => {
     panel:      <><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="15" x2="21" y2="15"/></>,
     sidebar:    <><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></>,
     check:      <><polyline points="20 6 9 17 4 12"/></>,
+    copy:       <><rect x="9" y="9" width="13" height="13" rx="2" fill="none"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></>,
+    check:      <><polyline points="20 6 9 17 4 12"/></>,
     warning:    <><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></>,
     info:       <><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></>,
     plus:       <><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></>,
     more:       <><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></>,
     trash:      <><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></>,
     copy:       <><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></>,
+    sun:       <><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></>,
+    moon:      <><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></>,
     minimize:   <><line x1="5" y1="12" x2="19" y2="12"/></>,
     maximize:   <><rect x="3" y="3" width="18" height="18" rx="2"/></>,
     refresh:    <><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></>,
@@ -486,7 +463,7 @@ LIMIT 5;`,
     ],
   },
   r: {
-    name: "R Language", label: "R", ext: ".R",
+    name: "R", label: "R", ext: ".R",
     dotColor: "#e879a0",
     files: [
       { name: "analysis.R", type: "file" },
@@ -687,7 +664,7 @@ function highlight(code, lang) {
   return lines.map((line, idx) => ({ raw: line, idx }));
 }
 
-function CodeLine({ line, lang, isActive }) {
+function CodeLine({ line, lang, isActive, theme = themes.light }) {
   const raw = line.raw;
   // very lightweight highlight per token pattern
   const tokens = [];
@@ -703,7 +680,7 @@ function CodeLine({ line, lang, isActive }) {
 
   // comment
   if (/^\s*(\/\/|#|--|<!--)/.test(rest)) {
-    push(rest, T.cCm, true);
+    push(rest, theme.cCm, true);
     return <div style={{ display: "flex", minHeight: 22, lineHeight: "22px", background: isActive ? `rgba(124,110,224,0.07)` : "transparent", borderRadius: 2, paddingLeft: 0 }}>{tokens}</div>;
   }
 
@@ -721,16 +698,16 @@ function CodeLine({ line, lang, isActive }) {
 
   // simple regex-based approach
   const rules = [
-    { re: /^(\/\/.*|#.*|--.*|<!--.*-->?)/, color: T.cCm, italic: true },
-    { re: /^("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|`(?:[^`\\]|\\.)*`)/, color: T.cStr },
-    { re: /^(\b(?:function|const|let|var|return|if|else|for|while|class|import|export|default|extends|implements|interface|type|from|as|void|int|string|boolean|private|public|override|suspend|fun|val|where|in|AND|OR|SELECT|FROM|WHERE|GROUP BY|HAVING|ORDER BY|LIMIT|INNER JOIN|ON|AS|LEFT|RIGHT|JOIN|null|undefined|true|false|new|this|super|async|await|yield|try|catch|finally|throw|static|abstract|readonly|enum|namespace|module|require|library|fn|struct|impl|use|pub|mut|ref|mod|trait|match|Some|None|Ok|Err)\b)/, color: T.cKw },
-    { re: /^(\b[A-Z][a-zA-Z0-9_]*\b)/, color: T.cCls },
-    { re: /^([a-zA-Z_$][a-zA-Z0-9_$]*(?=\s*\())/, color: T.cFn },
-    { re: /^(\b\d+\.?\d*\b)/, color: T.cNum },
-    { re: /^([+\-*/%=!<>&|?:^~]+)/, color: T.cOp },
-    { re: /^([a-zA-Z_$][a-zA-Z0-9_$]*)/, color: T.text1 },
+    { re: /^(\/\/.*|#.*|--.*|<!--.*-->?)/, color: theme.cCm, italic: true },
+    { re: /^("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|`(?:[^`\\]|\\.)*`)/, color: theme.cStr },
+    { re: /^(\b(?:function|const|let|var|return|if|else|for|while|class|import|export|default|extends|implements|interface|type|from|as|void|int|string|boolean|private|public|override|suspend|fun|val|where|in|AND|OR|SELECT|FROM|WHERE|GROUP BY|HAVING|ORDER BY|LIMIT|INNER JOIN|ON|AS|LEFT|RIGHT|JOIN|null|undefined|true|false|new|this|super|async|await|yield|try|catch|finally|throw|static|abstract|readonly|enum|namespace|module|require|library|fn|struct|impl|use|pub|mut|ref|mod|trait|match|Some|None|Ok|Err)\b)/, color: theme.cKw },
+    { re: /^(\b[A-Z][a-zA-Z0-9_]*\b)/, color: theme.cCls },
+    { re: /^([a-zA-Z_$][a-zA-Z0-9_$]*(?=\s*\())/, color: theme.cFn },
+    { re: /^(\b\d+\.?\d*\b)/, color: theme.cNum },
+    { re: /^([+\-*/%=!<>&|?:^~]+)/, color: theme.cOp },
+    { re: /^([a-zA-Z_$][a-zA-Z0-9_$]*)/, color: theme.text1 },
     { re: /^(\s+)/, color: "transparent" },
-    { re: /^(.)/, color: T.text2 },
+    { re: /^(.)/, color: theme.text1 },
   ];
 
   let rem = raw;
@@ -769,22 +746,22 @@ const Cursor = () => (
 );
 
 // ─── Activity Bar Icon ────────────────────────────────────────────────────────
-const ActIcon = ({ icon, tooltip, active, badge, onClick }) => {
+const ActIcon = ({ icon, tooltip, active, badge, onClick, theme = themes.light }) => {
   const [hov, setHov] = useState(false);
   return (
     <div onClick={onClick} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
         width: 40, height: 40, borderRadius: 9, display: "flex", alignItems: "center", justifyContent: "center",
         cursor: "pointer", position: "relative", transition: "all 0.18s",
-        background: active ? T.active : hov ? T.hover : "transparent",
+        background: active ? theme.active : hov ? theme.hover : "transparent",
       }}>
-      {active && <div style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", width: 2.5, height: 22, background: T.teal, borderRadius: "0 2px 2px 0" }} />}
-      <Icon name={icon} color={active || hov ? T.teal : T.text3} size={18} />
-      {badge && <div style={{ position: "absolute", top: 7, right: 7, width: 7, height: 7, background: T.red, borderRadius: "50%" }} />}
+      {active && <div style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", width: 2.5, height: 22, background: theme.teal, borderRadius: "0 2px 2px 0" }} />}
+      <Icon name={icon} color={active || hov ? theme.teal : theme.text3} size={18} />
+      {badge && <div style={{ position: "absolute", top: 7, right: 7, width: 7, height: 7, background: theme.red, borderRadius: "50%" }} />}
       {hov && (
         <div style={{
           position: "absolute", left: "calc(100% + 10px)", top: "50%", transform: "translateY(-50%)",
-          background: T.surface, border: `1px solid ${T.b2}`, color: T.text1,
+          background: theme.surface, border: `1px solid ${theme.b2}`, color: theme.text1,
           fontSize: 11, padding: "4px 9px", borderRadius: 5, whiteSpace: "nowrap",
           pointerEvents: "none", zIndex: 999, fontFamily: "'Syne', sans-serif", fontWeight: 500,
           boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
@@ -795,15 +772,15 @@ const ActIcon = ({ icon, tooltip, active, badge, onClick }) => {
 };
 
 // ─── Lang Chip ───────────────────────────────────────────────────────────────
-const LangChip = ({ langKey, data, active, onClick }) => {
+const LangChip = ({ langKey, data, active, onClick, theme = themes.light }) => {
   const [hov, setHov] = useState(false);
   return (
     <div onClick={() => onClick(langKey)} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
         padding: "6px 4px", borderRadius: 6, textAlign: "center", fontSize: 10, fontWeight: 700,
-        cursor: "pointer", border: `1px solid ${active ? T.purple : hov ? T.b3 : T.b1}`,
-        background: active ? "rgba(124,110,224,0.14)" : hov ? T.hover : T.mid,
-        color: active ? T.purple : hov ? T.purpleL : T.text2,
+        cursor: "pointer", border: `1px solid ${active ? theme.purple : hov ? theme.b3 : theme.b1}`,
+        background: active ? "rgba(124,110,224,0.14)" : hov ? theme.hover : theme.mid,
+        color: active ? theme.purple : hov ? theme.purpleL : theme.text2,
         transition: "all 0.15s", letterSpacing: "0.2px",
         fontFamily: "'Syne', sans-serif",
         boxShadow: active ? "0 0 12px rgba(124,110,224,0.12)" : "none",
@@ -815,7 +792,7 @@ const LangChip = ({ langKey, data, active, onClick }) => {
 };
 
 // ─── File Tree ───────────────────────────────────────────────────────────────
-const FileNode = ({ node, depth = 0, dotColor, activeFile, onSelect }) => {
+const FileNode = ({ node, depth = 0, dotColor, activeFile, onSelect, theme = themes.light }) => {
   const [open, setOpen] = useState(depth === 0);
   const isFolder = node.type === "folder";
   const isActive = !isFolder && node.name === activeFile;
@@ -830,92 +807,94 @@ const FileNode = ({ node, depth = 0, dotColor, activeFile, onSelect }) => {
           display: "flex", alignItems: "center", gap: 7,
           padding: `4px 14px 4px ${14 + depth * 14}px`,
           cursor: "pointer", fontSize: 12.5, fontFamily: "'JetBrains Mono', monospace",
-          color: isActive ? T.text1 : hov ? T.text1 : T.text2,
-          background: isActive ? T.active : hov ? T.hover : "transparent",
+          color: isActive ? theme.text1 : hov ? theme.text1 : theme.text2,
+          background: isActive ? theme.active : hov ? theme.hover : "transparent",
           transition: "all 0.12s", position: "relative",
-          borderLeft: isActive ? `2px solid ${T.purple}` : "2px solid transparent",
+          borderLeft: isActive ? `2px solid ${theme.purple}` : "2px solid transparent",
         }}>
         {isFolder
-          ? <Icon name={open ? "chevDown" : "chevRight"} size={11} color={T.text3} />
+          ? <Icon name={open ? "chevDown" : "chevRight"} size={11} color={theme.text3} />
           : <div style={{ width: 7, height: 7, borderRadius: "50%", background: dotColor, flexShrink: 0 }} />
         }
-        {isFolder && <Icon name="folder" size={14} color={T.gold} style={{ marginLeft: -2 }} />}
+        {isFolder && <Icon name="folder" size={14} color={theme.gold} style={{ marginLeft: -2 }} />}
         <span style={{ fontWeight: isFolder ? 600 : 400 }}>{node.name}</span>
       </div>
       {isFolder && open && node.children?.map((child, i) => (
-        <FileNode key={i} node={child} depth={depth + 1} dotColor={dotColor} activeFile={activeFile} onSelect={onSelect} />
+        <FileNode key={i} node={child} depth={depth + 1} dotColor={dotColor} activeFile={activeFile} onSelect={onSelect} theme={theme} />
       ))}
     </div>
   );
 };
 
 // ─── Tab ─────────────────────────────────────────────────────────────────────
-const Tab = ({ name, dotColor, active, modified, onClick, onClose }) => {
+const Tab = ({ name, dotColor, active, modified, onClick, onClose, theme = themes.light }) => {
   const [hov, setHov] = useState(false);
   return (
     <div onClick={onClick} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
         display: "flex", alignItems: "center", gap: 7, padding: "0 14px",
         height: "100%", minWidth: 130, maxWidth: 200,
-        cursor: "pointer", borderRight: `1px solid ${T.b1}`,
-        background: active ? T.mid : hov ? T.hover : "transparent",
-        borderBottom: active ? `2px solid ${T.purple}` : "2px solid transparent",
+        cursor: "pointer", borderRight: `1px solid ${theme.b1}`,
+        background: active ? theme.mid : hov ? theme.hover : "transparent",
+        borderBottom: active ? `2px solid ${theme.purple}` : "2px solid transparent",
         transition: "all 0.13s", position: "relative", flexShrink: 0,
         fontFamily: "'JetBrains Mono', monospace",
       }}>
       <div style={{ width: 6, height: 6, borderRadius: "50%", background: dotColor, flexShrink: 0 }} />
-      <span style={{ fontSize: 12, color: active ? T.text1 : T.text3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1 }}>{name}</span>
-      {modified && <div style={{ width: 5, height: 5, borderRadius: "50%", background: T.warm, flexShrink: 0 }} />}
+      <span style={{ fontSize: 12, color: active ? theme.text1 : theme.text3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1 }}>{name}</span>
+      {modified && <div style={{ width: 5, height: 5, borderRadius: "50%", background: theme.warm, flexShrink: 0 }} />}
       <div onClick={e => { e.stopPropagation(); onClose(); }}
         style={{
           width: 16, height: 16, display: "flex", alignItems: "center", justifyContent: "center",
           borderRadius: 3, opacity: hov || active ? 1 : 0, transition: "opacity 0.13s",
-          color: T.text3, fontSize: 14, flexShrink: 0,
+          color: theme.text3, fontSize: 14, flexShrink: 0,
         }}>
-        <Icon name="close" size={11} color={T.text3} />
+        <Icon name="close" size={11} color={theme.text3} />
       </div>
     </div>
   );
 };
 
 // ─── Test Case ───────────────────────────────────────────────────────────────
-const TestCase = ({ label, status }) => {
+const TestCase = ({ label, status, theme = themes.light }) => {
   const cfg = {
-    pass:    { bg: "rgba(111,207,151,0.07)", color: T.green,  border: "rgba(111,207,151,0.2)", icon: "check",   label: "✓" },
-    fail:    { bg: "rgba(244,112,103,0.07)", color: T.red,    border: "rgba(244,112,103,0.2)", icon: "close",   label: "✗" },
-    pending: { bg: T.mid,                   color: T.text3,  border: T.b1,                   icon: "minimize", label: "○" },
+    pass:    { bg: "rgba(111,207,151,0.07)", color: theme.green,  border: "rgba(111,207,151,0.2)", icon: "check",   label: "✓" },
+    fail:    { bg: "rgba(244,112,103,0.07)", color: theme.red,    border: "rgba(244,112,103,0.2)", icon: "close",   label: "✗" },
+    pending: { bg: theme.mid,                   color: theme.text3,  border: theme.b1,                   icon: "minimize", label: "○" },
   }[status];
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "6px 10px", borderRadius: 5, background: cfg.bg, border: `1px solid ${cfg.border}`, fontSize: 11.5, fontFamily: "'JetBrains Mono', monospace", color: cfg.color }}>
       <span>{cfg.label}</span>
-      <span style={{ color: T.text2, fontSize: 11 }}>{label}</span>
+      <span style={{ color: theme.text2, fontSize: 11 }}>{label}</span>
     </div>
   );
 };
 
 // ─── Terminal Line ────────────────────────────────────────────────────────────
-const TermLine = ({ line }) => {
+const TermLine = ({ line, theme = themes.light }) => {
   const cfg = {
     prompt:  { prompt: true },
-    out:     { color: T.text2 },
-    success: { color: T.green },
-    warning: { color: T.gold },
-    error:   { color: T.red },
-  }[line.type] || { color: T.text2 };
+    out:     { color: theme.text2 },
+    success: { color: theme.green },
+    warning: { color: theme.gold },
+    error:   { color: theme.red },
+  }[line.type] || { color: theme.text2 };
   if (cfg.prompt) return (
     <div style={{ display: "flex", gap: 8, alignItems: "baseline", lineHeight: 1.7 }}>
-      <span style={{ color: T.teal, flexShrink: 0 }}>cj@workspace:~$</span>
-      <span style={{ color: T.text1 }}>{line.text}</span>
+      <span style={{ color: theme.teal, flexShrink: 0 }}>cj@workspace:~$</span>
+      <span style={{ color: theme.text1 }}>{line.text}</span>
     </div>
   );
   return <div style={{ color: cfg.color, lineHeight: 1.7, paddingLeft: 4 }}>{line.text}</div>;
 };
 
 // ─── Minimap ──────────────────────────────────────────────────────────────────
-const Minimap = ({ code, activeLine }) => {
+const Minimap = ({ code, activeLine, theme = themes.light, onScrollToLine }) => {
   const lines = code.split("\n");
+  const [hoveredLine, setHoveredLine] = useState(null);
+
   return (
-    <div style={{ width: 56, background: T.deep, borderLeft: `1px solid ${T.b1}`, padding: "14px 6px", overflowY: "hidden", position: "relative", flexShrink: 0 }}>
+    <div style={{ width: 56, background: theme.deep, borderLeft: `1px solid ${theme.b1}`, padding: "14px 6px", overflowY: "hidden", position: "relative", flexShrink: 0 }}>
       <div style={{ position: "absolute", right: 0, top: 14, width: "100%", height: 54, background: "rgba(124,110,224,0.07)", border: "1px solid rgba(124,110,224,0.15)", borderRadius: 2 }} />
       {lines.map((line, i) => {
         const len = line.trimStart().length;
@@ -923,12 +902,27 @@ const Minimap = ({ code, activeLine }) => {
         const isKw = /\b(function|class|const|let|var|import|def|fn|fun|SELECT|FROM)\b/.test(line);
         const isStr = /["'`]/.test(line);
         const isCm = /^\s*(\/\/|#|--)/.test(line);
-        const color = isCm ? T.cCm : isKw ? "rgba(199,146,234,0.45)" : isStr ? "rgba(195,232,141,0.35)" : "rgba(120,130,180,0.18)";
+        const color = isCm ? theme.cCm : isKw ? "rgba(199,146,234,0.45)" : isStr ? "rgba(195,232,141,0.35)" : "rgba(120,130,180,0.18)";
         const w = Math.min(100, (len / 60) * 100);
         return (
-          <div key={i} style={{ height: 3, marginBottom: 1, marginLeft: `${(indent / 60) * 100}%`, width: `${w}%`, borderRadius: 1, background: i === activeLine ? "rgba(94,234,212,0.5)" : color }} />
+          <div key={i} 
+            onMouseEnter={() => setHoveredLine(i)}
+            onMouseLeave={() => setHoveredLine(null)}
+            onClick={() => onScrollToLine && onScrollToLine(i)}
+            style={{ height: 3, marginBottom: 1, marginLeft: `${(indent / 60) * 100}%`, width: `${w}%`, borderRadius: 1, background: i === activeLine ? "rgba(94,234,212,0.5)" : color, cursor: "pointer" }} />
         );
       })}
+      {hoveredLine !== null && (
+        <div style={{
+          position: "absolute", left: -200, top: hoveredLine * 3 + 14, 
+          background: theme.surface, border: `1px solid ${theme.b2}`, color: theme.text1,
+          fontSize: 11, padding: "4px 8px", borderRadius: 4, whiteSpace: "nowrap",
+          pointerEvents: "none", zIndex: 1000, maxWidth: 180, overflow: "hidden", textOverflow: "ellipsis",
+          boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
+        }}>
+          {hoveredLine + 1}: {lines[hoveredLine]?.trim() || ""}
+        </div>
+      )}
     </div>
   );
 };
@@ -942,21 +936,37 @@ export default function CodeJourneyIDE() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [rightPanelOpen, setRightPanelOpen] = useState(true);
   const [panelOpen, setPanelOpen] = useState(true);
+  const [panelExpanded, setPanelExpanded] = useState(false);
+  const [panelSize, setPanelSize] = useState(185);
   const [panelTab, setPanelTab] = useState("terminal");
+  const [themeMode, setThemeMode] = useState("light");
+  const [activeActIcon, setActiveActIcon] = useState("explorer");
+  const [langTrackOpen, setLangTrackOpen] = useState(true);
+  const [fileTreeOpen, setFileTreeOpen] = useState(true);
+  const [codeScrollTop, setCodeScrollTop] = useState(0);
+  const [codeViewHeight, setCodeViewHeight] = useState(0);
   const [activeLine, setActiveLine] = useState(7);
   const [running, setRunning] = useState(false);
   const [termLines, setTermLines] = useState([]);
   const [tests, setTests] = useState(null);
   const [hint3Revealed, setHint3Revealed] = useState(false);
-  const [activeActIcon, setActiveActIcon] = useState("explorer");
   const [showAutocomplete, setShowAutocomplete] = useState(false);
   const [xp] = useState(87);
   const [streak] = useState(7);
+  const [copied, setCopied] = useState(false);
   const termRef = useRef(null);
   const codeRef = useRef(null);
 
   const lang = LANGUAGES[currentLang];
+  const T = themes[themeMode];
 
+  useEffect(() => {
+    const appTheme = themes[themeMode];
+    document.body.style.backgroundColor = appTheme.void;
+    document.body.style.color = appTheme.text1;
+  }, [themeMode]);
+
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
     setTests(lang.tests);
     setHint3Revealed(false);
@@ -975,10 +985,19 @@ export default function CodeJourneyIDE() {
   const openFile = (name) => {
     setActiveFile(name);
     const exists = tabs.findIndex(t => t.name === name);
-    if (exists >= 0) { setActiveTab(exists); return; }
+    if (exists >= 0) {
+      setActiveTab(exists);
+      return;
+    }
     const newTabs = [...tabs, { name, modified: false }];
     setTabs(newTabs);
     setActiveTab(newTabs.length - 1);
+  };
+
+  const scrollToLine = (lineIndex) => {
+    if (codeRef.current) {
+      codeRef.current.scrollTop = lineIndex * 22;
+    }
   };
 
   const closeTab = (idx) => {
@@ -1020,6 +1039,10 @@ export default function CodeJourneyIDE() {
         ::-webkit-scrollbar-thumb{background:${T.active};border-radius:3px}
         ::-webkit-scrollbar-thumb:hover{background:${T.hover}}
         * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        .cj-simple-hover:hover { background: rgba(100,110,120,0.08) !important; }
+        .cj-btn:hover { filter: brightness(0.96); }
+        .cj-tab:hover { background: rgba(100,110,120,0.06) !important; }
       `}</style>
 
       <div style={{
@@ -1036,27 +1059,23 @@ export default function CodeJourneyIDE() {
           background: T.deep, borderBottom: `1px solid ${T.b1}`,
           padding: "0 16px", gap: 12, flexShrink: 0,
         }}>
-          {/* Dots */}
-          <div style={{ display: "flex", gap: 6, alignItems: "center", marginRight: 8 }}>
+          {/* Dots (UI decoration, hidden for minimal classic mode) */}
+          {/* <div style={{ display: "flex", gap: 6, alignItems: "center", marginRight: 8 }}>
             {[T.red, T.gold, T.green].map((c, i) => (
               <div key={i} style={{ width: 11, height: 11, borderRadius: "50%", background: c, cursor: "pointer", opacity: 0.85 }} />
             ))}
-          </div>
+          </div> */}
 
           {/* Logo */}
           <div style={{ display: "flex", alignItems: "center", gap: 9, marginRight: 8 }}>
-            <div style={{
-              width: 28, height: 28, borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center",
-              background: `linear-gradient(135deg, ${T.purple}, ${T.teal})`,
-              fontSize: 12, fontWeight: 800, color: "white", letterSpacing: "-0.5px", flexShrink: 0,
-            }}>CJ</div>
+            <img src="/favicon.svg" alt="Code Journey" style={{ width: 28, height: 28 }} />
             <span style={{ fontSize: 13, fontWeight: 700, color: T.text1, letterSpacing: "0.5px" }}>
-              Code<span style={{ color: T.teal }}>Journey</span>
+              CJ <span style={{ color: T.teal }}>Editor</span>
             </span>
           </div>
 
-          {/* Menu */}
-          {["File","Edit","View","Run","Terminal","Help"].map(m => (
+          {/* Menu (non-functional, comment out for cleaner UI) */}
+          {/* ["File","Edit","View","Run","Terminal","Help"].map(m => (
             <div key={m} style={{
               fontSize: 12, color: T.text2, padding: "4px 10px", borderRadius: 4,
               cursor: "pointer", fontWeight: 500, transition: "all 0.15s",
@@ -1064,10 +1083,10 @@ export default function CodeJourneyIDE() {
               onMouseEnter={e => { e.currentTarget.style.background = T.hover; e.currentTarget.style.color = T.text1; }}
               onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = T.text2; }}
             >{m}</div>
-          ))}
+          )) */}
 
-          {/* Breadcrumb */}
-          <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
+          {/* Breadcrumb (not needed for minimal UX) */}
+          {/* <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: T.text3, fontFamily: "'JetBrains Mono', monospace" }}>
               <span>workspace</span>
               <span style={{ opacity: 0.4 }}>›</span>
@@ -1075,28 +1094,31 @@ export default function CodeJourneyIDE() {
               <span style={{ opacity: 0.4 }}>›</span>
               <span style={{ color: T.teal }}>{activeFile}</span>
             </div>
-          </div>
+          </div> */}
 
           {/* Actions */}
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <button onClick={() => setSidebarOpen(o => !o)}
-              style={{ display: "flex", alignItems: "center", gap: 6, padding: "5px 11px", borderRadius: 5, fontSize: 11, fontWeight: 600, cursor: "pointer", background: "transparent", color: T.text2, border: `1px solid ${T.b2}`, fontFamily: "'Syne', sans-serif", transition: "all 0.2s" }}
-              onMouseEnter={e => { e.currentTarget.style.background = T.hover; e.currentTarget.style.color = T.text1; }}
-              onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = T.text2; }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, flex: 1 }}>
+            <button className="cj-btn cj-simple-hover" onClick={() => setSidebarOpen(o => !o)}
+              style={{ display: "flex", alignItems: "center", gap: 6, padding: "5px 11px", borderRadius: 5, fontSize: 11, fontWeight: 600, cursor: "pointer", background: "transparent", color: T.text2, border: `1px solid ${T.b2}`, fontFamily: "'Syne', sans-serif", transition: "all 0.2s" }}>
               <Icon name="sidebar" size={13} color="currentColor" /> Explorer
             </button>
-            <button onClick={() => setRightPanelOpen(o => !o)}
-              style={{ display: "flex", alignItems: "center", gap: 6, padding: "5px 11px", borderRadius: 5, fontSize: 11, fontWeight: 600, cursor: "pointer", background: "transparent", color: T.text2, border: `1px solid ${T.b2}`, fontFamily: "'Syne', sans-serif", transition: "all 0.2s" }}
-              onMouseEnter={e => { e.currentTarget.style.background = T.hover; e.currentTarget.style.color = T.text1; }}
-              onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = T.text2; }}>
-              <Icon name="panel" size={13} color="currentColor" /> Panel
+            <button className="cj-btn cj-simple-hover" onClick={() => setThemeMode(m => m === "light" ? "dark" : "light")}
+              style={{ display: "flex", alignItems: "center", gap: 6, padding: "5px 11px", borderRadius: 5, fontSize: 11, fontWeight: 700, cursor: "pointer", background: "transparent", color: T.text2, border: `1px solid ${T.b2}`, fontFamily: "'Syne', sans-serif", transition: "all 0.2s" }}>
+              <Icon name={themeMode === "light" ? "moon" : "sun"} size={14} color={T.text2} />
             </button>
-            <button onClick={runCode} disabled={running}
-              style={{ display: "flex", alignItems: "center", gap: 7, padding: "5px 16px", borderRadius: 6, fontSize: 12, fontWeight: 700, cursor: running ? "not-allowed" : "pointer", background: running ? "#5a52c0" : T.purple, color: "white", border: "none", fontFamily: "'Syne', sans-serif", transition: "all 0.2s", letterSpacing: "0.3px", boxShadow: running ? "none" : "0 0 20px rgba(124,110,224,0.25)" }}>
-              {running
-                ? <><Icon name="refresh" size={13} color="white" style={{ animation: "cjBlink 0.8s linear infinite" }} /> Running...</>
-                : <><Icon name="play" size={13} color="white" /> Run Code</>}
-            </button>
+            <div style={{ flex: 1 }} />
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <button className="cj-btn cj-simple-hover" onClick={() => setRightPanelOpen(o => !o)}
+                style={{ display: "flex", alignItems: "center", gap: 6, padding: "5px 11px", borderRadius: 5, fontSize: 11, fontWeight: 600, cursor: "pointer", background: "transparent", color: T.text2, border: `1px solid ${T.b2}`, fontFamily: "'Syne', sans-serif", transition: "all 0.2s" }}>
+                <Icon name="panel" size={13} color="currentColor" /> Panel
+              </button>
+              <button onClick={runCode} disabled={running}
+                style={{ display: "flex", alignItems: "center", gap: 7, padding: "5px 16px", borderRadius: 6, fontSize: 12, fontWeight: 700, cursor: running ? "not-allowed" : "pointer", background: running ? "#5a52c0" : T.purple, color: "white", border: "none", fontFamily: "'Syne', sans-serif", transition: "all 0.2s", letterSpacing: "0.3px", boxShadow: running ? "none" : "0 0 20px rgba(124,110,224,0.25)" }}>
+                {running
+                  ? <><Icon name="refresh" size={13} color="white" style={{ animation: "cjBlink 0.8s linear infinite" }} /> Running...</>
+                  : <><Icon name="play" size={13} color="white" /> Run Code</>}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -1104,7 +1126,7 @@ export default function CodeJourneyIDE() {
         <div style={{ flex: 1, display: "flex", overflow: "hidden" }}>
 
           {/* ── ACTIVITY BAR ── */}
-          <div style={{
+          {/* <div style={{
             width: 52, background: T.deep, borderRight: `1px solid ${T.b1}`,
             display: "flex", flexDirection: "column", alignItems: "center",
             padding: "8px 0", gap: 3, flexShrink: 0,
@@ -1117,13 +1139,14 @@ export default function CodeJourneyIDE() {
               { icon: "ai",         tip: "AI Tutor",   key: "ai" },
             ].map(item => (
               <ActIcon key={item.key} icon={item.icon} tooltip={item.tip} badge={item.badge}
+                theme={T}
                 active={activeActIcon === item.key}
                 onClick={() => { setActiveActIcon(item.key); if (item.key === "explorer") setSidebarOpen(true); }} />
             ))}
             <div style={{ flex: 1 }} />
             <ActIcon icon="profile"  tooltip="Profile"  active={false} onClick={() => {}} />
             <ActIcon icon="settings" tooltip="Settings" active={false} onClick={() => {}} />
-          </div>
+          </div> */}
 
           {/* ── SIDEBAR ── */}
           <div style={{
@@ -1137,9 +1160,7 @@ export default function CodeJourneyIDE() {
               <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "1.5px", color: T.text3, textTransform: "uppercase" }}>Explorer</span>
               <div style={{ display: "flex", gap: 4 }}>
                 {["plus","more"].map(ic => (
-                  <div key={ic} style={{ width: 18, height: 18, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", borderRadius: 3 }}
-                    onMouseEnter={e => e.currentTarget.style.background = T.hover}
-                    onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+                  <div key={ic} className="cj-simple-hover" style={{ width: 18, height: 18, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", borderRadius: 3 }}>
                     <Icon name={ic} size={13} color={T.text3} />
                   </div>
                 ))}
@@ -1148,11 +1169,23 @@ export default function CodeJourneyIDE() {
 
             {/* Language Switcher */}
             <div style={{ padding: "10px 10px 8px", flexShrink: 0, minWidth: 232 }}>
-              <div style={{ fontSize: 9, letterSpacing: "1.5px", fontWeight: 700, textTransform: "uppercase", color: T.text3, marginBottom: 8, paddingLeft: 4 }}>Language Track</div>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 4 }}>
-                {Object.entries(LANGUAGES).map(([key, data]) => (
-                  <LangChip key={key} langKey={key} data={data} active={currentLang === key} onClick={switchLang} />
-                ))}
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                <span style={{ fontSize: 9, letterSpacing: "1.5px", fontWeight: 700, textTransform: "uppercase", color: T.text3, paddingLeft: 4 }}>Language Track</span>
+                <div onClick={() => setLangTrackOpen(o => !o)} style={{ cursor: "pointer", paddingRight: 4 }}>
+                  <Icon name={langTrackOpen ? "chevDown" : "chevRight"} size={11} color={T.text3} />
+                </div>
+              </div>
+              <div style={{
+                maxHeight: langTrackOpen ? 250 : 0,
+                opacity: langTrackOpen ? 1 : 0,
+                overflow: "hidden",
+                transition: "max-height 0.28s ease, opacity 0.22s ease",
+              }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 4, paddingBottom: 8 }}>
+                  {Object.entries(LANGUAGES).map(([key, data]) => (
+                    <LangChip key={key} langKey={key} data={data} active={currentLang === key} onClick={switchLang} theme={T} />
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -1161,33 +1194,36 @@ export default function CodeJourneyIDE() {
 
             {/* File Tree */}
             <div style={{ flex: 1, overflowY: "auto", padding: "6px 0", minWidth: 232 }}>
-              <div style={{ fontSize: 9, letterSpacing: "1.5px", fontWeight: 700, textTransform: "uppercase", color: T.text3, padding: "8px 14px 4px" }}>Workspace</div>
-              <div style={{ padding: "4px 14px 4px", display: "flex", alignItems: "center", gap: 7, cursor: "pointer" }}
-                onMouseEnter={e => e.currentTarget.style.background = T.hover}
-                onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
-                <Icon name="chevDown" size={11} color={T.text3} />
-                <Icon name="folder" size={14} color={T.gold} />
-                <span style={{ fontSize: 12.5, fontFamily: "'JetBrains Mono', monospace", fontWeight: 600, color: T.text2 }}>exercises</span>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 14px 4px" }}>
+                <span style={{ fontSize: 9, letterSpacing: "1.5px", fontWeight: 700, textTransform: "uppercase", color: T.text3 }}>Workspace</span>
+                <span onClick={() => setFileTreeOpen(o => !o)} style={{ cursor: "pointer" }}>
+                  <Icon name={fileTreeOpen ? "chevDown" : "chevRight"} size={11} color={T.text3} />
+                </span>
               </div>
-              {lang.files.map((node, i) => (
-                <FileNode key={`${currentLang}-${i}`} node={node} depth={1} dotColor={lang.dotColor} activeFile={activeFile} onSelect={openFile} />
-              ))}
 
-              {/* Progress */}
-              <div style={{ fontSize: 9, letterSpacing: "1.5px", fontWeight: 700, textTransform: "uppercase", color: T.text3, padding: "16px 14px 8px" }}>Your Progress</div>
-              <div style={{ padding: "4px 14px 12px" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
-                  <span style={{ fontSize: 11, color: T.text2 }}>Module 3 of 8</span>
-                  <span style={{ fontSize: 11, color: T.teal, fontWeight: 600 }}>62%</span>
+              <div style={{
+                maxHeight: fileTreeOpen ? 999 : 0,
+                opacity: fileTreeOpen ? 1 : 0,
+                overflow: "hidden",
+                transition: "max-height 0.28s ease, opacity 0.22s ease",
+              }}>
+                <div style={{ padding: "4px 14px 4px", display: "flex", alignItems: "center", gap: 7, cursor: "pointer" }}
+                  onMouseEnter={e => e.currentTarget.style.background = T.hover}
+                  onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+                  <Icon name="folder" size={14} color={T.gold} />
+                  <span style={{ fontSize: 12.5, fontFamily: "'JetBrains Mono', monospace", fontWeight: 600, color: T.text2 }}>exercises</span>
                 </div>
-                <div style={{ height: 5, background: T.active, borderRadius: 3, overflow: "hidden" }}>
-                  <div style={{ height: "100%", width: "62%", background: `linear-gradient(90deg, ${T.purple}, ${T.teal})`, borderRadius: 3, transition: "width 0.6s" }} />
-                </div>
-                <div style={{ display: "flex", justifyContent: "space-between", marginTop: 5 }}>
-                  <span style={{ fontSize: 10, color: T.text3 }}>🔥 {streak} day streak</span>
-                  <span style={{ fontSize: 10, color: T.gold, fontWeight: 600 }}>⭐ {xp} XP</span>
-                </div>
+                {lang.files.map((node, i) => (
+                  <FileNode key={`${currentLang}-${i}`} node={node} depth={1} dotColor={lang.dotColor} activeFile={activeFile} onSelect={openFile} theme={T} />
+                ))}
               </div>
+
+              {/* Optional: collapsed panel placeholder */}
+              {/* {!fileTreeOpen && (
+                <div style={{ padding: "10px 14px", color: T.text3, fontSize: 11, fontStyle: "italic" }}>
+                  Workspace file list is collapsed. Click the arrow to expand.
+                </div>
+              )} */}
             </div>
           </div>
 
@@ -1204,17 +1240,17 @@ export default function CodeJourneyIDE() {
                 <Tab key={`${tab.name}-${i}`} name={tab.name} dotColor={lang.dotColor}
                   active={activeTab === i} modified={tab.modified}
                   onClick={() => { setActiveTab(i); setActiveFile(tab.name); }}
-                  onClose={() => closeTab(i)} />
+                  onClose={() => closeTab(i)} theme={T} />
               ))}
               <div style={{ flex: 1 }} />
               <div style={{ display: "flex", alignItems: "center", paddingRight: 10, gap: 4 }}>
-                {["copy","more"].map(ic => (
-                  <div key={ic} style={{ width: 26, height: 26, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", borderRadius: 4 }}
-                    onMouseEnter={e => e.currentTarget.style.background = T.hover}
-                    onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
-                    <Icon name={ic} size={14} color={T.text3} />
-                  </div>
-                ))}
+                <div className="cj-simple-hover" style={{ width: 26, height: 26, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", borderRadius: 4 }}
+                  onClick={() => { navigator.clipboard.writeText(lang.code); setCopied(true); setTimeout(() => setCopied(false), 2000); }}>
+                  <Icon name={copied ? "check" : "copy"} size={14} color={copied ? T.green : T.text3} />
+                </div>
+                <div className="cj-simple-hover" style={{ width: 26, height: 26, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", borderRadius: 4 }}>
+                  <Icon name="more" size={14} color={T.text3} />
+                </div>
               </div>
             </div>
 
@@ -1245,7 +1281,7 @@ export default function CodeJourneyIDE() {
                       animation: `cjFadeIn 0.1s ease ${i * 8}ms both`,
                       fontFamily: "'JetBrains Mono', monospace", fontSize: 13,
                     }}>
-                    <CodeLine line={{ raw: line }} lang={currentLang} isActive={i === activeLine} />
+                    <CodeLine line={{ raw: line }} lang={currentLang} isActive={i === activeLine} theme={T} />
                     {i === activeLine && <Cursor />}
                   </div>
                 ))}
@@ -1281,12 +1317,12 @@ export default function CodeJourneyIDE() {
               </div>
 
               {/* Minimap */}
-              <Minimap code={lang.code} activeLine={activeLine} />
+              <Minimap code={lang.code} activeLine={activeLine} theme={T} onScrollToLine={scrollToLine} />
             </div>
 
             {/* ── PANEL ── */}
             <div style={{
-              height: panelOpen ? 185 : 32, background: T.deep,
+              height: panelOpen ? (panelExpanded ? 400 : 185) : 32, background: T.deep,
               borderTop: `1px solid ${T.b1}`, display: "flex", flexDirection: "column",
               flexShrink: 0, transition: "height 0.2s cubic-bezier(0.4,0,0.2,1)",
             }}>
@@ -1298,15 +1334,13 @@ export default function CodeJourneyIDE() {
                   { key: "problems", label: "Problems", badge: 2 },
                   { key: "console",  label: "Console" },
                 ].map(t => (
-                  <div key={t.key} onClick={() => { setPanelTab(t.key); setPanelOpen(true); }}
+                  <div key={t.key} onClick={() => { setPanelTab(t.key); setPanelOpen(true); }} className="cj-tab"
                     style={{
                       fontSize: 11.5, padding: "4px 11px", borderRadius: 5, cursor: "pointer",
                       fontWeight: 600, letterSpacing: "0.3px", transition: "all 0.15s", display: "flex", alignItems: "center", gap: 5,
                       color: panelTab === t.key ? T.teal : T.text3,
                       background: panelTab === t.key ? "rgba(94,234,212,0.07)" : "transparent",
-                    }}
-                    onMouseEnter={e => { if (panelTab !== t.key) { e.currentTarget.style.background = T.hover; e.currentTarget.style.color = T.text2; } }}
-                    onMouseLeave={e => { if (panelTab !== t.key) { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = T.text3; } }}>
+                    }}>
                     {t.label}
                     {t.badge && <span style={{ fontSize: 10, background: "rgba(244,112,103,0.18)", color: T.red, borderRadius: 100, padding: "1px 5px" }}>{t.badge}</span>}
                   </div>
@@ -1315,7 +1349,8 @@ export default function CodeJourneyIDE() {
                   {[
                     { ic: "trash",    action: () => setTermLines([]) },
                     { ic: panelOpen ? "minimize" : "maximize", action: () => setPanelOpen(o => !o) },
-                    { ic: "close",    action: () => { setPanelOpen(false); } },
+                    { ic: panelExpanded ? "minimize" : "maximize", action: () => setPanelExpanded(o => !o) },
+                    { ic: "panel",    action: () => { setPanelOpen(false); setPanelExpanded(false); } },
                   ].map((btn, i) => (
                     <div key={i} onClick={btn.action}
                       style={{ width: 24, height: 24, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", borderRadius: 4, transition: "background 0.13s" }}
@@ -1337,7 +1372,7 @@ export default function CodeJourneyIDE() {
                           Press <span style={{ color: T.teal }}>▶ Run Code</span> to execute your code here...
                         </div>
                       )}
-                      {termLines.map((line, i) => <TermLine key={i} line={line} />)}
+                      {termLines.map((line, i) => <TermLine key={i} line={line} theme={T} />)}
                       {termLines.length > 0 && !running && (
                         <div style={{ display: "flex", gap: 8, marginTop: 2 }}>
                           <span style={{ color: T.teal }}>cj@workspace:~$</span>
@@ -1373,89 +1408,27 @@ export default function CodeJourneyIDE() {
 
           {/* ── RIGHT PANEL ── */}
           <div style={{
-            width: rightPanelOpen ? 276 : 0, background: T.panel,
+            width: rightPanelOpen ? 52 : 0, background: T.panel,
             borderLeft: rightPanelOpen ? `1px solid ${T.b1}` : "none",
             display: "flex", flexDirection: "column", overflow: "hidden",
             transition: "width 0.22s cubic-bezier(0.4,0,0.2,1)", flexShrink: 0,
           }}>
-            <div style={{ minWidth: 276 }}>
-              {/* Challenge Header */}
-              <div style={{ padding: "12px 14px 10px", borderBottom: `1px solid ${T.b1}` }}>
-                <div style={{ fontSize: 10, letterSpacing: "1.5px", fontWeight: 700, textTransform: "uppercase", color: T.text3, marginBottom: 10 }}>Current Challenge</div>
-                <div style={{ background: T.mid, border: `1px solid ${T.b1}`, borderRadius: 8, padding: "10px 12px" }}>
-                  <div style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 9, fontWeight: 700, letterSpacing: "1px", textTransform: "uppercase", background: "rgba(249,115,22,0.13)", color: T.warm, border: "1px solid rgba(249,115,22,0.28)", borderRadius: 100, padding: "2px 9px", marginBottom: 7 }}>
-                    🔥 {lang.challenge.badge}
-                  </div>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: T.text1, marginBottom: 5, lineHeight: 1.4 }}>{lang.challenge.title}</div>
-                  <div style={{ fontSize: 11.5, color: T.text2, lineHeight: 1.55 }}>{lang.challenge.desc}</div>
-                </div>
-              </div>
-
-              {/* Right Panel Content */}
-              <div style={{ padding: "12px 14px", display: "flex", flexDirection: "column", gap: 14, overflowY: "auto", maxHeight: "calc(100vh - 250px)" }}>
-                {/* Hints */}
-                <div>
-                  <div style={{ fontSize: 9, letterSpacing: "1.5px", fontWeight: 700, textTransform: "uppercase", color: T.text3, marginBottom: 8 }}>Hints</div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-                    {lang.challenge.hints.map((hint, i) => (
-                      <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
-                        <div style={{ width: 18, height: 18, background: T.active, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 9, fontWeight: 700, color: T.purple, flexShrink: 0, marginTop: 1 }}>{i + 1}</div>
-                        {i < 2
-                          ? <span style={{ fontSize: 12, color: T.text2, lineHeight: 1.5 }}>{hint}</span>
-                          : hint3Revealed
-                            ? <span style={{ fontSize: 12, color: T.text2, lineHeight: 1.5 }}>{hint}</span>
-                            : <span onClick={() => setHint3Revealed(true)} style={{ fontSize: 12, color: T.text3, lineHeight: 1.5, cursor: "pointer", textDecoration: "underline dotted" }}>Click to reveal hint 3…</span>
-                        }
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Test Cases */}
-                <div>
-                  <div style={{ fontSize: 9, letterSpacing: "1.5px", fontWeight: 700, textTransform: "uppercase", color: T.text3, marginBottom: 8 }}>Test Cases</div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-                    {(tests || lang.tests).map((t, i) => <TestCase key={`${currentLang}-test-${i}`} label={t.label} status={t.status} />)}
-                  </div>
-                </div>
-
-                {/* Score */}
-                <div>
-                  <div style={{ fontSize: 9, letterSpacing: "1.5px", fontWeight: 700, textTransform: "uppercase", color: T.text3, marginBottom: 8 }}>Your Score</div>
-                  <div style={{ display: "flex", gap: 8 }}>
-                    {[
-                      { val: "⭐ 3",   label: "Stars",  color: T.gold },
-                      { val: xp,       label: "XP",     color: T.teal },
-                      { val: `🔥 ${streak}`, label: "Streak", color: T.pink },
-                    ].map((s, i) => (
-                      <div key={i} style={{ flex: 1, background: T.mid, border: `1px solid ${T.b1}`, borderRadius: 6, padding: "8px 6px", textAlign: "center" }}>
-                        <div style={{ fontSize: 17, fontWeight: 700, color: s.color }}>{s.val}</div>
-                        <div style={{ fontSize: 10, color: T.text3, marginTop: 3 }}>{s.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* CTA Buttons */}
-                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  <button onClick={runCode} disabled={running}
-                    style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 7, padding: "9px 0", borderRadius: 7, fontSize: 12.5, fontWeight: 700, cursor: running ? "not-allowed" : "pointer", background: running ? "#5a52c0" : T.purple, color: "white", border: "none", fontFamily: "'Syne', sans-serif", letterSpacing: "0.3px", boxShadow: running ? "none" : "0 0 16px rgba(124,110,224,0.22)", transition: "all 0.2s" }}>
-                    <Icon name="play" size={13} color="white" /> {running ? "Running…" : "Run Tests"}
-                  </button>
-                  <button
-                    style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 7, padding: "8px 0", borderRadius: 7, fontSize: 12, fontWeight: 600, cursor: "pointer", background: "transparent", color: T.text2, border: `1px solid ${T.b2}`, fontFamily: "'Syne', sans-serif", transition: "all 0.2s" }}
-                    onMouseEnter={e => { e.currentTarget.style.background = T.hover; e.currentTarget.style.color = T.text1; }}
-                    onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = T.text2; }}>
-                    → Next Challenge
-                  </button>
-                  <button
-                    style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center", gap: 7, padding: "8px 0", borderRadius: 7, fontSize: 12, fontWeight: 600, cursor: "pointer", background: "transparent", color: T.pink, border: `1px solid rgba(232,121,160,0.25)`, fontFamily: "'Syne', sans-serif", transition: "all 0.2s" }}
-                    onMouseEnter={e => { e.currentTarget.style.background = "rgba(232,121,160,0.07)"; }}
-                    onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}>
-                    💡 Ask AI Tutor
-                  </button>
-                </div>
-              </div>
+            <div style={{ minWidth: 52, display: "flex", flexDirection: "column", alignItems: "center", padding: "8px 0", gap: 3, height: "100%" }}>
+              {[
+                { icon: "explorer",   tip: "Explorer",   key: "explorer" },
+                { icon: "search",     tip: "Search",     key: "search" },
+                { icon: "git",        tip: "Source Control", key: "git", badge: true },
+                { icon: "extensions", tip: "Extensions", key: "extensions" },
+                { icon: "ai",         tip: "AI Tutor",   key: "ai" },
+              ].map(item => (
+                <ActIcon key={item.key} icon={item.icon} tooltip={item.tip} badge={item.badge}
+                  theme={T}
+                  active={activeActIcon === item.key}
+                  onClick={() => { setActiveActIcon(item.key); if (item.key === "explorer") setSidebarOpen(true); }} />
+              ))}
+              <div style={{ flex: 1 }} />
+              <ActIcon icon="profile"  tooltip="Profile"  active={false} onClick={() => {}} />
+              <ActIcon icon="settings" tooltip="Settings" active={false} onClick={() => {}} />
             </div>
           </div>
         </div>

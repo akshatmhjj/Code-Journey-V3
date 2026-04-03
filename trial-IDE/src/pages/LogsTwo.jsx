@@ -169,193 +169,346 @@ const CL_DARK = {
 ══════════════════════════════════════════════════════════════ */
 const LOGS = [
   {
-    id:"r-001",type:"release",version:"v2.4.0",
-    title:"Multi-Language Code Runner",
-    date:"2026-03-28",
-    summary:"Execute Python, JavaScript, TypeScript, R and SQL directly inside Code Journey with real-time output streaming and fully sandboxed WebAssembly execution — no local setup required.",
-    tags:["code-runner","sandbox","wasm"],
-    readTime:"5 min",
-    content:{
-      headline:"Run Code Natively — No Setup Required",
-      intro:"Today we're shipping the feature our community has asked for since day one: a fully sandboxed, multi-language code runner built directly into Code Journey. No local installs. No environment configuration. No tab-switching to a separate playground. Write your solution, press Run, see output — all inside the same IDE you've been practising in.",
-      sections:[
-        {id:"s-r1-1",heading:"Nine Languages, One Runtime",body:"The Code Journey runtime supports JavaScript, TypeScript, Python 3.12, R 4.3, SQL (PostgreSQL dialect), Dart, Kotlin, Rust 1.77 and an HTML/CSS live preview — all at launch. Every language runs in an isolated WebAssembly container spun up fresh per execution, meaning your session is hermetically sealed from every other user's. There is no shared state, no residual files, and no way for one run to pollute the next. The container lifecycle — creation, warm-up, execution, teardown — happens in under 200ms for all supported languages."},
-        {id:"s-r1-2",heading:"Real-Time Output Streaming",body:"We moved away from the batch-at-the-end model that most in-browser runners use. The new streaming engine pipes stdout and stderr line-by-line into the terminal panel as they are emitted — so long-running scripts feel responsive even before they complete. Stdout renders in white, stderr in amber, and unhandled exceptions in red with a clickable stack trace. The terminal supports ANSI colour sequences, so libraries that emit coloured output work exactly as they do in a local terminal."},
-        {id:"s-r1-3",heading:"Sandbox Limits and Safety",body:"Every execution is governed by a hard 30-second CPU wall-clock limit, a 128 MB memory ceiling, and zero outbound network access. When a script hits any of these limits the runner terminates the container cleanly and reports exactly which limit was breached and at which line. The sandbox also disables filesystem writes outside a small ephemeral scratch space that is wiped after each run — keeping the environment reproducible and ensuring exercise outputs are always the result of the submitted code alone."},
-        {id:"s-r1-4",heading:"What's Coming Next",body:"We're already building the next layer: persistent REPL sessions that survive page refreshes, selective package imports for Python via pip and Node via npm with an allowlist, and a live co-running mode where you and a mentor share a terminal in real time. We'll ship these incrementally over the next two releases."},
+    id: "r-003.1",
+    type: "release",
+    version: "v3.0.0",
+    title: "Channel Logs Page",
+    date: "2026-03-29",
+    summary:
+      "A centralized system to track all platform activities including releases, improvements, and deprecations in a structured and transparent way.",
+    tags: ["logs", "tracking", "platform"],
+    readTime: "2 min",
+    content: {
+      headline: "One Timeline for Everything Happening on Code Journey",
+      intro:
+        "With the growing complexity of Code Journey, users needed a clear way to understand what’s changing across the platform. The Channel Logs page solves this by acting as a living timeline of all system activity — from new features to removed systems — all in one place.",
+      sections: [
+        {
+          id: "s-r3-1",
+          heading: "Centralized Activity Tracking",
+          body:
+            "Every update is now categorized into Releases, Improvements, and Deprecations, ensuring users can easily differentiate between new features, upgrades, and removed functionality without confusion.",
+        },
+        {
+          id: "s-r3-2",
+          heading: "Structured & Scalable Format",
+          body:
+            "Logs are designed in a modular structure with summaries, detailed breakdowns, and changelogs — making it scalable as the platform evolves into multiple domains and systems.",
+        },
+        {
+          id: "s-r3-3",
+          heading: "User Transparency",
+          body:
+            "Instead of hidden updates, users now get full visibility into what changed, why it changed, and how it impacts their experience — building trust and clarity.",
+        },
       ],
-      changelog:[
-        {label:"Added",  items:["WebAssembly sandboxed execution engine","Streaming stdout/stderr in terminal panel","Per-language CPU timeout and memory limits","Run shortcut (Ctrl/Cmd + Enter)","Execution history with replay (last 10 runs)"]},
-        {label:"Fixed",  items:["Terminal scroll-lock on rapid output","Tab focus lost after code execution","Line numbers desync on long outputs"]},
-      ]
-    }
+      changelog: [
+        {
+          label: "Added",
+          items: [
+            "Dedicated Channel Logs page",
+            "Categorization (Release / Improvement / Deprecation)",
+            "Detailed structured log format",
+            "Timeline-based tracking system",
+          ],
+        },
+      ],
+    },
   },
+
   {
-    id:"r-002",type:"release",version:"v2.3.0",
-    title:"AI Tutor Integration",
-    date:"2026-03-14",
-    summary:"Ask questions, get progressive hints and request code reviews from an AI tutor that already understands your current exercise, open file and test results — without leaving the IDE.",
-    tags:["ai","tutor","hints"],
-    readTime:"4 min",
-    content:{
-      headline:"Your Personal AI Tutor — Context-Aware and Always On",
-      intro:"Most AI coding assistants make you do the work of explaining your situation: paste in your code, describe the problem, re-state the exercise goal. With the Code Journey AI Tutor none of that is necessary. The tutor silently reads your context before you type a single character.",
-      sections:[
-        {id:"s-r2-1",heading:"Context Injection Without Copy-Pasting",body:"When you open the Tutor panel it already holds your current file contents, the full exercise description, which test cases are passing and which are failing, and your last three terminal outputs. When you ask 'why is my function returning undefined?' it doesn't need you to paste the function — it already sees it. This single change eliminates the biggest source of friction in asking for help: re-establishing context from scratch every time you switch tools."},
-        {id:"s-r2-2",heading:"The Hint Ladder",body:"Rather than serving the answer immediately, the Tutor follows a three-rung Socratic ladder. Rung one is a conceptual nudge — it confirms whether you understand the underlying pattern being tested. Rung two is a structural hint — it shows the shape of a solution without writing the code. Rung three is a partial implementation — it fills in the hard part and leaves the mechanical work to you. Solving from rung one earns full XP; each rung down reduces your award by 25 percent."},
-        {id:"s-r2-3",heading:"Code Review Mode",body:"Once you've passed all test cases a Review button appears in the Tutor panel. Activate it and the AI performs a structured three-axis review: correctness, readability, and idiomatic style — with findings rendered as inline annotations directly in the editor. Clicking any annotation expands a detailed explanation with before-and-after examples."},
+    id: "r-003.2",
+    type: "release",
+    version: "v3.0.0",
+    title: "Multi-Language Code Runner",
+    date: "2026-03-28",
+    summary:
+      "Execute multiple programming languages directly inside Code Journey using a sandboxed WebAssembly runtime with real-time output.",
+    tags: ["code-runner", "wasm", "execution"],
+    readTime: "3 min",
+    content: {
+      headline: "Run Any Code — Instantly, Securely, Natively",
+      intro:
+        "One of the most requested features is now fully integrated: a multi-language execution engine that eliminates the need for local setup. Everything runs directly in-browser with performance and safety at its core.",
+      sections: [
+        {
+          id: "s-r3-4",
+          heading: "Multi-Language Runtime",
+          body:
+            "The runtime supports JavaScript, TypeScript, Python, R, SQL, Dart, Kotlin, Rust, and HTML/CSS preview — allowing users to switch between languages without leaving the platform.",
+        },
+        {
+          id: "s-r3-5",
+          heading: "WebAssembly Sandbox",
+          body:
+            "Each execution runs inside an isolated WebAssembly container, ensuring complete separation between runs. No shared state, no persistence, and no risk of cross-user interference.",
+        },
+        {
+          id: "s-r3-6",
+          heading: "Real-Time Output Streaming",
+          body:
+            "Instead of waiting for execution to complete, stdout and stderr are streamed live into the terminal panel, creating a responsive coding experience similar to a local environment.",
+        },
+        {
+          id: "s-r3-7",
+          heading: "Execution Constraints",
+          body:
+            "To maintain system stability and fairness, each run enforces strict limits — 30-second execution time, 128MB memory cap, and zero external network access.",
+        },
       ],
-      changelog:[
-        {label:"Added",   items:["AI Tutor side panel with automatic context injection","Three-rung hint ladder with XP adjustment","Code review mode with inline editor annotations","Keyboard shortcut (Ctrl/Cmd + Shift + A)"]},
-        {label:"Improved",items:["Exercise hint fallback now powered by AI","First-response latency < 800ms (p50)","Tutor retains conversation history within a session"]},
-      ]
-    }
+      changelog: [
+        {
+          label: "Added",
+          items: [
+            "WebAssembly-based execution engine",
+            "Support for 9 programming languages",
+            "Live terminal output streaming",
+            "Execution history with replay",
+            "Keyboard shortcut (Ctrl/Cmd + Enter)",
+          ],
+        },
+        // {
+        //   label: "Fixed",
+        //   items: [
+        //     "Terminal scroll lock during heavy output",
+        //     "Editor losing focus after execution",
+        //     "Output synchronization inconsistencies",
+        //   ],
+        // },
+      ],
+    },
   },
+
   {
-    id:"r-003",type:"release",version:"v2.2.0",
-    title:"Streak & XP Gamification",
-    date:"2026-02-27",
-    summary:"Daily coding streaks, XP points, five-tier level progression and weekly leaderboards — a system designed to reward the habit of showing up, not binge-learning sessions.",
-    tags:["gamification","streaks","xp"],
-    readTime:"3 min",
-    content:{
-      headline:"Level Up Your Learning — Every Single Day",
-      intro:"Motivation research consistently shows that the hardest part of learning to code isn't any individual concept — it's showing up repeatedly over weeks and months. The Code Journey gamification system is built around that insight: reward the habit, not just the outcome.",
-      sections:[
-        {id:"s-r3-1",heading:"Daily Streaks and Shields",body:"Complete at least one exercise per day and your streak counter increments. Miss a day and it resets — unless you have a Streak Shield. Shields are earned by completing weekly challenge sets and can absorb a single missed day. At 7, 30 and 100 consecutive days, streaks unlock exclusive IDE colour themes that can't be obtained any other way."},
-        {id:"s-r3-2",heading:"XP and the Level Ladder",body:"Every exercise completion awards XP scaled by three factors: the exercise's base difficulty (1× to 4×), how many hint rungs you used, and how quickly you solved it relative to the median solve time. Accumulated XP moves you through five tiers — Novice, Apprentice, Practitioner, Expert, and Master — each unlocking additional language tracks and challenge modes."},
-        {id:"s-r3-3",heading:"Weekly Leaderboards",body:"Leaderboards reset every Monday at 00:00 UTC. View global rankings or filter to your cohort, language track, or country. The top three XP earners each week receive a timestamped Leaderboard Badge on their public profile — a record that accurately reflects the competitive field of that specific week."},
+    id: "i-003.1",
+    type: "improvement",
+    version: "v3.0.0",
+    title: "CJ Editor Interface Upgrade",
+    date: "2026-03-25",
+    summary:
+      "Shifted from a web-centric editor to a full multi-language development environment with improved UI and performance.",
+    tags: ["editor", "ui", "ide"],
+    readTime: "1 min",
+    content: {
+      headline: "From Editor → Full Development Workspace",
+      intro:
+        "The CJ Editor has undergone a major transformation. What was once focused on web technologies is now a flexible, multi-language workspace designed to simulate real development environments.",
+      sections: [
+        {
+          id: "s-i3-1",
+          heading: "Multi-Language Shift",
+          body:
+            "The editor now supports diverse programming environments, aligning with the platform’s expansion beyond web development into a broader learning ecosystem.",
+        },
+        {
+          id: "s-i3-2",
+          heading: "Hybrid UI Experience",
+          body:
+            "The interface now blends patterns from multiple modern IDEs, creating a familiar yet unique experience optimized for both beginners and advanced users.",
+        },
+        {
+          id: "s-i3-3",
+          heading: "Integrated Panels",
+          body:
+            "Added terminal, console, problems, and output tabs below the editor — enabling users to write, run, debug, and analyze code in one place.",
+        },
+        {
+          id: "s-i3-4",
+          heading: "Performance Enhancements",
+          body:
+            "Improved load times and responsiveness using optimized bundling and background preloading strategies for execution engines.",
+        },
       ],
-      changelog:[
-        {label:"Added",items:["Daily streak tracking with Streak Shield inventory","XP calculation engine (difficulty × hints × speed)","Five-tier level progression with IDE theme unlocks","Weekly global, cohort, track and country leaderboards","Public profile XP history sparkline chart"]},
-      ]
-    }
+      changelog: [
+        {
+          label: "Improved",
+          items: [
+            "Editor UI redesign",
+            "Multi-language support",
+            "Integrated development panels",
+            "Faster startup and execution responsiveness",
+          ],
+        },
+      ],
+    },
   },
+
   {
-    id:"d-001",type:"deprecated",version:"v2.4.0",status:"sunset-90d",
-    title:"Legacy Monaco Editor Config API",
-    date:"2026-03-28",
-    summary:"The window.__CJ_MONACO_CONFIG global object is deprecated. Migrate to CJEditor.configure() before June 30 2026 to avoid undefined editor behaviour.",
-    tags:["editor","api","breaking"],
-    readTime:"6 min",
-    content:{
-      headline:"Legacy Monaco Config API — Deprecated in v2.4.0",
-      intro:"The window.__CJ_MONACO_CONFIG global configuration object was introduced in v1.0 as a pragmatic shortcut for early integrators. It worked well enough at the time, but it accumulated years of technical debt: no validation layer, race-condition-prone initialisation timing, and an inability to handle dynamic per-file overrides.",
-      sections:[
-        {id:"s-d1-1",heading:"Why We're Replacing It",body:"The fundamental issue is timing. The editor reads __CJ_MONACO_CONFIG exactly once during mount. Any script that sets the object after mount — code loaded via async import(), behind a feature flag, or deferred for performance — is silently ignored. This caused a class of bugs that were extremely difficult to diagnose because the editor appeared to initialise correctly, but with default settings rather than the intended ones. CJEditor.configure() is idempotent and can be called at any point in the page lifecycle."},
-        {id:"s-d1-2",heading:"The Migration Path",body:"The replacement API is a direct key-for-key translation. Replace window.__CJ_MONACO_CONFIG = { theme: 'dark', fontSize: 14 } with CJEditor.configure({ theme: 'dark', fontSize: 14 }). The method accepts the same option keys. To read the current configuration, use CJEditor.getConfig() which returns a frozen snapshot. To react to configuration changes, listen for the cj:editor-config-updated CustomEvent on the document object."},
-        {id:"s-d1-3",heading:"Sunset Timeline",body:"v2.4.0 (March 28): The global object is still read but a deprecation warning is emitted to the console on every page load that sets it. v2.5.0 (May 2026): The console warning becomes a visible in-app banner. v2.6.0 (July 2026): The global object is no longer read. Any code that still sets it will have no effect and its behaviour is explicitly undefined from that version forward."},
+    id: "i-003.3",
+    type: "improvement",
+    version: "v3.0.0",
+    title: "Profile Section Redesign",
+    date: "2026-04-02",
+    summary:
+      "Rebuilt profile experience with improved dashboard, task tracking, and theme customization.",
+    tags: ["profile", "dashboard", "ui"],
+    readTime: "1 min",
+    content: {
+      headline: "A Cleaner, More Meaningful Profile Experience",
+      intro:
+        "The profile section has been redesigned to better reflect user progress and simplify interactions across different parts of the platform.",
+      sections: [
+        {
+          id: "s-i3-5",
+          heading: "Dashboard Restructure",
+          body:
+            "Improved hierarchy and layout to highlight important user data such as progress, activity, and achievements.",
+        },
+        {
+          id: "s-i3-6",
+          heading: "Tasks System Update",
+          body:
+            "Tasks are now more interactive and easier to manage, allowing users to track their learning journey more efficiently.",
+        },
+        {
+          id: "s-i3-7",
+          heading: "Theme Customization",
+          body:
+            "Removed the old settings section and introduced a dedicated platform theme switching experience for personalization.",
+        },
       ],
-      changelog:[
-        {label:"Deprecated",items:["window.__CJ_MONACO_CONFIG global object (read until v2.6.0)","__CJ_MONACO_CONFIG.theme","__CJ_MONACO_CONFIG.fontSize","__CJ_MONACO_CONFIG.tabSize"]},
-        {label:"Replacement",items:["CJEditor.configure(options) — full lifecycle-safe options API","CJEditor.getConfig() — returns frozen snapshot of current config","'cj:editor-config-updated' CustomEvent for reactive config listening"]},
-      ]
-    }
+      changelog: [
+        {
+          label: "Improved",
+          items: [
+            "Profile dashboard layout",
+            "Task interaction flow",
+            "Theme switching system",
+          ],
+        },
+      ],
+    },
   },
+
   {
-    id:"d-002",type:"deprecated",version:"v2.3.0",status:"sunset-60d",
-    title:"V1 Exercise Completion Webhook",
-    date:"2026-03-14",
-    summary:"The /api/v1/webhooks/exercise-complete endpoint is deprecated. Switch to the v2 Event Stream API before May 14 2026 for structured payloads, HMAC signing and automatic retries.",
-    tags:["webhooks","api","v1"],
-    readTime:"5 min",
-    content:{
-      headline:"V1 Webhook Endpoint Deprecated — Migrate to Event Streams",
-      intro:"The v1 webhook was built when Code Journey had a single event type, a single payload shape, and no retry infrastructure. That's no longer true. The new Event Stream API is the foundation our entire event delivery system is built on — it powers the AI Tutor context updates, leaderboard live feeds, and mobile push notifications.",
-      sections:[
-        {id:"s-d2-1",heading:"What Changes in the Payload",body:"The v1 endpoint sent a flat JSON object: { userId, exerciseId, completedAt, passed }. The v2 EventEnvelope wraps that data in a structured container with a schema version field, an idempotency key, a delivery timestamp distinct from the event timestamp, and an HMAC-SHA256 signature in the X-CJ-Signature header for cryptographic verification of delivery authenticity."},
-        {id:"s-d2-2",heading:"How to Migrate",body:"Open your Code Journey dashboard and navigate to Integrations → Event Streams. Create a new stream, select the exercise.completed event type, and enter your endpoint URL. Copy the signing secret and store it securely — you'll use it to verify the X-CJ-Signature header. In your handler, verify the signature before processing, then use the idempotency key to deduplicate retried deliveries. Deregister your v1 webhook before May 14."},
-        {id:"s-d2-3",heading:"Testing and Debugging",body:"The Event Streams dashboard includes an inline delivery inspector. Hit Send Test Event to fire a synthetic exercise.completed event to your endpoint and see the full request headers, body, and your endpoint's response — all in one view. Failed deliveries are automatically retried up to five times with exponential back-off. You can replay any delivery manually from the inspector for up to 30 days."},
+    id: "i-003.4",
+    type: "improvement",
+    version: "v3.0.0",
+    title: "Landing Page Revamp",
+    date: "2026-04-03",
+    summary:
+      "Redesigned landing experience to better represent Code Journey as a multi-domain learning platform.",
+    tags: ["landing", "ui", "experience"],
+    readTime: "1 min",
+    content: {
+      headline: "Beyond Web Development — A Broader Vision",
+      intro:
+        "The landing page now reflects the platform’s evolution from a web-focused learning tool into a comprehensive, multi-domain ecosystem.",
+      sections: [
+        {
+          id: "s-i3-8",
+          heading: "Removed Web-Centric Bias",
+          body:
+            "Eliminated components that focused only on web development, making the platform more inclusive of different technologies and domains.",
+        },
+        {
+          id: "s-i3-9",
+          heading: "Quick Platform Insights",
+          body:
+            "Added a section that quickly communicates what Code Journey offers, helping new users understand the platform instantly.",
+        },
+        {
+          id: "s-i3-10",
+          heading: "Improved First Impression",
+          body:
+            "Refined layout, messaging, and visual hierarchy to create a more immersive and engaging entry point.",
+        },
       ],
-      changelog:[
-        {label:"Deprecated",items:["POST /api/v1/webhooks/exercise-complete (removed May 14 2026)","Flat payload format: { userId, exerciseId, completedAt, passed }"]},
-        {label:"Replacement",items:["Event Stream: exercise.completed event type","EventEnvelope with schema versioning and idempotency key","HMAC-SHA256 signed delivery via X-CJ-Signature","Automatic retry: 5 attempts with exponential back-off","30-day delivery replay from dashboard inspector"]},
-      ]
-    }
+      changelog: [
+        {
+          label: "Improved",
+          items: [
+            "Landing page structure",
+            "Platform positioning clarity",
+            "User onboarding experience",
+          ],
+        },
+      ],
+    },
   },
+
   {
-    id:"d-003",type:"deprecated",version:"v2.2.0",status:"removed",
-    title:"Flash-Based Code Playground (Removed)",
-    date:"2026-02-27",
-    summary:"The legacy Flash playground from 2019 has been fully removed. All user progress and saved snippets were automatically migrated to the WebAssembly runner.",
-    tags:["flash","legacy","removed"],
-    readTime:"2 min",
-    content:{
-      headline:"Flash Playground Fully Removed in v2.2.0",
-      intro:"Some features outlive their welcome. The Flash-based code playground that shipped with the Code Journey beta in 2019 handled over two million exercise runs before browser vendors began disabling Flash support in 2020. As of v2.2.0, that chapter is closed.",
-      sections:[
-        {id:"s-d3-1",heading:"A Brief History",body:"The Flash playground was the quickest path to in-browser code execution available in 2019. It ran a stripped-down JavaScript interpreter wrapped in a SWF file and loaded via the Ruffle polyfill after Adobe's end-of-life announcement. It never supported more than three languages, had no sandboxing guarantees, and relied on a localStorage adapter that accumulated user data in the browser — making data portability essentially impossible without manual export."},
-        {id:"s-d3-2",heading:"Automatic Data Migration",body:"All user progress, completion records and saved code snippets stored by the Flash localStorage adapter were migrated to our central data store in December 2025 as part of a background migration job. No action was required from any user. The migration covered 98.7% of records automatically; the remaining 1.3% were manually recovered by our data team and verified against exercise completion timestamps."},
-        {id:"s-d3-3",heading:"What You Get Instead",body:"The WebAssembly runner is four times faster on cold start, supports nine languages versus the Flash runner's three, requires no browser plugin, works on iOS and Android, runs in a true process-level sandbox with enforceable memory and CPU limits, and produces streaming output instead of batching results at the end."},
+    id: "d-003.1",
+    type: "deprecated",
+    version: "v3.0.0",
+    title: "Badges System (Temporary Removal)",
+    date: "2026-04-01",
+    summary:
+      "Temporarily removed badges due to low engagement and lack of a strong progression system.",
+    tags: ["gamification", "badges"],
+    readTime: "1 min",
+    content: {
+      headline: "Rebuilding Gamification from the Ground Up",
+      intro:
+        "The existing badges system did not effectively motivate users or integrate well with the platform’s progression model, leading to its temporary removal.",
+      sections: [
+        {
+          id: "s-d3-1",
+          heading: "Core Issues",
+          body:
+            "Low usage, unclear reward structure, and weak feedback loops reduced its overall impact on user motivation.",
+        },
+        {
+          id: "s-d3-2",
+          heading: "What’s Next",
+          body:
+            "A redesigned gamification system is planned with better progression logic, meaningful rewards, and tighter integration with user activity.",
+        },
       ],
-      changelog:[
-        {label:"Removed", items:["Flash (SWF) code playground runtime and Ruffle polyfill","Flash-specific localStorage adapter","__CJ_FLASH_COMPAT polyfill shim"]},
-        {label:"Migrated",items:["All user progress → central data store (100% complete)","Saved code snippets → Snippets API v2","Completion timestamps → normalised event log"]},
-      ]
-    }
+      changelog: [
+        {
+          label: "Removed",
+          items: ["Badges system (temporary)"],
+        },
+      ],
+    },
   },
+
   {
-    id:"i-001",type:"improvement",version:"v2.4.0",
-    title:"Editor Startup Time — 3× Faster",
-    date:"2026-03-28",
-    summary:"Cold boot time dropped from 2.8s to 0.9s through lazy chunk splitting, background WASM pre-compilation in a Web Worker, and aggressive unicode-range font subsetting.",
-    tags:["performance","startup","wasm"],
-    readTime:"4 min",
-    content:{
-      headline:"The Editor Boots 3× Faster — Here's Exactly How We Did It",
-      intro:"In our March performance audit we instrumented every millisecond of the editor's cold boot path on a simulated 10 Mbps connection. The number we found — 2.8 seconds from navigation to interactive — was unacceptable. This entry is a detailed account of the three specific changes that brought it to 0.9 seconds.",
-      sections:[
-        {id:"s-i1-1",heading:"Lazy Chunk Splitting",body:"The editor's entire JavaScript surface was shipped as a single 1.4 MB bundle. We restructured the build using Rollup's dynamic import() boundaries to produce twelve chunks. The critical-path chunk — the editor shell, tab bar and status bar — weighs 180 KB and loads first. Language syntax grammars load only when that language's tab is opened. Heavy features — the minimap, git diff view, AI tutor panel — are deferred until after the editor reports itself as interactive. Total JS parse time dropped from 380ms to 110ms."},
-        {id:"s-i1-2",heading:"WASM Pre-Warming in a Background Worker",body:"The WebAssembly execution engine previously compiled on the first press of the Run button. On a mid-range laptop that compilation takes 600–900ms — a full-second freeze at exactly the moment the user is most engaged. We now schedule a background Web Worker to pre-compile the WASM module three seconds after the editor becomes visible, using requestIdleCallback as the scheduling mechanism. By the time a user finishes reading and writing their first attempt, the engine is compiled and waiting. First-run response time dropped from ~900ms to ~45ms."},
-        {id:"s-i1-3",heading:"Font Subsetting",body:"JetBrains Mono was loaded in four weights across normal and italic variants, totalling 680 KB of font payload. An audit of every character actually rendered in the editor produced a Unicode range covering 487 of the typeface's 1,200+ glyphs. We generated a subset font using pyftsubset and reduced the payload to 94 KB — an 86% reduction. The visual result is completely indistinguishable because the characters that appear in real code are precisely the ones we kept."},
+    id: "d-003.2",
+    type: "deprecated",
+    version: "v3.0.0",
+    title: "Legacy Editor Config API",
+    date: "2026-03-28",
+    summary:
+      "Deprecated the global editor configuration system in favor of a modern lifecycle-safe API.",
+    tags: ["editor", "api"],
+    readTime: "1 min",
+    content: {
+      headline: "From Global Hacks → Structured Configuration",
+      intro:
+        "The old global configuration approach introduced timing issues and lacked flexibility. It has now been replaced with a more robust and scalable solution.",
+      sections: [
+        {
+          id: "s-d3-3",
+          heading: "What Changed",
+          body:
+            "window.__CJ_MONACO_CONFIG is replaced with CJEditor.configure(), allowing configuration updates at any point in the lifecycle.",
+        },
+        {
+          id: "s-d3-4",
+          heading: "Why It Matters",
+          body:
+            "Eliminates race conditions, improves reliability, and enables dynamic configuration updates.",
+        },
+        {
+          id: "s-d3-5",
+          heading: "Migration Requirement",
+          body:
+            "Developers must migrate to the new API before June 30, 2026, to avoid undefined behavior.",
+        },
       ],
-      changelog:[
-        {label:"Improved",items:["Cold boot: 2.8s → 0.9s (p75, 10 Mbps)","First Run response: ~900ms → ~45ms","JS parse time: 380ms → 110ms","Font payload: 680 KB → 94 KB (86% reduction)","LCP: 1.9s → 0.7s"]},
-        {label:"Technique",items:["12-chunk Rollup build with dynamic import()","WASM pre-compilation via Web Worker + requestIdleCallback","Unicode-range font subsetting with pyftsubset","Icon tree-shaking: removed 2,100 unused Lucide icons"]},
-      ]
-    }
-  },
-  {
-    id:"i-002",type:"improvement",version:"v2.3.0",
-    title:"Syntax Highlighting Overhaul",
-    date:"2026-03-14",
-    summary:"Rebuilt the tokeniser from 800 lines of regex to a TextMate grammar engine. 23 new token scopes across 9 languages — TypeScript generics, SQL CTEs, Rust lifetimes all highlight correctly.",
-    tags:["editor","syntax","tokeniser"],
-    readTime:"5 min",
-    content:{
-      headline:"Syntax Highlighting — Rebuilt From the Ground Up",
-      intro:"Our original tokeniser was 800 lines of carefully ordered regular expressions. It worked well for simple cases, but regular expressions cannot model recursive or context-dependent syntax — and every interesting language has plenty of both. TypeScript generics, SQL CTEs, and Rust lifetime annotations all produced incorrect or missing highlighting. We replaced the entire system.",
-      sections:[
-        {id:"s-i2-1",heading:"Switching to a Grammar Engine",body:"We replaced the regex file with a TextMate grammar engine — the same approach used by VS Code, Zed and Helix. Each language now has a .tmLanguage.json file that describes its full syntax as a hierarchy of named scopes. The engine processes source code as a stateful tokeniser: it tracks open constructs — function bodies, generic parameters, string templates — and applies the correct scope at every character position, even across multiple lines."},
-        {id:"s-i2-2",heading:"23 New Token Scopes",body:"The new engine exposes scopes the regex approach simply could not reach: TypeScript generic type constraints (where T extends), decorator expressions, template literal interpolations, SQL WITH clauses and window function OVER partitions, Rust lifetime parameters ('a), Rust borrow operators (&, &mut), Dart null-safety operators (?., ??, !), Kotlin coroutine keywords (suspend, emit, collect), and R's formula operator (~). All existing themes were updated to cover every new scope."},
-        {id:"s-i2-3",heading:"Theme Compatibility and Fallback",body:"Third-party themes that don't define a new scope fall back gracefully to the nearest parent scope's colour — so a theme without a TypeScript generic constraint scope renders it in the colour assigned to generic type parameters, which is almost always correct. Custom theme authors can opt into new scopes by adding scope names to their theme's token colour rules; the grammar engine picks them up automatically."},
+      changelog: [
+        {
+          label: "Deprecated",
+          items: ["window.__CJ_MONACO_CONFIG"],
+        },
+        {
+          label: "Replacement",
+          items: ["CJEditor.configure()"],
+        },
       ],
-      changelog:[
-        {label:"Improved",items:["Tokeniser: 800-line regex → TextMate grammar engine","23 new token scopes across 9 languages","TypeScript: generics, decorators, template literals","SQL: CTEs, subqueries, window functions","Rust: lifetimes, borrow operators","Kotlin: coroutine keywords and Flow operators","R: formula (~) and pipe operators (|> %>%)"]},
-        {label:"Fixed",   items:["TS generic constraints coloured as comparison operators","SQL keywords highlighted inside string literals","R formula ~ treated as unknown token","Rust lifetimes silently stripped by tokeniser"]},
-      ]
-    }
-  },
-  {
-    id:"i-003",type:"improvement",version:"v2.2.0",
-    title:"Mobile Keyboard & Touch Input",
-    date:"2026-02-27",
-    summary:"dvh-based layout keeps the editor visible when the soft keyboard opens. New floating quick-access toolbar puts brackets, indentation and snippet insertion one tap away.",
-    tags:["mobile","ux","touch"],
-    readTime:"3 min",
-    content:{
-      headline:"Code on the Go — Mobile Input Redesigned",
-      intro:"Mobile was designed last in the original editor, and it showed: the soft keyboard would collapse the editor viewport, the cursor would jump unpredictably when the keyboard appeared, and there was no way to type common coding characters without hunting through multiple keyboard layers. All of that is fixed.",
-      sections:[
-        {id:"s-i3-1",heading:"Viewport Stability with dvh",body:"The root cause of the collapsing viewport was our use of 100vh. On mobile, browsers report 100vh as the viewport height with the soft keyboard hidden. When the keyboard slides up, the editor layout overflows beyond the visible area and the browser clips it. Switching to 100dvh — dynamic viewport height — tells the browser to recalculate the measurement whenever keyboard state changes. The editor, tab bar and status bar now always fit within the visible area regardless of keyboard state."},
-        {id:"s-i3-2",heading:"The Quick-Access Toolbar",body:"On mobile software keyboards, typing characters like {, [, (, ; and = requires navigating to a secondary or tertiary symbol layer — constant friction that interrupts flow. We added a fixed toolbar that floats just above the soft keyboard on touch devices. It provides single-tap access to the ten most frequently used coding characters, a Tab button that inserts the correct number of spaces, a Shift-Tab for dedentation, and a Snippets button that inserts your three most recently used templates at the cursor position."},
-        {id:"s-i3-3",heading:"Precise Cursor Placement",body:"Touch targets in a code editor are inherently small — monospace characters at 13px are roughly 8px wide, far below the 44px minimum touch target. Touch-and-hold on any token activates a magnified cursor loupe for sub-character precision. Double-tapping a token selects the full token. Triple-tapping selects the entire line including its indentation. These interactions compose correctly with scrolling and pinch-to-zoom without interference."},
-      ],
-      changelog:[
-        {label:"Improved",items:["Editor height: 100vh → 100dvh (stable with soft keyboard)","Floating quick-access toolbar above keyboard","Touch-and-hold magnified cursor loupe","Double-tap token select / triple-tap line select","Snippets button inserts 3 most-recent templates"]},
-        {label:"Fixed",   items:["Cursor jumps to line 1 when soft keyboard opens (iOS 16+)","Viewport collapses on Android Chrome 114+","Tab key inserts literal \\t on mobile","Pinch-to-zoom triggers accidental text selection"]},
-      ]
-    }
+    },
   },
 ];
 
@@ -504,6 +657,13 @@ const HomePage=({logs,onOpen,filter,T,isDark})=>{
     byDate[m].push(log);
   });
 
+  // Sort months in descending order (latest first)
+  const sortedEntries=Object.entries(byDate).sort((a,b)=>{
+    const dateA=new Date(a[0]);
+    const dateB=new Date(b[0]);
+    return dateB-dateA;
+  });
+
   // "Changelog" label colour — always visible
   const clLabelColor = isDark ? "#7c8bb5" : "#5a6488";
 
@@ -541,7 +701,7 @@ const HomePage=({logs,onOpen,filter,T,isDark})=>{
       </div>
 
       {/* Timeline */}
-      {Object.entries(byDate).map(([month,entries],gi)=>(
+      {sortedEntries.map(([month,entries],gi)=>(
         <div key={month} style={{marginBottom:40}}>
           <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:16}}>
             <span style={{fontFamily:"'JetBrains Mono',monospace",fontSize:10,fontWeight:600,letterSpacing:"2px",textTransform:"uppercase",color:T.t3,flexShrink:0}}>{month}</span>
@@ -821,7 +981,7 @@ const BlogPage=({log,onBack,isDark,T})=>{
    ROOT
 ══════════════════════════════════════════════════════════════ */
 export default function CJLogs() {
-  const [isDark,setIsDark]=useState(true);
+  const [isDark,setIsDark]=useState(false);
   const [page,setPage]=useState("home");
   const [filter,setFilter]=useState("all");
   const [openLog,setOpenLog]=useState(null);

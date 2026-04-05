@@ -48,7 +48,7 @@ const Particles = () => {
           style={{
             position: "absolute", left: `${p.x}%`, top: `${p.y}%`,
             fontFamily: "'JetBrains Mono', monospace", fontSize: p.size,
-            color: C.accent, userSelect: "none", whiteSpace: "nowrap",
+            color: "whitesmoke", userSelect: "none", whiteSpace: "nowrap",
           }}>
           {p.sym}
         </motion.span>
@@ -117,31 +117,33 @@ export default function Footer() {
     {
       title: "Learn",
       links: [
+        { label: "All Languages",     href: "/languages" },
         { label: "Web Development",   href: "/tracks/web" },
         { label: "App Development",   href: "/tracks/app" },
         { label: "Data Science",      href: "/tracks/data" },
-        { label: "All Languages",     href: "/languages" },
-        { label: "Code Journey IDE",  href: "/editor" },
+
       ],
     },
     {
       title: "Platform",
       links: [
-        { label: "Features",          href: "/features" },
+        // { label: "Features",          href: "/features" },
         { label: "Roadmap",           href: "/roadmap" },
         { label: "CJ Logs",           href: "/logs" },
-        { label: "Hall of Badges",    href: "/badges" },
-        { label: "Leaderboard",       href: "/leaderboard" },
+        { label: "Code Journey IDE",  href: "/editor" },
+
+        // { label: "Hall of Badges",    href: "/badges" },
+        // { label: "Leaderboard",       href: "/leaderboard" },
       ],
     },
     {
       title: "Company",
       links: [
         { label: "About",             href: "/about" },
-        { label: "Blog",              href: "/blog" },
+        // { label: "Blog",              href: "/blog" },
         { label: "FAQ",               href: "/faq" },
-        { label: "Privacy Policy",    href: "/privacy-policy" },
-        { label: "Terms & Conditions",href: "/terms" },
+        // { label: "Privacy Policy",    href: "/privacy-policy" },
+        // { label: "Terms & Conditions",href: "/terms" },
       ],
     },
   ];
@@ -274,7 +276,7 @@ export default function Footer() {
               style={{ display: "flex", flexDirection: "column", gap: 24 }}>
 
               {/* CJ Logo mark */}
-              <div style={{
+              {/* <div style={{
                 width: 48, height: 48, borderRadius: 13,
                 background: `linear-gradient(135deg, ${C.accent}, ${C.teal})`,
                 display: "flex", alignItems: "center", justifyContent: "center",
@@ -287,7 +289,7 @@ export default function Footer() {
                 fontSize: 14.5, color: C.t2, lineHeight: 1.78, maxWidth: 220, margin: 0,
               }}>
                 A browser-native multi-language learning platform. Web, app and data science — one IDE, zero setup.
-              </p>
+              </p> */}
 
               {/* Newsletter mini */}
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>

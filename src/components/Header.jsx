@@ -206,8 +206,8 @@ export default function Header() {
 
         .cj-hamburger-line {
           width: 22px;
-          height: 1.8px;
-          background: rgba(255,255,255,0.85);
+          height: 2.8px;
+          background: #443cae;
           border-radius: 2px;
           transition: all 0.28s cubic-bezier(0.4,0,0.2,1);
           transform-origin: center;
@@ -363,7 +363,7 @@ export default function Header() {
                         <div>
                             <button
                                 className="cj-cta"
-                                onClick={() => navigate("/login")}
+                                onClick={() => navigate("/profile")}
                                 style={{
                                     background: "linear-gradient(135deg, #7c6ee0, #5a52c4)",
                                     color: "#fff",

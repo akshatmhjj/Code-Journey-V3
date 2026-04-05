@@ -781,7 +781,7 @@ export default function Profile() {
 
           <nav style={{padding:"14px 12px",flex:1,display:"flex",flexDirection:"column"}}>
             {[
-              {id:"home",      label:"Home",      icon:Home},
+              // {id:"home",      label:"Home",      icon:Home},
               {id:"dashboard", label:"Dashboard", icon:LayoutDashboard},
               {id:"notes",     label:"Notes",     icon:StickyNote},
               {id:"tasks",     label:"Tasks",     icon:ClipboardList},

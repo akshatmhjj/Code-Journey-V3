@@ -409,8 +409,8 @@ export default function Header() {
                                     minHeight: 60,
                                     padding: "14px 16px",
                                     background: hoveredCard === i
-                                        ? "rgba(255,255,255,0.18)"
-                                        : "rgba(255,255,255,0.12)",
+                                        ? "rgba(15, 12, 12, 0.7)"
+                                        : "rgba(25, 22, 22, 0.8)",
                                     backdropFilter: "blur(12px)",
                                     WebkitBackdropFilter: "blur(12px)",
                                     boxShadow: hoveredCard === i
@@ -444,7 +444,7 @@ export default function Header() {
                                 {/* Links */}
                                 <div style={{
                                     marginTop: "auto", display: "flex",
-                                    flexDirection: "column", gap: 4,
+                                    flexDirection: "column", gap: 2,
                                 }}>
                                     {item.links.map(lnk => (
                                         <a key={lnk.label} href={lnk.href || "#"}

@@ -1,28 +1,3 @@
-/**
- * CJ Footer — Sticky-behind parallax reveal
- *
- * HOW THE EFFECT WORKS:
- * ─────────────────────────────────────────────────────────────
- * The footer sits at the bottom of the page with position:sticky
- * and a very low z-index. The main content wrapper has a higher
- * z-index and scrolls OVER it. As you reach the bottom, the
- * content clears the footer and it's revealed from underneath —
- * exactly like pulling a card out from behind another.
- *
- * To use in your App layout:
- *
- *   <div style={{ position: "relative", zIndex: 1 }}>
- *     <Header />
- *     <main>{children}</main>
- *   </div>
- *   <Footer />          ← sits behind, sticky to bottom
- *
- * The footer needs to be OUTSIDE and AFTER the scrolling content
- * wrapper. The wrapper should have background set so it visually
- * covers the footer as it scrolls.
- * ─────────────────────────────────────────────────────────────
- */
-
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FaTwitter, FaInstagram, FaGithub, FaLinkedinIn } from "react-icons/fa";

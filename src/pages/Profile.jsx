@@ -79,7 +79,7 @@ const THEMES = {
     sidebarBorder:"rgba(80,90,150,0.1)" },
 };
 
-const getStoredTheme = () => { try { return localStorage.getItem("cj-theme")||"cosmos"; } catch { return "cosmos"; } };
+const getStoredTheme = () => { try { return localStorage.getItem("cj-theme")||"light"; } catch { return "light"; } };
 const setStoredTheme = (k) => { try { localStorage.setItem("cj-theme",k); } catch {} };
 
 /* ─── Shared atoms ─────────────────────────────────────────── */

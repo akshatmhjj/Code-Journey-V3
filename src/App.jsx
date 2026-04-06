@@ -8,6 +8,7 @@ import About from './pages/AboutUs.jsx'
 import { FAQ, Privacy, Terms, Licensing } from "./pages/LegalPages";
 import Languages from './pages/Languages.jsx'
 import {Careers, Ecosystem} from './pages/Career&Eco.jsx'
+import Roadmap from './pages/Roadmap.jsx'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/languages" element={<Languages />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/ecosystem" element={<Ecosystem />} />
+          <Route path="/roadmap" element={<Roadmap />} />
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

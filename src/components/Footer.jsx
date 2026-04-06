@@ -131,9 +131,8 @@ export default function Footer() {
         { label: "Roadmap",           href: "/roadmap" },
         { label: "CJ Logs",           href: "/logs" },
         { label: "Code Journey IDE",  href: "/editor" },
-
-        // { label: "Hall of Badges",    href: "/badges" },
-        // { label: "Leaderboard",       href: "/leaderboard" },
+        { label: "Career",    href: "/careers" },
+        { label: "Ecosystem",       href: "/ecosystem" },
       ],
     },
     {

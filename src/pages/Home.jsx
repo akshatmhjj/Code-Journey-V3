@@ -74,8 +74,8 @@ const THEMES = {
 };
 
 const getTheme = () => {
-  try { return THEMES[localStorage.getItem("cj-theme")] || THEMES.cosmos; }
-  catch { return THEMES.cosmos; }
+  try { return THEMES[localStorage.getItem("cj-theme")] || THEMES.light; }
+  catch { return THEMES.light; }
 };
 
 const applyThemeToDom = (T) => {

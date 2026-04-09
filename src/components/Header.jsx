@@ -29,14 +29,14 @@ const CJLogo = () => (
 
 const NAV_ITEMS = [
     {
-        label: "Tech-Stack",
+        label: "Trackz",
         bgColor: "#0a0714",
         accentColor: "#7c6ee0",
         links: [
-            { label: "HTML", href: "/html" },
-            { label: "CSS", href: "/css" },
-            { label: "JavaScript", href: "/javascript" },
-            { label: "Database", href: "/database" },
+            { label: "Web Development", href: "#" },
+            { label: "App Development", href: "#" },
+            { label: "Data Science", href: "#" },
+            // { label: "Database", href: "/database" },
         ],
     },
     {
@@ -45,8 +45,8 @@ const NAV_ITEMS = [
         accentColor: "#5eead4",
         links: [
             { label: "Roadmap", href: "/roadmap" },
-            { label: "Code Journey AI", href: "/code-journey-ai" },
-            { label: "Code Journey Editor", href: "/code-journey-editor" },
+            // { label: "Code Journey AI", href: "/code-journey-ai" },
+            // { label: "Code Journey Editor", href: "/editor" },
         ],
     },
     {
@@ -54,9 +54,9 @@ const NAV_ITEMS = [
         bgColor: "#12101f",
         accentColor: "#f97316",
         links: [
-            { label: "More Of Us", href: "/about" },
-            { label: "Hall Of Badges", href: "/badges" },
-            { label: "Blogs & Archives", href: "/blog" },
+            { label: "What Are We ?", href: "/about" },
+            // { label: "Hall Of Badges", href: "/badges" },
+            { label: "Logs and Updates", href: "/logs" },
         ],
     },
 ];

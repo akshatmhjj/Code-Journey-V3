@@ -117,7 +117,7 @@ export default function Footer() {
     {
       title: "Learn",
       links: [
-        { label: "All Languages",     href: "/languages" },
+        { label: "All Tracks",     href: "/tracks" },
         { label: "Web Development",   href: "/tracks/web" },
         { label: "App Development",   href: "/tracks/app" },
         { label: "Data Science",      href: "/tracks/data" },
@@ -130,7 +130,7 @@ export default function Footer() {
         // { label: "Features",          href: "/features" },
         { label: "Roadmap",           href: "/roadmap" },
         { label: "CJ Logs",           href: "/logs" },
-        { label: "Code Journey IDE",  href: "/editor" },
+        // { label: "Code Journey IDE",  href: "/editor" },
         { label: "Career",    href: "/careers" },
         { label: "Ecosystem",       href: "/ecosystem" },
       ],

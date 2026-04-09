@@ -294,7 +294,7 @@ const ProblemSolution = ({ T }) => {
     "A structured bridge: exercises before the scary real projects",
   ];
   return (
-    <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20}}>
+    <div style={{display:"grid",gridTemplateColumns:"2fr 2fr",gap:30}}>
       {/* Problem */}
       <Reveal x={-20}>
         <div style={{
@@ -822,10 +822,10 @@ export default function About() {
             </Reveal>
 
             {/* Problem / Solution split */}
-            <div className="ps-grid"
-              style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20}}>
+            {/* <div className="ps-grid"
+              style={{display:"grid",gridTemplateColumns:"2fr 1fr",gap:20}}>
               <ProblemSolution T={T}/>
-            </div>
+            </div> */}
           </div>
         </section>
 
@@ -906,7 +906,7 @@ export default function About() {
               <SectionLabel
                 icon={Users} pill="Who We're For" color={T.green} T={T}
                 heading="You Belong Here If…"
-                sub="Code Journey is deliberately built for a specific kind of person."
+                sub="CODE JOURNEY is deliberately built for a specific kind of person."
               />
             </Reveal>
 

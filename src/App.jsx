@@ -9,15 +9,21 @@ import { FAQ, Privacy, Terms, Licensing } from "./pages/LegalPages";
 import Languages from './pages/Languages.jsx'
 import {Careers, Ecosystem} from './pages/Career&Eco.jsx'
 import Roadmap from './pages/Roadmap.jsx'
+import Authpage from './pages/Authpage.jsx'
 
 function App() {
   return (
     <Router>
-      <Layout>
-        <Routes>
+      <Routes>
+
+        {/* ✅ Auth (NO layout) */}
+        <Route path="/auth" element={<Authpage />} />
+
+        {/* ✅ Layout wrapper */}
+        <Route element={<Layout />}>
+
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
-          {/* <Route path="/editor" element={<Editor />} /> */}
           <Route path="/logs" element={<LogsTwo />} />
           <Route path="/about" element={<About />} />
           <Route path="/faq" element={<FAQ />} />
@@ -29,11 +35,14 @@ function App() {
           <Route path="/ecosystem" element={<Ecosystem />} />
           <Route path="/roadmap" element={<Roadmap />} />
 
+          {/* fallback */}
           <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </Layout>
+
+        </Route>
+
+      </Routes>
     </Router>
-  )
+  );
 }
 
 export default App

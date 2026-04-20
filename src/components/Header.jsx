@@ -59,7 +59,7 @@ const NAV_ITEMS = [
         links: [
             { label: "What Are We ?", href: "/about" },
             // { label: "Hall Of Badges", href: "/badges" },
-            { label: "Logs and Updates", href: "/logs" },
+            // { label: "Logs and Updates", href: "/logs" },
         ],
     },
 ];

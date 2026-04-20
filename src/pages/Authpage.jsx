@@ -468,7 +468,7 @@ export default function AuthPage() {
                         {agreed&&<Check size={10} color="#fff"/>}
                       </div>
                       <p style={{fontFamily:"'Lora',serif",fontSize:12.5,color:C.t3,lineHeight:1.6}}>
-                        I agree to the <a href="/terms" style={{color:C.brand,textDecoration:"none",fontWeight:600}}>Terms</a> and <a href="/privacy" style={{color:C.brand,textDecoration:"none",fontWeight:600}}>Privacy Policy</a>
+                        I agree to the <a href="/terms" style={{color:C.brand,textDecoration:"none",fontWeight:600}}>Terms</a> and <a href="/privacy-policy" style={{color:C.brand,textDecoration:"none",fontWeight:600}}>Privacy Policy</a>
                       </p>
                     </div>}
 

@@ -15,10 +15,13 @@ import { Link, useNavigate } from "react-router-dom";
 /* ─── CJ logo — pure CSS, no image dependency ─── */
 const CJLogo = () => (
     <div style={{
-        width: 36, height: 36, borderRadius: 10, flexShrink: 0,
+        width: "clamp(26px, 6vw, 36px)",
+        height: "clamp(26px, 6vw, 36px)",
+        fontSize: "clamp(10px, 2.5vw, 14px)",
+        borderRadius: 10, flexShrink: 0,
         background: "linear-gradient(135deg, #7c6ee0, #5eead4)",
         display: "flex", alignItems: "center", justifyContent: "center",
-        fontSize: 14, fontWeight: 800, color: "#fff",
+        fontWeight: 800, color: "#fff",
         fontFamily: "'Syne', sans-serif",
         boxShadow: "0 0 16px rgba(124,110,224,0.45)",
         transition: "box-shadow 0.2s",
@@ -249,15 +252,15 @@ export default function Header() {
         }
 
         .cj-cta {
-          font-family: 'Syne', sans-serif;
-          font-weight: 700;
-          font-size: 13px;
-          border: none;
-          border-radius: 9px;
-          padding: 8px 18px;
-          cursor: pointer;
-          transition: all 0.18s;
-          letter-spacing: 0.2px;
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+        font-size: clamp(11px, 2.5vw, 13px);
+        border: none;
+        border-radius: clamp(7px, 1.5vw, 9px);
+        padding: clamp(6px, 1.5vw, 8px) clamp(12px, 3vw, 18px);
+        cursor: pointer;
+        transition: all 0.18s;
+        letter-spacing: 0.2px;
         }
 
         .cj-cta:hover {
@@ -275,13 +278,17 @@ export default function Header() {
           font-weight: 800;
           font-size: 18px;
           letter-spacing: 0.5px;
-          background: linear-gradient(90deg, #ffffff 0%, #c4bbff 30%, #5eead4 55%, #ffffff 80%);
+          background: linear-gradient(90deg, #fe9494 0%, #c4bbff 30%, #5eead4 55%, #fe9494 80%);
           background-size: 200% auto;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
           animation: cjHeaderShimmer 4s linear infinite;
         }
+          @media (max-width: 768px) {
+  .cj-logo-text {
+    font-size: 14px;
+  }
       `}</style>
 
             <div className="cj-header-wrap">
@@ -350,7 +357,7 @@ export default function Header() {
                                 style={{
                                     display: "flex",
                                     alignItems: "center",
-                                    gap: 10,
+                                    gap: "clamp(6px, 2vw, 10px)",
                                     textDecoration: "none",
                                 }}
                             >
@@ -363,7 +370,7 @@ export default function Header() {
                         <div>
                             <button
                                 className="cj-cta"
-                                onClick={() => navigate("/profile")}
+                                onClick={() => navigate("/auth")}
                                 style={{
                                     background: "linear-gradient(135deg, #7c6ee0, #5a52c4)",
                                     color: "#fff",

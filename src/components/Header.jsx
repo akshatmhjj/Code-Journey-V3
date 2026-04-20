@@ -33,9 +33,9 @@ const NAV_ITEMS = [
         bgColor: "#0a0714",
         accentColor: "#7c6ee0",
         links: [
-            { label: "Web Development", href: "#" },
-            { label: "App Development", href: "#" },
-            { label: "Data Science", href: "#" },
+            { label: "Web Development", href: "/tracks/web" },
+            { label: "App Development", href: "/tracks/app" },
+            { label: "Data Science", href: "/tracks/data" },
             // { label: "Database", href: "/database" },
         ],
     },
@@ -45,7 +45,7 @@ const NAV_ITEMS = [
         accentColor: "#5eead4",
         links: [
             { label: "Roadmap", href: "/roadmap" },
-            // { label: "Code Journey AI", href: "/code-journey-ai" },
+            { label: "TrackList", href: "/tracks" },
             // { label: "Code Journey Editor", href: "/editor" },
         ],
     },

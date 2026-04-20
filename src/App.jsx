@@ -9,7 +9,6 @@ import { FAQ, Privacy, Terms, Licensing } from "./pages/LegalPages";
 import Languages from './pages/Languages.jsx'
 import {Careers, Ecosystem} from './pages/Career&Eco.jsx'
 import Roadmap from './pages/Roadmap.jsx'
-import Authpage from './pages/Authpage.jsx'
 
 function App() {
   return (
@@ -31,6 +30,9 @@ function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/licensing" element={<Licensing />} />
           <Route path="/tracks" element={<Languages />} />
+          <Route path="/tracks/web" element={<WebDev />} />
+          <Route path="/tracks/app" element={<AppDev />} />
+          <Route path="/tracks/data" element={<DataScience />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/ecosystem" element={<Ecosystem />} />
           <Route path="/roadmap" element={<Roadmap />} />

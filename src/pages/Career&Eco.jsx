@@ -520,7 +520,7 @@ export function Careers() {
                 <a href="/register" style={{ display:"inline-flex",alignItems:"center",gap:8,padding:"13px 28px",borderRadius:12,border:"none",background:T.gold,color:"#000",fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:15,cursor:"pointer",textDecoration:"none",boxShadow:`0 0 36px ${T.gold}50`,transition:"all 0.18s",animation:"cjGlow 3s ease infinite" }}>
                   <Zap size={15} /> Start Preparing Free
                 </a>
-                <a href="/languages" style={{ display:"inline-flex",alignItems:"center",gap:7,padding:"13px 22px",borderRadius:12,border:`1px solid ${T.b2}`,background:"transparent",color:T.t1,fontFamily:"'Syne',sans-serif",fontWeight:600,fontSize:15,cursor:"pointer",textDecoration:"none",transition:"all 0.18s" }} onMouseEnter={e=>{e.currentTarget.style.background=T.hover}} onMouseLeave={e=>{e.currentTarget.style.background="transparent"}}>
+                <a href="/tracks" style={{ display:"inline-flex",alignItems:"center",gap:7,padding:"13px 22px",borderRadius:12,border:`1px solid ${T.b2}`,background:"transparent",color:T.t1,fontFamily:"'Syne',sans-serif",fontWeight:600,fontSize:15,cursor:"pointer",textDecoration:"none",transition:"all 0.18s" }} onMouseEnter={e=>{e.currentTarget.style.background=T.hover}} onMouseLeave={e=>{e.currentTarget.style.background="transparent"}}>
                   Browse Languages <ArrowRight size={15}/>
                 </a>
               </div>
@@ -894,7 +894,7 @@ export function Ecosystem() {
                 Pick one track. Learn the three or four things that matter for it. Build something real. The rest of the ecosystem will make sense from there.
               </p>
               <div style={{ display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap" }}>
-                <a href="/languages" style={{ display:"inline-flex",alignItems:"center",gap:8,padding:"13px 28px",borderRadius:12,border:"none",background:T.teal,color:"#000",fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:15,cursor:"pointer",textDecoration:"none",boxShadow:`0 0 36px ${T.teal}44`,transition:"all 0.18s" }}>
+                <a href="/tracks" style={{ display:"inline-flex",alignItems:"center",gap:8,padding:"13px 28px",borderRadius:12,border:"none",background:T.teal,color:"#000",fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:15,cursor:"pointer",textDecoration:"none",boxShadow:`0 0 36px ${T.teal}44`,transition:"all 0.18s" }}>
                   <Code2 size={15}/> Pick a Track
                 </a>
                 <a href="/careers" style={{ display:"inline-flex",alignItems:"center",gap:7,padding:"13px 22px",borderRadius:12,border:`1px solid ${T.b2}`,background:"transparent",color:T.t1,fontFamily:"'Syne',sans-serif",fontWeight:600,fontSize:15,cursor:"pointer",textDecoration:"none",transition:"all 0.18s" }} onMouseEnter={e=>{e.currentTarget.style.background=T.hover}} onMouseLeave={e=>{e.currentTarget.style.background="transparent"}}>

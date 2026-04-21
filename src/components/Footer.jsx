@@ -449,6 +449,8 @@ export default function Footer() {
             grid-template-columns: 1fr !important;
           }
         }
+
+        
       `}</style>
     </>
   );

@@ -23,16 +23,6 @@ export default function Layout({ children }) {
 
   return (
     <div style={{ position: "relative" }}>
-
-      {/*
-        CONTENT WRAPPER
-        ────────────────
-        - position: relative  → creates stacking context
-        - z-index: 1          → sits above the sticky footer (z-index: 0)
-        - background          → MUST match your page background so it
-                                visually covers the footer beneath it
-                                while scrolling
-      */}
       <div
         id="cj-content"
         style={{
@@ -46,12 +36,6 @@ export default function Layout({ children }) {
           <Outlet />
         </main>
       </div>
-
-      {/*
-        FOOTER — sits here, OUTSIDE the content wrapper
-        position: sticky + bottom: 0 + z-index: 0
-        The content wrapper scrolls over it.
-      */}
       <Footer />
 
     </div>

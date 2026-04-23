@@ -11,7 +11,7 @@ const C = {
   card:     "#0f1120",
   t1:       "#e8eaf2",
   t2:       "#6b7494",
-  t3:       "#3a4060",
+  t3:       "#a8b1e4",
   accent:   "#7c6ee0",
   teal:     "#5eead4",
   green:    "#22c55e",
@@ -129,7 +129,7 @@ export default function Footer() {
       links: [
         // { label: "Features",          href: "/features" },
         { label: "Roadmap",           href: "/roadmap" },
-        { label: "CJ Logs",           href: "/logs" },
+        // { label: "CJ Logs",           href: "/logs" },
         // { label: "Code Journey IDE",  href: "/editor" },
         { label: "Career",    href: "/careers" },
         { label: "Ecosystem",       href: "/ecosystem" },
@@ -139,7 +139,7 @@ export default function Footer() {
       title: "Company",
       links: [
         { label: "About",             href: "/about" },
-        // { label: "Blog",              href: "/blog" },
+        { label: "Blog",              href: "/blog" },
         { label: "FAQ",               href: "/faq" },
         // { label: "Privacy Policy",    href: "/privacy-policy" },
         // { label: "Terms & Conditions",href: "/terms" },

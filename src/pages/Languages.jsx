@@ -23,7 +23,7 @@ const THEMES = {
   nord:{ shell:"#1a1f2e",deep:"#1e2535",mid:"#232c40",surface:"#28334a",panel:"#2d3a50",hover:"#344260",card:"#28334a",t1:"#eceff4",t2:"#9ba8c0",t3:"#5c6a88",t4:"#3a4560",b1:"rgba(136,192,208,0.1)",b2:"rgba(136,192,208,0.18)",b3:"rgba(136,192,208,0.28)",accent:"#88c0d0",accentS:"rgba(136,192,208,0.14)",teal:"#8fbcbb",green:"#a3be8c",red:"#bf616a",gold:"#ebcb8b" },
   light:{ shell:"#f3f4f8",deep:"#fff",mid:"#f0f1f7",surface:"#fff",panel:"#f7f8fc",hover:"#eef0f8",card:"#fff",t1:"#111827",t2:"#4b5680",t3:"#7c87a8",t4:"#c5ccdf",b1:"rgba(80,90,150,0.08)",b2:"rgba(80,90,150,0.15)",b3:"rgba(80,90,150,0.24)",accent:"#6256d0",accentS:"rgba(98,86,208,0.1)",teal:"#0d9488",green:"#16a34a",red:"#dc2626",gold:"#d97706" },
 };
-const getTheme=()=>{ try{return THEMES[localStorage.getItem("cj-theme")]||THEMES.cosmos}catch{return THEMES.cosmos} };
+const getTheme=()=>{ try{return THEMES[localStorage.getItem("cj-theme")]||THEMES.light}catch{return THEMES.light} };
 const applyToDom=(T)=>{ const r=document.documentElement;[["--cj-shell",T.shell],["--cj-accent",T.accent],["--cj-teal",T.teal],["--cj-t1",T.t1],["--cj-t2",T.t2]].forEach(([k,v])=>r.style.setProperty(k,v)) };
 function useTheme(){ const[T,setT]=useState(getTheme);useEffect(()=>{ applyToDom(T);const iv=setInterval(()=>{ const f=getTheme();if(f.accent!==T.accent){setT(f);applyToDom(f)} },500);return()=>clearInterval(iv) },[T]);useEffect(()=>{ const fn=()=>{const f=getTheme();setT(f);applyToDom(f)};window.addEventListener("storage",fn);return()=>window.removeEventListener("storage",fn) },[]);return T }
 

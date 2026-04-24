@@ -97,7 +97,7 @@ const THEMES = {
   },
 };
 
-const getStoredTheme = () => { try { return localStorage.getItem("cj-theme") || "cosmos"; } catch { return "cosmos"; } };
+const getStoredTheme = () => { try { return localStorage.getItem("cj-theme") || "light"; } catch { return "light"; } };
 const setStoredTheme = (k) => { try { localStorage.setItem("cj-theme", k); } catch { } };
 
 /* ══════════════════════════════════════════════════════════════

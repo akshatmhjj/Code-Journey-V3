@@ -5,6 +5,7 @@ import {
   Search, X, Menu, ArrowUpRight, Code2, Globe,
   ChevronDown, Zap, Command,
 } from "lucide-react";
+import { supabase } from "../lib/supabase";
 
 /* ═══════════════════════════════════════════════════════════════════
    CJ LOGO
@@ -44,28 +45,28 @@ const NAV = [
   {
     label: "Learn", icon: Code2, color: "#7c6ee0",
     children: [
-      { label: "Web Dev",      href: "/tracks/web",  desc: "HTML → React → Node.js",     color: "#f97316", icon: "◈" },
-      { label: "App Dev",      href: "/tracks/app",  desc: "Flutter, Swift, Kotlin, RN", color: "#5eead4", icon: "◉" },
-      { label: "Data Science", href: "/tracks/data", desc: "Python, SQL, ML, R",          color: "#f472b6", icon: "◎" },
-      { label: "Languages",    href: "/languages",   desc: "All 9 languages explained",   color: "#7c6ee0", icon: "◇" },
+      { label: "Web Dev", href: "/tracks/web", desc: "HTML → React → Node.js", color: "#f97316", icon: "◈" },
+      { label: "App Dev", href: "/tracks/app", desc: "Flutter, Swift, Kotlin, RN", color: "#5eead4", icon: "◉" },
+      { label: "Data Science", href: "/tracks/data", desc: "Python, SQL, ML, R", color: "#f472b6", icon: "◎" },
+      { label: "Languages", href: "/tracks", desc: "All 9 languages explained", color: "#7c6ee0", icon: "◇" },
     ],
   },
   {
     label: "Explore", icon: Globe, color: "#5eead4",
     children: [
-      { label: "Roadmap",         href: "/roadmap",   desc: "Stage-by-stage path",      color: "#5eead4", icon: "→" },
-      { label: "Snippet Library", href: "/snippets",  desc: "Copy-paste patterns",      color: "#a78bfa", icon: "{ }" },
-      { label: "Glossary",        href: "/glossary",  desc: "Every term, plain English", color: "#60a5fa", icon: "Aa" },
-      { label: "Blog",            href: "/blog",      desc: "Guides & deep dives",      color: "#f97316", icon: "✦" },
+      { label: "Roadmap", href: "/roadmap", desc: "Stage-by-stage path", color: "#5eead4", icon: "→" },
+      { label: "Snippet Library", href: "/snippets", desc: "Copy-paste patterns", color: "#a78bfa", icon: "{ }" },
+      { label: "Glossary", href: "/glossary", desc: "Every term, plain English", color: "#60a5fa", icon: "Aa" },
+      { label: "Blog", href: "/blog", desc: "Guides & deep dives", color: "#f97316", icon: "✦" },
     ],
   },
   {
     label: "Platform", icon: Zap, color: "#f97316",
     children: [
-      { label: "Careers",    href: "/careers",   desc: "Companies hiring from CJ",    color: "#22c55e", icon: "⬡" },
-      { label: "Ecosystem",  href: "/ecosystem", desc: "Tools & frameworks map",      color: "#60a5fa", icon: "◈" },
+      { label: "Careers", href: "/careers", desc: "Companies hiring from CJ", color: "#22c55e", icon: "⬡" },
+      { label: "Ecosystem", href: "/ecosystem", desc: "Tools & frameworks map", color: "#60a5fa", icon: "◈" },
       // { label: "Changelog",  href: "/logs",      desc: "Platform updates",            color: "#a78bfa", icon: "◌" },
-      { label: "About",      href: "/about",     desc: "Our mission",                 color: "#5eead4", icon: "◉" },
+      { label: "About", href: "/about", desc: "Our mission", color: "#5eead4", icon: "◉" },
     ],
   },
 ];
@@ -378,7 +379,7 @@ function SearchResult({ r, go }) {
 /* ═══════════════════════════════════════════════════════════════════
    MOBILE DRAWER
 ═══════════════════════════════════════════════════════════════════ */
-function MobileDrawer({ open, onClose }) {
+function MobileDrawer({ open, onClose, user }) {
   const [expanded, setEx] = useState(null);
   const navigate = useNavigate();
   const go = href => { navigate(href); onClose(); };
@@ -483,24 +484,87 @@ function MobileDrawer({ open, onClose }) {
             <div style={{
               padding: "14px 14px",
               borderTop: "1px solid var(--divider)",
-              display: "flex", gap: 7,
+              display: "flex",
+              flexDirection: "column",
+              gap: 8,
             }}>
-              <button onClick={() => go("/login")} style={{
-                flex: 1, padding: "10px", borderRadius: 10,
-                border: "1px solid var(--drop-border)",
-                background: "transparent",
-                color: "var(--text-primary)",
-                fontFamily: "'Syne', sans-serif", fontWeight: 600,
-                fontSize: 13, cursor: "pointer",
-              }}>Log in</button>
-              <button onClick={() => go("/register")} style={{
-                flex: 1, padding: "10px", borderRadius: 10,
-                border: "none",
-                background: "linear-gradient(135deg,#7c6ee0,#5a52c4)",
-                color: "#fff",
-                fontFamily: "'Syne', sans-serif", fontWeight: 700,
-                fontSize: 13, cursor: "pointer",
-              }}>Get started</button>
+              {user ? (
+                <>
+                  <button
+                    onClick={() => go("/profile")}
+                    style={{
+                      padding: "10px",
+                      borderRadius: 10,
+                      border: "none",
+                      background: "linear-gradient(135deg,#7c6ee0,#5a52c4)",
+                      color: "#fff",
+                      fontFamily: "'Syne', sans-serif",
+                      fontWeight: 700,
+                      fontSize: 13,
+                      cursor: "pointer",
+                    }}
+                  >
+                    Profile
+                  </button>
+
+                  <button
+                    onClick={async () => {
+
+                      await supabase.auth.signOut();
+                      go("/");
+                    }}
+                    style={{
+                      padding: "10px",
+                      borderRadius: 10,
+                      border: "1px solid var(--divider)",
+                      background: "transparent",
+                      color: "var(--text-primary)",
+                      fontFamily: "'Syne', sans-serif",
+                      fontWeight: 600,
+                      fontSize: 13,
+                      cursor: "pointer",
+                    }}
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    onClick={() => go("/login")}
+                    style={{
+                      padding: "10px",
+                      borderRadius: 10,
+                      border: "1px solid var(--drop-border)",
+                      background: "transparent",
+                      color: "var(--text-primary)",
+                      fontFamily: "'Syne', sans-serif",
+                      fontWeight: 600,
+                      fontSize: 13,
+                      cursor: "pointer",
+                    }}
+                  >
+                    Log in
+                  </button>
+
+                  <button
+                    onClick={() => go("/register")}
+                    style={{
+                      padding: "10px",
+                      borderRadius: 10,
+                      border: "none",
+                      background: "linear-gradient(135deg,#7c6ee0,#5a52c4)",
+                      color: "#fff",
+                      fontFamily: "'Syne', sans-serif",
+                      fontWeight: 700,
+                      fontSize: 13,
+                      cursor: "pointer",
+                    }}
+                  >
+                    Get started
+                  </button>
+                </>
+              )}
             </div>
           </motion.div>
         </motion.div>
@@ -553,6 +617,26 @@ export default function Header() {
   const navigate = useNavigate();
   const dropTimer = useRef(null);
   const shouldReduce = useReducedMotion();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      setUser(data?.user || null);
+    };
+
+    getUser();
+
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_, session) => {
+        setUser(session?.user || null);
+      }
+    );
+
+    return () => {
+      listener.subscription.unsubscribe();
+    };
+  }, []);
 
   useEffect(() => { setDrop(null); setMobile(false); }, [location.pathname]);
 
@@ -846,8 +930,30 @@ export default function Header() {
 
           {/* Auth — desktop only */}
           <div className="cj-auth-btns" style={{ display: "flex", gap: 5 }}>
-            <button className="cj-cta-login" onClick={() => navigate("/login")}>Log in</button>
-            <button className="cj-cta-main" onClick={() => navigate("/register")}>Get started</button>
+            {user ? (
+              <button
+                className="cj-cta-main"
+                onClick={() => navigate("/profile")}
+                style={{ display: "flex", alignItems: "center", gap: 6 }}
+              >
+                Profile
+              </button>
+            ) : (
+              <>
+                <button
+                  className="cj-cta-login"
+                  onClick={() => navigate("/login")}
+                >
+                  Log in
+                </button>
+                <button
+                  className="cj-cta-main"
+                  onClick={() => navigate("/register")}
+                >
+                  Get started
+                </button>
+              </>
+            )}
           </div>
 
           {/* Mobile hamburger */}
@@ -864,7 +970,7 @@ export default function Header() {
       </AnimatePresence>
 
       {/* Mobile drawer */}
-      <MobileDrawer open={mobileOpen} onClose={() => setMobile(false)} />
+      <MobileDrawer open={mobileOpen} onClose={() => setMobile(false)} user={user} />
     </>
   );
 }

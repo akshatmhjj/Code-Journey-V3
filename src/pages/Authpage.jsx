@@ -14,6 +14,7 @@ import {
   Smile, Mail, Lock, User, Globe, Map,
 } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { signUpUser, loginUser } from "../lib/auth";
 
 /* ══ PALETTE (light) ══════════════════════════════════════ */
 const C = {
@@ -262,15 +263,36 @@ export default function AuthPage() {
     setAgreed(false); setLoading(false); setDone(false); setFail(false);
   }, [mode]);
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    setLoading(true); setFail(false);
-    /* Simulate: 20% chance of failure for demo */
-    setTimeout(() => {
-      setLoading(false);
-      /* In production replace with real API call */
-      setDone(true);
-    }, 1500);
+    setLoading(true);
+    setFail(false);
+
+    try {
+      let res;
+
+      if (isSignup) {
+        res = await signUpUser(name, email, pw);
+      } else {
+        res = await loginUser(email, pw);
+      }
+
+      if (res.error) {
+        console.log(res.error.message);   // 👈 ADD THIS
+        setFail(true);
+      } else {
+        setDone(true);
+
+        // redirect after success
+        setTimeout(() => {
+          navigate("/profile");
+        }, 1200);
+      }
+    } catch (err) {
+      setFail(true);
+    }
+
+    setLoading(false);
   };
 
   /* Slide variants — purely horizontal, no layout swap */

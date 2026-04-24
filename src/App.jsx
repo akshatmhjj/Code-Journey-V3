@@ -19,6 +19,8 @@ import Layout from './components/Layout.jsx'
 import AuthPage from './pages/Authpage.jsx'
 import NotFound from './components/Notfound.jsx';
 
+import ProtectedRoute from './components/ProtectedRoute';
+
 // import Editor from './pages/Editor.jsx'
 // import Exercises from './pages/Exersises.jsx'
 
@@ -27,14 +29,22 @@ function App() {
     <Router>
       <Routes>
 
-        {/* Auth (NO layout) */}
+        {/* PUBLIC ROUTES */}
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+        </Route>
+
         <Route path="/login" element={<AuthPage />} />
         <Route path="/register" element={<AuthPage />} />
 
-        {/* Layout wrapper */}
-        <Route element={<Layout />}>
-
-          <Route path="/" element={<Home />} />
+        {/* PROTECTED ROUTES */}
+        <Route
+          element={
+            <ProtectedRoute>
+              <Layout />
+            </ProtectedRoute>
+          }
+        >
           <Route path="/profile" element={<Profile />} />
           <Route path="/logs" element={<Logs />} />
           <Route path="/about" element={<About />} />
@@ -53,9 +63,7 @@ function App() {
           <Route path="/glossary" element={<Glossary />} />
           <Route path="/snippets" element={<Snippets />} />
 
-          {/* fallback */}
           <Route path="*" element={<NotFound />} />
-
         </Route>
 
       </Routes>

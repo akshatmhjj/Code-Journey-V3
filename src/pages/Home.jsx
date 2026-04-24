@@ -1,19 +1,3 @@
-/**
- * Code Journey — Home / Landing Page
- *
- * THEME SYNC STRATEGY (no backend needed):
- * ─────────────────────────────────────────
- * The theme is stored in localStorage under the key "cj-theme".
- * The Profile settings page writes CSS variables to document.documentElement
- * AND writes to localStorage when the user picks a theme.
- *
- * This page reads localStorage on mount and applies the same CSS variables.
- * Any component anywhere can do the same — making the whole platform consistent
- * without a backend call. If you later want server-side persistence, store
- * the theme key in the user document (e.g. user.preferences.theme) and seed
- * localStorage from the API response on login.
- */
-
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import {
@@ -23,7 +7,7 @@ import {
 } from "lucide-react";
 
 /* ══════════════════════════════════════════════════════════════
-   THEME SYSTEM — mirrors Profile.jsx exactly
+   THEME SYSTEM - mirrors Profile.jsx exactly
 ══════════════════════════════════════════════════════════════ */
 const THEMES = {
   cosmos: {
@@ -35,33 +19,33 @@ const THEMES = {
     teal:"#5eead4", green:"#22c55e", red:"#f87171", gold:"#fbbf24",
     heroGlow:"rgba(124,110,224,0.18)", heroBg:"#07080d",
   },
-  void: {
-    shell:"#000000", deep:"#050507", mid:"#0a0a0f", surface:"#0f0f15",
-    panel:"#141419", hover:"#1a1a22", card:"#0f0f15",
-    t1:"#f0f0ff", t2:"#9090b8", t3:"#505070", t4:"#252540",
-    b1:"rgba(100,100,200,0.08)", b2:"rgba(100,100,200,0.14)",
-    accent:"#8b7ff0", accentS:"rgba(139,127,240,0.15)",
-    teal:"#2dd4bf", green:"#34d399", red:"#fc8181", gold:"#fcd34d",
-    heroGlow:"rgba(139,127,240,0.15)", heroBg:"#000000",
-  },
-  aurora: {
-    shell:"#040e0e", deep:"#071414", mid:"#0b1c1c", surface:"#102424",
-    panel:"#142a2a", hover:"#1a3333", card:"#102424",
-    t1:"#e0f5f5", t2:"#7ab8b8", t3:"#3d7878", t4:"#1e4444",
-    b1:"rgba(80,200,180,0.08)", b2:"rgba(80,200,180,0.15)",
-    accent:"#2dd4bf", accentS:"rgba(45,212,191,0.15)",
-    teal:"#5eead4", green:"#4ade80", red:"#f87171", gold:"#fbbf24",
-    heroGlow:"rgba(45,212,191,0.15)", heroBg:"#040e0e",
-  },
-  nord: {
-    shell:"#1a1f2e", deep:"#1e2535", mid:"#232c40", surface:"#28334a",
-    panel:"#2d3a50", hover:"#344260", card:"#28334a",
-    t1:"#eceff4", t2:"#9ba8c0", t3:"#5c6a88", t4:"#3a4560",
-    b1:"rgba(136,192,208,0.1)", b2:"rgba(136,192,208,0.18)",
-    accent:"#88c0d0", accentS:"rgba(136,192,208,0.15)",
-    teal:"#8fbcbb", green:"#a3be8c", red:"#bf616a", gold:"#ebcb8b",
-    heroGlow:"rgba(136,192,208,0.14)", heroBg:"#1a1f2e",
-  },
+  // void: {
+  //   shell:"#000000", deep:"#050507", mid:"#0a0a0f", surface:"#0f0f15",
+  //   panel:"#141419", hover:"#1a1a22", card:"#0f0f15",
+  //   t1:"#f0f0ff", t2:"#9090b8", t3:"#505070", t4:"#252540",
+  //   b1:"rgba(100,100,200,0.08)", b2:"rgba(100,100,200,0.14)",
+  //   accent:"#8b7ff0", accentS:"rgba(139,127,240,0.15)",
+  //   teal:"#2dd4bf", green:"#34d399", red:"#fc8181", gold:"#fcd34d",
+  //   heroGlow:"rgba(139,127,240,0.15)", heroBg:"#000000",
+  // },
+  // aurora: {
+  //   shell:"#040e0e", deep:"#071414", mid:"#0b1c1c", surface:"#102424",
+  //   panel:"#142a2a", hover:"#1a3333", card:"#102424",
+  //   t1:"#e0f5f5", t2:"#7ab8b8", t3:"#3d7878", t4:"#1e4444",
+  //   b1:"rgba(80,200,180,0.08)", b2:"rgba(80,200,180,0.15)",
+  //   accent:"#2dd4bf", accentS:"rgba(45,212,191,0.15)",
+  //   teal:"#5eead4", green:"#4ade80", red:"#f87171", gold:"#fbbf24",
+  //   heroGlow:"rgba(45,212,191,0.15)", heroBg:"#040e0e",
+  // },
+  // nord: {
+  //   shell:"#1a1f2e", deep:"#1e2535", mid:"#232c40", surface:"#28334a",
+  //   panel:"#2d3a50", hover:"#344260", card:"#28334a",
+  //   t1:"#eceff4", t2:"#9ba8c0", t3:"#5c6a88", t4:"#3a4560",
+  //   b1:"rgba(136,192,208,0.1)", b2:"rgba(136,192,208,0.18)",
+  //   accent:"#88c0d0", accentS:"rgba(136,192,208,0.15)",
+  //   teal:"#8fbcbb", green:"#a3be8c", red:"#bf616a", gold:"#ebcb8b",
+  //   heroGlow:"rgba(136,192,208,0.14)", heroBg:"#1a1f2e",
+  // },
   light: {
     shell:"#f3f4f8", deep:"#ffffff", mid:"#f0f1f7", surface:"#ffffff",
     panel:"#f7f8fc", hover:"#eef0f8", card:"#ffffff",
@@ -234,7 +218,7 @@ const CodeWindow = ({ T }) => {
   const code = CODE_SNIPPETS[activeLang];
   const langData = LANGUAGES.find(l => l.name === activeLang);
 
-  // syntax highlight — extremely lightweight
+  // syntax highlight - extremely lightweight
   const highlight = (line) => {
     const kw = /\b(function|return|const|let|var|if|fn|def|match|type|impl|use|pub|mod|u64|number)\b/g;
     const str = /(["'`]).*?\1/g;
@@ -408,12 +392,12 @@ const LangOrbit = ({ T }) => {
    SECTION: FEATURES
 ══════════════════════════════════════════════════════════════ */
 const FEATURES = [
-  { icon: Code2,      title: "9 Languages",          desc: "JavaScript, Python, TypeScript, Rust, SQL, Flutter, R, Kotlin and more — all in one IDE.", color: "#7c6ee0" },
-  { icon: Terminal,   title: "Live Code Runner",      desc: "Write and run code instantly in a sandboxed WebAssembly environment. No local setup ever.", color: "#5eead4" },
-  { icon: Brain,      title: "AI Tutor",              desc: "Your personal AI tutor reads your code and context before you even ask a question.", color: "#f97316" },
+  { icon: Code2,      title: "10 Languages",          desc: "JavaScript, Python, TypeScript, Rust, SQL, Flutter, R, Kotlin and more - all in one IDE.", color: "#7c6ee0" },
+  // { icon: Terminal,   title: "Live Code Runner",      desc: "Write and run code instantly in a sandboxed WebAssembly environment. No local setup ever.", color: "#5eead4" },
+  // { icon: Brain,      title: "AI Tutor",              desc: "Your personal AI tutor reads your code and context before you even ask a question.", color: "#f97316" },
   { icon: Zap,        title: "Streaks & XP",          desc: "Stay consistent with daily streaks, XP rewards and a five-tier level progression.", color: "#fbbf24" },
-  { icon: Globe,      title: "Multi-Track Paths",     desc: "Web dev, app dev, data science — dedicated learning tracks built for each goal.", color: "#22c55e" },
-  { icon: Layers,     title: "Integrated IDE",        desc: "A real code editor experience: minimap, tabs, syntax highlighting and a live terminal.", color: "#ec4899" },
+  { icon: Globe,      title: "Multi-Track Paths",     desc: "Web dev, app dev, data science - dedicated learning tracks built for each goal.", color: "#22c55e" },
+  // { icon: Layers,     title: "Integrated IDE",        desc: "A real code editor experience: minimap, tabs, syntax highlighting and a live terminal.", color: "#ec4899" },
 ];
 
 /* ══════════════════════════════════════════════════════════════
@@ -450,7 +434,7 @@ const TRACKS = [
    SECTION: JOURNEY STEPS
 ══════════════════════════════════════════════════════════════ */
 const STEPS = [
-  { n:"01", title:"Pick Your Track",      desc:"Choose Web, App or Data Science — or explore all three at your own pace." },
+  { n:"01", title:"Pick Your Track",      desc:"Choose Web, App or Data Science - or explore all three at your own pace." },
   { n:"02", title:"Learn by Doing",       desc:"Every concept is paired with a live exercise you run right inside the browser." },
   { n:"03", title:"Get AI-Guided Help",   desc:"Stuck? Your AI tutor gives progressive hints without spoiling the solution." },
   { n:"04", title:"Level Up Daily",       desc:"Earn XP, maintain streaks and climb from Novice to Master at your rhythm." },
@@ -569,7 +553,7 @@ export default function Home() {
                 </span>
               </motion.div>
 
-              {/* Main heading — Syne 800, large, clear */}
+              {/* Main heading - Syne 800, large, clear */}
               <motion.h1 initial={{ opacity:0, y:16 }} animate={{ opacity:1, y:0 }} transition={{ delay: 0.2 }}
                 style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800,
                   fontSize: "clamp(36px, 5vw, 60px)", lineHeight: 1.08,
@@ -592,7 +576,7 @@ export default function Home() {
                 style={{ fontFamily: "'Lora', serif", fontSize: 16, color: T.t2,
                   lineHeight: 1.82, marginBottom: 40, maxWidth: 480 }}>
                 Code Journey is a browser-native IDE and structured learning platform for web development,
-                app development and data science — with a built-in AI tutor, live code runner, streaks
+                app development and data science - with a built-in AI tutor, live code runner, streaks
                 and a progression system designed to keep you moving every single day.
               </motion.p>
 
@@ -721,7 +705,7 @@ export default function Home() {
                 </h2>
                 <p style={{ fontFamily: "'Lora', serif", fontSize: 17, color: T.t2,
                   lineHeight: 1.8, maxWidth: 520, margin: "0 auto", fontStyle: "italic" }}>
-                  Not a video library, not a quiz tool — Code Journey is a full coding environment
+                  Not a video library, not a quiz tool - Code Journey is a full coding environment
                   designed to get you writing real code from day one.
                 </p>
               </div>
@@ -785,7 +769,7 @@ export default function Home() {
                 <p style={{ fontFamily: "'Lora', serif", fontSize: 16, color: T.t2,
                   lineHeight: 1.82, marginBottom: 28 }}>
                   Switch languages with one click. Your code runs inside a sandboxed WebAssembly
-                  engine — no installs, no config, no friction. Syntax highlighting, a minimap,
+                  engine - no installs, no config, no friction. Syntax highlighting, a minimap,
                   a terminal panel and an AI tutor panel all built in.
                 </p>
                 <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -835,7 +819,7 @@ export default function Home() {
                 <p style={{ fontFamily: "'Lora', serif", fontSize: 17, color: T.t2,
                   lineHeight: 1.8, maxWidth: 480, margin: "0 auto", fontStyle: "italic" }}>
                   Choose your career track and follow a curated sequence of exercises
-                  built for your goal — not a generic "learn everything" dump.
+                  built for your goal - not a generic "learn everything" dump.
                 </p>
               </div>
             </Reveal>

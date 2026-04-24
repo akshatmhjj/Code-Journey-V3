@@ -332,38 +332,38 @@ const FAQ_DATA = [
       },
     ],
   },
-  {
-    category:"The IDE & Code Runner",
-    color:"#fbbf24",
-    items:[
-      {
-        q:"Do I need to install anything?",
-        a:"Nothing. The Code Journey IDE runs entirely in your browser. No Node.js, no Python installation, no terminal setup. You open the platform and write code immediately.",
-      },
-      {
-        q:"How does code actually run in the browser?",
-        a:"Code runs inside a sandboxed WebAssembly container. Each execution is isolated — 30-second CPU limit, 128 MB memory cap, no network access. Output streams line-by-line into the terminal panel exactly as it would in a local environment.",
-      },
-      {
-        q:"Which languages can I run?",
-        a:"JavaScript, TypeScript, Python, Rust, SQL (PostgreSQL dialect), Dart, Kotlin, R and HTML/CSS live preview — all at launch.",
-      },
-    ],
-  },
-  {
-    category:"AI Tutor",
-    color:"#22c55e",
-    items:[
-      {
-        q:"How does the AI Tutor work?",
-        a:"When you open the Tutor panel, it already has your current file, the exercise description, which tests are passing or failing, and your last few terminal outputs. You ask a question and it responds with context already loaded — no copy-pasting required.",
-      },
-      {
-        q:"Will the AI just give me the answer?",
-        a:"No. The Tutor follows a three-rung hint ladder: first a conceptual nudge, then a structural hint, then a partial implementation if you're still stuck. Solving from the first rung earns full XP; each rung used reduces your award. The goal is understanding, not completion.",
-      },
-    ],
-  },
+  // {
+  //   category:"The IDE & Code Runner",
+  //   color:"#fbbf24",
+  //   items:[
+  //     {
+  //       q:"Do I need to install anything?",
+  //       a:"Nothing. The Code Journey IDE runs entirely in your browser. No Node.js, no Python installation, no terminal setup. You open the platform and write code immediately.",
+  //     },
+  //     {
+  //       q:"How does code actually run in the browser?",
+  //       a:"Code runs inside a sandboxed WebAssembly container. Each execution is isolated — 30-second CPU limit, 128 MB memory cap, no network access. Output streams line-by-line into the terminal panel exactly as it would in a local environment.",
+  //     },
+  //     {
+  //       q:"Which languages can I run?",
+  //       a:"JavaScript, TypeScript, Python, Rust, SQL (PostgreSQL dialect), Dart, Kotlin, R and HTML/CSS live preview — all at launch.",
+  //     },
+  //   ],
+  // },
+  // {
+  //   category:"AI Tutor",
+  //   color:"#22c55e",
+  //   items:[
+  //     {
+  //       q:"How does the AI Tutor work?",
+  //       a:"When you open the Tutor panel, it already has your current file, the exercise description, which tests are passing or failing, and your last few terminal outputs. You ask a question and it responds with context already loaded — no copy-pasting required.",
+  //     },
+  //     {
+  //       q:"Will the AI just give me the answer?",
+  //       a:"No. The Tutor follows a three-rung hint ladder: first a conceptual nudge, then a structural hint, then a partial implementation if you're still stuck. Solving from the first rung earns full XP; each rung used reduces your award. The goal is understanding, not completion.",
+  //     },
+  //   ],
+  // },
   {
     category:"Account & Progress",
     color:"#f97316",

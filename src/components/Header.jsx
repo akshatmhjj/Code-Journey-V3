@@ -48,7 +48,7 @@ const NAV = [
       { label: "Web Dev", href: "/tracks/web", desc: "HTML → React → Node.js", color: "#f97316", icon: "◈" },
       { label: "App Dev", href: "/tracks/app", desc: "Flutter, Swift, Kotlin, RN", color: "#5eead4", icon: "◉" },
       { label: "Data Science", href: "/tracks/data", desc: "Python, SQL, ML, R", color: "#f472b6", icon: "◎" },
-      { label: "Languages", href: "/tracks", desc: "All 9 languages explained", color: "#7c6ee0", icon: "◇" },
+      { label: "Languages", href: "/tracks", desc: "All 10 languages explained", color: "#7c6ee0", icon: "◇" },
     ],
   },
   {

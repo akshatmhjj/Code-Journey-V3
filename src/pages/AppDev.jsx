@@ -9,7 +9,7 @@ function useTheme(){const[T,setT]=useState(getT);useEffect(()=>{const iv=setInte
 
 function hl(line,lang="dart"){
   let s=line.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-  s=s.replace(/(\/\/[^\n]*)/g,'<span style="color:#6a9955;font-style:italic">$1</span>');
+  s=s.replace(/(\/\/[^\n]*)/g,'<span>$1</span>');
   s=s.replace(/("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/g,'<span style="color:#ce9178">$1</span>');
   const kw=lang==="swift"||lang==="kotlin"
     ?/\b(fun|val|var|class|object|data|interface|if|else|when|return|for|while|override|suspend|null|true|false|init|guard|let|struct|enum|protocol|extension|some|any|func|throws|async|await|import)\b/g
@@ -96,37 +96,37 @@ const Divider=({T})=><div style={{height:1,background:`linear-gradient(to right,
 /* SVG - Mobile app layer stack */
 const AppStackDiagram=({T})=>(
   <svg viewBox="0 0 480 200" style={{width:"100%",maxWidth:480,display:"block"}}>
-    <text x="240" y="14" textAnchor="middle" fill={T.t3} fontSize="11" fontFamily="JetBrains Mono">How Flutter renders to both platforms</text>
+    {/* <text x="240" y="14" textAnchor="middle" fill={T.t3} fontSize="11" fontFamily="JetBrains Mono">How Flutter renders to both platforms</text> */}
     <text x="100" y="32" textAnchor="middle" fill={T.t3} fontSize="10" fontFamily="JetBrains Mono">Your Dart/Flutter Code</text>
     <rect x="10" y="38" width="180" height="28" rx="6" fill="#5eead414" stroke="#5eead455" strokeWidth="1.5"/>
     <text x="100" y="57" textAnchor="middle" fill="#5eead4" fontSize="11" fontFamily="JetBrains Mono" fontWeight="700">Flutter Widgets</text>
-    <text x="100" y="86" textAnchor="middle" fill={T.t3} fontSize="9.5" fontFamily="JetBrains Mono">Flutter Engine (C++/Skia)</text>
+    {/* <text x="100" y="86" textAnchor="middle" fill={T.t3} fontSize="9.5" fontFamily="JetBrains Mono">Flutter Engine (C++/Skia)</text> */}
     <rect x="10" y="90" width="180" height="24" rx="5" fill={T.b1} stroke={T.b2} strokeWidth="1"/>
     <text x="100" y="106" textAnchor="middle" fill={T.t2} fontSize="10" fontFamily="JetBrains Mono">Skia / Impeller rendering</text>
     {/* arrow */}
     <line x1="100" y1="114" x2="60" y2="138" stroke={T.b3} strokeWidth="1.5"/>
     <line x1="100" y1="114" x2="140" y2="138" stroke={T.b3} strokeWidth="1.5"/>
     {/* iOS + Android */}
-    {[["iOS (Swift)",30,"#f97316"],["Android (Kotlin)",110,"#a78bfa"]].map(([lbl,x,col])=>(
+    {[["iOS",10,"#f97316"],["Android",110,"#a78bfa"]].map(([lbl,x,col])=>(
       <g key={lbl}>
         <rect x={x} y="138" width="90" height="26" rx="5" fill={col+"14"} stroke={col+"44"} strokeWidth="1.5"/>
         <text x={x+45} y="155" textAnchor="middle" fill={col} fontSize="9.5" fontFamily="JetBrains Mono">{lbl}</text>
       </g>
     ))}
     {/* vs */}
-    <text x="270" y="14" fill={T.t3} fontSize="10" fontFamily="JetBrains Mono">Native approach</text>
-    <text x="280" y="32" fill="#f97316" fontSize="10" fontFamily="JetBrains Mono" fontWeight="700">Swift → iOS only</text>
+    <text x="270" y="9" fill={T.t3} fontSize="10" fontFamily="JetBrains Mono">Native approach</text>
+    <text x="280" y="25" fill="#f97316" fontSize="10" fontFamily="JetBrains Mono" fontWeight="700">Swift → iOS</text>
     <rect x="260" y="38" width="100" height="24" rx="5" fill="#f9731614" stroke="#f9731644" strokeWidth="1.5"/>
-    <text x="310" y="55" textAnchor="middle" fill="#f97316" fontSize="10" fontFamily="JetBrains Mono">SwiftUI / UIKit</text>
+    <text x="310" y="52" textAnchor="middle" fill="#f97316" fontSize="10" fontFamily="JetBrains Mono">SwiftUI / UIKit</text>
     <rect x="260" y="70" width="100" height="24" rx="5" fill="#f9731614" stroke="#f9731644" strokeWidth="1.5"/>
-    <text x="310" y="87" textAnchor="middle" fill="#f97316" fontSize="10" fontFamily="JetBrains Mono">iOS Platform APIs</text>
-    <text x="385" y="32" fill="#a78bfa" fontSize="10" fontFamily="JetBrains Mono" fontWeight="700">Kotlin → Android</text>
+    <text x="310" y="87" textAnchor="middle" fill="#f97316" fontSize="10" fontFamily="JetBrains Mono">iOS APIs</text>
+    <text x="375" y="25" fill="#a78bfa" fontSize="10" fontFamily="JetBrains Mono" fontWeight="700">Kotlin → Android</text>
     <rect x="370" y="38" width="100" height="24" rx="5" fill="#a78bfa14" stroke="#a78bfa44" strokeWidth="1.5"/>
-    <text x="420" y="55" textAnchor="middle" fill="#a78bfa" fontSize="10" fontFamily="JetBrains Mono">Jetpack Compose</text>
+    <text x="420" y="52" textAnchor="middle" fill="#a78bfa" fontSize="10" fontFamily="JetBrains Mono">Jetpack Compose</text>
     <rect x="370" y="70" width="100" height="24" rx="5" fill="#a78bfa14" stroke="#a78bfa44" strokeWidth="1.5"/>
     <text x="420" y="87" textAnchor="middle" fill="#a78bfa" fontSize="10" fontFamily="JetBrains Mono">Android APIs</text>
     <text x="240" y="130" textAnchor="middle" fill={T.t3} fontSize="9.5" fontFamily="JetBrains Mono">Flutter: one codebase → both stores</text>
-    <text x="325" y="130" textAnchor="middle" fill={T.t3} fontSize="9.5" fontFamily="JetBrains Mono">Native: separate codebases, full platform access</text>
+    {/* <text x="325" y="130" textAnchor="middle" fill={T.t3} fontSize="9.5" fontFamily="JetBrains Mono">Native: separate codebases, full platform access</text> */}
   </svg>
 );
 
@@ -141,9 +141,8 @@ const WidgetTreeDiagram=({T})=>(
       <g key={n}><rect x={x} y="72" width="100" height="24" rx="5" fill={c+"14"} stroke={c+"44"} strokeWidth="1.5"/><text x={x+50} y="88" textAnchor="middle" fill={c} fontSize="10" fontFamily="JetBrains Mono">{n}</text></g>
     ))}
     <line x1="360" y1="96" x2="280" y2="118" stroke={T.b2} strokeWidth="1"/>
-    <line x1="360" y1="96" x2="360" y2="118" stroke={T.b2} strokeWidth="1"/>
     <line x1="360" y1="96" x2="440" y2="118" stroke={T.b2} strokeWidth="1"/>
-    {[["Text",250,"#f7df1e"],["ElevatedButton",330,"#22c55e"],["Image",410,"#f97316"]].map(([n,x,c])=>(
+    {[["Text",250,"#f7df1e"],["Image",410,"#f97316"]].map(([n,x,c])=>(
       <g key={n}><rect x={x-30} y="118" width="78" height="22" rx="4" fill={c+"10"} stroke={c+"44"} strokeWidth="1"/><text x={x+9} y="133" textAnchor="middle" fill={c} fontSize="9" fontFamily="JetBrains Mono">{n}</text></g>
     ))}
     <text x="240" y="160" textAnchor="middle" fill={T.t3} fontSize="9.5" fontFamily="JetBrains Mono">In Flutter: Layout, styling, and behaviour are ALL widgets - no HTML/CSS split</text>

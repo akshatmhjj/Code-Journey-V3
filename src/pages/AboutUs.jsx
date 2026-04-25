@@ -542,7 +542,7 @@ export default function About() {
   const stats = [
     { value:"10",   label:"Languages",     color:"#7c6ee0", icon:Code2    },
     { value:"3",   label:"Career Tracks", color:"#5eead4", icon:Layers   },
-    { value:"15+", label:"Snippets",     color:"#fbbf24", icon:BookOpen  },
+    { value:"50+", label:"Snippets",     color:"#fbbf24", icon:BookOpen  },
     { value:"0",   label:"Confusion Tax", color:"#22c55e", icon:Sparkles },
   ];
 

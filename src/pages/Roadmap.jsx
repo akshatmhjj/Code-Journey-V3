@@ -1,5 +1,5 @@
 /**
- * Code Journey — Roadmap
+ * Code Journey - Roadmap
  *
  * An interactive, visual learning roadmap.
  * Three tracks × multiple stages × expandable skill nodes.
@@ -49,13 +49,13 @@ const TRACKS = [
     icon: Globe,
     color: "#7c6ee0",
     tagline: "From zero to full-stack",
-    description: "Build everything from simple static pages to complete web applications. Web dev is the most visual and immediately rewarding track — you see results in seconds.",
+    description: "Build everything from simple static pages to complete web applications. Web dev is the most visual and immediately rewarding track - you see results in seconds.",
     duration: "4–6 months",
     outcome: "Junior Frontend or Full-Stack Developer",
     stages: [
       {
         id: "web-s1",
-        title: "Stage 1 — The Foundation",
+        title: "Stage 1 - The Foundation",
         subtitle: "What every webpage is made of",
         emoji: "🧱",
         color: "#f97316",
@@ -63,7 +63,7 @@ const TRACKS = [
         locked: false,
         description: "Before writing a single line of JavaScript, you need to understand the structure and presentation layer of the web. This stage is fast, visual, and deeply satisfying.",
         skills: [
-          { name:"HTML Basics",        icon:Code2,   desc:"Tags, elements, attributes, semantic structure — the skeleton every browser renders.", level:"Essential" },
+          { name:"HTML Basics",        icon:Code2,   desc:"Tags, elements, attributes, semantic structure - the skeleton every browser renders.", level:"Essential" },
           { name:"CSS Fundamentals",   icon:Layers,  desc:"Selectors, the box model, colours, fonts, and your first styled page.", level:"Essential" },
           { name:"Flexbox & Grid",     icon:Target,  desc:"The two layout superpowers of modern CSS. Master these and you can build any layout.", level:"Essential" },
           { name:"Responsive Design",  icon:Smartphone,desc:"Media queries, fluid units (rem, %), and mobile-first thinking.", level:"Essential" },
@@ -73,7 +73,7 @@ const TRACKS = [
       },
       {
         id: "web-s2",
-        title: "Stage 2 — Make It Interactive",
+        title: "Stage 2 - Make It Interactive",
         subtitle: "JavaScript from scratch",
         emoji: "⚡",
         color: "#f7df1e",
@@ -81,10 +81,10 @@ const TRACKS = [
         locked: false,
         description: "JavaScript is what makes websites respond to clicks, fetch data, and update without page reloads. This is where programming truly begins.",
         skills: [
-          { name:"Variables & Data Types",  icon:Code2,    desc:"let, const, strings, numbers, booleans, arrays, objects — the vocabulary of JS.", level:"Essential" },
+          { name:"Variables & Data Types",  icon:Code2,    desc:"let, const, strings, numbers, booleans, arrays, objects - the vocabulary of JS.", level:"Essential" },
           { name:"Functions & Scope",       icon:Zap,      desc:"Declarations, arrow functions, closures, and why scope matters.", level:"Essential" },
           { name:"DOM Manipulation",        icon:Globe,    desc:"Selecting elements, changing content, handling click events.", level:"Essential" },
-          { name:"Async JavaScript",        icon:Clock,    desc:"Callbacks, Promises, async/await — handling time-delayed operations.", level:"Essential" },
+          { name:"Async JavaScript",        icon:Clock,    desc:"Callbacks, Promises, async/await - handling time-delayed operations.", level:"Essential" },
           { name:"Fetch API",               icon:Database, desc:"Calling REST APIs, handling JSON responses, and displaying dynamic data.", level:"Important" },
           { name:"ES6+ Features",           icon:Sparkles, desc:"Destructuring, spread, optional chaining, template literals, modules.", level:"Important" },
         ],
@@ -93,7 +93,7 @@ const TRACKS = [
       },
       {
         id: "web-s3",
-        title: "Stage 3 — Go TypeScript",
+        title: "Stage 3 - Go TypeScript",
         subtitle: "JavaScript with a safety net",
         emoji: "🛡️",
         color: "#60a5fa",
@@ -103,23 +103,23 @@ const TRACKS = [
         skills: [
           { name:"Types & Interfaces",  icon:Code2,    desc:"string, number, boolean, union types, and defining object shapes with interfaces.", level:"Essential" },
           { name:"Generics",            icon:Layers,   desc:"Writing reusable functions and classes that work with any type safely.", level:"Important" },
-          { name:"Type Utilities",      icon:Sparkles, desc:"Partial, Omit, Pick, Required — transforming existing types without repetition.", level:"Good to Know" },
+          { name:"Type Utilities",      icon:Sparkles, desc:"Partial, Omit, Pick, Required - transforming existing types without repetition.", level:"Good to Know" },
         ],
         projects: ["Refactor JS project to TypeScript","Type-safe API wrapper","Generic data fetch hook"],
         resources:["TypeScript Handbook","Total TypeScript","Matt Pocock's TypeScript tips"],
       },
       {
         id: "web-s4",
-        title: "Stage 4 — React & Components",
+        title: "Stage 4 - React & Components",
         subtitle: "Building UIs the modern way",
         emoji: "⚛️",
         color: "#61dafb",
         duration: "4–6 weeks",
         locked: false,
-        description: "React is the most widely used frontend library. It introduces component thinking — building UIs as reusable, composable pieces of logic and markup.",
+        description: "React is the most widely used frontend library. It introduces component thinking - building UIs as reusable, composable pieces of logic and markup.",
         skills: [
           { name:"Components & Props",   icon:Layers,   desc:"Function components, passing data down, component composition patterns.", level:"Essential" },
-          { name:"State & Hooks",        icon:Zap,      desc:"useState, useEffect, useRef, useCallback — managing data that changes over time.", level:"Essential" },
+          { name:"State & Hooks",        icon:Zap,      desc:"useState, useEffect, useRef, useCallback - managing data that changes over time.", level:"Essential" },
           { name:"React Router",         icon:Globe,    desc:"Client-side routing, nested routes, navigation guards.", level:"Essential" },
           { name:"Context API",          icon:Code2,    desc:"Sharing state across a component tree without prop drilling.", level:"Important" },
           { name:"React Query / SWR",    icon:Database, desc:"Data fetching, caching, and server-state management.", level:"Important" },
@@ -129,26 +129,26 @@ const TRACKS = [
       },
       {
         id: "web-s5",
-        title: "Stage 5 — Backend & Databases",
+        title: "Stage 5 - Backend & Databases",
         subtitle: "Server-side and data persistence",
         emoji: "🗄️",
         color: "#4ade80",
         duration: "4–5 weeks",
         locked: false,
-        description: "A frontend alone can't save data permanently. This stage introduces you to Node.js, REST APIs, and SQL databases — completing the full-stack picture.",
+        description: "A frontend alone can't save data permanently. This stage introduces you to Node.js, REST APIs, and SQL databases - completing the full-stack picture.",
         skills: [
           { name:"Node.js & Express",   icon:Terminal, desc:"Building HTTP servers, routing, middleware, and request/response cycles.", level:"Essential" },
           { name:"REST API Design",     icon:Globe,    desc:"CRUD operations, status codes, JSON responses, API versioning.", level:"Essential" },
-          { name:"PostgreSQL & SQL",    icon:Database, desc:"Tables, queries, joins, indexes — persisting and retrieving structured data.", level:"Essential" },
+          { name:"PostgreSQL & SQL",    icon:Database, desc:"Tables, queries, joins, indexes - persisting and retrieving structured data.", level:"Essential" },
           { name:"Authentication",      icon:Lock,     desc:"JWT tokens, sessions, bcrypt password hashing, and protected routes.", level:"Important" },
-          { name:"Prisma ORM",          icon:Layers,   desc:"Type-safe database access for TypeScript — migrations, queries, relations.", level:"Important" },
+          { name:"Prisma ORM",          icon:Layers,   desc:"Type-safe database access for TypeScript - migrations, queries, relations.", level:"Important" },
         ],
         projects:["REST API with auth","Full-stack notes app","Blog platform with users and posts"],
         resources:["Node.js docs","The Odin Project (Node)","Prisma docs"],
       },
       {
         id: "web-s6",
-        title: "Stage 6 — Deploy & Ship",
+        title: "Stage 6 - Deploy & Ship",
         subtitle: "Real projects on the real web",
         emoji: "🚀",
         color: "#a78bfa",
@@ -156,7 +156,7 @@ const TRACKS = [
         locked: false,
         description: "A portfolio project only counts when it's live. This stage covers deploying your full-stack app, setting up CI/CD, and sharing your work with the world.",
         skills: [
-          { name:"Git & GitHub",         icon:Code2,    desc:"Version control, branching, pull requests — the workflow every developer uses.", level:"Essential" },
+          { name:"Git & GitHub",         icon:Code2,    desc:"Version control, branching, pull requests - the workflow every developer uses.", level:"Essential" },
           { name:"Vercel / Railway",     icon:Zap,      desc:"Deploying frontend and backend with zero-config. Environment variables and domains.", level:"Essential" },
           { name:"Environment Config",   icon:Terminal, desc:".env files, secrets management, and configuring apps for production.", level:"Important" },
         ],
@@ -178,7 +178,7 @@ const TRACKS = [
     stages: [
       {
         id: "app-s1",
-        title: "Stage 1 — Dart Foundations",
+        title: "Stage 1 - Dart Foundations",
         subtitle: "The language Flutter speaks",
         emoji: "◈",
         color: "#5eead4",
@@ -186,10 +186,10 @@ const TRACKS = [
         locked: false,
         description: "Dart is Flutter's language. It's clean, strongly typed, and null-safe by default. Understanding it deeply will make Flutter click much faster.",
         skills: [
-          { name:"Dart Syntax",          icon:Code2,    desc:"Variables, functions, classes, control flow — Dart's readable, Java-inspired syntax.", level:"Essential" },
+          { name:"Dart Syntax",          icon:Code2,    desc:"Variables, functions, classes, control flow - Dart's readable, Java-inspired syntax.", level:"Essential" },
           { name:"Null Safety",          icon:Lock,     desc:"Dart's type system prevents null reference errors at compile time.", level:"Essential" },
-          { name:"Collections",          icon:Layers,   desc:"List, Map, Set — and the powerful higher-order methods (map, filter, reduce).", level:"Essential" },
-          { name:"Async & Futures",      icon:Zap,      desc:"Future, async/await, Stream — Dart's non-blocking programming model.", level:"Essential" },
+          { name:"Collections",          icon:Layers,   desc:"List, Map, Set - and the powerful higher-order methods (map, filter, reduce).", level:"Essential" },
+          { name:"Async & Futures",      icon:Zap,      desc:"Future, async/await, Stream - Dart's non-blocking programming model.", level:"Essential" },
           { name:"OOP in Dart",          icon:Code2,    desc:"Classes, constructors, inheritance, mixins, and interfaces.", level:"Important" },
         ],
         projects:["CLI calculator","Async data fetcher","Class hierarchy exercise"],
@@ -197,7 +197,7 @@ const TRACKS = [
       },
       {
         id: "app-s2",
-        title: "Stage 2 — Flutter Basics",
+        title: "Stage 2 - Flutter Basics",
         subtitle: "Widgets, widgets, widgets",
         emoji: "⬡",
         color: "#38bdf8",
@@ -205,10 +205,10 @@ const TRACKS = [
         locked: false,
         description: "In Flutter, everything is a widget. This stage teaches you the widget tree, layout primitives, and how Flutter renders UIs so efficiently.",
         skills: [
-          { name:"Stateless Widgets",    icon:Layers,   desc:"Pure presentation components — Column, Row, Container, Text, Icon, Image.", level:"Essential" },
-          { name:"Stateful Widgets",     icon:Zap,      desc:"State that changes over time — setState, the widget lifecycle.", level:"Essential" },
+          { name:"Stateless Widgets",    icon:Layers,   desc:"Pure presentation components - Column, Row, Container, Text, Icon, Image.", level:"Essential" },
+          { name:"Stateful Widgets",     icon:Zap,      desc:"State that changes over time - setState, the widget lifecycle.", level:"Essential" },
           { name:"Layout Widgets",       icon:Target,   desc:"Padding, Expanded, Flexible, Stack, GridView, ListView.", level:"Essential" },
-          { name:"Material & Cupertino", icon:Smartphone,desc:"Platform-appropriate UI components — buttons, cards, dialogs, navigation bars.", level:"Essential" },
+          { name:"Material & Cupertino", icon:Smartphone,desc:"Platform-appropriate UI components - buttons, cards, dialogs, navigation bars.", level:"Essential" },
           { name:"Navigation",           icon:Globe,    desc:"Navigator 2.0, named routes, passing data between screens.", level:"Important" },
         ],
         projects:["Counter app","Product listing UI","Multi-screen onboarding flow"],
@@ -216,7 +216,7 @@ const TRACKS = [
       },
       {
         id: "app-s3",
-        title: "Stage 3 — State Management",
+        title: "Stage 3 - State Management",
         subtitle: "Managing data that changes",
         emoji: "🧠",
         color: "#a78bfa",
@@ -225,15 +225,15 @@ const TRACKS = [
         description: "Real apps have complex, shared state. This stage introduces the most widely used state management patterns in Flutter.",
         skills: [
           { name:"Provider",             icon:Brain,    desc:"The official lightweight state management solution. Context-based, easy to learn.", level:"Essential" },
-          { name:"Riverpod",             icon:Zap,      desc:"A more powerful Provider replacement — compile-safe, testable, and composable.", level:"Important" },
-          { name:"BLoC Pattern",         icon:Layers,   desc:"Business Logic Component — separating UI from business logic with streams.", level:"Good to Know" },
+          { name:"Riverpod",             icon:Zap,      desc:"A more powerful Provider replacement - compile-safe, testable, and composable.", level:"Important" },
+          { name:"BLoC Pattern",         icon:Layers,   desc:"Business Logic Component - separating UI from business logic with streams.", level:"Good to Know" },
         ],
         projects:["Shopping cart with Provider","Auth state with Riverpod","Counter with BLoC"],
         resources:["riverpod.dev","Flutter BLoC library docs","ResoCoder tutorials"],
       },
       {
         id: "app-s4",
-        title: "Stage 4 — Networking & Data",
+        title: "Stage 4 - Networking & Data",
         subtitle: "Fetching and storing real data",
         emoji: "🌐",
         color: "#4ade80",
@@ -251,7 +251,7 @@ const TRACKS = [
       },
       {
         id: "app-s5",
-        title: "Stage 5 — Polish & Ship",
+        title: "Stage 5 - Polish & Ship",
         subtitle: "From prototype to App Store",
         emoji: "🏁",
         color: "#f97316",
@@ -282,7 +282,7 @@ const TRACKS = [
     stages: [
       {
         id: "data-s1",
-        title: "Stage 1 — Python for Data",
+        title: "Stage 1 - Python for Data",
         subtitle: "The language of data science",
         emoji: "🐍",
         color: "#4ade80",
@@ -292,7 +292,7 @@ const TRACKS = [
         skills: [
           { name:"Python Basics",        icon:Code2,    desc:"Variables, loops, functions, list comprehensions, file I/O.", level:"Essential" },
           { name:"NumPy",                icon:Database, desc:"Fast numerical arrays, vectorised operations, broadcasting.", level:"Essential" },
-          { name:"Pandas",               icon:Layers,   desc:"DataFrames — loading, filtering, grouping, merging, and transforming tabular data.", level:"Essential" },
+          { name:"Pandas",               icon:Layers,   desc:"DataFrames - loading, filtering, grouping, merging, and transforming tabular data.", level:"Essential" },
           { name:"Jupyter Notebooks",    icon:BookOpen, desc:"The standard environment for exploratory data analysis and reproducible research.", level:"Essential" },
         ],
         projects:["Exploratory data analysis on a public dataset","CSV cleaning and transformation","Pandas aggregation exercise"],
@@ -300,7 +300,7 @@ const TRACKS = [
       },
       {
         id: "data-s2",
-        title: "Stage 2 — SQL for Data",
+        title: "Stage 2 - SQL for Data",
         subtitle: "Talk to every database on the planet",
         emoji: "🗄️",
         color: "#a78bfa",
@@ -308,18 +308,18 @@ const TRACKS = [
         locked: false,
         description: "SQL is non-negotiable in data roles. Every dataset lives in a database. Learn to extract, aggregate, and join data with professional-grade SQL.",
         skills: [
-          { name:"SELECT & Filtering",   icon:Database, desc:"WHERE, ORDER BY, LIMIT — retrieving exactly the data you need.", level:"Essential" },
-          { name:"Aggregation",          icon:BarChart2,desc:"GROUP BY, COUNT, SUM, AVG, MIN, MAX — collapsing rows into summaries.", level:"Essential" },
-          { name:"JOINs",                icon:Layers,   desc:"INNER, LEFT, RIGHT, FULL — combining data from multiple tables.", level:"Essential" },
-          { name:"Window Functions",     icon:Sparkles, desc:"ROW_NUMBER, RANK, LAG, LEAD, SUM OVER — analysis without losing row detail.", level:"Important" },
-          { name:"CTEs",                 icon:Code2,    desc:"WITH clauses — writing readable, reusable query logic.", level:"Important" },
+          { name:"SELECT & Filtering",   icon:Database, desc:"WHERE, ORDER BY, LIMIT - retrieving exactly the data you need.", level:"Essential" },
+          { name:"Aggregation",          icon:BarChart2,desc:"GROUP BY, COUNT, SUM, AVG, MIN, MAX - collapsing rows into summaries.", level:"Essential" },
+          { name:"JOINs",                icon:Layers,   desc:"INNER, LEFT, RIGHT, FULL - combining data from multiple tables.", level:"Essential" },
+          { name:"Window Functions",     icon:Sparkles, desc:"ROW_NUMBER, RANK, LAG, LEAD, SUM OVER - analysis without losing row detail.", level:"Important" },
+          { name:"CTEs",                 icon:Code2,    desc:"WITH clauses - writing readable, reusable query logic.", level:"Important" },
         ],
         projects:["Sales analysis SQL report","Cohort retention query","Top N customers by revenue"],
         resources:["DataLemur","StrataScratch","Mode Analytics SQL tutorial"],
       },
       {
         id: "data-s3",
-        title: "Stage 3 — Visualisation",
+        title: "Stage 3 - Visualisation",
         subtitle: "Make data tell a story",
         emoji: "📊",
         color: "#f97316",
@@ -327,8 +327,8 @@ const TRACKS = [
         locked: false,
         description: "Data without visualisation is just numbers. Learn to build charts that communicate insight clearly and beautifully.",
         skills: [
-          { name:"Matplotlib",           icon:BarChart2,desc:"The foundational Python visualisation library — line, bar, scatter, histogram.", level:"Essential" },
-          { name:"Seaborn",              icon:Sparkles, desc:"Statistical data visualisation built on Matplotlib — heatmaps, distributions, pair plots.", level:"Essential" },
+          { name:"Matplotlib",           icon:BarChart2,desc:"The foundational Python visualisation library - line, bar, scatter, histogram.", level:"Essential" },
+          { name:"Seaborn",              icon:Sparkles, desc:"Statistical data visualisation built on Matplotlib - heatmaps, distributions, pair plots.", level:"Essential" },
           { name:"Plotly",               icon:Target,   desc:"Interactive charts for dashboards and presentations.", level:"Good to Know" },
         ],
         projects:["Sales dashboard","Distribution comparison chart","Correlation heatmap"],
@@ -336,7 +336,7 @@ const TRACKS = [
       },
       {
         id: "data-s4",
-        title: "Stage 4 — Statistics",
+        title: "Stage 4 - Statistics",
         subtitle: "The math behind the answers",
         emoji: "📐",
         color: "#60a5fa",
@@ -354,7 +354,7 @@ const TRACKS = [
       },
       {
         id: "data-s5",
-        title: "Stage 5 — Machine Learning",
+        title: "Stage 5 - Machine Learning",
         subtitle: "Teaching computers to learn",
         emoji: "🤖",
         color: "#f472b6",
@@ -362,18 +362,18 @@ const TRACKS = [
         locked: false,
         description: "Machine learning is the discipline of building systems that improve with experience. Scikit-learn makes classical ML accessible from day one.",
         skills: [
-          { name:"Linear Regression",    icon:BarChart2,desc:"Predicting continuous values — the simplest and most interpretable ML model.", level:"Essential" },
-          { name:"Classification",       icon:Brain,    desc:"Logistic regression, decision trees, random forests — predicting categories.", level:"Essential" },
+          { name:"Linear Regression",    icon:BarChart2,desc:"Predicting continuous values - the simplest and most interpretable ML model.", level:"Essential" },
+          { name:"Classification",       icon:Brain,    desc:"Logistic regression, decision trees, random forests - predicting categories.", level:"Essential" },
           { name:"Model Evaluation",     icon:Target,   desc:"Train/test splits, cross-validation, accuracy, precision, recall, F1.", level:"Essential" },
-          { name:"Feature Engineering",  icon:Sparkles, desc:"Encoding, scaling, imputation — preparing raw data for ML models.", level:"Essential" },
-          { name:"Clustering",           icon:Layers,   desc:"K-means, DBSCAN — finding natural groups in unlabelled data.", level:"Important" },
+          { name:"Feature Engineering",  icon:Sparkles, desc:"Encoding, scaling, imputation - preparing raw data for ML models.", level:"Essential" },
+          { name:"Clustering",           icon:Layers,   desc:"K-means, DBSCAN - finding natural groups in unlabelled data.", level:"Important" },
         ],
         projects:["House price predictor","Spam email classifier","Customer segmentation"],
         resources:["Scikit-learn user guide","Kaggle Learn (ML)","Hands-On ML (Aurélien Géron)"],
       },
       {
         id: "data-s6",
-        title: "Stage 6 — Portfolio & Deployment",
+        title: "Stage 6 - Portfolio & Deployment",
         subtitle: "From notebook to production",
         emoji: "📦",
         color: "#fbbf24",
@@ -381,9 +381,9 @@ const TRACKS = [
         locked: false,
         description: "A data science portfolio is your job application. Learn to package your work, deploy models as APIs, and present findings to non-technical stakeholders.",
         skills: [
-          { name:"Streamlit",            icon:Globe,    desc:"Build interactive data apps with pure Python — deploy ML models with a UI in minutes.", level:"Essential" },
+          { name:"Streamlit",            icon:Globe,    desc:"Build interactive data apps with pure Python - deploy ML models with a UI in minutes.", level:"Essential" },
           { name:"FastAPI for ML",       icon:Terminal, desc:"Wrapping a trained model as a REST endpoint for production consumption.", level:"Important" },
-          { name:"Kaggle Competitions",  icon:Trophy,   desc:"Practising on public competitions — feature engineering, ensembling, and leaderboard thinking.", level:"Good to Know" },
+          { name:"Kaggle Competitions",  icon:Trophy,   desc:"Practising on public competitions - feature engineering, ensembling, and leaderboard thinking.", level:"Good to Know" },
         ],
         projects:["Interactive ML demo with Streamlit","Model served as FastAPI endpoint","Kaggle competition submission"],
         resources:["Streamlit docs","Kaggle.com","FastAPI ML tutorial"],
@@ -410,7 +410,7 @@ const LevelBadge = ({ level, T }) => {
 };
 
 /* ══════════════════════════════════════════════════════════════
-   SKILL CARD — inside an expanded stage
+   SKILL CARD - inside an expanded stage
 ══════════════════════════════════════════════════════════════ */
 const SkillCard = ({ skill, color, T }) => {
   const [hov, setHov] = useState(false);
@@ -430,7 +430,7 @@ const SkillCard = ({ skill, color, T }) => {
 };
 
 /* ══════════════════════════════════════════════════════════════
-   STAGE CARD — collapsible
+   STAGE CARD - collapsible
 ══════════════════════════════════════════════════════════════ */
 const StageCard = ({ stage, trackColor, stageIndex, isLast, T }) => {
   const [open, setOpen] = useState(false);
@@ -440,7 +440,7 @@ const StageCard = ({ stage, trackColor, stageIndex, isLast, T }) => {
     current: { bg:`${stage.color}16`, border:`${stage.color}55`, text:stage.color },
     locked:  { bg:T.panel, border:T.b1, text:T.t3 },
   };
-  // For this UI all stages are available (no user auth) — show them all as "current"
+  // For this UI all stages are available (no user auth) - show them all as "current"
   const status = "current";
   const sc = statusColors[status];
 
@@ -621,7 +621,7 @@ export default function Roadmap() {
 
             <motion.p initial={{ opacity:0, y:14 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.24 }}
               style={{ fontFamily:"'Lora',serif", fontStyle:"italic", fontSize:"clamp(15px,2vw,19px)", color:T.t2, lineHeight:1.82, maxWidth:560, margin:"0 auto 36px" }}>
-              Pick a track. Follow the stages in order. Each stage tells you exactly what to learn, what to build, and where to learn it — no guessing, no overwhelm.
+              Pick a track. Follow the stages in order. Each stage tells you exactly what to learn, what to build, and where to learn it - no guessing, no overwhelm.
             </motion.p>
 
             {/* Track overview pills */}
@@ -692,7 +692,7 @@ export default function Roadmap() {
                   <Sparkles size={13} color={T.accent} />
                   <span style={{ fontFamily:"'Syne',sans-serif", fontSize:13, color:T.t3, fontWeight:500 }}>
                     Click any stage card to expand it and see the full skills, projects and resources.
-                    Follow stages <strong style={{ color:T.t2 }}>in order</strong> — each one builds on the last.
+                    Follow stages <strong style={{ color:T.t2 }}>in order</strong> - each one builds on the last.
                   </span>
                 </div>
               </div>
@@ -736,9 +736,9 @@ export default function Roadmap() {
 
             <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(220px,1fr))", gap:16 }}>
               {[
-                { n:"01", icon:Compass, color:T.accent,  title:"Pick a track",        desc:"Choose Web, App or Data Science based on what excites you — not what sounds impressive." },
-                { n:"02", icon:Target,  color:T.teal,    title:"Complete one stage",   desc:"Don't jump ahead. Finish each stage's skills and build at least one of the suggested projects." },
-                { n:"03", icon:Code2,   color:T.gold,    title:"Practise in the IDE",  desc:"Every skill has corresponding exercises inside Code Journey. Write real code, get real feedback." },
+                { n:"01", icon:Compass, color:T.accent,  title:"Pick a track",        desc:"Choose Web, App or Data Science based on what excites you - not what sounds impressive." },
+                { n:"02", icon:Target,  color:T.teal,    title:"Complete one stage",   desc:"Don't jump ahead. Finish each stage's skills and build at least one of the suggested projects as per your track." },
+                { n:"03", icon:Code2,   color:T.gold,    title:"Practise the code",  desc:"Every skill has corresponding snippets inside Code Journey. Write real code, get real feedback." },
                 { n:"04", icon:Trophy,  color:T.green,   title:"Move to the next",     desc:"Only move forward when you can build a project from that stage without looking everything up." },
               ].map((step, i) => (
                 <Reveal key={step.n} delay={i*0.08} y={16}>
@@ -774,7 +774,7 @@ export default function Roadmap() {
                 The Roadmap Is Here.<br /><span style={{ color:T.accent }}>Start Walking It.</span>
               </h2>
               <p style={{ fontFamily:"'Lora',serif", fontStyle:"italic", fontSize:17, color:T.t2, lineHeight:1.8, marginBottom:36 }}>
-                Pick a stage. Open the Code Journey IDE. Write your first line. That's it — the rest follows naturally.
+                Pick a stage. Practice your first line. That's it - the rest follows naturally.
               </p>
               <div style={{ display:"flex", gap:12, justifyContent:"center", flexWrap:"wrap" }}>
                 <a href="/register" style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"13px 28px", borderRadius:12, border:"none", background:T.accent, color:"#fff", fontFamily:"'Syne',sans-serif", fontWeight:800, fontSize:15, cursor:"pointer", textDecoration:"none", boxShadow:`0 0 36px ${T.accent}55`, transition:"all 0.18s", animation:"cjGlow 3s ease infinite" }}>

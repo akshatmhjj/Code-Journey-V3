@@ -66,7 +66,7 @@ export default function Layout({ children }) {
  *     document.querySelector("header").style.display = "none"
  *     document.querySelector("footer").style.display = "none"
  *
- *   This still works with this Layout — Profile overrides
+ *   This still works with this Layout - Profile overrides
  *   visibility on mount and restores it on unmount.
  *   Alternatively, you can pass a prop to Layout:
  *

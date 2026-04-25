@@ -31,13 +31,13 @@ const FontLink = () => (
 );
 
 /* ══════════════════════════════════════════════════════════════
-   THEME DEFINITIONS  (all 5 — cosmos default, light enabled,
+   THEME DEFINITIONS  (all 5 - cosmos default, light enabled,
    others commented out in Settings to keep UI clean)
 ══════════════════════════════════════════════════════════════ */
 const THEMES = {
   cosmos: {
     key: "cosmos", label: "Dark Cosmos", icon: Moon,
-    description: "Deep space dark — the default CJ experience",
+    description: "Deep space dark - the default CJ experience",
     shell: "#07080d", deep: "#0c0e18", mid: "#111420", surface: "#161927",
     panel: "#1a1e2e", hover: "#1e2335", active: "#252b42",
     card: "#161927", cardHov: "#1c2235",
@@ -49,7 +49,7 @@ const THEMES = {
   },
   // void: {
   //   key:"void", label:"Pure Void", icon:Moon,
-  //   description:"Pitch black minimal — maximum contrast",
+  //   description:"Pitch black minimal - maximum contrast",
   //   shell:"#000000", deep:"#050507", mid:"#0a0a0f", surface:"#0f0f15",
   //   panel:"#141419", hover:"#1a1a22", active:"#202030",
   //   card:"#0f0f15", cardHov:"#161622",
@@ -61,7 +61,7 @@ const THEMES = {
   // },
   // aurora: {
   //   key:"aurora", label:"Aurora", icon:Sunset,
-  //   description:"Deep teal night — northern lights inspired",
+  //   description:"Deep teal night - northern lights inspired",
   //   shell:"#040e0e", deep:"#071414", mid:"#0b1c1c", surface:"#102424",
   //   panel:"#142a2a", hover:"#1a3333", active:"#1f3d3d",
   //   card:"#102424", cardHov:"#162e2e",
@@ -73,7 +73,7 @@ const THEMES = {
   // },
   // nord: {
   //   key:"nord", label:"Nord", icon:Moon,
-  //   description:"Arctic steel blue — calm and focused",
+  //   description:"Arctic steel blue - calm and focused",
   //   shell:"#1a1f2e", deep:"#1e2535", mid:"#232c40", surface:"#28334a",
   //   panel:"#2d3a50", hover:"#344260", active:"#3a4a6e",
   //   card:"#28334a", cardHov:"#2e3d55",
@@ -85,7 +85,7 @@ const THEMES = {
   // },
   light: {
     key: "light", label: "Light", icon: Sun,
-    description: "Clean white — for bright environments",
+    description: "Clean white - for bright environments",
     shell: "#f3f4f8", deep: "#ffffff", mid: "#f0f1f7", surface: "#ffffff",
     panel: "#f7f8fc", hover: "#eef0f8", active: "#e5e8f5",
     card: "#ffffff", cardHov: "#f5f6fc",
@@ -138,7 +138,7 @@ function NavItem({ id, label, icon: Icon, activeSection, setActiveSection, navig
 }
 
 /* ══════════════════════════════════════════════════════════════
-   CJ MODAL SHELL  — used by all dialogs
+   CJ MODAL SHELL  - used by all dialogs
 ══════════════════════════════════════════════════════════════ */
 function CJModal({ open, onClose, children, maxWidth = 460, T }) {
   useEffect(() => {
@@ -308,7 +308,7 @@ function TaskModal({ open, onClose, onSubmit, taskTitle, setTaskTitle, taskDesc,
           }}
           onFocus={e => e.target.style.borderColor = T.accent}
           onBlur={e => e.target.style.borderColor = T.b2} />
-        {/* Priority selector — pill style */}
+        {/* Priority selector - pill style */}
         <div>
           <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.2px", textTransform: "uppercase", color: T.t3, marginBottom: 8 }}>Priority</p>
           <div style={{ display: "flex", gap: 8 }}>

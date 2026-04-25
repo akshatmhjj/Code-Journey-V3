@@ -445,7 +445,7 @@ const STEPS = [
 ══════════════════════════════════════════════════════════════ */
 const STATS = [
   { value:"9",    unit:"Languages",     icon:Code2   },
-  { value:"50+",  unit:"Exercises",     icon:BookOpen },
+  { value:"15+",  unit:"Snippets",     icon:BookOpen },
   { value:"3",    unit:"Career Tracks", icon:Layers  },
   { value:"100%", unit:"In-Browser",    icon:Zap     },
 ];
@@ -575,9 +575,8 @@ export default function Home() {
               <motion.p initial={{ opacity:0, y:12 }} animate={{ opacity:1, y:0 }} transition={{ delay: 0.35 }}
                 style={{ fontFamily: "'Lora', serif", fontSize: 16, color: T.t2,
                   lineHeight: 1.82, marginBottom: 40, maxWidth: 480 }}>
-                Code Journey is a browser-native IDE and structured learning platform for web development,
-                app development and data science - with a built-in AI tutor, live code runner, streaks
-                and a progression system designed to keep you moving every single day.
+                Code Journey is a browser-native structured learning platform for web development,
+                app development and data science with multiple snippets and easy to understand wordings to grasp things on your first go..
               </motion.p>
 
               {/* CTA row */}
@@ -757,23 +756,22 @@ export default function Home() {
                   <Terminal size={12} color={T.accent} />
                   <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10,
                     fontWeight: 700, color: T.accent, letterSpacing: "1.5px", textTransform: "uppercase" }}>
-                    Live Code Editor
+                    Snippets Gallery
                   </span>
                 </div>
                 <h2 style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800,
                   fontSize: "clamp(26px, 3.5vw, 40px)", color: T.t1,
                   marginBottom: 16, letterSpacing: "-0.6px", lineHeight: 1.15 }}>
-                  One IDE.<br />
+                  One Spot.<br />
                   <span style={{ color: T.accent }}>Every Language.</span>
                 </h2>
                 <p style={{ fontFamily: "'Lora', serif", fontSize: 16, color: T.t2,
                   lineHeight: 1.82, marginBottom: 28 }}>
-                  Switch languages with one click. Your code runs inside a sandboxed WebAssembly
-                  engine - no installs, no config, no friction. Syntax highlighting, a minimap,
-                  a terminal panel and an AI tutor panel all built in.
+                  Switch languages with one click. Understand code inside a sandboxed WebAssembly
+                  engine - no installs, no config, no friction. 
                 </p>
                 <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                  {["WebAssembly sandboxed execution","Real-time output streaming","9 languages, zero setup","AI tutor reads your code automatically"].map(item => (
+                  {["WebAssembly sandboxed display","Real-time implementations","10 languages, zero setup"].map(item => (
                     <div key={item} style={{ display: "flex", alignItems: "center", gap: 10 }}>
                       <div style={{ width: 18, height: 18, borderRadius: "50%",
                         background: `${T.green}18`, border: `1px solid ${T.green}44`,

@@ -1,5 +1,5 @@
 /**
- * Code Journey — Languages Page
+ * Code Journey - Languages Page
  * Three tracks: Web Dev · App Dev · Data Science
  * Each with language cards, sub-topic chips, and a live "what you'll build" preview
  */
@@ -38,19 +38,19 @@ const TRACKS = [
     color:"#7c6ee0",
     tint:"rgba(124,110,224,0.1)",
     tagline:"Build what the world sees",
-    description:"From a single webpage to a full-stack application — web development is the most immediately visible discipline in software. You write code, refresh a browser, and see results in seconds.",
+    description:"From a single webpage to a full-stack application - web development is the most immediately visible discipline in software. You write code, refresh a browser, and see results in seconds.",
     youllBuild:["Personal portfolio websites","Interactive to-do and notes apps","REST APIs and backend services","Full-stack web applications"],
     languages:[
       {
         id:"html",name:"HTML",label:"HTML",color:"#f97316",bg:"#1a0a00",
         icon:"‹/›",level:"Foundation",time:"1–2 weeks",
         tagline:"The skeleton of every webpage",
-        about:"HTML (HyperText Markup Language) is not a programming language — it is a structure language. It defines the building blocks of every page on the web: headings, paragraphs, images, links, forms. Every website you have ever visited starts here.",
+        about:"HTML (HyperText Markup Language) is not a programming language - it is a structure language. It defines the building blocks of every page on the web: headings, paragraphs, images, links, forms. Every website you have ever visited starts here.",
         topics:[
-          {name:"Elements & Tags",icon:Code2,desc:"The vocabulary of HTML — headings, paragraphs, divs, spans, images, links and semantic tags like <article>, <section> and <nav>."},
-          {name:"Forms & Inputs",icon:Layers,desc:"Collecting user input — text fields, dropdowns, checkboxes, radio buttons and the <form> element that ties them together."},
-          {name:"Semantic HTML",icon:BookOpen,desc:"Writing HTML that means something — using the right tag for the right job so browsers, screen readers and search engines all understand your content."},
-          {name:"Accessibility",icon:Shield,desc:"Making your pages usable by everyone — ARIA roles, alt text, keyboard navigation and contrast requirements."},
+          {name:"Elements & Tags",icon:Code2,desc:"The vocabulary of HTML - headings, paragraphs, divs, spans, images, links and semantic tags like <article>, <section> and <nav>."},
+          {name:"Forms & Inputs",icon:Layers,desc:"Collecting user input - text fields, dropdowns, checkboxes, radio buttons and the <form> element that ties them together."},
+          {name:"Semantic HTML",icon:BookOpen,desc:"Writing HTML that means something - using the right tag for the right job so browsers, screen readers and search engines all understand your content."},
+          {name:"Accessibility",icon:Shield,desc:"Making your pages usable by everyone - ARIA roles, alt text, keyboard navigation and contrast requirements."},
         ],
         snippet:`<!-- A semantic HTML page -->
 <header>
@@ -71,10 +71,10 @@ const TRACKS = [
         tagline:"Make it look like something",
         about:"CSS (Cascading Style Sheets) is the design language of the web. It controls colours, fonts, layout, spacing, animations and everything visual. Modern CSS with Flexbox and Grid lets you build any layout without a single line of JavaScript.",
         topics:[
-          {name:"Selectors & Specificity",icon:Code2,desc:"Targeting elements precisely — classes, IDs, pseudo-selectors (:hover, :focus, ::before) and understanding the cascade."},
+          {name:"Selectors & Specificity",icon:Code2,desc:"Targeting elements precisely - classes, IDs, pseudo-selectors (:hover, :focus, ::before) and understanding the cascade."},
           {name:"Flexbox & Grid",icon:Layers,desc:"The two layout superpowers of modern CSS. Flexbox for one-dimensional layouts; Grid for two-dimensional page structures."},
-          {name:"Responsive Design",icon:Smartphone,desc:"Making pages that look good on any screen size — media queries, fluid units (rem, %, vw) and mobile-first strategy."},
-          {name:"Animations",icon:Sparkles,desc:"CSS transitions and keyframe animations — bringing interfaces to life without JavaScript."},
+          {name:"Responsive Design",icon:Smartphone,desc:"Making pages that look good on any screen size - media queries, fluid units (rem, %, vw) and mobile-first strategy."},
+          {name:"Animations",icon:Sparkles,desc:"CSS transitions and keyframe animations - bringing interfaces to life without JavaScript."},
         ],
         snippet:`.card {
   display: flex;
@@ -94,13 +94,13 @@ const TRACKS = [
         id:"javascript",name:"JavaScript",label:"JS",color:"#f7df1e",bg:"#1a1800",
         icon:"JS",level:"Core",time:"4–8 weeks",
         tagline:"Make it do things",
-        about:"JavaScript is the only programming language that runs natively in every browser. It makes pages interactive — responding to clicks, fetching data, updating the UI without a reload. It also runs on the server via Node.js, making it the most versatile language in web development.",
+        about:"JavaScript is the only programming language that runs natively in every browser. It makes pages interactive - responding to clicks, fetching data, updating the UI without a reload. It also runs on the server via Node.js, making it the most versatile language in web development.",
         topics:[
-          {name:"Variables & Types",icon:Code2,desc:"let, const, var — and why it matters. Primitives: string, number, boolean, null, undefined, Symbol, BigInt."},
+          {name:"Variables & Types",icon:Code2,desc:"let, const, var - and why it matters. Primitives: string, number, boolean, null, undefined, Symbol, BigInt."},
           {name:"Functions & Scope",icon:Layers,desc:"Declarations, expressions, arrow functions, closures, and how JavaScript handles the concept of 'where a variable lives'."},
-          {name:"DOM Manipulation",icon:Globe,desc:"Selecting, modifying and creating HTML elements with JavaScript — the bridge between code and what users see."},
-          {name:"Async / Promises",icon:Zap,desc:"Handling time-delayed operations — callbacks, Promises, async/await, and fetching data from APIs."},
-          {name:"ES6+ Features",icon:Sparkles,desc:"Destructuring, spread/rest, template literals, optional chaining, modules — modern JavaScript that reads cleanly."},
+          {name:"DOM Manipulation",icon:Globe,desc:"Selecting, modifying and creating HTML elements with JavaScript - the bridge between code and what users see."},
+          {name:"Async / Promises",icon:Zap,desc:"Handling time-delayed operations - callbacks, Promises, async/await, and fetching data from APIs."},
+          {name:"ES6+ Features",icon:Sparkles,desc:"Destructuring, spread/rest, template literals, optional chaining, modules - modern JavaScript that reads cleanly."},
         ],
         snippet:`// Fetch data from an API
 async function getUser(id) {
@@ -117,12 +117,12 @@ getUser(1).then(console.log);`,
         id:"typescript",name:"TypeScript",label:"TS",color:"#60a5fa",bg:"#00111f",
         icon:"TS",level:"Advanced",time:"2–4 weeks",
         tagline:"JavaScript with a safety net",
-        about:"TypeScript adds a static type system on top of JavaScript. It catches bugs before your code runs, makes large codebases navigable, and is now the default choice for professional JavaScript development — used by Microsoft, Google, Airbnb and the teams behind React, Vue and Angular.",
+        about:"TypeScript adds a static type system on top of JavaScript. It catches bugs before your code runs, makes large codebases navigable, and is now the default choice for professional JavaScript development - used by Microsoft, Google, Airbnb and the teams behind React, Vue and Angular.",
         topics:[
-          {name:"Types & Interfaces",icon:Code2,desc:"Defining the shape of data — primitive types, union types, intersection types, and interfaces for object structures."},
-          {name:"Generics",icon:Layers,desc:"Writing reusable code that works with any type while remaining type-safe — the most powerful feature in TypeScript."},
-          {name:"Classes & OOP",icon:Shield,desc:"TypeScript makes object-oriented patterns explicit — access modifiers (public, private, protected), abstract classes and decorators."},
-          {name:"Type Utilities",icon:Sparkles,desc:"Partial, Required, Readonly, Pick, Omit — TypeScript's built-in utility types that transform existing types."},
+          {name:"Types & Interfaces",icon:Code2,desc:"Defining the shape of data - primitive types, union types, intersection types, and interfaces for object structures."},
+          {name:"Generics",icon:Layers,desc:"Writing reusable code that works with any type while remaining type-safe - the most powerful feature in TypeScript."},
+          {name:"Classes & OOP",icon:Shield,desc:"TypeScript makes object-oriented patterns explicit - access modifiers (public, private, protected), abstract classes and decorators."},
+          {name:"Type Utilities",icon:Sparkles,desc:"Partial, Required, Readonly, Pick, Omit - TypeScript's built-in utility types that transform existing types."},
         ],
         snippet:`interface User {
   id: number;
@@ -146,19 +146,19 @@ async function getUser(
     color:"#5eead4",
     tint:"rgba(94,234,212,0.08)",
     tagline:"Ship to a billion pockets",
-    description:"App development puts your software on iOS and Android — the devices people carry everywhere. Modern cross-platform frameworks let you write one codebase that runs natively on both.",
+    description:"App development puts your software on iOS and Android - the devices people carry everywhere. Modern cross-platform frameworks let you write one codebase that runs natively on both.",
     youllBuild:["To-do and productivity apps","Weather and news apps","E-commerce mobile frontends","Cross-platform tools with native performance"],
     languages:[
       {
         id:"dart",name:"Dart",label:"Dart",color:"#5eead4",bg:"#001a17",
         icon:"◈",level:"Foundation",time:"2–3 weeks",
         tagline:"The language Flutter speaks",
-        about:"Dart is a modern, strongly-typed language developed by Google. It compiles to native ARM code for mobile and desktop, and to JavaScript for the web. Its clean syntax and strong type system make it genuinely enjoyable to write — and Flutter's hot-reload makes seeing results instant.",
+        about:"Dart is a modern, strongly-typed language developed by Google. It compiles to native ARM code for mobile and desktop, and to JavaScript for the web. Its clean syntax and strong type system make it genuinely enjoyable to write - and Flutter's hot-reload makes seeing results instant.",
         topics:[
-          {name:"Syntax & Types",icon:Code2,desc:"Variables, functions, classes and Dart's type system — null safety by default, which prevents an entire category of runtime crashes."},
-          {name:"Collections",icon:Layers,desc:"List, Set and Map — Dart's core data structures and the powerful methods (map, filter, reduce) for transforming them."},
-          {name:"Async in Dart",icon:Zap,desc:"Futures, async/await, and Streams — how Dart handles operations that take time without blocking the UI thread."},
-          {name:"OOP Principles",icon:Shield,desc:"Classes, inheritance, mixins and interfaces — Dart's object-oriented features that Flutter's widget system is built on."},
+          {name:"Syntax & Types",icon:Code2,desc:"Variables, functions, classes and Dart's type system - null safety by default, which prevents an entire category of runtime crashes."},
+          {name:"Collections",icon:Layers,desc:"List, Set and Map - Dart's core data structures and the powerful methods (map, filter, reduce) for transforming them."},
+          {name:"Async in Dart",icon:Zap,desc:"Futures, async/await, and Streams - how Dart handles operations that take time without blocking the UI thread."},
+          {name:"OOP Principles",icon:Shield,desc:"Classes, inheritance, mixins and interfaces - Dart's object-oriented features that Flutter's widget system is built on."},
         ],
         snippet:`// Null-safe Dart
 class User {
@@ -180,13 +180,13 @@ Future<User> fetchUser() async {
         id:"flutter",name:"Flutter",label:"Flutter",color:"#38bdf8",bg:"#001220",
         icon:"⬡",level:"Core",time:"4–6 weeks",
         tagline:"One codebase, every platform",
-        about:"Flutter is Google's UI toolkit for building natively compiled applications for mobile, web and desktop from a single codebase. Everything in Flutter is a Widget — composable, reusable UI building blocks that make UIs feel fluid and consistent across platforms.",
+        about:"Flutter is Google's UI toolkit for building natively compiled applications for mobile, web and desktop from a single codebase. Everything in Flutter is a Widget - composable, reusable UI building blocks that make UIs feel fluid and consistent across platforms.",
         topics:[
-          {name:"Widgets",icon:Layers,desc:"Stateless and Stateful widgets — the two building blocks of every Flutter UI. Understanding how the widget tree renders."},
-          {name:"State Management",icon:Brain,desc:"Managing data that changes — setState for simple cases, Provider and Riverpod for larger apps. How Flutter re-renders efficiently."},
-          {name:"Navigation",icon:Globe,desc:"Moving between screens — Navigator 2.0, named routes and the GoRouter package for complex navigation patterns."},
+          {name:"Widgets",icon:Layers,desc:"Stateless and Stateful widgets - the two building blocks of every Flutter UI. Understanding how the widget tree renders."},
+          {name:"State Management",icon:Brain,desc:"Managing data that changes - setState for simple cases, Provider and Riverpod for larger apps. How Flutter re-renders efficiently."},
+          {name:"Navigation",icon:Globe,desc:"Moving between screens - Navigator 2.0, named routes and the GoRouter package for complex navigation patterns."},
           {name:"Networking",icon:Server,desc:"Fetching data from APIs with http and dio packages, parsing JSON, and displaying async data with FutureBuilder."},
-          {name:"Animations",icon:Sparkles,desc:"Flutter's animation system — implicit animations (AnimatedContainer), explicit animations (AnimationController) and Hero transitions."},
+          {name:"Animations",icon:Sparkles,desc:"Flutter's animation system - implicit animations (AnimatedContainer), explicit animations (AnimationController) and Hero transitions."},
         ],
         snippet:`// Stateful widget
 class Counter extends StatefulWidget {
@@ -216,9 +216,9 @@ class _CounterState extends State<Counter> {
         about:"Kotlin is the officially preferred language for Android development, created by JetBrains. It eliminates most of Java's verbosity while adding powerful features like coroutines for asynchronous programming, data classes, and null safety. It is concise, expressive, and production-ready.",
         topics:[
           {name:"Kotlin Basics",icon:Code2,desc:"val/var, data classes, when expressions, string templates and the features that make Kotlin dramatically less verbose than Java."},
-          {name:"Coroutines",icon:Zap,desc:"Kotlin's approach to async programming — suspending functions, launch/async builders, and Flow for reactive data streams."},
-          {name:"Extension Functions",icon:Sparkles,desc:"Adding behaviour to existing classes without inheriting from them — one of Kotlin's most powerful features."},
-          {name:"Jetpack Compose",icon:Layers,desc:"Kotlin's declarative UI toolkit for Android — writing UI as composable functions, similar to Flutter's widget model."},
+          {name:"Coroutines",icon:Zap,desc:"Kotlin's approach to async programming - suspending functions, launch/async builders, and Flow for reactive data streams."},
+          {name:"Extension Functions",icon:Sparkles,desc:"Adding behaviour to existing classes without inheriting from them - one of Kotlin's most powerful features."},
+          {name:"Jetpack Compose",icon:Layers,desc:"Kotlin's declarative UI toolkit for Android - writing UI as composable functions, similar to Flutter's widget model."},
         ],
         snippet:`// Coroutine with Flow
 fun numberFlow(): Flow<Int> = flow {
@@ -253,10 +253,10 @@ suspend fun main() {
         tagline:"The language of data science",
         about:"Python dominates data science because of its ecosystem: NumPy for arrays, Pandas for tabular data, Matplotlib and Seaborn for visualisation, and Scikit-learn for machine learning. Its readable syntax makes complex analysis feel approachable even for beginners.",
         topics:[
-          {name:"NumPy",icon:Cpu,desc:"The foundation of Python data science — fast, vectorised array operations that make mathematical computation efficient."},
-          {name:"Pandas",icon:Database,desc:"DataFrames for tabular data — loading CSVs, filtering rows, grouping, merging and transforming datasets."},
-          {name:"Matplotlib & Seaborn",icon:TrendingUp,desc:"Visualising data — line charts, histograms, scatter plots, heatmaps and customised publication-ready figures."},
-          {name:"Scikit-learn",icon:Brain,desc:"Machine learning in Python — linear regression, classification, clustering, train/test splits and model evaluation."},
+          {name:"NumPy",icon:Cpu,desc:"The foundation of Python data science - fast, vectorised array operations that make mathematical computation efficient."},
+          {name:"Pandas",icon:Database,desc:"DataFrames for tabular data - loading CSVs, filtering rows, grouping, merging and transforming datasets."},
+          {name:"Matplotlib & Seaborn",icon:TrendingUp,desc:"Visualising data - line charts, histograms, scatter plots, heatmaps and customised publication-ready figures."},
+          {name:"Scikit-learn",icon:Brain,desc:"Machine learning in Python - linear regression, classification, clustering, train/test splits and model evaluation."},
         ],
         snippet:`import pandas as pd
 import matplotlib.pyplot as plt
@@ -281,11 +281,11 @@ plt.show()`,
         tagline:"Built for statistics",
         about:"R was designed by statisticians for statisticians. It is the language of academia, biomedical research, economics and any domain where rigorous statistical methodology is required. The tidyverse collection of packages (dplyr, ggplot2, tidyr) makes data manipulation and visualisation elegant.",
         topics:[
-          {name:"Vectors & Data Frames",icon:Database,desc:"R's native data structures — vectors, lists, matrices and data frames — and how they map to real-world tabular data."},
-          {name:"dplyr & tidyr",icon:Layers,desc:"The tidyverse approach to data manipulation — filter, select, mutate, group_by, summarise, pivot_wider and pivot_longer."},
-          {name:"ggplot2",icon:TrendingUp,desc:"The grammar of graphics — building complex, layered visualisations by composing geoms, scales and themes."},
-          {name:"Statistical Tests",icon:Brain,desc:"t-tests, ANOVA, chi-squared, correlation — applying real statistical tests to data and interpreting results."},
-          {name:"R Markdown",icon:BookOpen,desc:"Combining R code, output and prose in a single reproducible document — the standard for statistical reporting."},
+          {name:"Vectors & Data Frames",icon:Database,desc:"R's native data structures - vectors, lists, matrices and data frames - and how they map to real-world tabular data."},
+          {name:"dplyr & tidyr",icon:Layers,desc:"The tidyverse approach to data manipulation - filter, select, mutate, group_by, summarise, pivot_wider and pivot_longer."},
+          {name:"ggplot2",icon:TrendingUp,desc:"The grammar of graphics - building complex, layered visualisations by composing geoms, scales and themes."},
+          {name:"Statistical Tests",icon:Brain,desc:"t-tests, ANOVA, chi-squared, correlation - applying real statistical tests to data and interpreting results."},
+          {name:"R Markdown",icon:BookOpen,desc:"Combining R code, output and prose in a single reproducible document - the standard for statistical reporting."},
         ],
         snippet:`library(ggplot2)
 library(dplyr)
@@ -308,13 +308,13 @@ ggplot(summary_df,
         id:"sql",name:"SQL",label:"SQL",color:"#a78bfa",bg:"#0f0a1a",
         icon:"SQL",level:"Foundation",time:"2–3 weeks",
         tagline:"The language databases speak",
-        about:"SQL (Structured Query Language) is how you talk to relational databases. Every company that stores data — which is every company — uses SQL somewhere. It is the most universally required skill in data roles and one of the most transferable skills in all of software engineering.",
+        about:"SQL (Structured Query Language) is how you talk to relational databases. Every company that stores data - which is every company - uses SQL somewhere. It is the most universally required skill in data roles and one of the most transferable skills in all of software engineering.",
         topics:[
-          {name:"SELECT & Filtering",icon:Database,desc:"The foundation of SQL — retrieving data with SELECT, filtering rows with WHERE, sorting with ORDER BY and limiting with LIMIT."},
-          {name:"JOINs",icon:Layers,desc:"Combining data from multiple tables — INNER, LEFT, RIGHT and FULL joins, and when to use each one."},
-          {name:"Aggregation",icon:TrendingUp,desc:"GROUP BY, COUNT, SUM, AVG, MIN, MAX — collapsing many rows into summary statistics."},
-          {name:"Subqueries & CTEs",icon:Code2,desc:"Writing queries inside queries — subqueries for one-off lookups, and WITH (CTE) for readable, reusable logic."},
-          {name:"Window Functions",icon:Sparkles,desc:"ROW_NUMBER, RANK, LAG, LEAD, SUM OVER — computing values across a related set of rows without collapsing them."},
+          {name:"SELECT & Filtering",icon:Database,desc:"The foundation of SQL - retrieving data with SELECT, filtering rows with WHERE, sorting with ORDER BY and limiting with LIMIT."},
+          {name:"JOINs",icon:Layers,desc:"Combining data from multiple tables - INNER, LEFT, RIGHT and FULL joins, and when to use each one."},
+          {name:"Aggregation",icon:TrendingUp,desc:"GROUP BY, COUNT, SUM, AVG, MIN, MAX - collapsing many rows into summary statistics."},
+          {name:"Subqueries & CTEs",icon:Code2,desc:"Writing queries inside queries - subqueries for one-off lookups, and WITH (CTE) for readable, reusable logic."},
+          {name:"Window Functions",icon:Sparkles,desc:"ROW_NUMBER, RANK, LAG, LEAD, SUM OVER - computing values across a related set of rows without collapsing them."},
         ],
         snippet:`-- Top 5 customers by revenue
 WITH customer_totals AS (
@@ -608,7 +608,7 @@ export default function Languages() {
 
             <motion.p initial={{opacity:0,y:14}} animate={{opacity:1,y:0}} transition={{delay:0.22}}
               style={{fontFamily:"'Lora',serif",fontStyle:"italic",fontSize:"clamp(15px,2vw,18px)",color:T.t2,lineHeight:1.82,maxWidth:560,margin:"0 auto 40px"}}>
-              Pick a track. Explore the languages inside it. See what you'll build, what topics you'll cover, and what real code looks like — before writing your first line.
+              Pick a track. Explore the languages inside it. See what you'll build, what topics you'll cover, and what real code looks like - before writing your first line.
             </motion.p>
 
             {/* Floating language tags */}
@@ -678,7 +678,7 @@ export default function Languages() {
                 <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:28,flexWrap:"wrap",gap:10}}>
                   <h3 style={{fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:18,color:T.t1,margin:0}}>
                     Languages in this track
-                    <span style={{fontFamily:"'JetBrains Mono',monospace",fontSize:12,color:T.t3,marginLeft:10,fontWeight:400}}>— click to explore</span>
+                    <span style={{fontFamily:"'JetBrains Mono',monospace",fontSize:12,color:T.t3,marginLeft:10,fontWeight:400}}>- click to explore</span>
                   </h3>
                   {activeLang && (
                     <button onClick={()=>setActiveLang(null)} style={{fontFamily:"'Syne',sans-serif",fontSize:12.5,fontWeight:600,color:T.t3,background:"none",border:"none",cursor:"pointer",textDecoration:"underline"}}>

@@ -179,7 +179,7 @@ export default function Snippets() {
 
             <motion.p initial={{opacity:0}} animate={{opacity:1}} transition={{delay:0.14}}
               style={{ fontFamily:"'Lora',serif", fontStyle:"italic", fontSize:16, color:T.t2, lineHeight:1.7, maxWidth:440, marginBottom:24 }}>
-              {SNIPS.length} production-ready patterns — zero fluff, copy and run.
+              {SNIPS.length} production-ready patterns - zero fluff, copy and run.
             </motion.p>
 
             {/* Search */}

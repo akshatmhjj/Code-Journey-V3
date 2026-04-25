@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { FaTwitter, FaInstagram, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { ArrowUpRight, Zap, Code2, Globe, BookOpen, Mail } from "lucide-react";
 
-/* ─── Fixed dark cosmic palette — never changes with platform theme ─── */
+/* ─── Fixed dark cosmic palette - never changes with platform theme ─── */
 const C = {
   bg:       "#04050a",
   deep:     "#060810",
@@ -287,7 +287,7 @@ export default function Footer() {
                 fontFamily: "'Lora', serif", fontStyle: "italic",
                 fontSize: 14.5, color: C.t2, lineHeight: 1.78, maxWidth: 220, margin: 0,
               }}>
-                A browser-native multi-language learning platform. Web, app and data science — one IDE, zero setup.
+                A browser-native multi-language learning platform. Web, app and data science - one IDE, zero setup.
               </p> */}
 
               {/* Newsletter mini */}

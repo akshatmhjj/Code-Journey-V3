@@ -72,7 +72,7 @@ const NAV = [
 ];
 
 /* ═══════════════════════════════════════════════════════════════════
-   MEGA DROPDOWN — polished redesign
+   MEGA DROPDOWN - polished redesign
 ═══════════════════════════════════════════════════════════════════ */
 function MegaDrop({ item, onClose }) {
   const shouldReduce = useReducedMotion();
@@ -665,7 +665,7 @@ export default function Header() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;1,400;1,500&display=swap');
 
-        /* ── TOKENS — light defaults, dark override ────────────────── */
+        /* ── TOKENS - light defaults, dark override ────────────────── */
         :root {
           --accent-purple: #7c6ee0;
           --accent-teal:   #5eead4;
@@ -928,7 +928,7 @@ export default function Header() {
             </span>
           </button>
 
-          {/* Auth — desktop only */}
+          {/* Auth - desktop only */}
           <div className="cj-auth-btns" style={{ display: "flex", gap: 5 }}>
             {user ? (
               <button

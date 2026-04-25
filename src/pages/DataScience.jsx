@@ -131,7 +131,7 @@ const PipelineDiagram = ({ T }) => (
       </g>
     ))}
     <defs><marker id="arrow" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill={T.b3} /></marker></defs>
-    <text x="240" y="72" textAnchor="middle" fill={T.t3} fontSize="9.5" fontFamily="JetBrains Mono">The data science workflow — every project follows these six phases</text>
+    <text x="240" y="72" textAnchor="middle" fill={T.t3} fontSize="9.5" fontFamily="JetBrains Mono">The data science workflow - every project follows these six phases</text>
   </svg>
 );
 
@@ -191,7 +191,7 @@ export default function DataScience() {
                 Find the signal<br /><span style={{ color: ACCENT }}>in the noise.</span>
               </h1>
               <p style={{ fontFamily: "'Lora',serif", fontStyle: "italic", fontSize: "clamp(14px,1.9vw,17.5px)", color: T.t2, lineHeight: 1.85, maxWidth: 500, marginBottom: 24 }}>
-                Data science is the discipline of asking questions of data and finding answers that change decisions. Netflix decides which shows to fund. Hospitals predict which patients need urgent care. Every company that collects data — which is every company — needs people who can make sense of it.
+                Data science is the discipline of asking questions of data and finding answers that change decisions. Netflix decides which shows to fund. Hospitals predict which patients need urgent care. Every company that collects data - which is every company - needs people who can make sense of it.
               </p>
               <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap", rowGap: 6 }}>
                 {SECTIONS.filter(s => s.id !== "overview" && s.id !== "resources").map((s, i, arr) => (
@@ -238,7 +238,7 @@ export default function DataScience() {
             <section id="overview" className="ds-sec">
               <SectionHead num="Intro" title="The Data Science Stack" emoji="📊" color={ACCENT} sub="Six skills, one workflow, unlimited questions to answer." T={T} />
               <p style={{ fontFamily: "'Lora',serif", fontSize: 16, color: T.t2, lineHeight: 1.92, marginBottom: 20 }}>
-                Data science is not one tool — it's a workflow. You <strong style={{ color: "#4ade80" }}>collect</strong> data, <strong style={{ color: "#60a5fa" }}>clean</strong> it (most of the job), <strong style={{ color: "#a78bfa" }}>explore</strong> it, <strong style={{ color: "#f472b6" }}>visualise</strong> it, optionally <strong style={{ color: "#f97316" }}>build a model</strong>, and then <strong style={{ color: "#fbbf24" }}>communicate</strong> the findings to people who make decisions. This track teaches you the tools for each phase.
+                Data science is not one tool - it's a workflow. You <strong style={{ color: "#4ade80" }}>collect</strong> data, <strong style={{ color: "#60a5fa" }}>clean</strong> it (most of the job), <strong style={{ color: "#a78bfa" }}>explore</strong> it, <strong style={{ color: "#f472b6" }}>visualise</strong> it, optionally <strong style={{ color: "#f97316" }}>build a model</strong>, and then <strong style={{ color: "#fbbf24" }}>communicate</strong> the findings to people who make decisions. This track teaches you the tools for each phase.
               </p>
               <div style={{ marginBottom: 28 }}>
                 <PipelineDiagram T={T} />
@@ -265,23 +265,23 @@ export default function DataScience() {
 
             {/* PYTHON */}
             <section id="python" className="ds-sec">
-              <SectionHead num="Week 1–4" title="Python for Data" emoji="Py" color="#4ade80" sub="The language of data science — readable, fast to write, faster to run with libraries." T={T} />
-              <Analogy accent="#4ade80" T={T} text="Python is to data science what Excel is to accountants — except infinitely more powerful, free, and automatable. It reads almost like English, which is why scientists, economists, and biologists who've never coded before can learn it in weeks. 90% of everything you'll do in data science happens in Python: loading data, cleaning it, visualising it, modelling it." />
+              <SectionHead num="Week 1–4" title="Python for Data" emoji="Py" color="#4ade80" sub="The language of data science - readable, fast to write, faster to run with libraries." T={T} />
+              <Analogy accent="#4ade80" T={T} text="Python is to data science what Excel is to accountants - except infinitely more powerful, free, and automatable. It reads almost like English, which is why scientists, economists, and biologists who've never coded before can learn it in weeks. 90% of everything you'll do in data science happens in Python: loading data, cleaning it, visualising it, modelling it." />
               <ConceptGrid accent="#4ade80" T={T} items={[
-                { k: "Variables & Types", v: "Python is dynamically typed — no type declarations. int, float, str, bool, None. Use type hints for clarity." },
+                { k: "Variables & Types", v: "Python is dynamically typed - no type declarations. int, float, str, bool, None. Use type hints for clarity." },
                 { k: "Lists & Dicts", v: "[1,2,3] for ordered collections. {'name':'Alex','age':30} for key-value pairs. Both mutable." },
-                { k: "List Comprehensions", v: "[x*2 for x in data if x>0] — filter and transform in one readable line. Faster than a for loop." },
+                { k: "List Comprehensions", v: "[x*2 for x in data if x>0] - filter and transform in one readable line. Faster than a for loop." },
                 { k: "Functions & Lambda", v: "def clean(text): return text.strip().lower(). Lambda: lambda x: x*2. Lambdas for simple one-line transforms." },
-                { k: "f-strings", v: 'name="Alex"; print(f"Hello {name}") — embed expressions in strings. Cleaner than concatenation.' },
-                { k: "Context Managers", v: "with open('data.csv') as f: — automatically closes the file even if an error occurs. Always use with open()." },
+                { k: "f-strings", v: 'name="Alex"; print(f"Hello {name}") - embed expressions in strings. Cleaner than concatenation.' },
+                { k: "Context Managers", v: "with open('data.csv') as f: - automatically closes the file even if an error occurs. Always use with open()." },
                 { k: "Classes (for DS)", v: "Use sparingly. You'll mostly use library classes (DataFrame, Model). Know how to read class docs though." },
                 { k: "Virtual Environments", v: "python -m venv venv → source venv/bin/activate → pip install pandas. Never install packages globally." },
                 { k: "Jupyter Notebooks", v: ".ipynb files. Mix code, output, and text. The standard for exploratory analysis and sharing results." },
-                { k: "Type Hints", v: "def process(df: pd.DataFrame) -> pd.Series: — hints don't enforce types but make code readable and IDE-friendly." },
+                { k: "Type Hints", v: "def process(df: pd.DataFrame) -> pd.Series: - hints don't enforce types but make code readable and IDE-friendly." },
               ]} />
-              <CodeWin accent="#4ade80" lang="python" T={T} title="Python — data structures, comprehensions, functions, file I/O" code={`# Python for data science — core patterns
+              <CodeWin accent="#4ade80" lang="python" T={T} title="Python - data structures, comprehensions, functions, file I/O" code={`# Python for data science - core patterns
 
-# LIST COMPREHENSIONS — the most useful Python feature for data
+# LIST COMPREHENSIONS - the most useful Python feature for data
 sales = [120, 85, 200, 165, 300, 245, 180, 95]
 
 # Filter: only months above target
@@ -293,7 +293,7 @@ in_thousands = [round(s / 1000, 2) for s in sales]
 # Combine filter + transform
 high_pct = [s / max(sales) * 100 for s in sales if s > 150]
 
-# FUNCTIONS — reusable logic
+# FUNCTIONS - reusable logic
 def growth_rate(current: float, previous: float) -> float:
     """Calculate month-over-month growth as a percentage."""
     if previous == 0:
@@ -304,38 +304,38 @@ def growth_rate(current: float, previous: float) -> float:
 changes = [growth_rate(sales[i], sales[i-1]) for i in range(1, len(sales))]
 print([f"{c:.1f}%" for c in changes])   # ['-29.2%', '135.3%', '-17.5%', ...]
 
-# DICTIONARIES — key-value, great for structured data
+# DICTIONARIES - key-value, great for structured data
 monthly = {
     'Jan': 120, 'Feb': 85, 'Mar': 200,
     'Apr': 165, 'May': 300, 'Jun': 245,
 }
 
-# Dict comprehension — transform all values
+# Dict comprehension - transform all values
 monthly_pct = {month: f"{val/sum(monthly.values())*100:.1f}%" 
                for month, val in monthly.items()}
 
-# READING FILES — always use 'with' to auto-close
+# READING FILES - always use 'with' to auto-close
 import csv
 
 with open('sales.csv', 'r', newline='') as f:
     reader = csv.DictReader(f)
     rows = list(reader)             # list of dicts, one per row
 
-# SORTING — sorted() returns new list, .sort() mutates
+# SORTING - sorted() returns new list, .sort() mutates
 top_months = sorted(monthly.items(), key=lambda x: x[1], reverse=True)[:3]
 # [('May', 300), ('Jun', 245), ('Mar', 200)]
 
-# ENUMERATE — get index AND value
+# ENUMERATE - get index AND value
 for i, (month, val) in enumerate(monthly.items(), start=1):
     print(f"  {i:2d}. {month}: {val:,}")
 
-# ZIP — iterate two lists together
+# ZIP - iterate two lists together
 months = list(monthly.keys())
 values = list(monthly.values())
 for month, val in zip(months, values):
     print(f"{month}: {val}")
 
-# GENERATORS — memory-efficient for huge datasets
+# GENERATORS - memory-efficient for huge datasets
 def process_large_file(filepath: str):
     with open(filepath) as f:
         for line in f:                   # reads one line at a time
@@ -352,36 +352,36 @@ def process_large_file(filepath: str):
             {/* NUMPY + PANDAS */}
             <section id="numpy" className="ds-sec">
               <SectionHead num="Week 5–8" title="NumPy & Pandas" emoji="Pd" color="#60a5fa" sub="The engine that makes Python fast enough for real data." T={T} />
-              <Analogy accent="#60a5fa" T={T} text="Imagine you have a spreadsheet with 1 million rows and you need to multiply every value in a column by 1.08 (a tax rate). In plain Python this would loop 1 million times and take maybe 10 seconds. NumPy does it in 0.01 seconds because it uses compiled C code under the hood. Pandas is NumPy plus a spreadsheet interface — you get row labels, column names, and the ability to combine datasets like SQL joins." />
-              <BarChart title="NumPy array operations vs Python loop — speed comparison (ms)" color="#60a5fa" T={T} data={[
+              <Analogy accent="#60a5fa" T={T} text="Imagine you have a spreadsheet with 1 million rows and you need to multiply every value in a column by 1.08 (a tax rate). In plain Python this would loop 1 million times and take maybe 10 seconds. NumPy does it in 0.01 seconds because it uses compiled C code under the hood. Pandas is NumPy plus a spreadsheet interface - you get row labels, column names, and the ability to combine datasets like SQL joins." />
+              <BarChart title="NumPy array operations vs Python loop - speed comparison (ms)" color="#60a5fa" T={T} data={[
                 { l: "Loop 10K", v: 120 }, { l: "NumPy 10K", v: 2 }, { l: "Loop 100K", v: 1200 }, { l: "NumPy 100K", v: 8 }, { l: "Loop 1M", v: 11000 }, { l: "NumPy 1M", v: 70 }
               ]} />
               <ConceptGrid accent="#60a5fa" T={T} items={[
-                { k: "NumPy Arrays", v: "np.array([1,2,3]) — like a list but typed and fast. Supports element-wise operations without loops." },
+                { k: "NumPy Arrays", v: "np.array([1,2,3]) - like a list but typed and fast. Supports element-wise operations without loops." },
                 { k: "Broadcasting", v: "array * 1.08 multiplies every element. array[array > 100] filters without a loop. This is the core NumPy pattern." },
                 { k: "DataFrame", v: "pd.read_csv('data.csv') loads it. df.head() shows first 5 rows. df.info() shows types. df.describe() shows statistics." },
                 { k: "Selecting data", v: "df['column'] for a series. df[['a','b']] for multiple columns. df.loc[row,col] for labels. df.iloc[0,0] for positions." },
-                { k: "Filtering rows", v: "df[df['sales'] > 100] — boolean mask. df.query('sales > 100 and region == \"North\"') — readable string syntax." },
-                { k: "GroupBy", v: "df.groupby('category')['amount'].agg(['mean','sum','count']) — summarise by category in one line." },
-                { k: "Merge / Join", v: "pd.merge(customers, orders, on='customer_id', how='left') — same as SQL LEFT JOIN. Combine related DataFrames." },
-                { k: "Missing Values", v: "df.isnull().sum() — count NaNs per column. df.dropna() removes rows. df.fillna(0) replaces NaN with zero." },
-                { k: "apply() / map()", v: "df['name'].apply(str.upper) — apply any function to a column. .map() for Series, .apply() for row/column-level." },
+                { k: "Filtering rows", v: "df[df['sales'] > 100] - boolean mask. df.query('sales > 100 and region == \"North\"') - readable string syntax." },
+                { k: "GroupBy", v: "df.groupby('category')['amount'].agg(['mean','sum','count']) - summarise by category in one line." },
+                { k: "Merge / Join", v: "pd.merge(customers, orders, on='customer_id', how='left') - same as SQL LEFT JOIN. Combine related DataFrames." },
+                { k: "Missing Values", v: "df.isnull().sum() - count NaNs per column. df.dropna() removes rows. df.fillna(0) replaces NaN with zero." },
+                { k: "apply() / map()", v: "df['name'].apply(str.upper) - apply any function to a column. .map() for Series, .apply() for row/column-level." },
                 { k: "pd.to_datetime()", v: "Convert string dates to datetime objects. Then df['date'].dt.month, dt.year, dt.day_name() give time features." },
               ]} />
-              <CodeWin accent="#60a5fa" lang="python" T={T} title="NumPy & Pandas — the complete EDA workflow" code={`import numpy as np
+              <CodeWin accent="#60a5fa" lang="python" T={T} title="NumPy & Pandas - the complete EDA workflow" code={`import numpy as np
 import pandas as pd
 
-# ─── NUMPY — fast array operations ─────────────────────────
+# ─── NUMPY - fast array operations ─────────────────────────
 arr = np.array([14.2, 18.5, 22.1, 9.8, 30.4, 25.6])
 
-# Operations apply to every element — no loops needed
+# Operations apply to every element - no loops needed
 arr_tax   = arr * 1.08                        # multiply all by 1.08
 arr_above = arr[arr > 20]                     # filter: [22.1, 30.4, 25.6]
 arr_norm  = (arr - arr.mean()) / arr.std()    # standardise (z-score)
 
 print(f"Mean: {arr.mean():.2f}, Std: {arr.std():.2f}, Max: {arr.max():.2f}")
 
-# ─── PANDAS — the data workflow ─────────────────────────────
+# ─── PANDAS - the data workflow ─────────────────────────────
 df = pd.read_csv('sales.csv', parse_dates=['date'])
 
 # Step 1: Understand the data
@@ -391,17 +391,17 @@ print(df.isnull().sum())  # missing values per column
 print(df.describe())      # min, max, mean, std for numeric columns
 print(df['category'].value_counts())  # most common categories
 
-# Step 2: Clean — handle missing values
+# Step 2: Clean - handle missing values
 df['revenue']  = df['revenue'].fillna(0)
 df['category'] = df['category'].fillna('Unknown')
 df = df.dropna(subset=['customer_id'])  # drop rows missing a critical column
 
-# Step 3: Transform — add useful columns
+# Step 3: Transform - add useful columns
 df['month']        = df['date'].dt.to_period('M')  # 2026-03
 df['profit_margin']= (df['profit'] / df['revenue'] * 100).round(2)
 df['is_high_value']= df['revenue'] > df['revenue'].quantile(0.9)
 
-# Step 4: Aggregate — answer business questions
+# Step 4: Aggregate - answer business questions
 # Q: What is total revenue and average margin by category?
 by_category = (
     df.groupby('category')
@@ -423,7 +423,7 @@ df_joined = pd.merge(
     how='left',           # keep all orders even if customer data is missing
 )
 
-# Step 6: Pivot table — like Excel pivot
+# Step 6: Pivot table - like Excel pivot
 pivot = df.pivot_table(
     values='revenue',
     index='month',
@@ -447,23 +447,23 @@ pivot.to_excel('monthly_pivot.xlsx', sheet_name='Revenue')`} />
             {/* MATPLOTLIB + SEABORN */}
             <section id="viz" className="ds-sec">
               <SectionHead num="Week 9–11" title="Matplotlib & Seaborn" emoji="📈" color="#f472b6" sub="Turn numbers into insight anyone can see." T={T} />
-              <Analogy accent="#f472b6" T={T} text="A table of 10,000 numbers tells you nothing at a glance. A histogram of those same numbers instantly reveals the distribution — whether it's normal, skewed, bimodal. This is why visualisation is not optional. Matplotlib is the foundation — low-level, full control. Seaborn builds on top with statistical charts that would take 50 lines in Matplotlib but take one line in Seaborn." />
+              <Analogy accent="#f472b6" T={T} text="A table of 10,000 numbers tells you nothing at a glance. A histogram of those same numbers instantly reveals the distribution - whether it's normal, skewed, bimodal. This is why visualisation is not optional. Matplotlib is the foundation - low-level, full control. Seaborn builds on top with statistical charts that would take 50 lines in Matplotlib but take one line in Seaborn." />
               <BarChart title="Chart types you'll use (weekly frequency in a typical data role)" color="#f472b6" T={T} data={[
                 { l: "Bar", v: 95 }, { l: "Line", v: 88 }, { l: "Scatter", v: 72 }, { l: "Heatmap", v: 60 }, { l: "Box", v: 55 }, { l: "Hist", v: 50 }, { l: "Pie", v: 20 }
               ]} />
               <ConceptGrid accent="#f472b6" T={T} items={[
-                { k: "plt.subplots()", v: "fig, ax = plt.subplots() — creates a figure and axes. fig.savefig('chart.png', dpi=150) to save it." },
-                { k: "Bar charts", v: "ax.bar(categories, values) — compare quantities across categories. Horizontal with barh() for long labels." },
-                { k: "Line charts", v: "ax.plot(x, y, marker='o') — show trends over time. Multiple lines: call plot() again with a different series." },
-                { k: "Scatter plots", v: "ax.scatter(x, y, c=color_col, alpha=0.6) — show relationships between two numeric variables." },
-                { k: "Histograms", v: "ax.hist(data, bins=30, edgecolor='white') — show the distribution of a single numeric variable." },
-                { k: "Box plots", v: "seaborn.boxplot(data=df, x='category', y='value') — show median, IQR, and outliers per group." },
-                { k: "Heatmaps", v: "sns.heatmap(df.corr(), annot=True, cmap='coolwarm') — show correlations between all numeric columns." },
-                { k: "FacetGrid", v: "sns.FacetGrid(df, col='category').map(sns.histplot, 'value') — the same chart repeated per category." },
+                { k: "plt.subplots()", v: "fig, ax = plt.subplots() - creates a figure and axes. fig.savefig('chart.png', dpi=150) to save it." },
+                { k: "Bar charts", v: "ax.bar(categories, values) - compare quantities across categories. Horizontal with barh() for long labels." },
+                { k: "Line charts", v: "ax.plot(x, y, marker='o') - show trends over time. Multiple lines: call plot() again with a different series." },
+                { k: "Scatter plots", v: "ax.scatter(x, y, c=color_col, alpha=0.6) - show relationships between two numeric variables." },
+                { k: "Histograms", v: "ax.hist(data, bins=30, edgecolor='white') - show the distribution of a single numeric variable." },
+                { k: "Box plots", v: "seaborn.boxplot(data=df, x='category', y='value') - show median, IQR, and outliers per group." },
+                { k: "Heatmaps", v: "sns.heatmap(df.corr(), annot=True, cmap='coolwarm') - show correlations between all numeric columns." },
+                { k: "FacetGrid", v: "sns.FacetGrid(df, col='category').map(sns.histplot, 'value') - the same chart repeated per category." },
                 { k: "Styling", v: "plt.style.use('dark_background'). seaborn.set_theme(style='whitegrid'). Always label axes and add titles." },
-                { k: "Plotly (interactive)", v: "px.bar(df, x='month', y='revenue', color='category') — hover-over data. For dashboards and presentations." },
+                { k: "Plotly (interactive)", v: "px.bar(df, x='month', y='revenue', color='category') - hover-over data. For dashboards and presentations." },
               ]} />
-              <CodeWin accent="#f472b6" lang="python" T={T} title="Matplotlib & Seaborn — the complete charting workflow" code={`import matplotlib.pyplot as plt
+              <CodeWin accent="#f472b6" lang="python" T={T} title="Matplotlib & Seaborn - the complete charting workflow" code={`import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import numpy as np
@@ -473,15 +473,15 @@ sns.set_theme(style='darkgrid', palette='muted', font_scale=1.1)
 
 # ─── FIGURE WITH MULTIPLE SUBPLOTS ────────────────────────
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
-fig.suptitle('Sales Dashboard — Q1 2026', fontsize=16, fontweight='bold', y=1.02)
+fig.suptitle('Sales Dashboard - Q1 2026', fontsize=16, fontweight='bold', y=1.02)
 
-# 1. BAR CHART — revenue by category
+# 1. BAR CHART - revenue by category
 category_rev = df.groupby('category')['revenue'].sum().sort_values()
 axes[0, 0].barh(category_rev.index, category_rev.values, color='#f472b6', alpha=0.85)
 axes[0, 0].set_title('Revenue by Category')
 axes[0, 0].set_xlabel('Total Revenue ($)')
 
-              # 2. LINE CHART — monthly trend with confidence band
+              # 2. LINE CHART - monthly trend with confidence band
               monthly = df.groupby('month')['revenue'].agg(['mean', 'std']).reset_index()
               axes[0, 1].plot(monthly['month'], monthly['mean'], 'o-', color='#60a5fa', linewidth=2)
               axes[0, 1].fill_between(
@@ -493,7 +493,7 @@ axes[0, 0].set_xlabel('Total Revenue ($)')
               axes[0, 1].set_title('Monthly Revenue Trend')
               axes[0, 1].tick_params(axis='x', rotation=45)
 
-              # 3. SCATTER PLOT — revenue vs marketing spend
+              # 3. SCATTER PLOT - revenue vs marketing spend
               axes[1, 0].scatter(
               df['marketing_spend'], df['revenue'],
               c=df['profit_margin'], cmap='RdYlGn',    # colour by profit margin
@@ -503,7 +503,7 @@ axes[0, 0].set_xlabel('Total Revenue ($)')
               axes[1, 0].set_xlabel('Marketing Spend ($)')
               axes[1, 0].set_ylabel('Revenue ($)')
 
-              # 4. CORRELATION HEATMAP — which variables move together?
+              # 4. CORRELATION HEATMAP - which variables move together?
               numeric_cols = df.select_dtypes(include=np.number)
               corr = numeric_cols.corr()
               sns.heatmap(
@@ -518,16 +518,16 @@ axes[0, 0].set_xlabel('Total Revenue ($)')
               plt.savefig('dashboard.png', dpi=150, bbox_inches='tight')
               plt.show()
 
-              # ─── SEABORN — statistical charts in one line ──────────────
+              # ─── SEABORN - statistical charts in one line ──────────────
               # Distribution comparison across categories
               fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
 
-              # Box plot — outliers visible at a glance
+              # Box plot - outliers visible at a glance
               sns.boxplot(data=df, x='category', y='revenue', ax=ax1, palette='Set2')
               ax1.set_title('Revenue Distribution by Category')
               ax1.tick_params(axis='x', rotation=30)
 
-              # Violin plot — shows the full distribution shape
+              # Violin plot - shows the full distribution shape
               sns.violinplot(data=df, x='region', y='profit_margin', ax=ax2, inner='box', palette='muted')
               ax2.set_title('Profit Margin by Region')
               ax2.axhline(0, color='red', linestyle='--', alpha=0.5)  # zero-line reference
@@ -546,21 +546,21 @@ plt.savefig('distributions.png', dpi=150)`}/>
 
             {/* SQL */}
             <section id="sql" className="ds-sec">
-              <SectionHead num="Week 12–15" title="SQL" emoji="SQL" color="#a78bfa" sub="The language every database speaks — non-negotiable for data roles." T={T} />
+              <SectionHead num="Week 12–15" title="SQL" emoji="SQL" color="#a78bfa" sub="The language every database speaks - non-negotiable for data roles." T={T} />
               <Analogy accent="#a78bfa" T={T} text="Every company stores data in databases, and SQL is how you talk to them. Think of a database like a library with millions of books (rows), organised into sections (tables). SQL is how you ask the librarian: 'Give me all mystery novels published after 2010 by British authors, sorted by rating, and tell me how many there are per author.' SQL has been around since the 1970s and is still the #1 expected skill in every data analyst job description." />
               <ConceptGrid accent="#a78bfa" T={T} items={[
                 { k: "SELECT + WHERE", v: "SELECT name, salary FROM employees WHERE department = 'Engineering' ORDER BY salary DESC LIMIT 10" },
-                { k: "Aggregation", v: "COUNT(*), SUM(amount), AVG(score), MAX(date), MIN(price) — collapse many rows into one summary row" },
-                { k: "GROUP BY", v: "GROUP BY category — split rows into groups, then aggregate each group. WHERE filters before grouping, HAVING after." },
-                { k: "JOINs", v: "INNER JOIN — only matching rows. LEFT JOIN — all left rows + matches. Use ON to specify the join condition." },
+                { k: "Aggregation", v: "COUNT(*), SUM(amount), AVG(score), MAX(date), MIN(price) - collapse many rows into one summary row" },
+                { k: "GROUP BY", v: "GROUP BY category - split rows into groups, then aggregate each group. WHERE filters before grouping, HAVING after." },
+                { k: "JOINs", v: "INNER JOIN - only matching rows. LEFT JOIN - all left rows + matches. Use ON to specify the join condition." },
                 { k: "Subqueries", v: "SELECT * FROM orders WHERE customer_id IN (SELECT id FROM customers WHERE country = 'India')" },
-                { k: "CTEs (WITH clauses)", v: "WITH monthly AS (SELECT ...) SELECT * FROM monthly — name a subquery and reference it. Essential for readability." },
-                { k: "Window Functions", v: "RANK() OVER (PARTITION BY region ORDER BY sales DESC) — analytics without collapsing rows. The senior analyst skill." },
-                { k: "Date functions", v: "DATE_TRUNC('month', created_at), EXTRACT(year FROM date), date + INTERVAL '7 days' — work with time data" },
-                { k: "CASE WHEN", v: "CASE WHEN score >= 90 THEN 'A' WHEN score >= 80 THEN 'B' ELSE 'C' END — conditional column values" },
+                { k: "CTEs (WITH clauses)", v: "WITH monthly AS (SELECT ...) SELECT * FROM monthly - name a subquery and reference it. Essential for readability." },
+                { k: "Window Functions", v: "RANK() OVER (PARTITION BY region ORDER BY sales DESC) - analytics without collapsing rows. The senior analyst skill." },
+                { k: "Date functions", v: "DATE_TRUNC('month', created_at), EXTRACT(year FROM date), date + INTERVAL '7 days' - work with time data" },
+                { k: "CASE WHEN", v: "CASE WHEN score >= 90 THEN 'A' WHEN score >= 80 THEN 'B' ELSE 'C' END - conditional column values" },
                 { k: "NULL handling", v: "COALESCE(value, 0) returns first non-null. IS NULL / IS NOT NULL for filtering. NULLIF(a, b) returns null if a=b." },
               ]} />
-              <CodeWin accent="#a78bfa" lang="python" T={T} title="SQL — JOINs, CTEs, window functions, real analytical query" code={`-- ─── FOUNDATION: JOIN multiple tables ──────────────────────
+              <CodeWin accent="#a78bfa" lang="python" T={T} title="SQL - JOINs, CTEs, window functions, real analytical query" code={`-- ─── FOUNDATION: JOIN multiple tables ──────────────────────
 SELECT
     c.name          AS customer_name,
     c.city,
@@ -614,7 +614,7 @@ with_growth AS (
     FROM with_prev
     WHERE prev_revenue IS NOT NULL     -- skip first month (no previous)
 )
--- Step 4: final output — top growing customers this month
+-- Step 4: final output - top growing customers this month
 SELECT
     c.name,
     c.segment,
@@ -627,7 +627,7 @@ WHERE w.month = DATE_TRUNC('month', CURRENT_DATE)
 ORDER BY w.mom_growth_pct DESC
 LIMIT 20;
 
--- ─── WINDOW FUNCTIONS — analytics without collapsing rows ──
+-- ─── WINDOW FUNCTIONS - analytics without collapsing rows ──
 SELECT
     order_id,
     customer_id,
@@ -643,7 +643,7 @@ SELECT
 FROM orders
 WHERE status = 'completed';
 
--- ─── CASE WHEN — conditional columns ─────────────────────
+-- ─── CASE WHEN - conditional columns ─────────────────────
 SELECT
     customer_id,
     CASE
@@ -667,20 +667,20 @@ FROM customer_summary;`} />
             {/* STATISTICS */}
             <section id="stats" className="ds-sec">
               <SectionHead num="Week 16–18" title="Statistics" emoji="📐" color="#38bdf8" sub="The maths behind why your conclusions are actually true." T={T} />
-              <Analogy accent="#38bdf8" T={T} text="Statistics is the language of uncertainty. Without it, you might look at two groups and say 'group A did better than group B' — but was that difference real, or just random noise? Statistics gives you the tools to answer that question with a number: 'there's a 97% probability that this difference is real, not coincidence.' Every A/B test, every ML model evaluation, every business report needs this foundation." />
+              <Analogy accent="#38bdf8" T={T} text="Statistics is the language of uncertainty. Without it, you might look at two groups and say 'group A did better than group B' - but was that difference real, or just random noise? Statistics gives you the tools to answer that question with a number: 'there's a 97% probability that this difference is real, not coincidence.' Every A/B test, every ML model evaluation, every business report needs this foundation." />
               <ConceptGrid accent="#38bdf8" T={T} items={[
                 { k: "Descriptive Stats", v: "Mean, median, mode, variance, std deviation, skewness. df.describe() gives all of these for a DataFrame." },
                 { k: "Distributions", v: "Normal (bell curve), Poisson (rare events), Binomial (yes/no trials). Knowing which distribution fits your data matters." },
-                { k: "Central Limit Theorem", v: "Take enough samples and their means will be normally distributed — even if the original data isn't. The foundation of inference." },
+                { k: "Central Limit Theorem", v: "Take enough samples and their means will be normally distributed - even if the original data isn't. The foundation of inference." },
                 { k: "Hypothesis Testing", v: "H₀ (null: no difference) vs H₁ (alternative: there is a difference). p-value < 0.05 means reject H₀." },
-                { k: "t-test", v: "Comparing means of two groups. scipy.stats.ttest_ind(group_a, group_b) — are these groups statistically different?" },
+                { k: "t-test", v: "Comparing means of two groups. scipy.stats.ttest_ind(group_a, group_b) - are these groups statistically different?" },
                 { k: "Chi-squared test", v: "Testing if two categorical variables are related. Are conversion rates different by device type?" },
                 { k: "Correlation vs Causation", v: "df.corr() shows correlation. But correlation ≠ causation. Ice cream sales correlate with drowning rates (both increase in summer)." },
                 { k: "Effect Size", v: "A result can be statistically significant but practically meaningless. Cohen's d measures how large the real difference is." },
-                { k: "Confidence Intervals", v: "'95% CI: [12.3, 18.7]' — we're 95% sure the true value is in this range. More informative than just the mean." },
-                { k: "A/B Testing", v: "Assign users randomly to control/treatment, measure the metric, run a t-test. Minimum sample size matters — calculate it first." },
+                { k: "Confidence Intervals", v: "'95% CI: [12.3, 18.7]' - we're 95% sure the true value is in this range. More informative than just the mean." },
+                { k: "A/B Testing", v: "Assign users randomly to control/treatment, measure the metric, run a t-test. Minimum sample size matters - calculate it first." },
               ]} />
-              <CodeWin accent="#38bdf8" lang="python" T={T} title="Statistics — descriptive stats, hypothesis testing, A/B test analysis" code={`import numpy as np
+              <CodeWin accent="#38bdf8" lang="python" T={T} title="Statistics - descriptive stats, hypothesis testing, A/B test analysis" code={`import numpy as np
 import pandas as pd
 from scipy import stats
 
@@ -693,10 +693,10 @@ print(f"Std Dev:  {data.std():.2f}")
 print(f"Skewness: {data.skew():.2f}")   # >0 = right tail, <0 = left tail
 print(f"Kurtosis: {data.kurtosis():.2f}") # >0 = heavy tails
 
-# Percentiles — robust to outliers
+# Percentiles - robust to outliers
 p25, p50, p75 = data.quantile([0.25, 0.5, 0.75])
 iqr = p75 - p25
-print(f"IQR: {iqr:.2f} — the middle 50% of values span this range")
+print(f"IQR: {iqr:.2f} - the middle 50% of values span this range")
 
 # Detect outliers using 1.5 × IQR rule (Tukey fences)
 lower_fence = p25 - 1.5 * iqr
@@ -717,7 +717,7 @@ print(f"Control:   {cr_control:.3f} ({cr_control*100:.1f}%)")
 print(f"Treatment: {cr_treatment:.3f} ({cr_treatment*100:.1f}%)")
 print(f"Lift: {lift:+.1f}%")
 
-# Statistical significance — two-proportion z-test
+# Statistical significance - two-proportion z-test
 from statsmodels.stats.proportion import proportions_ztest
 
 counts  = [treatment.sum(), control.sum()]
@@ -733,7 +733,7 @@ from statsmodels.stats.proportion import proportion_confint
 ci_low, ci_high = proportion_confint(treatment.sum(), len(treatment), alpha=0.05)
 print(f"95% CI for treatment: [{ci_low:.3f}, {ci_high:.3f}]")
 
-# ─── MINIMUM SAMPLE SIZE — calculate BEFORE running the test ─
+# ─── MINIMUM SAMPLE SIZE - calculate BEFORE running the test ─
 from statsmodels.stats.power import NormalIndPower
 
 analysis = NormalIndPower()
@@ -756,11 +756,11 @@ print(f"Need {int(n_per_group):,} users per group before concluding anything.")`
             {/* MACHINE LEARNING */}
             <section id="ml" className="ds-sec">
               <SectionHead num="Week 19–26" title="Machine Learning" emoji="🤖" color="#f97316" sub="Teaching computers to find patterns humans can't see." T={T} />
-              <Analogy accent="#f97316" T={T} text="Machine learning is pattern recognition at scale. A spam filter that reads 10 million emails and learns which words and patterns correlate with spam — that's ML. A price predictor that studied 500,000 past property sales and learned that bedrooms, location, age, and square footage together predict price — that's ML. You don't program the rules. The algorithm finds them from the data." />
+              <Analogy accent="#f97316" T={T} text="Machine learning is pattern recognition at scale. A spam filter that reads 10 million emails and learns which words and patterns correlate with spam - that's ML. A price predictor that studied 500,000 past property sales and learned that bedrooms, location, age, and square footage together predict price - that's ML. You don't program the rules. The algorithm finds them from the data." />
               <ConceptGrid accent="#f97316" T={T} items={[
                 { k: "What is a Model", v: "A mathematical function that maps inputs (features) to outputs (predictions). You train it on historical data to learn the mapping." },
-                { k: "Train / Test Split", v: "Train on 80%, evaluate on the held-out 20%. Testing on training data is cheating — the model memorised it. NEVER do this." },
-                { k: "Overfitting", v: "The model memorised the training data too well — 98% accuracy in training, 60% on new data. Reduce complexity or add more data." },
+                { k: "Train / Test Split", v: "Train on 80%, evaluate on the held-out 20%. Testing on training data is cheating - the model memorised it. NEVER do this." },
+                { k: "Overfitting", v: "The model memorised the training data too well - 98% accuracy in training, 60% on new data. Reduce complexity or add more data." },
                 { k: "Linear Regression", v: "Predict a continuous number (house price, sales amount). Assumes a linear relationship between features and target." },
                 { k: "Logistic Regression", v: "Predict a category (spam/not spam, churn/retain). Despite the name, it's a classification algorithm." },
                 { k: "Decision Trees", v: "A tree of if-then rules learned from data. Interpretable. Random Forest = hundreds of trees voting together (more accurate)." },
@@ -769,7 +769,7 @@ print(f"Need {int(n_per_group):,} users per group before concluding anything.")`
                 { k: "Cross-Validation", v: "Split data into 5 folds, train/test 5 times on different splits. The average score is much more reliable than one train/test split." },
                 { k: "GridSearchCV", v: "Automatically try all combinations of hyperparameters and return the best. Pass param_grid={'n_estimators':[100,200], 'max_depth':[3,5,7]}." },
               ]} />
-              <CodeWin accent="#f97316" lang="python" T={T} title="Machine Learning — full pipeline: preprocessing, training, evaluation, prediction" code={`import pandas as pd
+              <CodeWin accent="#f97316" lang="python" T={T} title="Machine Learning - full pipeline: preprocessing, training, evaluation, prediction" code={`import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
 from sklearn.preprocessing   import StandardScaler, OneHotEncoder
@@ -793,12 +793,12 @@ y = df[target]
 
 print(f"Class balance: {y.value_counts(normalize=True).round(3)}")
 
-# 2. SPLIT — 80% train, 20% test. stratify keeps class balance in both sets
+# 2. SPLIT - 80% train, 20% test. stratify keeps class balance in both sets
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42, stratify=y
 )
 
-# 3. PREPROCESSING PIPELINE — automates feature transformations
+# 3. PREPROCESSING PIPELINE - automates feature transformations
 numeric_features     = ['age', 'monthly_spend', 'months_active',
                          'support_tickets', 'last_login_days_ago', 'num_products']
 categorical_features = ['payment_type']
@@ -809,7 +809,7 @@ preprocessor = ColumnTransformer([
              categorical_features),
 ])
 
-# 4. FULL PIPELINE — preprocessing + model in one object
+# 4. FULL PIPELINE - preprocessing + model in one object
 model_pipeline = Pipeline([
     ('preprocessor', preprocessor),
     ('classifier',   RandomForestClassifier(
@@ -820,7 +820,7 @@ model_pipeline = Pipeline([
     )),
 ])
 
-# 5. CROSS-VALIDATION — reliable estimate of real performance
+# 5. CROSS-VALIDATION - reliable estimate of real performance
 cv_scores = cross_val_score(model_pipeline, X_train, y_train,
                              cv=5, scoring='roc_auc', n_jobs=-1)
 print(f"CV AUC: {cv_scores.mean():.3f} ± {cv_scores.std():.3f}")
@@ -837,7 +837,7 @@ print(classification_report(y_test, y_pred,
 auc = roc_auc_score(y_test, y_pred_prob)
 print(f"AUC-ROC: {auc:.3f}   (0.5 = random, 1.0 = perfect)")
 
-# 7. FEATURE IMPORTANCE — which features matter most?
+# 7. FEATURE IMPORTANCE - which features matter most?
 rf = model_pipeline.named_steps['classifier']
 feature_names = (numeric_features +
                  model_pipeline.named_steps['preprocessor']
@@ -863,7 +863,7 @@ new_customers = pd.DataFrame({
 churn_proba = model_pipeline.predict_proba(new_customers)[:, 1]
 for i, prob in enumerate(churn_proba):
     risk = 'HIGH' if prob > 0.7 else 'MEDIUM' if prob > 0.4 else 'LOW'
-    print(f"Customer {i+1}: {prob:.1%} churn probability — {risk} risk")`} />
+    print(f"Customer {i+1}: {prob:.1%} churn probability - {risk} risk")`} />
               <ResourceRow T={T} links={[
                 { label: "Scikit-learn User Guide", href: "https://scikit-learn.org/stable/user_guide.html", type: "doc" },
                 { label: "Kaggle Learn ML", href: "https://www.kaggle.com/learn/intro-to-machine-learning", type: "doc" },
@@ -876,21 +876,21 @@ for i, prob in enumerate(churn_proba):
 
             {/* R */}
             <section id="r" className="ds-sec">
-              <SectionHead num="Alternative" title="R Language" emoji="R" color="#f472b6" sub="Built by statisticians, for statisticians — the academic standard." T={T} />
-              <Analogy accent="#f472b6" T={T} text="R is the language of research papers, pharmaceutical trials, economics departments, and academic statistics. If Python is the Swiss Army knife, R is the surgeon's scalpel — extremely precise for statistical analysis, built specifically for the kind of rigorous work that gets published in peer-reviewed journals. If you're going into biostatistics, academic research, economics, or clinical data — learn R. ggplot2 alone produces better charts than Matplotlib by default." />
+              <SectionHead num="Alternative" title="R Language" emoji="R" color="#f472b6" sub="Built by statisticians, for statisticians - the academic standard." T={T} />
+              <Analogy accent="#f472b6" T={T} text="R is the language of research papers, pharmaceutical trials, economics departments, and academic statistics. If Python is the Swiss Army knife, R is the surgeon's scalpel - extremely precise for statistical analysis, built specifically for the kind of rigorous work that gets published in peer-reviewed journals. If you're going into biostatistics, academic research, economics, or clinical data - learn R. ggplot2 alone produces better charts than Matplotlib by default." />
               <ConceptGrid accent="#f472b6" T={T} items={[
                 { k: "Vectors & DataFrames", v: "c(1,2,3) is a vector. data.frame() is R's DataFrame. tibble() from tidyverse is cleaner." },
-                { k: "The Pipe Operator", v: "data |> filter() |> group_by() |> summarise() — chain operations left-to-right. Identical mental model to Python method chaining." },
-                { k: "dplyr (data manipulation)", v: "filter(), select(), mutate(), group_by(), summarise(), arrange(), join_left() — equivalent to Pandas operations." },
-                { k: "tidyr (reshaping)", v: "pivot_wider() and pivot_longer() — reshape data between wide and long format. Essential for visualisation." },
-                { k: "ggplot2 (visualisation)", v: "ggplot(data, aes(x=month, y=revenue)) + geom_line() + geom_point() + theme_minimal() — layered grammar of graphics." },
-                { k: "Statistical Tests", v: "t.test(), chisq.test(), aov(), lm() — native R has every statistical test you'll ever need." },
-                { k: "lm() Linear Models", v: "model <- lm(salary ~ years_exp + education, data=df) — formula syntax. summary(model) gives coefficients, p-values, R²." },
+                { k: "The Pipe Operator", v: "data |> filter() |> group_by() |> summarise() - chain operations left-to-right. Identical mental model to Python method chaining." },
+                { k: "dplyr (data manipulation)", v: "filter(), select(), mutate(), group_by(), summarise(), arrange(), join_left() - equivalent to Pandas operations." },
+                { k: "tidyr (reshaping)", v: "pivot_wider() and pivot_longer() - reshape data between wide and long format. Essential for visualisation." },
+                { k: "ggplot2 (visualisation)", v: "ggplot(data, aes(x=month, y=revenue)) + geom_line() + geom_point() + theme_minimal() - layered grammar of graphics." },
+                { k: "Statistical Tests", v: "t.test(), chisq.test(), aov(), lm() - native R has every statistical test you'll ever need." },
+                { k: "lm() Linear Models", v: "model <- lm(salary ~ years_exp + education, data=df) - formula syntax. summary(model) gives coefficients, p-values, R²." },
                 { k: "R Markdown", v: "Mix R code, output, and prose in one document. Knit to HTML, PDF, or Word. The standard format for reproducible research." },
-                { k: "Shiny", v: "Build interactive web dashboards entirely in R — sliders, dropdowns, reactive charts. No JavaScript needed." },
-                { k: "Bioconductor", v: "The R ecosystem for genomics and bioinformatics — 2,000+ packages for biological data analysis." },
+                { k: "Shiny", v: "Build interactive web dashboards entirely in R - sliders, dropdowns, reactive charts. No JavaScript needed." },
+                { k: "Bioconductor", v: "The R ecosystem for genomics and bioinformatics - 2,000+ packages for biological data analysis." },
               ]} />
-              <CodeWin accent="#f472b6" lang="python" T={T} title="R — tidyverse, ggplot2, statistical tests, linear models" code={`library(tidyverse)    # dplyr + ggplot2 + tidyr + readr + purrr + more
+              <CodeWin accent="#f472b6" lang="python" T={T} title="R - tidyverse, ggplot2, statistical tests, linear models" code={`library(tidyverse)    # dplyr + ggplot2 + tidyr + readr + purrr + more
 library(lubridate)    # date/time manipulation
 library(broom)        # tidy model output
 
@@ -904,7 +904,7 @@ df <- read_csv("sales.csv") |>
   ) |>
   filter(!is.na(customer_id))            # remove rows with missing customer
 
-# ─── DPLYR — data manipulation ─────────────────────────────
+# ─── DPLYR - data manipulation ─────────────────────────────
 summary_df <- df |>
   group_by(category, month) |>
   summarise(
@@ -920,7 +920,7 @@ summary_df <- df |>
     running_rev = cumsum(revenue)         # running total
   )
 
-# ─── GGPLOT2 — publication-quality charts ──────────────────
+# ─── GGPLOT2 - publication-quality charts ──────────────────
 # Line chart with confidence band
 p1 <- df |>
   group_by(month) |>
@@ -937,7 +937,7 @@ p1 <- df |>
   theme_minimal(base_size = 13) +
   theme(plot.title = element_text(face = "bold"))
 
-# Faceted bar chart — one panel per category
+# Faceted bar chart - one panel per category
 p2 <- summary_df |>
   ggplot(aes(x = month, y = revenue_k, fill = category)) +
   geom_col(show.legend = FALSE) +
@@ -949,14 +949,14 @@ p2 <- summary_df |>
 # Save high-resolution
 ggsave("dashboard.png", p1, width = 12, height = 6, dpi = 200)
 
-# ─── STATISTICAL TEST — is category difference significant? ─
+# ─── STATISTICAL TEST - is category difference significant? ─
 model <- aov(amount ~ category, data = df)  # one-way ANOVA
 summary(model)              # F-statistic and p-value
 
 # Post-hoc test: which pairs of categories differ?
 TukeyHSD(model) |> tidy() |> filter(adj.p.value < 0.05)
 
-# ─── LINEAR REGRESSION — what drives order value? ──────────
+# ─── LINEAR REGRESSION - what drives order value? ──────────
 lm_model <- lm(
   amount ~ months_as_customer + num_orders + has_loyalty_card + category,
   data = df
@@ -981,11 +981,11 @@ glance(lm_model)  # R², adjusted R², AIC, BIC at a glance`} />
             {/* RESOURCES */}
             <section id="resources" className="ds-sec">
               <SectionHead num="Reference" title="Resource Guide" emoji="📚" color="#22c55e" sub="Curated paths to actual data science jobs." T={T} />
-              <p style={{ fontFamily: "'Lora',serif", fontSize: 16, color: T.t2, lineHeight: 1.92, marginBottom: 28 }}>Recommended sequence: <strong style={{ color: T.t1 }}>Kaggle Learn</strong> for Python and Pandas (free, interactive). Then <strong style={{ color: T.t1 }}>DataLemur or StrataScratch</strong> for SQL interview practice. Then <strong style={{ color: T.t1 }}>StatQuest on YouTube</strong> for statistics and ML — Josh Starmer is the best teacher for making maths click without maths anxiety. Finally, enter one Kaggle competition — even finishing is a portfolio piece.</p>
+              <p style={{ fontFamily: "'Lora',serif", fontSize: 16, color: T.t2, lineHeight: 1.92, marginBottom: 28 }}>Recommended sequence: <strong style={{ color: T.t1 }}>Kaggle Learn</strong> for Python and Pandas (free, interactive). Then <strong style={{ color: T.t1 }}>DataLemur or StrataScratch</strong> for SQL interview practice. Then <strong style={{ color: T.t1 }}>StatQuest on YouTube</strong> for statistics and ML - Josh Starmer is the best teacher for making maths click without maths anxiety. Finally, enter one Kaggle competition - even finishing is a portfolio piece.</p>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(280px,1fr))", gap: 12 }}>
                 {[
                   { name: "Kaggle Learn", href: "https://www.kaggle.com/learn", type: "doc", desc: "Free interactive Python, Pandas, ML, and SQL courses with real datasets." },
-                  { name: "Pandas Documentation", href: "https://pandas.pydata.org/docs", type: "doc", desc: "The official reference — bookmark the 10 Minutes to Pandas guide." },
+                  { name: "Pandas Documentation", href: "https://pandas.pydata.org/docs", type: "doc", desc: "The official reference - bookmark the 10 Minutes to Pandas guide." },
                   { name: "Scikit-learn User Guide", href: "https://scikit-learn.org/stable/user_guide.html", type: "doc", desc: "Every algorithm explained with examples. The ML bible." },
                   { name: "DataLemur (SQL)", href: "https://datalemur.com", type: "doc", desc: "Real SQL interview questions from Facebook, Uber, Amazon. Practice here." },
                   { name: "R for Data Science", href: "https://r4ds.had.co.nz", type: "doc", desc: "Hadley Wickham's free book on the tidyverse. The definitive R guide." },
@@ -993,7 +993,7 @@ glance(lm_model)  # R², adjusted R², AIC, BIC at a glance`} />
                   { name: "StatQuest with Josh Starmer", href: "https://www.youtube.com/@statquest", type: "yt", desc: "Genuinely the best statistics and ML teacher on the internet. No prior maths needed." },
                   { name: "Alex The Analyst", href: "https://www.youtube.com/@AlexTheAnalyst", type: "yt", desc: "SQL, Python, Tableau tutorials aimed at landing a data analyst job." },
                   { name: "Rob Mulla (EDA)", href: "https://www.youtube.com/@robmulla", type: "yt", desc: "Kaggle competition walkthroughs. Ideal for seeing real EDA in action." },
-                  { name: "Sentdex", href: "https://www.youtube.com/@sentdex", type: "yt", desc: "Python data science and ML projects — practical, project-first approach." },
+                  { name: "Sentdex", href: "https://www.youtube.com/@sentdex", type: "yt", desc: "Python data science and ML projects - practical, project-first approach." },
                 ].map(r => (
                   <a key={r.name} href={r.href} target="_blank" rel="noreferrer"
                     style={{ display: "flex", alignItems: "flex-start", gap: 12, padding: "14px 16px", borderRadius: 12, border: `1px solid ${r.type === "yt" ? "#f87171" : "#60a5fa"}28`, background: r.type === "yt" ? "#f871710a" : "#60a5fa0a", textDecoration: "none", transition: "all 0.16s" }}

@@ -1,5 +1,5 @@
 /**
- * Code Journey — About Us
+ * Code Journey - About Us
  *
  * Theme syncs with the platform theme via localStorage + CSS variables
  * (same strategy as Home.jsx and Profile.jsx).
@@ -287,7 +287,7 @@ const ProblemSolution = ({ T }) => {
     "The gap between 'hello world' and a real project feels infinite",
   ];
   const solutions = [
-    "Curated, minimal information — only what you actually need first",
+    "Curated, minimal information - only what you actually need first",
     "Plain-language explanations using real-world analogies",
     "Track system that maps your interest to a specific learning path",
     "Micro-wins and XP every step to keep momentum alive",
@@ -457,7 +457,7 @@ const ManifestoQuote = ({ T }) => {
           <span style={{color:T.accent,fontStyle:"normal",fontWeight:700}}>
             minimises the gap
           </span>{" "}
-          between beginners and the existing clustered, scattered ocean of data —
+          between beginners and the existing clustered, scattered ocean of data -
           by giving only the required and needed information about a resource,
           then recommending a tutorial or practice session{" "}
           <span style={{color:T.teal,fontStyle:"normal",fontWeight:700}}>
@@ -508,41 +508,41 @@ export default function About() {
   /* DATA */
   const principles = [
     { icon:Compass,   color:"#7c6ee0", title:"Clarity Before Depth",
-      body:"We don't teach everything at once. We teach what matters first. Every explanation is trimmed to what a beginner actually needs at that stage — no more, no less." },
+      body:"We don't teach everything at once. We teach what matters first. Every explanation is trimmed to what a beginner actually needs at that stage - no more, no less." },
     { icon:Map,       color:"#5eead4", title:"Direction, Not Dumping",
       body:"The internet has unlimited information about code. Code Journey has curated, opinionated paths. We tell you which road to take before handing you the map." },
     { icon:Lightbulb, color:"#fbbf24", title:"Try Before You Theorise",
       body:"We recommend building something tiny before reading the docs. Hands-on output first, conceptual depth second. That's the order that makes knowledge stick." },
     { icon:Target,    color:"#22c55e", title:"Fit, Then Expertise",
-      body:"Spending a year deep in the wrong stack is costly. CJ helps you discover your fit — web, app, or data — before you commit your full energy to mastering it." },
+      body:"Spending a year deep in the wrong stack is costly. CJ helps you discover your fit - web, app, or data - before you commit your full energy to mastering it." },
     { icon:Heart,     color:"#ec4899", title:"Beginner-First, Always",
       body:"Every word on this platform is written as if the reader just googled 'how to learn coding' for the very first time. No assumed knowledge, ever." },
     { icon:Shield,    color:"#f97316", title:"Safe to Be Confused",
-      body:"Confusion is not failure — it is the normal state of learning. Code Journey is designed so that confusion is a signal to go slower, not a reason to quit." },
+      body:"Confusion is not failure - it is the normal state of learning. Code Journey is designed so that confusion is a signal to go slower, not a reason to quit." },
   ];
 
   const timelineSteps = [
     { index:0, n:"01", tag:"Discover", color:"#7c6ee0",
       title:"Pick a direction that excites you",
-      body:"Before writing a single line of code, you explore the three career tracks — Web Development, App Development and Data Science. You watch short introductions, read plain-language descriptions, and choose the one that genuinely interests you. No pressure to be certain. You can always change tracks." },
+      body:"Before writing a single line of code, you explore the three career tracks - Web Development, App Development and Data Science. You watch short introductions, read plain-language descriptions, and choose the one that genuinely interests you. No pressure to be certain. You can always change tracks." },
     { index:1, n:"02", tag:"Learn Lightly", color:"#5eead4",
       title:"Get comfortable with the fundamentals",
-      body:"Once you have a track, CJ introduces the language and concepts that power it — using real-life analogies, not academic definitions. You learn only what is essential for a beginner in that track. Everything else is marked as 'optional depth' that you can explore when you are ready." },
+      body:"Once you have a track, CJ introduces the language and concepts that power it - using real-life analogies, not academic definitions. You learn only what is essential for a beginner in that track. Everything else is marked as 'optional depth' that you can explore when you are ready." },
     // { index:2, n:"03", tag:"Build Something", color:"#fbbf24",
     //   title:"Write code inside the browser, immediately",
     //   body:"The Code Journey IDE is built into the platform. No downloads. No environment setup. No Stack Overflow rabbit holes. You write real code, run it, and see output in the same window. Small, satisfying exercises confirm that you actually understand what you just learned." },
     // { index:3, n:"04", tag:"AI Guidance", color:"#22c55e",
     //   title:"Get unstuck without being given the answer",
-    //   body:"The built-in AI Tutor reads your current code, your exercise and your test results. It gives progressive hints — nudging you toward the solution without spoiling it. You solve problems. You earn understanding, not just answers." },
+    //   body:"The built-in AI Tutor reads your current code, your exercise and your test results. It gives progressive hints - nudging you toward the solution without spoiling it. You solve problems. You earn understanding, not just answers." },
     { index:2, n:"03", tag:"Grow", color:"#ec4899",
       title:"Build consistency with streaks and XP",
-      body:"Short daily sessions beat occasional long ones. Streaks, XP rewards and a five-tier level system make showing up each day feel meaningful. The platform rewards habit, not just completion. By the time you finish a track, you are ready to engage with the larger ecosystem — frameworks, tools, deep documentation — without being overwhelmed by it." },
+      body:"Short daily sessions beat occasional long ones. Streaks, XP rewards and a five-tier level system make showing up each day feel meaningful. The platform rewards habit, not just completion. By the time you finish a track, you are ready to engage with the larger ecosystem - frameworks, tools, deep documentation - without being overwhelmed by it." },
   ];
 
   const stats = [
     { value:"10",   label:"Languages",     color:"#7c6ee0", icon:Code2    },
     { value:"3",   label:"Career Tracks", color:"#5eead4", icon:Layers   },
-    { value:"20+", label:"Snippets",     color:"#fbbf24", icon:BookOpen  },
+    { value:"15+", label:"Snippets",     color:"#fbbf24", icon:BookOpen  },
     { value:"0",   label:"Confusion Tax", color:"#22c55e", icon:Sparkles },
   ];
 
@@ -706,7 +706,7 @@ export default function About() {
               <SectionLabel
                 icon={Compass} pill="Our Mission" color={T.accent} T={T} center
                 heading="Clarity Is the Product"
-                sub="Not tutorials. Not videos. Not a course catalogue. The product is clarity — knowing where you are, what you need next, and why."
+                sub="Not tutorials. Not videos. Not a course catalogue. The product is clarity - knowing where you are, what you need next, and why."
               />
             </Reveal>
 
@@ -722,11 +722,11 @@ export default function About() {
               className="principles-grid">
               {[
                 { icon:Globe,    color:T.accent, label:"Who We Serve",
-                  text:"Beginners in software engineering who are still figuring out what role or what tech stack they actually want — before committing to years of study in one direction." },
+                  text:"Beginners in software engineering who are still figuring out what role or what tech stack they actually want - before committing to years of study in one direction." },
                 { icon:Zap,      color:T.teal,   label:"What We Do",
                   text:"We surface only the information a beginner needs at each step, recommend practice before theory, and provide a structured path from confusion to confident momentum." },
                 { icon:Brain,    color:T.gold,   label:"Why We Exist",
-                  text:"The existing resources are incredible — but they are built for people who already know what they want. We are the bridge that gets you ready to use those resources effectively." },
+                  text:"The existing resources are incredible - but they are built for people who already know what they want. We are the bridge that gets you ready to use those resources effectively." },
               ].map((p,i)=>(
                 <Reveal key={p.label} delay={i*0.1} y={16}>
                   <div style={{
@@ -812,7 +812,7 @@ export default function About() {
                 }}>
                   A beginner in software engineering today faces an impossible choice:
                   pick a tutorial from thousands, pick a language from dozens, pick a
-                  role from a list they barely understand — and somehow start building
+                  role from a list they barely understand - and somehow start building
                   knowledge on a foundation that doesn't yet exist.
                   <span style={{
                     color:T.accent,fontStyle:"normal",fontWeight:700,display:"block",marginTop:12,
@@ -862,7 +862,7 @@ export default function About() {
         </section>
 
         {/* ══════════════════════════════════════════════════
-            HOW IT WORKS — TIMELINE
+            HOW IT WORKS - TIMELINE
         ══════════════════════════════════════════════════ */}
         <section style={{padding:"100px 24px",position:"relative",overflow:"hidden"}}>
           <div style={{maxWidth:780,margin:"0 auto"}}>
@@ -870,7 +870,7 @@ export default function About() {
               <SectionLabel
                 icon={Map} pill="The Journey" color={T.teal} T={T}
                 heading="From Confused to Confident"
-                sub="Every learner on Code Journey follows the same five-stage arc — but at their own speed."
+                sub="Every learner on Code Journey follows the same five-stage arc - but at their own speed."
               />
             </Reveal>
             <div style={{position:"relative"}}>
@@ -918,7 +918,7 @@ export default function About() {
                 { emoji:"🤔", title:"You Don't Know Where to Start",
                   body:"You've seen 'learn to code' videos but can't decide between Python, JavaScript, or something else. That's exactly where CJ begins." },
                 { emoji:"😵", title:"You Feel Overwhelmed by Options",
-                  body:"React, Vue, Angular, Django, Flutter — the list never ends. CJ removes the noise and tells you what to focus on for your specific goal." },
+                  body:"React, Vue, Angular, Django, Flutter - the list never ends. CJ removes the noise and tells you what to focus on for your specific goal." },
                 { emoji:"🎯", title:"You Want to Explore Before Committing",
                   body:"You want to try web dev, app dev and data science before deciding where to go deep. CJ's three tracks let you do exactly that." },
                 { emoji:"⚡", title:"You Learn by Doing",
@@ -926,7 +926,7 @@ export default function About() {
                 { emoji:"🔁", title:"You've Started and Stopped Before",
                   body:"You've tried online courses but dropped off. The streak system and AI tutor are specifically designed to catch you before you fall off." },
                 { emoji:"🚀", title:"You Want to Go Somewhere Real",
-                  body:"You aren't learning to code as a hobby — you want a career, a freelance income, or the ability to build real things. CJ is built for that ambition." },
+                  body:"You aren't learning to code as a hobby - you want a career, a freelance income, or the ability to build real things. CJ is built for that ambition." },
               ].map((card,i)=>(
                 <Reveal key={card.title} delay={i*0.07} y={18}>
                   <div
@@ -962,18 +962,18 @@ export default function About() {
               <SectionLabel
                 icon={Terminal} pill="The Platform" color={T.accent} T={T}
                 heading="One Platform. Complete Toolkit."
-                sub="Everything you need is inside Code Journey — nothing is outsourced to a different tab."
+                sub="Everything you need is inside Code Journey - nothing is outsourced to a different tab."
               />
             </Reveal>
             <div style={{
               display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(240px,1fr))",gap:14,
             }}>
               {[
-                { icon:Code2,     color:"#7c6ee0", title:"9-Language IDE",         desc:"JavaScript, Python, TypeScript, Rust, SQL, Flutter, R, Kotlin, HTML/CSS — one editor, zero setup." },
-                { icon:Brain,     color:"#5eead4", title:"Context-Aware AI Tutor", desc:"Reads your code and exercise automatically. Gives progressive hints — not direct answers." },
+                { icon:Code2,     color:"#7c6ee0", title:"9-Language IDE",         desc:"JavaScript, Python, TypeScript, Rust, SQL, Flutter, R, Kotlin, HTML/CSS - one editor, zero setup." },
+                { icon:Brain,     color:"#5eead4", title:"Context-Aware AI Tutor", desc:"Reads your code and exercise automatically. Gives progressive hints - not direct answers." },
                 { icon:BookOpen,  color:"#fbbf24", title:"Curated Exercises",      desc:"Every exercise is designed for a beginner at that exact stage. No accidental difficulty spikes." },
                 { icon:Zap,       color:"#22c55e", title:"Streak & XP System",     desc:"Daily streaks, XP rewards and five tiers of progression to keep you consistent." },
-                { icon:Layers,    color:"#ec4899", title:"Three Career Tracks",    desc:"Web, App and Data Science — each with a curated sequence built for that goal." },
+                { icon:Layers,    color:"#ec4899", title:"Three Career Tracks",    desc:"Web, App and Data Science - each with a curated sequence built for that goal." },
                 { icon:Globe,     color:"#f97316", title:"Logs & Changelog",       desc:"Full transparency on what's released, what's deprecated and what's improving." },
               ].map((f,i)=>(
                 <Reveal key={f.title} delay={i*0.07} y={16}>

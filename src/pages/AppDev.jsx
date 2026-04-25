@@ -93,7 +93,7 @@ const SectionHead=({num,title,emoji,color,sub,T})=>(
 
 const Divider=({T})=><div style={{height:1,background:`linear-gradient(to right,${T.b2},${T.b1},transparent)`,margin:"60px 0"}}/>;
 
-/* SVG — Mobile app layer stack */
+/* SVG - Mobile app layer stack */
 const AppStackDiagram=({T})=>(
   <svg viewBox="0 0 480 200" style={{width:"100%",maxWidth:480,display:"block"}}>
     <text x="240" y="14" textAnchor="middle" fill={T.t3} fontSize="11" fontFamily="JetBrains Mono">How Flutter renders to both platforms</text>
@@ -132,7 +132,7 @@ const AppStackDiagram=({T})=>(
 
 const WidgetTreeDiagram=({T})=>(
   <svg viewBox="0 0 480 170" style={{width:"100%",maxWidth:480,display:"block"}}>
-    <text x="240" y="14" textAnchor="middle" fill={T.t3} fontSize="11" fontFamily="JetBrains Mono">Flutter widget tree — everything is a widget</text>
+    <text x="240" y="14" textAnchor="middle" fill={T.t3} fontSize="11" fontFamily="JetBrains Mono">Flutter widget tree - everything is a widget</text>
     <rect x="185" y="22" width="110" height="26" rx="6" fill="#5eead414" stroke="#5eead455" strokeWidth="1.5"/>
     <text x="240" y="39" textAnchor="middle" fill="#5eead4" fontSize="11" fontFamily="JetBrains Mono" fontWeight="700">Scaffold</text>
     <line x1="240" y1="48" x2="120" y2="72" stroke={T.b3} strokeWidth="1.5"/>
@@ -146,7 +146,7 @@ const WidgetTreeDiagram=({T})=>(
     {[["Text",250,"#f7df1e"],["ElevatedButton",330,"#22c55e"],["Image",410,"#f97316"]].map(([n,x,c])=>(
       <g key={n}><rect x={x-30} y="118" width="78" height="22" rx="4" fill={c+"10"} stroke={c+"44"} strokeWidth="1"/><text x={x+9} y="133" textAnchor="middle" fill={c} fontSize="9" fontFamily="JetBrains Mono">{n}</text></g>
     ))}
-    <text x="240" y="160" textAnchor="middle" fill={T.t3} fontSize="9.5" fontFamily="JetBrains Mono">In Flutter: Layout, styling, and behaviour are ALL widgets — no HTML/CSS split</text>
+    <text x="240" y="160" textAnchor="middle" fill={T.t3} fontSize="9.5" fontFamily="JetBrains Mono">In Flutter: Layout, styling, and behaviour are ALL widgets - no HTML/CSS split</text>
   </svg>
 );
 
@@ -204,7 +204,7 @@ export default function AppDev(){
                 Ship to a<br/><span style={{color:ACCENT}}>billion pockets.</span>
               </h1>
               <p style={{fontFamily:"'Lora',serif",fontStyle:"italic",fontSize:"clamp(14px,1.9vw,17.5px)",color:T.t2,lineHeight:1.85,maxWidth:500,marginBottom:24}}>
-                Mobile apps are how most people experience software. This track covers five paths — one codebase for both platforms (Flutter, React Native), or deeply native (Kotlin for Android, Swift for iOS). You choose based on your goal.
+                Mobile apps are how most people experience software. This track covers five paths - one codebase for both platforms (Flutter, React Native), or deeply native (Kotlin for Android, Swift for iOS). You choose based on your goal.
               </p>
               <div style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap",rowGap:6}}>
                 {SECTIONS.filter(s=>s.id!=="overview"&&s.id!=="resources").map((s,i,arr)=>(
@@ -246,7 +246,7 @@ export default function AppDev(){
             <section id="overview" className="ad-sec">
               <SectionHead num="Intro" title="Choosing Your Path" emoji="📱" color={ACCENT} sub="Cross-platform or native? The right answer depends on your goal." T={T}/>
               <p style={{fontFamily:"'Lora',serif",fontSize:16,color:T.t2,lineHeight:1.92,marginBottom:20}}>
-                App development has two strategies: <strong style={{color:"#38bdf8"}}>cross-platform</strong> (write one codebase that runs on iOS and Android) and <strong style={{color:"#f97316"}}>native</strong> (write separately for each platform using Apple's or Google's official tools). Both are valid — the choice depends on your budget, team size, and how deep you need to go into platform-specific features.
+                App development has two strategies: <strong style={{color:"#38bdf8"}}>cross-platform</strong> (write one codebase that runs on iOS and Android) and <strong style={{color:"#f97316"}}>native</strong> (write separately for each platform using Apple's or Google's official tools). Both are valid - the choice depends on your budget, team size, and how deep you need to go into platform-specific features.
               </p>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14,marginBottom:28}}>
                 {[
@@ -266,7 +266,7 @@ export default function AppDev(){
               </div>
               <div style={{background:`${ACCENT}0c`,border:`1px solid ${ACCENT}28`,borderRadius:12,padding:"14px 18px"}}>
                 <p style={{fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:12,color:ACCENT,marginBottom:6}}>🎯 Our recommendation for beginners</p>
-                <p style={{fontFamily:"'Lora',serif",fontSize:14.5,color:T.t1,lineHeight:1.72,margin:0}}>Start with <strong>Flutter + Dart</strong>. One language, one framework, runs everywhere. The Dart language is clean and easy to learn if you know JavaScript. Flutter has the best hot-reload experience of any mobile framework — you see changes instantly without rebuilding the app.</p>
+                <p style={{fontFamily:"'Lora',serif",fontSize:14.5,color:T.t1,lineHeight:1.72,margin:0}}>Start with <strong>Flutter + Dart</strong>. One language, one framework, runs everywhere. The Dart language is clean and easy to learn if you know JavaScript. Flutter has the best hot-reload experience of any mobile framework - you see changes instantly without rebuilding the app.</p>
               </div>
             </section>
 
@@ -274,31 +274,31 @@ export default function AppDev(){
 
             {/* DART */}
             <section id="dart" className="ad-sec">
-              <SectionHead num="Week 1–3" title="Dart" emoji="◈" color="#5eead4" sub="Flutter's language — clean, null-safe, and fast to learn." T={T}/>
-              <Analogy accent="#5eead4" T={T} text="Dart is to Flutter what JavaScript is to React — you can't use one without knowing the other, and the language was literally designed to make the framework work well. The good news: Dart reads almost like TypeScript or Java, but cleaner. If you've seen any curly-brace language before, Dart will take you maybe two weeks to feel comfortable in."/>
+              <SectionHead num="Week 1–3" title="Dart" emoji="◈" color="#5eead4" sub="Flutter's language - clean, null-safe, and fast to learn." T={T}/>
+              <Analogy accent="#5eead4" T={T} text="Dart is to Flutter what JavaScript is to React - you can't use one without knowing the other, and the language was literally designed to make the framework work well. The good news: Dart reads almost like TypeScript or Java, but cleaner. If you've seen any curly-brace language before, Dart will take you maybe two weeks to feel comfortable in."/>
               <ConceptGrid accent="#5eead4" T={T} items={[
                 {k:"var / final / const",   v:"var for mutable variables. final = set once at runtime. const = compile-time constant. Prefer final."},
-                {k:"Null Safety",            v:"String? name — the ? means this can be null. String name — this CANNOT be null. The compiler enforces this, preventing crashes."},
-                {k:"Named Parameters",       v:"void greet({required String name, int age = 0}) — named params make function calls readable: greet(name: 'Alex')"},
-                {k:"Arrow Functions",        v:"int double(int n) => n * 2 — single-expression functions use => instead of {} return. Same as JS."},
+                {k:"Null Safety",            v:"String? name - the ? means this can be null. String name - this CANNOT be null. The compiler enforces this, preventing crashes."},
+                {k:"Named Parameters",       v:"void greet({required String name, int age = 0}) - named params make function calls readable: greet(name: 'Alex')"},
+                {k:"Arrow Functions",        v:"int double(int n) => n * 2 - single-expression functions use => instead of {} return. Same as JS."},
                 {k:"Classes & Constructors", v:"Dart uses const constructors for immutable objects. class User { final String name; const User(this.name); }"},
-                {k:"List / Map / Set",       v:"List<String>, Map<String,int>, Set<int> — typed collections. Every item must match the type."},
+                {k:"List / Map / Set",       v:"List<String>, Map<String,int>, Set<int> - typed collections. Every item must match the type."},
                 {k:"async / await",          v:"identical to JavaScript's async/await. Future = Promise. Stream = Observable (ongoing data)."},
-                {k:"Extension Methods",      v:"extension on String { bool get isEmail => contains('@'); } — add methods to any existing class"},
-                {k:"Mixins",                 v:"mixin Serializable on Model { Map toJson() {...} } — share behaviour across classes without inheritance"},
-                {k:"Enum with methods",      v:"Dart enums can have fields and methods — enum Status { active, inactive; bool get isActive => this==active; }"},
+                {k:"Extension Methods",      v:"extension on String { bool get isEmail => contains('@'); } - add methods to any existing class"},
+                {k:"Mixins",                 v:"mixin Serializable on Model { Map toJson() {...} } - share behaviour across classes without inheritance"},
+                {k:"Enum with methods",      v:"Dart enums can have fields and methods - enum Status { active, inactive; bool get isActive => this==active; }"},
               ]}/>
-              <CodeWin accent="#5eead4" lang="dart" T={T} title="Dart — null safety, classes, async, collections" code={`// NULL SAFETY — the compiler guarantees no null-reference crashes
+              <CodeWin accent="#5eead4" lang="dart" T={T} title="Dart - null safety, classes, async, collections" code={`// NULL SAFETY - the compiler guarantees no null-reference crashes
 String nonNullable = "I will never be null";
 String? nullable   = null;              // ? marks it as possibly null
 
-// Safe access — only proceeds if name is not null
+// Safe access - only proceeds if name is not null
 print(nullable?.toUpperCase());         // prints nothing if null
 
-// Null coalescing — provide a default
+// Null coalescing - provide a default
 String display = nullable ?? "Anonymous";
 
-// CLASSES — clean syntax with named constructors
+// CLASSES - clean syntax with named constructors
 class User {
   final int    id;
   final String name;
@@ -315,7 +315,7 @@ class User {
     required this.createdAt,
   });
 
-  // Factory constructor — for parsing JSON
+  // Factory constructor - for parsing JSON
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       id:        json['id'] as int,
@@ -326,7 +326,7 @@ class User {
     );
   }
 
-  // copyWith — create a modified copy without mutation
+  // copyWith - create a modified copy without mutation
   User copyWith({ String? name, String? bio }) {
     return User(
       id:        id,
@@ -342,14 +342,14 @@ class User {
   };
 }
 
-// COLLECTIONS — typed and functional
+// COLLECTIONS - typed and functional
 final users = <User>[];
 
 final names   = users.map((u) => u.name).toList();
 final admins  = users.where((u) => u.bio != null).toList();
 final nameMap = {for (final u in users) u.id: u.name};
 
-// ASYNC — fetch from an API
+// ASYNC - fetch from an API
 Future<List<User>> fetchUsers() async {
   final response = await http.get(Uri.parse('/api/users'));
 
@@ -361,7 +361,7 @@ Future<List<User>> fetchUsers() async {
   return data.map((json) => User.fromJson(json)).toList();
 }
 
-// STREAM — for real-time data (like Firebase listeners)
+// STREAM - for real-time data (like Firebase listeners)
 Stream<List<User>> watchUsers() async* {
   while (true) {
     yield await fetchUsers();
@@ -379,24 +379,24 @@ Stream<List<User>> watchUsers() async* {
 
             {/* FLUTTER */}
             <section id="flutter" className="ad-sec">
-              <SectionHead num="Week 4–10" title="Flutter" emoji="⬡" color="#38bdf8" sub="Everything is a widget — UI, layout, animation, input, all of it." T={T}/>
-              <Analogy accent="#38bdf8" T={T} text="In HTML you have different concepts for structure (div), styling (CSS), and events (JS). In Flutter, there is only one concept: the Widget. A Text widget displays text. A Padding widget adds space. A GestureDetector widget detects taps. Even your whole screen is a widget. Nesting widgets inside each other — a widget tree — is the entire mental model. Once that clicks, Flutter feels incredibly logical."/>
+              <SectionHead num="Week 4–10" title="Flutter" emoji="⬡" color="#38bdf8" sub="Everything is a widget - UI, layout, animation, input, all of it." T={T}/>
+              <Analogy accent="#38bdf8" T={T} text="In HTML you have different concepts for structure (div), styling (CSS), and events (JS). In Flutter, there is only one concept: the Widget. A Text widget displays text. A Padding widget adds space. A GestureDetector widget detects taps. Even your whole screen is a widget. Nesting widgets inside each other - a widget tree - is the entire mental model. Once that clicks, Flutter feels incredibly logical."/>
               <div style={{marginBottom:20}}>
                 <WidgetTreeDiagram T={T}/>
               </div>
               <ConceptGrid accent="#38bdf8" T={T} items={[
-                {k:"StatelessWidget",       v:"A widget with no state — given the same inputs, always renders the same output. Text, Icon, Image are examples."},
+                {k:"StatelessWidget",       v:"A widget with no state - given the same inputs, always renders the same output. Text, Icon, Image are examples."},
                 {k:"StatefulWidget",        v:"Has state that can change. When setState() is called, Flutter rebuilds only this widget and its children."},
                 {k:"Column / Row / Stack",  v:"Column arranges children vertically. Row horizontally. Stack layers children on top of each other."},
                 {k:"Expanded / Flexible",   v:"Inside Row/Column, Expanded fills remaining space. flex: 2 means 'take twice as much space as flex: 1'."},
-                {k:"ListView / GridView",   v:"ListView.builder creates items lazily — only renders items on screen. Essential for long lists."},
+                {k:"ListView / GridView",   v:"ListView.builder creates items lazily - only renders items on screen. Essential for long lists."},
                 {k:"Navigator 2.0",         v:"go_router package is the standard. Define routes as paths: '/home', '/profile/:id'. Navigate with context.go('/profile/1')."},
-                {k:"Provider / Riverpod",   v:"State management. Provider wraps the widget tree. Riverpod is the improved version — compile-safe, testable."},
+                {k:"Provider / Riverpod",   v:"State management. Provider wraps the widget tree. Riverpod is the improved version - compile-safe, testable."},
                 {k:"FutureBuilder",         v:"Builds different UI based on a Future's state: loading, success, or error. No manual setState needed."},
-                {k:"AnimationController",   v:"Drive animations with a controller. Tween<double>(begin:0, end:1).animate(controller) — smooth value changes."},
+                {k:"AnimationController",   v:"Drive animations with a controller. Tween<double>(begin:0, end:1).animate(controller) - smooth value changes."},
                 {k:"Platform Channels",     v:"Call native iOS/Swift or Android/Kotlin code from Flutter when you need APIs Flutter doesn't expose."},
               ]}/>
-              <CodeWin accent="#38bdf8" lang="dart" T={T} title="Flutter — stateful widget, API call, FutureBuilder, animations" code={`import 'package:flutter/material.dart';
+              <CodeWin accent="#38bdf8" lang="dart" T={T} title="Flutter - stateful widget, API call, FutureBuilder, animations" code={`import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 // ─── DATA MODEL ───────────────────────────────────────────
@@ -413,7 +413,7 @@ class Post {
   );
 }
 
-// ─── STATEFUL WIDGET — has state that changes ─────────────
+// ─── STATEFUL WIDGET - has state that changes ─────────────
 class PostsScreen extends StatefulWidget {
   const PostsScreen({super.key});
   @override
@@ -520,21 +520,21 @@ class _PostsScreenState extends State<PostsScreen>
 
             {/* KOTLIN */}
             <section id="kotlin" className="ad-sec">
-              <SectionHead num="Alternative" title="Kotlin (Android Native)" emoji="Kt" color="#a78bfa" sub="Android's official language — concise, safe, Jetpack Compose." T={T}/>
-              <Analogy accent="#a78bfa" T={T} text="Kotlin is what you use when you need deep Android-specific access — Bluetooth, NFC payments, custom camera pipelines, widgets on the Android home screen. Think of it as choosing between a rental car (Flutter — works great, covers 95% of needs) and buying the exact car you want (Kotlin — full control, you own every gear). Google officially recommends Kotlin for all new Android development since 2017."/>
+              <SectionHead num="Alternative" title="Kotlin (Android Native)" emoji="Kt" color="#a78bfa" sub="Android's official language - concise, safe, Jetpack Compose." T={T}/>
+              <Analogy accent="#a78bfa" T={T} text="Kotlin is what you use when you need deep Android-specific access - Bluetooth, NFC payments, custom camera pipelines, widgets on the Android home screen. Think of it as choosing between a rental car (Flutter - works great, covers 95% of needs) and buying the exact car you want (Kotlin - full control, you own every gear). Google officially recommends Kotlin for all new Android development since 2017."/>
               <ConceptGrid accent="#a78bfa" T={T} items={[
                 {k:"val / var",           v:"val = immutable (like final). var = mutable. Prefer val everywhere. The compiler warns you when you don't need var."},
                 {k:"Null Safety",          v:"String? = nullable. String = cannot be null. ?. for safe access. ?: for default. !! forces non-null (use rarely)."},
-                {k:"Data Classes",         v:"data class User(val name: String, val email: String) — auto-generates equals(), hashCode(), toString(), copy()"},
-                {k:"Extension Functions",  v:"fun String.isEmail() = contains('@') — add methods to any class, even standard library ones"},
-                {k:"Coroutines",           v:"suspend fun load() { val data = withContext(Dispatchers.IO) { api.fetch() } } — async without callbacks"},
-                {k:"Flow (reactive)",      v:"Flow<T> is Kotlin's Stream — emit multiple values over time. Collected in a coroutine. Used for real-time UI."},
-                {k:"Jetpack Compose",      v:"@Composable fun ProfileCard() — declarative UI like Flutter. States drive re-composition automatically."},
+                {k:"Data Classes",         v:"data class User(val name: String, val email: String) - auto-generates equals(), hashCode(), toString(), copy()"},
+                {k:"Extension Functions",  v:"fun String.isEmail() = contains('@') - add methods to any class, even standard library ones"},
+                {k:"Coroutines",           v:"suspend fun load() { val data = withContext(Dispatchers.IO) { api.fetch() } } - async without callbacks"},
+                {k:"Flow (reactive)",      v:"Flow<T> is Kotlin's Stream - emit multiple values over time. Collected in a coroutine. Used for real-time UI."},
+                {k:"Jetpack Compose",      v:"@Composable fun ProfileCard() - declarative UI like Flutter. States drive re-composition automatically."},
                 {k:"ViewModel",            v:"Survives screen rotations. Holds UI state. Exposes StateFlow that Compose collects and re-renders on change."},
-                {k:"Room Database",        v:"@Entity, @Dao, @Database — SQLite with type safety and coroutine support. The standard local persistence library."},
-                {k:"Hilt (DI)",            v:"Dependency injection via annotations. @Inject, @HiltViewModel — Hilt provides instances; you declare what you need."},
+                {k:"Room Database",        v:"@Entity, @Dao, @Database - SQLite with type safety and coroutine support. The standard local persistence library."},
+                {k:"Hilt (DI)",            v:"Dependency injection via annotations. @Inject, @HiltViewModel - Hilt provides instances; you declare what you need."},
               ]}/>
-              <CodeWin accent="#a78bfa" lang="kotlin" T={T} title="Kotlin — ViewModel, Flow, Coroutines, Jetpack Compose" code={`// DATA LAYER — repository pattern
+              <CodeWin accent="#a78bfa" lang="kotlin" T={T} title="Kotlin - ViewModel, Flow, Coroutines, Jetpack Compose" code={`// DATA LAYER - repository pattern
 data class Post(val id: Int, val title: String, val body: String)
 
 interface PostRepository {
@@ -542,7 +542,7 @@ interface PostRepository {
   suspend fun refreshPosts()
 }
 
-// VIEWMODEL — survives rotations, exposes UI state
+// VIEWMODEL - survives rotations, exposes UI state
 @HiltViewModel
 class PostsViewModel @Inject constructor(
   private val repo: PostRepository
@@ -570,14 +570,14 @@ class PostsViewModel @Inject constructor(
   fun retry() = loadPosts()
 }
 
-// SEALED CLASS — model UI states safely (no nulls, no magic booleans)
+// SEALED CLASS - model UI states safely (no nulls, no magic booleans)
 sealed class UiState<out T> {
   object Loading                            : UiState<Nothing>()
   data class Success<T>(val data: T)        : UiState<T>()
   data class Error(val message: String)     : UiState<Nothing>()
 }
 
-// JETPACK COMPOSE — declarative UI
+// JETPACK COMPOSE - declarative UI
 @Composable
 fun PostsScreen(viewModel: PostsViewModel = hiltViewModel()) {
   // collectAsState connects Compose to the StateFlow
@@ -625,37 +625,37 @@ fun PostCard(post: Post) {
 
             {/* SWIFT */}
             <section id="swift" className="ad-sec">
-              <SectionHead num="Alternative" title="Swift (iOS Native)" emoji="Sw" color="#f97316" sub="Apple's language — the only way to deeply build for iPhone." T={T}/>
-              <Analogy accent="#f97316" T={T} text="Swift is to iOS what Kotlin is to Android. If you want to build something that feels deeply, distinctly native on an iPhone — a camera app with custom filters, an Apple Watch face, a widget on the iOS home screen — Swift is the only way. Apple designed Swift to be safer, faster, and more readable than Objective-C. It compiles directly to machine code, making it genuinely fast."/>
+              <SectionHead num="Alternative" title="Swift (iOS Native)" emoji="Sw" color="#f97316" sub="Apple's language - the only way to deeply build for iPhone." T={T}/>
+              <Analogy accent="#f97316" T={T} text="Swift is to iOS what Kotlin is to Android. If you want to build something that feels deeply, distinctly native on an iPhone - a camera app with custom filters, an Apple Watch face, a widget on the iOS home screen - Swift is the only way. Apple designed Swift to be safer, faster, and more readable than Objective-C. It compiles directly to machine code, making it genuinely fast."/>
               <ConceptGrid accent="#f97316" T={T} items={[
                 {k:"let / var",             v:"let = constant (can't change). var = variable. Swift's type inference means you rarely need to write the type explicitly."},
-                {k:"Optionals",             v:"var name: String? = nil — the ? marks a value as possibly absent. Unwrap with if let name { } or name ?? default."},
-                {k:"Structs vs Classes",    v:"Structs are value types (copied on assignment) — prefer them. Classes are reference types (shared). Use classes for identity."},
+                {k:"Optionals",             v:"var name: String? = nil - the ? marks a value as possibly absent. Unwrap with if let name { } or name ?? default."},
+                {k:"Structs vs Classes",    v:"Structs are value types (copied on assignment) - prefer them. Classes are reference types (shared). Use classes for identity."},
                 {k:"Protocols",             v:"Like interfaces. protocol Identifiable { var id: UUID { get } }. A type that 'conforms to' a protocol must implement it."},
-                {k:"Generics",             v:"func first<T>(_ array: [T]) -> T? { return array.first } — write once, works for any type"},
-                {k:"Closures",             v:"{ (x: Int) -> Int in return x * 2 } — blocks of code you pass around. Shorthand: { $0 * 2 }"},
+                {k:"Generics",             v:"func first<T>(_ array: [T]) -> T? { return array.first } - write once, works for any type"},
+                {k:"Closures",             v:"{ (x: Int) -> Int in return x * 2 } - blocks of code you pass around. Shorthand: { $0 * 2 }"},
                 {k:"SwiftUI",              v:"Declarative UI like Flutter. @State drives re-renders. VStack, HStack, ZStack for layout. Previews in Xcode."},
                 {k:"async/await",          v:"Swift's concurrency model. func loadData() async throws { let user = try await api.fetchUser() }"},
                 {k:"@Published / ObservableObject", v:"@Observable marks a class; @State/@Binding drives SwiftUI re-renders. The equivalent of Flutter's setState + ChangeNotifier."},
                 {k:"Core Data / SwiftData", v:"Apple's local persistence. SwiftData (iOS 17+) is the modern approach: @Model class Post {}. Automatically persistent."},
               ]}/>
-              <CodeWin accent="#f97316" lang="swift" T={T} title="Swift — optionals, async/await, SwiftUI, @Observable" code={`import SwiftUI
+              <CodeWin accent="#f97316" lang="swift" T={T} title="Swift - optionals, async/await, SwiftUI, @Observable" code={`import SwiftUI
 
-// DATA MODEL — struct (value type, preferred in Swift)
+// DATA MODEL - struct (value type, preferred in Swift)
 struct Post: Identifiable, Decodable {
   let id:    Int
   let title: String
   let body:  String
 }
 
-// @Observable — tells SwiftUI to re-render when properties change
+// @Observable - tells SwiftUI to re-render when properties change
 @Observable
 class PostsViewModel {
   var posts:     [Post]   = []
   var isLoading: Bool     = false
   var errorMessage: String? = nil
 
-  // async/await — no callbacks, reads like synchronous code
+  // async/await - no callbacks, reads like synchronous code
   func loadPosts() async {
     isLoading    = true
     errorMessage = nil
@@ -680,7 +680,7 @@ class PostsViewModel {
   }
 }
 
-// SWIFTUI VIEW — declarative, driven by ViewModel state
+// SWIFTUI VIEW - declarative, driven by ViewModel state
 struct PostsView: View {
   @State private var vm = PostsViewModel()
 
@@ -699,7 +699,7 @@ struct PostsView: View {
 
         } else {
           List(vm.posts) { post in
-            // Navigate to PostDetail — NavigationStack handles the stack
+            // Navigate to PostDetail - NavigationStack handles the stack
             NavigationLink(destination: PostDetail(post: post)) {
               VStack(alignment: .leading, spacing: 4) {
                 Text(post.title)
@@ -748,20 +748,20 @@ struct PostDetail: View {
             {/* REACT NATIVE */}
             <section id="rn" className="ad-sec">
               <SectionHead num="Alternative" title="React Native" emoji="RN" color="#61dafb" sub="If you know React, you're 70% of the way to mobile." T={T}/>
-              <Analogy accent="#61dafb" T={T} text="React Native is the bridge between web and mobile. You write code that looks almost identical to React — same useState, same useEffect, same component model — but instead of rendering HTML elements, React Native maps them to real native iOS and Android components. View becomes UIView (iOS) or ViewGroup (Android). Text becomes UILabel or TextView. You get native performance without learning two new platforms. Shopify's merchant app, Facebook Ads Manager, and Discord mobile are React Native."/>
+              <Analogy accent="#61dafb" T={T} text="React Native is the bridge between web and mobile. You write code that looks almost identical to React - same useState, same useEffect, same component model - but instead of rendering HTML elements, React Native maps them to real native iOS and Android components. View becomes UIView (iOS) or ViewGroup (Android). Text becomes UILabel or TextView. You get native performance without learning two new platforms. Shopify's merchant app, Facebook Ads Manager, and Discord mobile are React Native."/>
               <ConceptGrid accent="#61dafb" T={T} items={[
                 {k:"View / Text / Image",    v:"The native equivalents of div, p, img. View is a container. Text renders text (must be inside Text component). Image for local or remote images."},
                 {k:"StyleSheet.create",      v:"CSS-like but camelCase. No cascade, no inheritance. Inline styles are allowed but StyleSheet.create is preferred for performance."},
                 {k:"Flexbox (default)",      v:"All Views are flex containers by default. flexDirection: 'column' is the default (opposite of web). Layouts work the same as CSS Flexbox."},
                 {k:"FlatList",               v:"The performant equivalent of HTML table or map() rendering. Only renders visible items. Use this for any list of items."},
-                {k:"Pressable",             v:"The correct way to handle taps. Replace touchables with Pressable — it supports complex press states and accessibility."},
+                {k:"Pressable",             v:"The correct way to handle taps. Replace touchables with Pressable - it supports complex press states and accessibility."},
                 {k:"React Navigation",       v:"The standard navigation library. Stack navigator, Tab navigator, Drawer navigator. Navigate with navigation.navigate('Profile', { id: 1 })"},
-                {k:"AsyncStorage",           v:"@react-native-async-storage/async-storage — key-value store that persists between app launches. Use for tokens, preferences."},
+                {k:"AsyncStorage",           v:"@react-native-async-storage/async-storage - key-value store that persists between app launches. Use for tokens, preferences."},
                 {k:"Expo",                   v:"Build React Native apps without Xcode or Android Studio. Expo Go app lets you preview instantly on your phone. expo-camera, expo-location, etc."},
-                {k:"useColorScheme",         v:"const isDark = useColorScheme() === 'dark' — detect the user's system theme and apply the right colours."},
+                {k:"useColorScheme",         v:"const isDark = useColorScheme() === 'dark' - detect the user's system theme and apply the right colours."},
                 {k:"Bridge vs JSI",          v:"Modern RN uses JSI (JavaScript Interface) for direct JS-to-native calls without the asynchronous bridge. Much faster."},
               ]}/>
-              <CodeWin accent="#61dafb" lang="js" T={T} title="React Native — FlatList, Pressable, StyleSheet, hooks" code={`import React, { useState, useEffect, useCallback } from 'react';
+              <CodeWin accent="#61dafb" lang="js" T={T} title="React Native - FlatList, Pressable, StyleSheet, hooks" code={`import React, { useState, useEffect, useCallback } from 'react';
 import {
   View, Text, FlatList, StyleSheet,
   Pressable, ActivityIndicator, RefreshControl,
@@ -775,7 +775,7 @@ interface Post {
   body: string;
 }
 
-// CUSTOM HOOK — separates data logic from UI
+// CUSTOM HOOK - separates data logic from UI
 function usePosts() {
   const [posts,      setPosts]     = useState<Post[]>([]);
   const [loading,    setLoading]   = useState(true);
@@ -801,7 +801,7 @@ function usePosts() {
   return { posts, loading, refreshing, error, refresh: () => load(true) };
 }
 
-// SINGLE ITEM — pure component for performance
+// SINGLE ITEM - pure component for performance
 const PostItem = React.memo(({ post, onPress }: { post: Post; onPress: (id: number) => void }) => (
   <Pressable
     style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
@@ -885,12 +885,12 @@ const styles = StyleSheet.create({
 
             {/* RESOURCES */}
             <section id="resources" className="ad-sec">
-              <SectionHead num="Reference" title="Resource Guide" emoji="📚" color="#22c55e" sub="The best resources for each path — not every resource, the right ones." T={T}/>
-              <p style={{fontFamily:"'Lora',serif",fontSize:16,color:T.t2,lineHeight:1.92,marginBottom:28}}>For Flutter beginners: start with <strong style={{color:T.t1}}>flutter.dev's official codelabs</strong>, then Robert Brunhage and Code With Andrea on YouTube. For React Native: the Expo docs are excellent — start there. For native Android: the official Android Developer site + Philipp Lackner on YouTube. For iOS: Hacking with Swift (free book + tutorials) is unmatched.</p>
+              <SectionHead num="Reference" title="Resource Guide" emoji="📚" color="#22c55e" sub="The best resources for each path - not every resource, the right ones." T={T}/>
+              <p style={{fontFamily:"'Lora',serif",fontSize:16,color:T.t2,lineHeight:1.92,marginBottom:28}}>For Flutter beginners: start with <strong style={{color:T.t1}}>flutter.dev's official codelabs</strong>, then Robert Brunhage and Code With Andrea on YouTube. For React Native: the Expo docs are excellent - start there. For native Android: the official Android Developer site + Philipp Lackner on YouTube. For iOS: Hacking with Swift (free book + tutorials) is unmatched.</p>
               <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))",gap:12}}>
                 {[
                   {name:"flutter.dev",               href:"https://flutter.dev/learn",type:"doc",desc:"Official Flutter documentation and codelabs. The best starting point."},
-                  {name:"dart.dev",                  href:"https://dart.dev/language",type:"doc",desc:"The complete Dart language tour — required before serious Flutter work."},
+                  {name:"dart.dev",                  href:"https://dart.dev/language",type:"doc",desc:"The complete Dart language tour - required before serious Flutter work."},
                   {name:"React Native Docs",         href:"https://reactnative.dev",type:"doc",desc:"Official React Native guide. Use with Expo for the fastest start."},
                   {name:"Hacking with Swift",        href:"https://www.hackingwithswift.com",type:"doc",desc:"Paul Hudson's free iOS course. 100 Days of SwiftUI is the best iOS curriculum available."},
                   {name:"Android Developer (Kotlin)",href:"https://developer.android.com/kotlin",type:"doc",desc:"Google's official Kotlin and Jetpack documentation. Comprehensive and up-to-date."},

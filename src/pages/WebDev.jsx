@@ -99,7 +99,7 @@ const Divider=({T})=><div style={{height:1,background:`linear-gradient(to right,
 /* SVG DIAGRAMS */
 const DomTree=({T})=>(
   <svg viewBox="0 0 480 200" style={{width:"100%",maxWidth:480,display:"block"}}>
-    <text x="240" y="18" textAnchor="middle" fill={T.t3} fontSize="11" fontFamily="JetBrains Mono">DOM Tree — every HTML tag becomes a node</text>
+    <text x="240" y="18" textAnchor="middle" fill={T.t3} fontSize="11" fontFamily="JetBrains Mono">DOM Tree - every HTML tag becomes a node</text>
     {/* document */}
     <rect x="190" y="26" width="100" height="26" rx="5" fill="#f9731614" stroke="#f9731655" strokeWidth="1.5"/>
     <text x="240" y="43" textAnchor="middle" fill="#f97316" fontSize="11" fontFamily="JetBrains Mono">&lt;html&gt;</text>
@@ -128,7 +128,7 @@ const DomTree=({T})=>(
 
 const FlexGridDiagram=({T})=>(
   <svg viewBox="0 0 480 160" style={{width:"100%",maxWidth:480,display:"block"}}>
-    <text x="118" y="15" textAnchor="middle" fill={T.t3} fontSize="11" fontFamily="JetBrains Mono">Flexbox — one direction</text>
+    <text x="118" y="15" textAnchor="middle" fill={T.t3} fontSize="11" fontFamily="JetBrains Mono">Flexbox - one direction</text>
     <rect x="10" y="22" width="216" height="128" rx="6" fill={T.panel} stroke={T.b2} strokeWidth="1"/>
     {[0,1,2].map(i=>(
       <g key={i}>
@@ -136,7 +136,7 @@ const FlexGridDiagram=({T})=>(
         <text x={49+i*68} y="92" textAnchor="middle" fill="#818cf8" fontSize="13" fontFamily="JetBrains Mono" fontWeight="700">{["A","B","C"][i]}</text>
       </g>
     ))}
-    <text x="362" y="15" textAnchor="middle" fill={T.t3} fontSize="11" fontFamily="JetBrains Mono">Grid — two directions</text>
+    <text x="362" y="15" textAnchor="middle" fill={T.t3} fontSize="11" fontFamily="JetBrains Mono">Grid - two directions</text>
     <rect x="254" y="22" width="216" height="128" rx="6" fill={T.panel} stroke={T.b2} strokeWidth="1"/>
     {[0,1,2,3,4,5].map(i=>(
       <g key={i}>
@@ -149,14 +149,14 @@ const FlexGridDiagram=({T})=>(
 
 const AsyncDiagram=({T})=>(
   <svg viewBox="0 0 480 130" style={{width:"100%",maxWidth:480,display:"block"}}>
-    <text x="10" y="16" fill={T.t3} fontSize="10.5" fontFamily="JetBrains Mono" fontWeight="700">Without async — UI freezes while waiting</text>
+    <text x="10" y="16" fill={T.t3} fontSize="10.5" fontFamily="JetBrains Mono" fontWeight="700">Without async - UI freezes while waiting</text>
     <rect x="10" y="22" width="460" height="22" rx="4" fill={T.panel} stroke={T.b2} strokeWidth="1"/>
     <rect x="10" y="22" width="160" height="22" rx="4" fill="#f7df1e1a" stroke="#f7df1e55" strokeWidth="1"/>
     <text x="90" y="37" textAnchor="middle" fill="#f7df1e" fontSize="10" fontFamily="JetBrains Mono">code runs</text>
     <rect x="170" y="22" width="300" height="22" rx="4" fill="#f871711a" stroke="#f8717155" strokeWidth="1"/>
     <text x="320" y="37" textAnchor="middle" fill="#f87171" fontSize="10" fontFamily="JetBrains Mono">⚠ waiting for server… UI frozen 🥶</text>
 
-    <text x="10" y="68" fill={T.t3} fontSize="10.5" fontFamily="JetBrains Mono" fontWeight="700">With async/await — UI stays alive</text>
+    <text x="10" y="68" fill={T.t3} fontSize="10.5" fontFamily="JetBrains Mono" fontWeight="700">With async/await - UI stays alive</text>
     <rect x="10" y="74" width="460" height="22" rx="4" fill={T.panel} stroke={T.b2} strokeWidth="1"/>
     <rect x="10" y="74" width="130" height="22" rx="4" fill="#22c55e1a" stroke="#22c55e55" strokeWidth="1"/>
     <text x="75" y="89" textAnchor="middle" fill="#22c55e" fontSize="10" fontFamily="JetBrains Mono">code runs ✓</text>
@@ -170,7 +170,7 @@ const AsyncDiagram=({T})=>(
 
 const ComponentDiagram=({T})=>(
   <svg viewBox="0 0 480 180" style={{width:"100%",maxWidth:480,display:"block"}}>
-    <text x="240" y="15" textAnchor="middle" fill={T.t3} fontSize="11" fontFamily="JetBrains Mono">React Component Tree — write once, reuse everywhere</text>
+    <text x="240" y="15" textAnchor="middle" fill={T.t3} fontSize="11" fontFamily="JetBrains Mono">React Component Tree - write once, reuse everywhere</text>
     <rect x="185" y="22" width="110" height="28" rx="6" fill="#61dafb1a" stroke="#61dafb55" strokeWidth="1.5"/>
     <text x="240" y="41" textAnchor="middle" fill="#61dafb" fontSize="11" fontFamily="JetBrains Mono" fontWeight="700">&lt;App /&gt;</text>
     <line x1="240" y1="50" x2="100" y2="76" stroke={T.b3} strokeWidth="1.5"/>
@@ -186,7 +186,7 @@ const ComponentDiagram=({T})=>(
     {[["&lt;Logo/&gt;",20],["&lt;Nav/&gt;",100],["&lt;Post/&gt;",165],["&lt;Post/&gt;",245]].map(([n,x])=>(
       <g key={x}><rect x={x} y="126" width="72" height="22" rx="4" fill={T.b1} stroke={T.b2} strokeWidth="1"/><text x={x+36} y="141" textAnchor="middle" fill={T.t3} fontSize="9" fontFamily="JetBrains Mono">{n}</text></g>
     ))}
-    <text x="240" y="170" textAnchor="middle" fill={T.t3} fontSize="9.5" fontFamily="JetBrains Mono">Each box is independent — change one without breaking others</text>
+    <text x="240" y="170" textAnchor="middle" fill={T.t3} fontSize="9.5" fontFamily="JetBrains Mono">Each box is independent - change one without breaking others</text>
   </svg>
 );
 
@@ -301,13 +301,13 @@ export default function WebDev(){
             <section id="overview" className="wd-sec" style={{marginBottom:0}}>
               <SectionHead num="Intro" title="What is Web Development?" emoji="🌐" color={ACCENT} sub="The complete picture before you write a single line." T={T}/>
               <p style={{fontFamily:"'Lora',serif",fontSize:16,color:T.t2,lineHeight:1.92,marginBottom:20}}>
-                Every website you've ever opened is built from the same three layers: <strong style={{color:"#f97316"}}>HTML</strong> (the structure — what's on the page), <strong style={{color:"#818cf8"}}>CSS</strong> (the styling — what it looks like), and <strong style={{color:"#f7df1e"}}>JavaScript</strong> (the behaviour — what it does when you interact). This track teaches you all three, then adds TypeScript, React, and Node.js to make you a full-stack developer.
+                Every website you've ever opened is built from the same three layers: <strong style={{color:"#f97316"}}>HTML</strong> (the structure - what's on the page), <strong style={{color:"#818cf8"}}>CSS</strong> (the styling - what it looks like), and <strong style={{color:"#f7df1e"}}>JavaScript</strong> (the behaviour - what it does when you interact). This track teaches you all three, then adds TypeScript, React, and Node.js to make you a full-stack developer.
               </p>
               <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(200px,1fr))",gap:12,marginBottom:24}}>
                 {[
-                  {k:"Frontend",    v:"HTML+CSS+JS — what users see and touch",       color:"#61dafb"},
-                  {k:"Backend",     v:"Server + database + API — stores and processes data", color:"#4ade80"},
-                  {k:"Full-stack",  v:"Both sides — the most hirable profile",         color:ACCENT},
+                  {k:"Frontend",    v:"HTML+CSS+JS - what users see and touch",       color:"#61dafb"},
+                  {k:"Backend",     v:"Server + database + API - stores and processes data", color:"#4ade80"},
+                  {k:"Full-stack",  v:"Both sides - the most hirable profile",         color:ACCENT},
                 ].map(c=>(
                   <div key={c.k} style={{padding:"14px 16px",borderRadius:12,border:`1px solid ${c.color}30`,background:T.card,borderTop:`2px solid ${c.color}`}}>
                     <p style={{fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:14,color:c.color,marginBottom:6}}>{c.k}</p>
@@ -332,20 +332,20 @@ export default function WebDev(){
 
             {/* HTML */}
             <section id="html" className="wd-sec" style={{marginBottom:0}}>
-              <SectionHead num="Week 1–2" title="HTML" emoji="‹/›" color="#f97316" sub="The skeleton of every webpage — structure without style." T={T}/>
-              <Analogy accent="#f97316" T={T} text="HTML is the blueprint of a building. It says 'there's a wall here, a door there, a window here' — but says nothing about colour or decoration. Every webpage ever made starts with HTML. It's not a programming language — it's a structure language. You describe what things are, not what they look like or do."/>
+              <SectionHead num="Week 1–2" title="HTML" emoji="‹/›" color="#f97316" sub="The skeleton of every webpage - structure without style." T={T}/>
+              <Analogy accent="#f97316" T={T} text="HTML is the blueprint of a building. It says 'there's a wall here, a door there, a window here' - but says nothing about colour or decoration. Every webpage ever made starts with HTML. It's not a programming language - it's a structure language. You describe what things are, not what they look like or do."/>
               <p style={{fontFamily:"'Lora',serif",fontSize:15.5,color:T.t2,lineHeight:1.9,marginBottom:18}}>
-                HTML uses <strong style={{color:"#f97316"}}>tags</strong> wrapped in angle brackets. A tag like <code>&lt;h1&gt;</code> tells the browser "this is a main heading." Tags have an opening and closing form. You nest them inside each other to build hierarchy — this nested structure becomes the DOM (Document Object Model) that JavaScript can later manipulate.
+                HTML uses <strong style={{color:"#f97316"}}>tags</strong> wrapped in angle brackets. A tag like <code>&lt;h1&gt;</code> tells the browser "this is a main heading." Tags have an opening and closing form. You nest them inside each other to build hierarchy - this nested structure becomes the DOM (Document Object Model) that JavaScript can later manipulate.
               </p>
               <ConceptGrid accent="#f97316" T={T} items={[
-                {k:"Tags & Elements",     v:"<h1>–<h6>, <p>, <div>, <span>, <a>, <img> — the vocabulary of HTML"},
-                {k:"Attributes",          v:"href, src, alt, class, id — extra information attached to tags"},
-                {k:"Semantic HTML",       v:"<header>, <nav>, <main>, <article>, <section>, <footer> — tags with meaning"},
-                {k:"Forms & Inputs",      v:"<form>, <input>, <button>, <select>, <textarea> — how users send data"},
-                {k:"Media",               v:"<img>, <video>, <audio>, <iframe> — embedding content"},
-                {k:"The DOM",             v:"The browser turns your HTML into a tree of objects — JS reads and changes this tree"},
+                {k:"Tags & Elements",     v:"<h1>–<h6>, <p>, <div>, <span>, <a>, <img> - the vocabulary of HTML"},
+                {k:"Attributes",          v:"href, src, alt, class, id - extra information attached to tags"},
+                {k:"Semantic HTML",       v:"<header>, <nav>, <main>, <article>, <section>, <footer> - tags with meaning"},
+                {k:"Forms & Inputs",      v:"<form>, <input>, <button>, <select>, <textarea> - how users send data"},
+                {k:"Media",               v:"<img>, <video>, <audio>, <iframe> - embedding content"},
+                {k:"The DOM",             v:"The browser turns your HTML into a tree of objects - JS reads and changes this tree"},
               ]}/>
-              <CodeWin accent="#f97316" T={T} title="HTML — complete page structure" code={`<!DOCTYPE html>
+              <CodeWin accent="#f97316" T={T} title="HTML - complete page structure" code={`<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -364,7 +364,7 @@ export default function WebDev(){
       </nav>
     </header>
 
-    <!-- main wraps the page's primary content — only one per page -->
+    <!-- main wraps the page's primary content - only one per page -->
     <main>
       <section id="hero">
         <h1>Hi, I'm Alex 👋</h1>
@@ -404,8 +404,8 @@ export default function WebDev(){
 
             {/* CSS */}
             <section id="css" className="wd-sec" style={{marginBottom:0}}>
-              <SectionHead num="Week 3–6" title="CSS" emoji="✦" color="#818cf8" sub="Paint, furniture, lighting — make the blueprint beautiful." T={T}/>
-              <Analogy accent="#818cf8" T={T} text="If HTML is the blueprint, CSS is the interior design. It decides the wall colour, furniture arrangement, lighting, and decoration. Without CSS, every webpage is plain black text on a white background — like a Word document from 1994. CSS is what turns a structural skeleton into something people want to look at."/>
+              <SectionHead num="Week 3–6" title="CSS" emoji="✦" color="#818cf8" sub="Paint, furniture, lighting - make the blueprint beautiful." T={T}/>
+              <Analogy accent="#818cf8" T={T} text="If HTML is the blueprint, CSS is the interior design. It decides the wall colour, furniture arrangement, lighting, and decoration. Without CSS, every webpage is plain black text on a white background - like a Word document from 1994. CSS is what turns a structural skeleton into something people want to look at."/>
               <p style={{fontFamily:"'Lora',serif",fontSize:15.5,color:T.t2,lineHeight:1.9,marginBottom:18}}>
                 CSS works by selecting elements and applying rules. The <strong style={{color:"#818cf8"}}>cascade</strong> means later rules override earlier ones (hence Cascading Style Sheets). The two biggest layout tools you'll live in are <strong style={{color:"#818cf8"}}>Flexbox</strong> (arrange things in a row or column) and <strong style={{color:"#f97316"}}>Grid</strong> (arrange things in rows and columns simultaneously).
               </p>
@@ -414,16 +414,16 @@ export default function WebDev(){
                 <p style={{fontFamily:"'JetBrains Mono',monospace",fontSize:10,color:T.t3,textAlign:"center",marginTop:7}}>Flexbox = one direction at a time · Grid = two directions simultaneously</p>
               </div>
               <ConceptGrid accent="#818cf8" T={T} items={[
-                {k:"Selectors",          v:"element, .class, #id, [attr], :hover, :focus, ::before — target any element"},
+                {k:"Selectors",          v:"element, .class, #id, [attr], :hover, :focus, ::before - target any element"},
                 {k:"Box Model",          v:"Every element = content + padding + border + margin. Understanding this unlocks all layouts."},
-                {k:"Flexbox",            v:"display:flex — arrange children in a row or column. justify-content and align-items do most of the work."},
-                {k:"CSS Grid",           v:"display:grid — define rows AND columns. grid-template-columns: repeat(3, 1fr) makes three equal columns instantly."},
-                {k:"Responsive Design",  v:"@media (max-width: 640px) {} — change styles based on screen size. Mobile-first is the professional approach."},
-                {k:"Custom Properties",  v:"--brand-color: #7c6ee0 — define values once, use everywhere. Changing a theme becomes one line."},
-                {k:"Transitions & Anim", v:"transition: all 0.2s ease — smooth property changes on hover. @keyframes for complex animations."},
-                {k:"clamp() & fluid type",v:"font-size: clamp(1rem, 2.5vw, 2rem) — text that scales perfectly between screen sizes without media queries."},
+                {k:"Flexbox",            v:"display:flex - arrange children in a row or column. justify-content and align-items do most of the work."},
+                {k:"CSS Grid",           v:"display:grid - define rows AND columns. grid-template-columns: repeat(3, 1fr) makes three equal columns instantly."},
+                {k:"Responsive Design",  v:"@media (max-width: 640px) {} - change styles based on screen size. Mobile-first is the professional approach."},
+                {k:"Custom Properties",  v:"--brand-color: #7c6ee0 - define values once, use everywhere. Changing a theme becomes one line."},
+                {k:"Transitions & Anim", v:"transition: all 0.2s ease - smooth property changes on hover. @keyframes for complex animations."},
+                {k:"clamp() & fluid type",v:"font-size: clamp(1rem, 2.5vw, 2rem) - text that scales perfectly between screen sizes without media queries."},
               ]}/>
-              <CodeWin accent="#818cf8" T={T} title="CSS — box model, flexbox, grid, responsive, animations" code={`/* Custom properties — the foundation of a design system */
+              <CodeWin accent="#818cf8" T={T} title="CSS - box model, flexbox, grid, responsive, animations" code={`/* Custom properties - the foundation of a design system */
 :root {
   --brand:   #7c6ee0;
   --teal:    #5eead4;
@@ -433,7 +433,7 @@ export default function WebDev(){
   --radius:  12px;
 }
 
-/* Hero — centred with flex, full viewport height */
+/* Hero - centred with flex, full viewport height */
 .hero {
   display: flex;
   flex-direction: column;
@@ -445,7 +445,7 @@ export default function WebDev(){
   background: radial-gradient(ellipse at 50% 40%, rgba(124,110,224,0.15), transparent 70%);
 }
 
-/* Fluid typography — scales between 2rem and 5rem */
+/* Fluid typography - scales between 2rem and 5rem */
 .hero h1 {
   font-size: clamp(2rem, 5vw, 5rem);
   font-weight: 800;
@@ -453,7 +453,7 @@ export default function WebDev(){
   line-height: 1.06;
 }
 
-/* Card grid — fills available space automatically */
+/* Card grid - fills available space automatically */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -474,7 +474,7 @@ export default function WebDev(){
   box-shadow: 0 16px 48px rgba(124, 110, 224, 0.18);
 }
 
-/* Responsive — below 640px, stack navigation vertically */
+/* Responsive - below 640px, stack navigation vertically */
 @media (max-width: 640px) {
   nav { flex-direction: column; gap: 8px; }
   .hero { padding: 48px 16px; }
@@ -501,7 +501,7 @@ export default function WebDev(){
   transition: transform 0.55s ease;
 }
 .btn:hover::after { transform: translateX(100%); }`}/>
-              <p style={{fontFamily:"'Lora',serif",fontStyle:"italic",fontSize:13.5,color:T.t2,lineHeight:1.72,marginTop:12,marginBottom:20}}>The <code>clamp()</code> function is one of the most powerful in modern CSS — it creates a value with a minimum, preferred, and maximum. <code>clamp(2rem, 5vw, 5rem)</code> means "be 5% of viewport width, but never smaller than 2rem or larger than 5rem."</p>
+              <p style={{fontFamily:"'Lora',serif",fontStyle:"italic",fontSize:13.5,color:T.t2,lineHeight:1.72,marginTop:12,marginBottom:20}}>The <code>clamp()</code> function is one of the most powerful in modern CSS - it creates a value with a minimum, preferred, and maximum. <code>clamp(2rem, 5vw, 5rem)</code> means "be 5% of viewport width, but never smaller than 2rem or larger than 5rem."</p>
               <ResourceRow T={T} links={[
                 {label:"CSS Tricks",         href:"https://css-tricks.com",type:"doc"},
                 {label:"Kevin Powell – CSS", href:"https://www.youtube.com/@KevinPowell",type:"yt"},
@@ -514,8 +514,8 @@ export default function WebDev(){
 
             {/* JAVASCRIPT */}
             <section id="javascript" className="wd-sec" style={{marginBottom:0}}>
-              <SectionHead num="Week 7–14" title="JavaScript" emoji="JS" color="#f7df1e" sub="The brain — makes pages think, respond, and come alive." T={T}/>
-              <Analogy accent="#f7df1e" T={T} text="HTML and CSS are like a beautiful printed poster — it looks great but you can't interact with it. JavaScript is what makes the poster come alive: pressing a button changes the text, a form checks your input before submitting, a timer counts down, data loads from the internet without reloading the page. It's the only language that runs natively inside every browser — no installation needed."/>
+              <SectionHead num="Week 7–14" title="JavaScript" emoji="JS" color="#f7df1e" sub="The brain - makes pages think, respond, and come alive." T={T}/>
+              <Analogy accent="#f7df1e" T={T} text="HTML and CSS are like a beautiful printed poster - it looks great but you can't interact with it. JavaScript is what makes the poster come alive: pressing a button changes the text, a form checks your input before submitting, a timer counts down, data loads from the internet without reloading the page. It's the only language that runs natively inside every browser - no installation needed."/>
               <div style={{marginBottom:20}}>
                 <AsyncDiagram T={T}/>
               </div>
@@ -523,23 +523,23 @@ export default function WebDev(){
                 {k:"Variables & Types",   v:"const, let (not var). Types: string, number, boolean, null, undefined, object, array, symbol."},
                 {k:"Functions",           v:"Regular: function greet(name){…}  Arrow: const greet = (name) => 'Hello '+name. They're the same but arrow functions have no own 'this'."},
                 {k:"DOM Manipulation",    v:"document.querySelector('#btn') gets the element. .textContent, .style, .classList let you change it. This is the core skill."},
-                {k:"Events",              v:"addEventListener('click', fn) — user clicks, scrolls, types, hovers. Your code runs in response."},
-                {k:"Array Methods",       v:".map(), .filter(), .reduce(), .find(), .some() — transform data without loops. The backbone of modern JS."},
-                {k:"Destructuring",       v:"const {name, age} = user — extract values in one line. const [first, ...rest] = arr — same for arrays."},
+                {k:"Events",              v:"addEventListener('click', fn) - user clicks, scrolls, types, hovers. Your code runs in response."},
+                {k:"Array Methods",       v:".map(), .filter(), .reduce(), .find(), .some() - transform data without loops. The backbone of modern JS."},
+                {k:"Destructuring",       v:"const {name, age} = user - extract values in one line. const [first, ...rest] = arr - same for arrays."},
                 {k:"Fetch & Promises",    v:"fetch('/api/data') returns a Promise. async/await makes it read like synchronous code without blocking the browser."},
-                {k:"Error Handling",      v:"try { await fetch(url) } catch(err) { handle gracefully } — always handle what can go wrong."},
-                {k:"Modules (ES6)",       v:"import {greet} from './utils.js' — split code into files. export makes functions available to other files."},
+                {k:"Error Handling",      v:"try { await fetch(url) } catch(err) { handle gracefully } - always handle what can go wrong."},
+                {k:"Modules (ES6)",       v:"import {greet} from './utils.js' - split code into files. export makes functions available to other files."},
                 {k:"Closures",            v:"A function that 'remembers' the variables from where it was created, even after that scope is gone. Counters and event handlers use this constantly."},
               ]}/>
-              <CodeWin accent="#f7df1e" T={T} title="JavaScript — DOM, events, fetch, async/await, error handling" code={`// 1. VARIABLES — const for things that don't change, let for things that do
+              <CodeWin accent="#f7df1e" T={T} title="JavaScript - DOM, events, fetch, async/await, error handling" code={`// 1. VARIABLES - const for things that don't change, let for things that do
 const API_URL = 'https://api.github.com/search/repositories';
 
-// 2. DOM SELECTION — querySelector finds the first matching element
+// 2. DOM SELECTION - querySelector finds the first matching element
 const searchInput = document.querySelector('#search');
 const searchBtn   = document.querySelector('#search-btn');
 const resultsEl   = document.querySelector('#results');
 
-// 3. ARRAY METHODS — .map turns each item into HTML
+// 3. ARRAY METHODS - .map turns each item into HTML
 function renderRepos(repos) {
   return repos
     .filter(repo => !repo.fork)               // .filter removes unwanted items
@@ -558,14 +558,14 @@ function renderRepos(repos) {
     .join('');                                 // .join combines array into one string
 }
 
-// 4. ASYNC/AWAIT — fetch data without freezing the page
+// 4. ASYNC/AWAIT - fetch data without freezing the page
 async function searchGitHub(query) {
   if (!query.trim()) return;
 
   resultsEl.innerHTML = '<p class="loading">Searching…</p>';
 
   try {
-    // await pauses HERE until the server responds — but doesn't block the browser
+    // await pauses HERE until the server responds - but doesn't block the browser
     const response = await fetch(\`\${API_URL}?q=\${query}&sort=stars&per_page=8\`);
 
     if (!response.ok) {
@@ -576,23 +576,23 @@ async function searchGitHub(query) {
     resultsEl.innerHTML = renderRepos(data.items);
 
   } catch (error) {
-    // 5. ERROR HANDLING — always catch what can go wrong
+    // 5. ERROR HANDLING - always catch what can go wrong
     resultsEl.innerHTML = \`<p class="error">Oops: \${error.message}</p>\`;
     console.error('Search failed:', error);
   }
 }
 
-// 6. EVENTS — listen for user interactions
+// 6. EVENTS - listen for user interactions
 searchBtn.addEventListener('click', () => {
   searchGitHub(searchInput.value);
 });
 
-// 7. KEYBOARD EVENTS — also search on Enter key
+// 7. KEYBOARD EVENTS - also search on Enter key
 searchInput.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') searchGitHub(event.target.value);
 });
 
-// 8. CLOSURES — counter that remembers its own state
+// 8. CLOSURES - counter that remembers its own state
 function makeCounter(start = 0) {
   let count = start;          // this variable is "closed over"
   return {
@@ -617,31 +617,31 @@ counter.increment(); // 12`}/>
 
             {/* TYPESCRIPT */}
             <section id="typescript" className="wd-sec" style={{marginBottom:0}}>
-              <SectionHead num="Week 15–17" title="TypeScript" emoji="TS" color="#60a5fa" sub="JavaScript with a safety net — catches bugs before they run." T={T}/>
-              <Analogy accent="#60a5fa" T={T} text="TypeScript is like labelling containers in a kitchen. If a container says 'sugar (grams: number)', you can't accidentally pour liquid in it — the system warns you. TypeScript adds type labels to JavaScript variables and function parameters. If you pass a number where a string is expected, TypeScript flags it before you run a single line. Instagram, Airbnb, and Microsoft all use TypeScript in production."/>
+              <SectionHead num="Week 15–17" title="TypeScript" emoji="TS" color="#60a5fa" sub="JavaScript with a safety net - catches bugs before they run." T={T}/>
+              <Analogy accent="#60a5fa" T={T} text="TypeScript is like labelling containers in a kitchen. If a container says 'sugar (grams: number)', you can't accidentally pour liquid in it - the system warns you. TypeScript adds type labels to JavaScript variables and function parameters. If you pass a number where a string is expected, TypeScript flags it before you run a single line. Instagram, Airbnb, and Microsoft all use TypeScript in production."/>
               <ConceptGrid accent="#60a5fa" T={T} items={[
-                {k:"Basic Types",          v:"string, number, boolean, null, undefined, void — annotate any variable or parameter"},
-                {k:"Arrays & Tuples",      v:"string[] or Array<string> — typed arrays. [string, number] — tuple with fixed positions"},
-                {k:"Interfaces",           v:"interface User { id: number; name: string } — define the shape of any object"},
-                {k:"Union Types",          v:"type Role = 'admin' | 'viewer' — the value can only be one of these exact strings"},
-                {k:"Generics",             v:"function getFirst<T>(arr: T[]): T — write code that works for any type but stays safe"},
-                {k:"Type Inference",       v:"const name = 'Alex' — TypeScript already knows this is a string. You don't need to write the type."},
-                {k:"Optional & Readonly",  v:"name?: string — optional property. readonly id: number — can't be changed after creation"},
-                {k:"Type Utilities",       v:"Partial<User>, Omit<User,'id'>, Pick<User,'name'> — transform types without repeating yourself"},
+                {k:"Basic Types",          v:"string, number, boolean, null, undefined, void - annotate any variable or parameter"},
+                {k:"Arrays & Tuples",      v:"string[] or Array<string> - typed arrays. [string, number] - tuple with fixed positions"},
+                {k:"Interfaces",           v:"interface User { id: number; name: string } - define the shape of any object"},
+                {k:"Union Types",          v:"type Role = 'admin' | 'viewer' - the value can only be one of these exact strings"},
+                {k:"Generics",             v:"function getFirst<T>(arr: T[]): T - write code that works for any type but stays safe"},
+                {k:"Type Inference",       v:"const name = 'Alex' - TypeScript already knows this is a string. You don't need to write the type."},
+                {k:"Optional & Readonly",  v:"name?: string - optional property. readonly id: number - can't be changed after creation"},
+                {k:"Type Utilities",       v:"Partial<User>, Omit<User,'id'>, Pick<User,'name'> - transform types without repeating yourself"},
               ]}/>
-              <CodeWin accent="#60a5fa" T={T} title="TypeScript — interfaces, generics, union types, utilities" code={`// TypeScript = JavaScript + types. It compiles to plain JavaScript.
+              <CodeWin accent="#60a5fa" T={T} title="TypeScript - interfaces, generics, union types, utilities" code={`// TypeScript = JavaScript + types. It compiles to plain JavaScript.
 
-// INTERFACE — defines the exact shape of an object
+// INTERFACE - defines the exact shape of an object
 interface User {
   id:        number;
   name:      string;
   email:     string;
-  role:      'admin' | 'editor' | 'viewer'; // union type — only these 3 values
+  role:      'admin' | 'editor' | 'viewer'; // union type - only these 3 values
   createdAt: Date;
   bio?:      string;                         // ? means optional
 }
 
-// FUNCTION TYPES — parameters and return value are explicit
+// FUNCTION TYPES - parameters and return value are explicit
 function formatUser(user: User): string {
   // TypeScript guarantees user.name is a string here
   return \`\${user.name} (\${user.role})\`;
@@ -651,7 +651,7 @@ function formatUser(user: User): string {
 // formatUser({ id: 1, name: 42 })
 // Error: Type 'number' is not assignable to type 'string'
 
-// GENERICS — reusable logic that works for any type
+// GENERICS - reusable logic that works for any type
 async function fetchData<T>(url: string): Promise<T> {
   const res = await fetch(url);
   if (!res.ok) throw new Error(\`HTTP \${res.status}\`);
@@ -662,12 +662,12 @@ async function fetchData<T>(url: string): Promise<T> {
 const user   = await fetchData<User>('/api/users/1');
 const users  = await fetchData<User[]>('/api/users');
 
-// TYPE UTILITIES — transform existing types
+// TYPE UTILITIES - transform existing types
 type NewUser       = Omit<User, 'id' | 'createdAt'>;  // for create forms
 type UpdateUser    = Partial<User>;                     // all fields optional
 type PublicUser    = Pick<User, 'id' | 'name'>;        // expose only these
 
-// DISCRIMINATED UNION — model complex state safely
+// DISCRIMINATED UNION - model complex state safely
 type ApiState<T> =
   | { status: 'loading' }
   | { status: 'success'; data: T }
@@ -691,38 +691,38 @@ function renderState<T>(state: ApiState<T>) {
 
             {/* REACT */}
             <section id="react" className="wd-sec" style={{marginBottom:0}}>
-              <SectionHead num="Week 18–24" title="React" emoji="⚛" color="#61dafb" sub="Build UIs like LEGO — components you assemble, not HTML you repeat." T={T}/>
+              <SectionHead num="Week 18–24" title="React" emoji="⚛" color="#61dafb" sub="Build UIs like LEGO - components you assemble, not HTML you repeat." T={T}/>
               <Analogy accent="#61dafb" T={T} text="Imagine building a table of 50 user profiles. Without React, you'd paste the same HTML block 50 times. With React, you write it once as a UserCard component and write <UserCard user={alex} /> wherever you need it. When you update the design, you change one file and every card updates. React is why Facebook, Airbnb, Netflix, and Instagram's frontends don't fall apart when they have 10,000 UI elements on screen."/>
               <div style={{marginBottom:20}}>
                 <ComponentDiagram T={T}/>
               </div>
               <ConceptGrid accent="#61dafb" T={T} items={[
                 {k:"Components",        v:"Function components are the only way. They take props, return JSX. Think of them as custom HTML tags."},
-                {k:"Props",             v:"<UserCard name='Alex' role='admin' /> — pass data into a component like HTML attributes"},
-                {k:"useState",          v:"const [count, setCount] = useState(0) — when state changes, React re-renders only the affected component"},
+                {k:"Props",             v:"<UserCard name='Alex' role='admin' /> - pass data into a component like HTML attributes"},
+                {k:"useState",          v:"const [count, setCount] = useState(0) - when state changes, React re-renders only the affected component"},
                 {k:"useEffect",         v:"Runs after render. Use for: fetching data, subscriptions, DOM manipulation. Cleanup with return fn."},
                 {k:"useRef",            v:"Holds a value across renders without causing re-renders. Also the way to access actual DOM elements."},
                 {k:"useCallback/useMemo",v:"Prevent expensive recalculations and function re-creation on every render. Use when profiling shows slowness."},
                 {k:"Context API",       v:"Share state globally without prop-drilling. createContext → Provider wraps the tree → useContext reads it."},
-                {k:"React Router",      v:"<BrowserRouter> → <Routes> → <Route path='/about' element={<About/>}/> — client-side navigation"},
+                {k:"React Router",      v:"<BrowserRouter> → <Routes> → <Route path='/about' element={<About/>}/> - client-side navigation"},
                 {k:"React Query / SWR", v:"Server state management. Handles caching, background refetching, loading/error states for you."},
                 {k:"Forms",             v:"Controlled: value={state} onChange={setState}. Uncontrolled: useRef. React Hook Form for complex forms."},
               ]}/>
-              <CodeWin accent="#61dafb" T={T} title="React — hooks, props, data fetching, error boundaries" code={`import { useState, useEffect, useCallback } from 'react';
+              <CodeWin accent="#61dafb" T={T} title="React - hooks, props, data fetching, error boundaries" code={`import { useState, useEffect, useCallback } from 'react';
 
-// COMPONENT — accepts props, returns JSX
+// COMPONENT - accepts props, returns JSX
 interface UserCardProps {
   userId: number;
   onDelete?: (id: number) => void;
 }
 
 function UserCard({ userId, onDelete }: UserCardProps) {
-  // STATE — causes re-render when updated
+  // STATE - causes re-render when updated
   const [user,    setUser]    = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [error,   setError]   = useState<string | null>(null);
 
-  // EFFECT — runs after render, re-runs when userId changes
+  // EFFECT - runs after render, re-runs when userId changes
   useEffect(() => {
     let cancelled = false;                     // prevents stale updates
 
@@ -740,15 +740,15 @@ function UserCard({ userId, onDelete }: UserCardProps) {
     }
 
     load();
-    return () => { cancelled = true; };        // cleanup — runs on unmount
+    return () => { cancelled = true; };        // cleanup - runs on unmount
   }, [userId]);                                // re-fetch when userId changes
 
-  // CALLBACK — stable function reference, won't recreate on every render
+  // CALLBACK - stable function reference, won't recreate on every render
   const handleDelete = useCallback(() => {
     onDelete?.(userId);
   }, [userId, onDelete]);
 
-  // CONDITIONAL RENDERING — show different UI based on state
+  // CONDITIONAL RENDERING - show different UI based on state
   if (loading) return <div className="skeleton-card" />;
   if (error)   return <div className="error-card">Error: {error}</div>;
   if (!user)   return null;
@@ -768,7 +768,7 @@ function UserCard({ userId, onDelete }: UserCardProps) {
   );
 }
 
-// PARENT — uses the component multiple times with different data
+// PARENT - uses the component multiple times with different data
 function TeamPage() {
   const [deletedIds, setDeletedIds] = useState<number[]>([]);
 
@@ -799,19 +799,19 @@ function TeamPage() {
 
             {/* NODE.JS */}
             <section id="node" className="wd-sec" style={{marginBottom:0}}>
-              <SectionHead num="Week 25+" title="Node.js + Backend" emoji="N" color="#4ade80" sub="JavaScript on the server — APIs, databases, authentication." T={T}/>
-              <Analogy accent="#4ade80" T={T} text="Node.js takes JavaScript — which only lived in browsers — and lets it run on a server. Think of a restaurant: the frontend is the dining room (what customers see), and Node.js is the kitchen (where orders are processed, food is prepared, and records are kept). The kitchen handles things the dining room can't: storing data permanently, sending emails, processing payments, keeping secrets hidden from customers."/>
+              <SectionHead num="Week 25+" title="Node.js + Backend" emoji="N" color="#4ade80" sub="JavaScript on the server - APIs, databases, authentication." T={T}/>
+              <Analogy accent="#4ade80" T={T} text="Node.js takes JavaScript - which only lived in browsers - and lets it run on a server. Think of a restaurant: the frontend is the dining room (what customers see), and Node.js is the kitchen (where orders are processed, food is prepared, and records are kept). The kitchen handles things the dining room can't: storing data permanently, sending emails, processing payments, keeping secrets hidden from customers."/>
               <ConceptGrid accent="#4ade80" T={T} items={[
                 {k:"Express.js",         v:"The most popular Node.js framework. Create routes with app.get('/path', handler). Middleware for auth, logging, parsing."},
                 {k:"REST API Design",    v:"GET (read), POST (create), PUT/PATCH (update), DELETE. Return JSON. Use HTTP status codes (200, 201, 400, 401, 404, 500)."},
                 {k:"Middleware",         v:"Functions that run between request and response: authenticate user, parse JSON body, log requests, validate inputs."},
                 {k:"PostgreSQL + Prisma",v:"Prisma ORM gives you type-safe database access. Define your schema once, get auto-generated, type-checked queries."},
-                {k:"JWT Authentication", v:"JSON Web Tokens — sign a token on login, verify it on every protected request. Never store plain passwords."},
+                {k:"JWT Authentication", v:"JSON Web Tokens - sign a token on login, verify it on every protected request. Never store plain passwords."},
                 {k:"Environment Variables",v:".env files keep secrets (DB passwords, API keys) out of your code. Never commit them to git."},
                 {k:"Error Handling",     v:"Global error middleware catches unhandled errors. Never expose stack traces to users in production."},
                 {k:"Deployment",         v:"Railway (backend + DB) or Render for hosting. Vercel for frontend. Environment variables set in the dashboard."},
               ]}/>
-              <CodeWin accent="#4ade80" T={T} title="Node.js + Express — REST API with auth, Prisma, middleware" code={`import express   from 'express';
+              <CodeWin accent="#4ade80" T={T} title="Node.js + Express - REST API with auth, Prisma, middleware" code={`import express   from 'express';
 import bcrypt    from 'bcrypt';
 import jwt       from 'jsonwebtoken';
 import { PrismaClient } from '@prisma/client';
@@ -822,7 +822,7 @@ const SECRET = process.env.JWT_SECRET!;    // never hardcode secrets
 
 app.use(express.json());                   // parse JSON request bodies
 
-// MIDDLEWARE — runs before the route handler
+// MIDDLEWARE - runs before the route handler
 function requireAuth(req, res, next) {
   const token = req.headers.authorization?.split(' ')[1]; // Bearer <token>
   if (!token) return res.status(401).json({ error: 'No token' });
@@ -835,7 +835,7 @@ function requireAuth(req, res, next) {
   }
 }
 
-// POST /auth/register — create a new account
+// POST /auth/register - create a new account
 app.post('/auth/register', async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -843,7 +843,7 @@ app.post('/auth/register', async (req, res) => {
   const existing = await prisma.user.findUnique({ where: { email } });
   if (existing) return res.status(409).json({ error: 'Email already in use' });
 
-  // Hash the password — NEVER store plain text
+  // Hash the password - NEVER store plain text
   const passwordHash = await bcrypt.hash(password, 12);
 
   const user = await prisma.user.create({
@@ -851,7 +851,7 @@ app.post('/auth/register', async (req, res) => {
     select: { id: true, name: true, email: true }, // never return passwordHash
   });
 
-  // Sign a JWT — like issuing a temporary ID card
+  // Sign a JWT - like issuing a temporary ID card
   const token = jwt.sign({ userId: user.id }, SECRET, { expiresIn: '7d' });
 
   res.status(201).json({ token, user });
@@ -871,7 +871,7 @@ app.post('/auth/login', async (req, res) => {
   res.json({ token, user: { id: user.id, name: user.name } });
 });
 
-// GET /profile — protected route
+// GET /profile - protected route
 app.get('/profile', requireAuth, async (req, res) => {
   const user = await prisma.user.findUnique({
     where:  { id: req.user.userId },
@@ -880,7 +880,7 @@ app.get('/profile', requireAuth, async (req, res) => {
   res.json(user);
 });
 
-// Global error handler — catches anything that throws
+// Global error handler - catches anything that throws
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ error: 'Internal server error' });
@@ -899,19 +899,19 @@ app.listen(3000, () => console.log('API running on :3000'));`}/>
 
             {/* RESOURCES */}
             <section id="resources" className="wd-sec">
-              <SectionHead num="Reference" title="Full Resource Guide" emoji="📚" color="#a78bfa" sub="Curated — not exhaustive. These are the ones that actually teach." T={T}/>
-              <p style={{fontFamily:"'Lora',serif",fontSize:16,color:T.t2,lineHeight:1.92,marginBottom:28}}>Suggested sequence: <strong style={{color:T.t1}}>freeCodeCamp</strong> for HTML/CSS fundamentals (interactive, free, certificated). Then <strong style={{color:T.t1}}>javascript.info</strong> for JavaScript — it's genuinely the best JS tutorial written. Then <strong style={{color:T.t1}}>react.dev</strong> for React (the official docs are excellent). For backend: The Odin Project. Use YouTube channels when you want a concept explained visually before reading the documentation.</p>
+              <SectionHead num="Reference" title="Full Resource Guide" emoji="📚" color="#a78bfa" sub="Curated - not exhaustive. These are the ones that actually teach." T={T}/>
+              <p style={{fontFamily:"'Lora',serif",fontSize:16,color:T.t2,lineHeight:1.92,marginBottom:28}}>Suggested sequence: <strong style={{color:T.t1}}>freeCodeCamp</strong> for HTML/CSS fundamentals (interactive, free, certificated). Then <strong style={{color:T.t1}}>javascript.info</strong> for JavaScript - it's genuinely the best JS tutorial written. Then <strong style={{color:T.t1}}>react.dev</strong> for React (the official docs are excellent). For backend: The Odin Project. Use YouTube channels when you want a concept explained visually before reading the documentation.</p>
               <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))",gap:12}}>
                 {[
                   {name:"MDN Web Docs",           href:"https://developer.mozilla.org",type:"doc",desc:"The authoritative reference for HTML, CSS, and JavaScript. Bookmark it."},
                   {name:"The Odin Project",        href:"https://www.theodinproject.com",type:"doc",desc:"Free full-stack curriculum with real projects. One of the best free resources."},
                   {name:"freeCodeCamp",            href:"https://www.freecodecamp.org",type:"doc",desc:"Interactive lessons with certificates. Great for HTML/CSS and JavaScript fundamentals."},
-                  {name:"javascript.info",         href:"https://javascript.info",type:"doc",desc:"The best JavaScript tutorial on the internet — beginner to advanced."},
+                  {name:"javascript.info",         href:"https://javascript.info",type:"doc",desc:"The best JavaScript tutorial on the internet - beginner to advanced."},
                   {name:"react.dev",               href:"https://react.dev",type:"doc",desc:"Official React documentation with interactive examples. Genuinely well-written."},
                   {name:"Traversy Media",          href:"https://www.youtube.com/@TraversyMedia",type:"yt",desc:"Project-based web dev tutorials. Crash courses and full builds."},
                   {name:"Kevin Powell (CSS)",      href:"https://www.youtube.com/@KevinPowell",type:"yt",desc:"The best CSS teacher on the internet. If you struggle with CSS, watch Kevin."},
                   {name:"Fireship",                href:"https://www.youtube.com/@Fireship",type:"yt",desc:"100-second concept videos and longer deep dives. Modern, fast, accurate."},
-                  {name:"Codevolution",            href:"https://www.youtube.com/@Codevolution",type:"yt",desc:"Deep React and TypeScript playlists — methodical, thorough."},
+                  {name:"Codevolution",            href:"https://www.youtube.com/@Codevolution",type:"yt",desc:"Deep React and TypeScript playlists - methodical, thorough."},
                 ].map(r=>(
                   <a key={r.name} href={r.href} target="_blank" rel="noreferrer"
                     style={{display:"flex",alignItems:"flex-start",gap:12,padding:"14px 16px",borderRadius:12,border:`1px solid ${r.type==="yt"?"#f87171":"#60a5fa"}28`,background:r.type==="yt"?"#f871710a":"#60a5fa0a",textDecoration:"none",transition:"all 0.16s"}}

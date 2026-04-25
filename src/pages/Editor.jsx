@@ -92,7 +92,7 @@ const LANGUAGES = {
       { label: "fib(10) → expected 55", status: "fail" },
       { label: "fib(20) → not run", status: "pending" },
     ],
-    code: `// 🚀 Code Journey — JavaScript · Exercise 7
+    code: `// 🚀 Code Journey - JavaScript · Exercise 7
 // Topic: Recursion & Dynamic Programming
 
 /**
@@ -124,7 +124,7 @@ function fibMemo(n) {
       { type: "out",    text: "55" },
       { type: "out",    text: "6765" },
       { type: "success",text: "✓ Tests passed: 2/4" },
-      { type: "warning",text: "⚠  fib(10) returned undefined — check your logic" },
+      { type: "warning",text: "⚠  fib(10) returned undefined - check your logic" },
     ],
   },
   typescript: {
@@ -143,7 +143,7 @@ function fibMemo(n) {
       { label: "peek() returns top", status: "fail" },
       { label: "isEmpty() works", status: "pending" },
     ],
-    code: `// 🚀 Code Journey — TypeScript · Exercise 12
+    code: `// 🚀 Code Journey - TypeScript · Exercise 12
 // Topic: Generics & Type Safety
 
 class Stack<T> {
@@ -181,7 +181,7 @@ console.log(numStack.size);   // 3
 console.log(numStack.pop());  // 3`,
     terminalLines: [
       { type: "prompt",  text: "tsc Stack.ts && node Stack.js" },
-      { type: "success", text: "✓ Compilation successful — 0 errors" },
+      { type: "success", text: "✓ Compilation successful - 0 errors" },
       { type: "out",     text: "3" },
       { type: "out",     text: "3" },
       { type: "out",     text: "3" },
@@ -207,7 +207,7 @@ console.log(numStack.pop());  // 3`,
       { label: "std deviation correct", status: "fail" },
       { label: "plot renders", status: "pending" },
     ],
-    code: `# 🚀 Code Journey — Python · Exercise 18
+    code: `# 🚀 Code Journey - Python · Exercise 18
 # Topic: Data Analysis with Pandas & Matplotlib
 
 import pandas as pd
@@ -267,7 +267,7 @@ plt.show()`,
       { label: "Hover animation works", status: "fail" },
       { label: "Mobile responsive", status: "pending" },
     ],
-    code: `<!-- 🚀 Code Journey — HTML/CSS · Exercise 5 -->
+    code: `<!-- 🚀 Code Journey - HTML/CSS · Exercise 5 -->
 <!-- Topic: CSS Grid, Flexbox & Animations -->
 
 <!DOCTYPE html>
@@ -343,7 +343,7 @@ plt.show()`,
       { label: "Animation plays", status: "fail" },
       { label: "Decrement works", status: "pending" },
     ],
-    code: `// 🚀 Code Journey — Flutter · Exercise 9
+    code: `// 🚀 Code Journey - Flutter · Exercise 9
 // Topic: Stateful Widgets & setState
 
 import 'package:flutter/material.dart';
@@ -413,14 +413,14 @@ class _CounterPageState extends State<CounterPage> {
       { name: "seed.sql", type: "file" },
       { name: "README.md", type: "file" },
     ],
-    challenge: { title: "Advanced Joins", badge: "Exercise 14", desc: "Write a query to find the top 5 customers by total order value using JOINs, GROUP BY and HAVING.", hints: ["Use INNER JOIN to connect customers and orders tables", "GROUP BY customer_id, then use SUM(total_amount)", "HAVING filters groups — use it instead of WHERE for aggregates"] },
+    challenge: { title: "Advanced Joins", badge: "Exercise 14", desc: "Write a query to find the top 5 customers by total order value using JOINs, GROUP BY and HAVING.", hints: ["Use INNER JOIN to connect customers and orders tables", "GROUP BY customer_id, then use SUM(total_amount)", "HAVING filters groups - use it instead of WHERE for aggregates"] },
     tests: [
       { label: "JOIN syntax correct", status: "pass" },
       { label: "GROUP BY valid", status: "pass" },
       { label: "HAVING filter works", status: "fail" },
       { label: "Returns 5 rows", status: "pending" },
     ],
-    code: `-- 🚀 Code Journey — SQL · Exercise 14
+    code: `-- 🚀 Code Journey - SQL · Exercise 14
 -- Topic: Advanced Joins, Aggregation & Filtering
 
 -- ─── Schema Reference ────────────────────────────────────────
@@ -480,7 +480,7 @@ LIMIT 5;`,
       { label: "R² > 0.8 achieved", status: "fail" },
       { label: "Residual plot saved", status: "pending" },
     ],
-    code: `# 🚀 Code Journey — R Language · Exercise 6
+    code: `# 🚀 Code Journey - R Language · Exercise 6
 # Topic: Linear Regression & ggplot2 Visualization
 
 library(ggplot2)
@@ -540,7 +540,7 @@ plot(model, which = 1)`,
       { label: "Cancellation safe", status: "fail" },
       { label: "Backpressure handled", status: "pending" },
     ],
-    code: `// 🚀 Code Journey — Kotlin · Exercise 11
+    code: `// 🚀 Code Journey - Kotlin · Exercise 11
 // Topic: Coroutines, Flow & Error Handling
 
 import kotlinx.coroutines.*
@@ -593,14 +593,14 @@ suspend fun main() = coroutineScope {
       ]},
       { name: "Cargo.toml", type: "file" },
     ],
-    challenge: { title: "Ownership & Borrowing", badge: "Exercise 3", desc: "Implement safe string manipulation functions demonstrating Rust's ownership system and borrow checker.", hints: ["&str is a borrowed string slice — no ownership transfer", "Use .chars().rev().collect::<String>() to reverse", "Avoid cloning unless necessary — use references"] },
+    challenge: { title: "Ownership & Borrowing", badge: "Exercise 3", desc: "Implement safe string manipulation functions demonstrating Rust's ownership system and borrow checker.", hints: ["&str is a borrowed string slice - no ownership transfer", "Use .chars().rev().collect::<String>() to reverse", "Avoid cloning unless necessary - use references"] },
     tests: [
       { label: "reverse_words correct", status: "pass" },
       { label: "Borrow checker happy", status: "pass" },
       { label: "No unnecessary clones", status: "fail" },
       { label: "Edge cases handled", status: "pending" },
     ],
-    code: `// 🚀 Code Journey — Rust · Exercise 3
+    code: `// 🚀 Code Journey - Rust · Exercise 3
 // Topic: Ownership, Borrowing & String Manipulation
 
 // ─── Reverse Words ───────────────────────────────────────────
@@ -1399,7 +1399,7 @@ export default function CodeJourneyIDE() {
                     </div>
                   )}
                   {panelTab === "console" && (
-                    <div style={{ color: T.text3, fontSize: 12 }}>Console ready — JavaScript errors will appear here.</div>
+                    <div style={{ color: T.text3, fontSize: 12 }}>Console ready - JavaScript errors will appear here.</div>
                   )}
                 </div>
               )}

@@ -1,7 +1,7 @@
 /**
- * AuthPage.jsx — Code Journey Login / Signup
+ * AuthPage.jsx - Code Journey Login / Signup
  *
- * Light theme. Fits exactly in viewport — no scroll.
+ * Light theme. Fits exactly in viewport - no scroll.
  * Transition: the form slides within a fixed-height container.
  * The brand panel stays put; only its inner content fades.
  * Switch direction is tracked so slides go the right way.
@@ -40,10 +40,10 @@ const C = {
 /* ══ BENEFITS ═══════════════════════════════════════════ */
 const BENEFITS = [
   { icon: Zap, color: C.brand, title: "Run code instantly", desc: "9 languages in-browser. Zero setup, zero installation." },
-  { icon: Map, color: C.teal, title: "Roadmap that makes sense", desc: "Stage-by-stage — no guessing what to learn next." },
+  { icon: Map, color: C.teal, title: "Roadmap that makes sense", desc: "Stage-by-stage - no guessing what to learn next." },
   { icon: Code2, color: "#7c3aed", title: "Built-in IDE", desc: "Real editor with syntax highlighting and test runners." },
   { icon: BookOpen, color: C.green, title: "Curated resources", desc: "Best docs, videos, and practice problems, hand-picked." },
-  { icon: Layers, color: "#0891b2", title: "Three full tracks", desc: "Web Dev, App Dev, Data Science — pick your path." },
+  { icon: Layers, color: "#0891b2", title: "Three full tracks", desc: "Web Dev, App Dev, Data Science - pick your path." },
   { icon: Shield, color: C.amber, title: "No fluff, ever", desc: "Only what you need, when you need it. Sharp and focused." },
 ];
 
@@ -295,7 +295,7 @@ export default function AuthPage() {
     setLoading(false);
   };
 
-  /* Slide variants — purely horizontal, no layout swap */
+  /* Slide variants - purely horizontal, no layout swap */
   const variants = {
     enter: (d) => ({ x: d > 0 ? 48 : -48, opacity: 0 }),
     center: { x: 0, opacity: 1, transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] } },
@@ -351,7 +351,7 @@ export default function AuthPage() {
       <div style={{ display: "flex", height: "100vh", width: "100vw", overflow: "hidden", background: C.bg, fontFamily: "'Syne',sans-serif", color: C.t1 }}>
 
         {/* ═══════════════════════════════
-            BRAND COLUMN — stays put, content fades
+            BRAND COLUMN - stays put, content fades
         ═══════════════════════════════ */}
         <div className="auth-brand" style={{
           width: "48%", flexShrink: 0, position: "relative", overflow: "hidden",
@@ -417,7 +417,7 @@ export default function AuthPage() {
         </div>
 
         {/* ═══════════════════════════════
-            FORM COLUMN — fixed, content slides inside
+            FORM COLUMN - fixed, content slides inside
         ═══════════════════════════════ */}
         <div className="auth-form-col" style={{
           flex: 1, display: "flex", alignItems: "center", justifyContent: "center",
@@ -440,7 +440,7 @@ export default function AuthPage() {
               ))}
             </div>
 
-            {/* Sliding form content — the KEY transition */}
+            {/* Sliding form content - the KEY transition */}
             <AnimatePresence mode="wait" custom={dir}>
               <motion.div key={mode} custom={dir}
                 variants={variants} initial="enter" animate="center" exit="exit"
@@ -551,7 +551,7 @@ export default function AuthPage() {
                         style={{marginTop:18,padding:"13px 15px",background:C.brandMid,border:`1px solid ${C.brand}25`,borderRadius:11}}>
                         <p style={{fontFamily:"'JetBrains Mono',monospace",fontSize:10,fontWeight:700,color:C.brand,letterSpacing:"1px",textTransform:"uppercase",marginBottom:9}}>What you unlock</p>
                         <div style={{display:"flex",flexDirection:"column",gap:6}}>
-                          {["Run code in 9 languages — no setup","Stage-by-stage roadmap for your track","Notes, tasks, exercises in your profile","Open changelog — always know what's new"].map(b=>(
+                          {["Run code in 9 languages - no setup","Stage-by-stage roadmap for your track","Notes, tasks, exercises in your profile","Open changelog - always know what's new"].map(b=>(
                             <div key={b} style={{display:"flex",gap:7,alignItems:"flex-start"}}>
                               <Sparkles size={11} color={C.brand} style={{flexShrink:0,marginTop:2}}/>
                               <span style={{fontFamily:"'Lora',serif",fontSize:12.5,color:C.t2,lineHeight:1.5}}>{b}</span>

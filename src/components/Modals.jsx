@@ -1,5 +1,5 @@
 /**
- * Modals.jsx — Code Journey Notification & Modal System
+ * Modals.jsx - Code Journey Notification & Modal System
  *
  * A complete library of:
  *   Toast notifications (top-right stack, auto-dismiss)
@@ -388,7 +388,7 @@ export function PlatformUpdateModal({ open, onClose, version, updates, T:Tp }) {
   const T=Tp||getT();
   return (
     <ModalShell open={open} onClose={onClose} maxWidth={500} T={T}>
-      <MHead icon={Sparkles} iconColor={T.acc} title={`What's new in ${version}`} subtitle="Platform updates — shipped and live." onClose={onClose} T={T}/>
+      <MHead icon={Sparkles} iconColor={T.acc} title={`What's new in ${version}`} subtitle="Platform updates - shipped and live." onClose={onClose} T={T}/>
       <div style={{padding:"16px 20px",maxHeight:300,overflowY:"auto"}}>
         {(updates||[]).map((u,i)=>(
           <div key={i} style={{display:"flex",gap:11,alignItems:"flex-start",marginBottom:14}}>
@@ -536,7 +536,7 @@ export function ProfileSavedModal({ open, onClose, T:Tp }) {
 export function ThemeChangedBanner({ theme, onDismiss, T:Tp }) {
   const T=Tp||getT();
   return (
-    <Banner variant="custom" title="Theme applied" message={`Switched to "${theme}" — the platform will feel like this everywhere.`} onDismiss={onDismiss} action={{label:"Change in Profile",fn:()=>window.location.href="/profile"}} T={T}/>
+    <Banner variant="custom" title="Theme applied" message={`Switched to "${theme}" - the platform will feel like this everywhere.`} onDismiss={onDismiss} action={{label:"Change in Profile",fn:()=>window.location.href="/profile"}} T={T}/>
   );
 }
 
@@ -686,7 +686,7 @@ export default function ModalsShowcase() {
       <CodeRunModal open={m.codeSuccess} onClose={()=>close("codeSuccess")} lang="JavaScript" status="success" output={`> Running JavaScript...\n\nHello, Code Journey!\nArray sum: 150\nFiltered: [4, 5]\n\nProcess exited with code 0`} T={T}/>
       <CodeRunModal open={m.codeError} onClose={()=>close("codeError")} lang="Python" status="error" output={`Traceback (most recent call last):\n  File "main.py", line 4, in <module>\n    print(result / 0)\nZeroDivisionError: division by zero`} T={T}/>
       <CodeRunModal open={m.codeRun} onClose={()=>close("codeRun")} lang="Python" status="running" output="" T={T}/>
-      <StageUnlockedModal open={m.stage} onClose={()=>close("stage")} stageName="Stage 3 — React & Components" track="web" T={T}/>
+      <StageUnlockedModal open={m.stage} onClose={()=>close("stage")} stageName="Stage 3 - React & Components" track="web" T={T}/>
       <SessionExpiredModal open={m.expired} onLogin={()=>close("expired")} T={T}/>
       <ProfileSavedModal open={m.profile} onClose={()=>close("profile")} T={T}/>
       <RoadmapProgressModal open={m.progress} onClose={()=>close("progress")} track="web" stage="Stage 4" completedStages={3} totalStages={6} T={T}/>
@@ -710,12 +710,12 @@ export default function ModalsShowcase() {
           <DemoButton label="ℹ Info"     color="#60a5fa" onClick={()=>pushToast("info","Your progress synced across devices.")} T={T}/>
           <DemoButton label="⟳ Loading"  color="#a78bfa" onClick={()=>pushToast("loading","Running your code…","Code execution")} T={T}/>
           <DemoButton label="★ XP Earned" color="#fbbf24" onClick={()=>pushToast("custom","You earned 35 XP for completing Stage 2!","",Star)} T={T}/>
-          <DemoButton label="🎉 Stage unlocked" color="#7c6ee0" onClick={()=>pushToast("custom","Stage 3 — React & Components is now available.","Stage unlocked",Rocket)} T={T}/>
+          <DemoButton label="🎉 Stage unlocked" color="#7c6ee0" onClick={()=>pushToast("custom","Stage 3 - React & Components is now available.","Stage unlocked",Rocket)} T={T}/>
           <DemoButton label="📝 Note saved" color="#5eead4" onClick={()=>pushToast("success","\"React hooks\" saved to your notes.","")} T={T}/>
           <DemoButton label="✓ Task done" color="#22c55e" onClick={()=>pushToast("success","Task marked as complete. +20 XP","")} T={T}/>
           <DemoButton label="⚠ Session expiry" color="#f97316" onClick={()=>pushToast("warn","Your session expires in 5 minutes.","Inactivity warning",null,{label:"Stay signed in",fn:()=>{}})} T={T}/>
           <DemoButton label="🌐 Offline" color="#fbbf24" onClick={()=>pushToast("warn","No internet. Changes saved locally.","")} T={T}/>
-          <DemoButton label="🔄 Update ready" color="#7c6ee0" onClick={()=>pushToast("info","v3.1.0 is available — refresh to update.","Platform update",null,{label:"Refresh",fn:()=>location.reload()})} T={T}/>
+          <DemoButton label="🔄 Update ready" color="#7c6ee0" onClick={()=>pushToast("info","v3.1.0 is available - refresh to update.","Platform update",null,{label:"Refresh",fn:()=>location.reload()})} T={T}/>
         </Section>
 
         {/* ── BANNER ALERTS ── */}
@@ -724,7 +724,7 @@ export default function ModalsShowcase() {
             <Banner variant="success" title="Changes saved" message="Your profile has been updated and synced across all your devices." onDismiss={()=>{}} T={T}/>
             <Banner variant="error"   title="Sync failed" message="We couldn't save your last note. Check your connection and try again." onDismiss={()=>{}} action={{label:"Retry now",fn:()=>{}}} T={T}/>
             <Banner variant="warn"    title="Deprecation notice" message="The Badges system has been temporarily removed. A new gamification system is coming soon." onDismiss={()=>{}} T={T}/>
-            <Banner variant="info"    message="Tip: you can run code in 9 languages directly in the CJ IDE — no installation needed." onDismiss={()=>{}} T={T}/>
+            <Banner variant="info"    message="Tip: you can run code in 9 languages directly in the CJ IDE - no installation needed." onDismiss={()=>{}} T={T}/>
           </div>
         </Section>
 

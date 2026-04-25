@@ -49,7 +49,7 @@ const CHALLENGES = [
    hint:"Use setTimeout and clearTimeout. Each call should cancel the previous timer and start a new one.",
    tags:["closures","timers","performance"]},
   {id:"js-5",lang:"javascript",langColor:"#f7df1e",difficulty:"hard",title:"Deep Clone Object",xp:40,
-   description:"Write `deepClone(obj)` that creates a deep copy of a nested object or array. Handles: objects, arrays, strings, numbers, booleans, null.\n\nExample:\n  const a = {x: {y: [1,2,3]}};\n  const b = deepClone(a);\n  b.x.y.push(4);\n  a.x.y.length === 3  // true — original unaffected",
+   description:"Write `deepClone(obj)` that creates a deep copy of a nested object or array. Handles: objects, arrays, strings, numbers, booleans, null.\n\nExample:\n  const a = {x: {y: [1,2,3]}};\n  const b = deepClone(a);\n  b.x.y.push(4);\n  a.x.y.length === 3  // true - original unaffected",
    starter:"function deepClone(obj) {\n  // your code here\n}",
    tests:[{input:"(()=>{const a={x:{y:[1,2]}};const b=deepClone(a);b.x.y.push(3);return a.x.y.length;})()",expected:"2"},{input:"deepClone(null)",expected:"null"},{input:"JSON.stringify(deepClone([1,[2,3]]))",expected:"[1,[2,3]]"}],
    solution:"function deepClone(obj) {\n  if (obj === null || typeof obj !== 'object') return obj;\n  if (Array.isArray(obj)) return obj.map(deepClone);\n  return Object.fromEntries(\n    Object.entries(obj).map(([k,v]) => [k, deepClone(v)])\n  );\n}",
@@ -94,7 +94,7 @@ const CHALLENGES = [
    tags:["window functions","LAG","CTEs"]},
   // TypeScript
   {id:"ts-1",lang:"typescript",langColor:"#60a5fa",difficulty:"medium",title:"Generic Stack",xp:25,
-   description:"Implement a generic `Stack<T>` class with:\n- push(item: T): void\n- pop(): T | undefined\n- peek(): T | undefined\n- get size(): number\n- get isEmpty(): boolean\n\nThe class must be type-safe — Stack<number> only accepts numbers.",
+   description:"Implement a generic `Stack<T>` class with:\n- push(item: T): void\n- pop(): T | undefined\n- peek(): T | undefined\n- get size(): number\n- get isEmpty(): boolean\n\nThe class must be type-safe - Stack<number> only accepts numbers.",
    starter:"class Stack<T> {\n  // your code here\n}",
    tests:[{input:"const s=new Stack<number>();s.push(1);s.push(2);s.pop()",expected:"2"},{input:"const s=new Stack<string>();s.push('a');s.size",expected:"1"},{input:"new Stack().isEmpty",expected:"true"}],
    solution:"class Stack<T> {\n  private items: T[] = [];\n  push(item: T): void { this.items.push(item); }\n  pop(): T|undefined { return this.items.pop(); }\n  peek(): T|undefined { return this.items[this.items.length-1]; }\n  get size(): number { return this.items.length; }\n  get isEmpty(): boolean { return this.items.length===0; }\n}",

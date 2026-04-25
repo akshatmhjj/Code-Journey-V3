@@ -1,8 +1,8 @@
 /**
- * Code Journey — Two Pages
+ * Code Journey - Two Pages
  *
- * 1. Careers.jsx  — "Launch Pad" — companies that hire, prep resources, role mapping
- * 2. Ecosystem.jsx — "The Ecosystem" — extended languages, frameworks, modules
+ * 1. Careers.jsx  - "Launch Pad" - companies that hire, prep resources, role mapping
+ * 2. Ecosystem.jsx - "The Ecosystem" - extended languages, frameworks, modules
  *
  * Both are named exports. Import individually:
  *   import Careers   from "./pages/Careers";
@@ -86,7 +86,7 @@ const Pill = ({ icon:Icon, label, color, T }) => (
    ██║     ██║██║  ██║███████║   ██║
    ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝
 
-   PAGE 1 — LAUNCH PAD (Careers / Companies)
+   PAGE 1 - LAUNCH PAD (Careers / Companies)
 ══════════════════════════════════════════════════════════════ */
 
 /* ── Company Data ── */
@@ -118,7 +118,7 @@ const TIERS = ["All","FAANG+","Tier 1","India MNC","India Startup"];
 
 const PREP_RESOURCES = [
   { icon:Brain,      color:"#7c6ee0", title:"Data Structures & Algorithms",
-    desc:"The universal admission ticket. Arrays, linked lists, trees, graphs, dynamic programming — every company tests these.",
+    desc:"The universal admission ticket. Arrays, linked lists, trees, graphs, dynamic programming - every company tests these.",
     items:["Arrays & Strings","Recursion & Backtracking","Binary Search","Trees & Graphs","Dynamic Programming","Greedy Algorithms"],
     platforms:["LeetCode","HackerRank","Codeforces","GeeksforGeeks"],
   },
@@ -128,7 +128,7 @@ const PREP_RESOURCES = [
     platforms:["System Design Primer","ByteByteGo","Grokking the Interview","Educative.io"],
   },
   { icon:Target,     color:"#fbbf24", title:"Aptitude & Reasoning",
-    desc:"Indian MNCs (TCS, Infosys, Wipro) have heavy aptitude rounds — quantitative, logical reasoning and verbal ability.",
+    desc:"Indian MNCs (TCS, Infosys, Wipro) have heavy aptitude rounds - quantitative, logical reasoning and verbal ability.",
     items:["Quantitative Aptitude","Logical Reasoning","Verbal Ability","Data Interpretation","Puzzles","Number Series"],
     platforms:["IndiaBix","PrepInsta","Freshersworld","Testbook"],
   },
@@ -278,7 +278,7 @@ const CompanyDetail = ({ company, T }) => (
         </div>
       </div>
 
-      {/* Body — 3 columns */}
+      {/* Body - 3 columns */}
       <div style={{ padding:"22px 28px",display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:20 }}>
         {/* Tech Stack */}
         <div>
@@ -370,7 +370,7 @@ export function Careers() {
             </motion.h1>
             <motion.p initial={{ opacity:0,y:14 }} animate={{ opacity:1,y:0 }} transition={{ delay:0.24 }}
               style={{ fontFamily:"'Lora',serif",fontStyle:"italic",fontSize:"clamp(15px,2vw,18px)",color:T.t2,lineHeight:1.82,maxWidth:520,margin:"0 auto 36px" }}>
-              Pick a company that interests you. See exactly what tech stack they use, what roles they hire, and how to prepare — mock interviews, DSA, aptitude and behavioural rounds included.
+              Pick a company that interests you. See exactly what tech stack they use, what roles they hire, and how to prepare - mock interviews, DSA, aptitude and behavioural rounds included.
             </motion.p>
             {/* Stat pills */}
             <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.34 }}
@@ -479,7 +479,7 @@ export function Careers() {
               <div style={{ textAlign:"center",marginBottom:44 }}>
                 <Pill icon={Briefcase} label="Role Tracks" color={T.teal} T={T} />
                 <h2 style={{ fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"clamp(26px,4vw,40px)",color:T.t1,letterSpacing:"-0.7px",marginBottom:10 }}>Which Role Is Right For You?</h2>
-                <p style={{ fontFamily:"'Lora',serif",fontStyle:"italic",fontSize:16,color:T.t2,maxWidth:440,margin:"0 auto" }}>Match your learning track to a job title — and salary range.</p>
+                <p style={{ fontFamily:"'Lora',serif",fontStyle:"italic",fontSize:16,color:T.t2,maxWidth:440,margin:"0 auto" }}>Match your learning track to a job title - and salary range.</p>
               </div>
             </Reveal>
             <div className="role-grid" style={{ display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:14 }}>
@@ -515,7 +515,7 @@ export function Careers() {
               <h2 style={{ fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"clamp(28px,4.5vw,46px)",color:T.t1,marginBottom:14,letterSpacing:"-0.9px",lineHeight:1.1 }}>
                 The Dream Company.<br/><span style={{ color:T.gold }}>Start Today.</span>
               </h2>
-              <p style={{ fontFamily:"'Lora',serif",fontStyle:"italic",fontSize:16.5,color:T.t2,lineHeight:1.8,marginBottom:34 }}>Start learning the exact stack your target company uses — inside Code Journey, for free.</p>
+              <p style={{ fontFamily:"'Lora',serif",fontStyle:"italic",fontSize:16.5,color:T.t2,lineHeight:1.8,marginBottom:34 }}>Start learning the exact stack your target company uses - inside Code Journey, for free.</p>
               <div style={{ display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap" }}>
                 <a href="/register" style={{ display:"inline-flex",alignItems:"center",gap:8,padding:"13px 28px",borderRadius:12,border:"none",background:T.gold,color:"#000",fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:15,cursor:"pointer",textDecoration:"none",boxShadow:`0 0 36px ${T.gold}50`,transition:"all 0.18s",animation:"cjGlow 3s ease infinite" }}>
                   <Zap size={15} /> Start Preparing Free
@@ -541,7 +541,7 @@ export function Careers() {
    ███████╗╚██████╗╚██████╔╝███████║   ██║   ███████║   ██║   ███████╗██║ ╚═╝ ██║
    ╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝   ╚═╝   ╚══════╝   ╚═╝   ╚══════╝╚═╝     ╚═╝
 
-   PAGE 2 — THE ECOSYSTEM (Extended Languages, Frameworks, Modules)
+   PAGE 2 - THE ECOSYSTEM (Extended Languages, Frameworks, Modules)
 ══════════════════════════════════════════════════════════════ */
 
 const ECO_TABS = [
@@ -566,7 +566,7 @@ const ECO_DATA = {
     { name:"R",         color:"#f472b6",bg:"#1a0011",icon:"R",maturity:"Mature",use:"Statistics · Data Science · Bioinformatics",desc:"The language of academic statistics. Unmatched for data analysis, econometrics and research reporting." },
     { name:"C++",       color:"#60a5fa",bg:"#00111f",icon:"C++",maturity:"Mature",use:"Systems · Game Dev · Embedded · HFT",desc:"The language of performance. Every game engine, operating system kernel and low-latency trading system uses it." },
     { name:"Ruby",      color:"#f87171",bg:"#1a0000",icon:"Rb",maturity:"Mature",use:"Web (Rails) · Scripting · Automation",desc:"Developer happiness as a design principle. Ruby on Rails invented many conventions that modern web still follows." },
-    { name:"Scala",     color:"#ff7043",bg:"#1a0500",icon:"Sc",maturity:"Mature",use:"Big Data · Backend (JVM) · Functional",desc:"Functional + OOP on the JVM. Powers Apache Spark — the standard for big data processing." },
+    { name:"Scala",     color:"#ff7043",bg:"#1a0500",icon:"Sc",maturity:"Mature",use:"Big Data · Backend (JVM) · Functional",desc:"Functional + OOP on the JVM. Powers Apache Spark - the standard for big data processing." },
     { name:"PHP",       color:"#818cf8",bg:"#0c0c1a",icon:"PHP",maturity:"Mature",use:"Web · CMS · Server-side",desc:"Powers 78% of the web including WordPress. Laravel makes modern PHP actually enjoyable." },
     { name:"C#",        color:"#7c6ee0",bg:"#0f0a1a",icon:"C#",maturity:"Mature",use:"Game Dev (Unity) · Enterprise · Web",desc:"Microsoft's flagship language. Essential for Unity game development and enterprise .NET applications." },
     { name:"Elixir",    color:"#a78bfa",bg:"#0c0c1a",icon:"Ex",maturity:"Growing",use:"Real-time · Distributed · APIs",desc:"Built on Erlang's VM. Extraordinary for real-time, fault-tolerant distributed systems. WhatsApp's secret weapon." },
@@ -583,9 +583,9 @@ const ECO_DATA = {
     { name:"Flutter",   color:"#38bdf8",bg:"#001220",icon:"⬡",use:"Mobile · Web · Desktop",stack:"Dart",desc:"Google's cross-platform UI toolkit. One codebase, native performance on iOS, Android, web and desktop." },
     { name:"Express.js",color:"#f7df1e",bg:"#1a1800",icon:"Ex",use:"Web Backend",stack:"Node.js / JavaScript",desc:"Minimal, unopinionated Node.js framework. The foundation for most Node backend APIs." },
     { name:"Ruby on Rails",color:"#f87171",bg:"#1a0000",icon:"RR",use:"Full-stack Web",stack:"Ruby",desc:"Convention over configuration. Invented migrations, REST conventions and MVC for the web world." },
-    { name:"Laravel",   color:"#f97316",bg:"#1a0a00",icon:"Lv",use:"Full-stack Web",stack:"PHP",desc:"Elegant PHP framework with batteries included — ORM, queues, authentication, and a thriving ecosystem." },
-    { name:"Svelte",    color:"#ff7043",bg:"#1a0500",icon:"S",use:"Web UI",stack:"JavaScript",desc:"No virtual DOM — compiles to tiny, fast vanilla JS. The highest developer satisfaction of any frontend framework." },
-    { name:"Remix",     color:"#818cf8",bg:"#0c0c1a",icon:"Re",use:"Full-stack Web",stack:"JavaScript/TypeScript",desc:"Full-stack React framework focused on web fundamentals — forms, nested routing, and progressive enhancement." },
+    { name:"Laravel",   color:"#f97316",bg:"#1a0a00",icon:"Lv",use:"Full-stack Web",stack:"PHP",desc:"Elegant PHP framework with batteries included - ORM, queues, authentication, and a thriving ecosystem." },
+    { name:"Svelte",    color:"#ff7043",bg:"#1a0500",icon:"S",use:"Web UI",stack:"JavaScript",desc:"No virtual DOM - compiles to tiny, fast vanilla JS. The highest developer satisfaction of any frontend framework." },
+    { name:"Remix",     color:"#818cf8",bg:"#0c0c1a",icon:"Re",use:"Full-stack Web",stack:"JavaScript/TypeScript",desc:"Full-stack React framework focused on web fundamentals - forms, nested routing, and progressive enhancement." },
     { name:"NestJS",    color:"#f87171",bg:"#1a0000",icon:"Nt",use:"Backend APIs",stack:"TypeScript / Node.js",desc:"Angular-inspired backend framework for Node.js. Strongly typed, dependency-injected, enterprise-ready." },
   ],
   databases: [
@@ -606,7 +606,7 @@ const ECO_DATA = {
     { name:"GitHub",      color:"#e8eaf2",bg:"#0a0a0f",icon:"GH",category:"Code Hosting",desc:"The world's largest code hosting platform. Pull requests, Actions CI/CD, and code review all live here." },
     { name:"VS Code",     color:"#60a5fa",bg:"#00111f",icon:"◈",category:"Editor",desc:"Microsoft's free, open-source editor. The most popular IDE on Earth. Runs even in the browser." },
     { name:"Terraform",   color:"#a78bfa",bg:"#0c0c1a",icon:"TF",category:"Infrastructure as Code",desc:"Declarative infrastructure provisioning. Define cloud resources in code; Terraform makes it real." },
-    { name:"Webpack",     color:"#60a5fa",bg:"#00111f",icon:"W",category:"Bundler",desc:"Module bundler for JavaScript. Packs assets, code-splits, and tree-shakes — the backbone of most web build systems." },
+    { name:"Webpack",     color:"#60a5fa",bg:"#00111f",icon:"W",category:"Bundler",desc:"Module bundler for JavaScript. Packs assets, code-splits, and tree-shakes - the backbone of most web build systems." },
     { name:"Vite",        color:"#fbbf24",bg:"#1a1200",icon:"V⚡",category:"Build Tool",desc:"Next-generation frontend tooling. Instant dev server, HMR, and fast production builds. Replacing Webpack in most new projects." },
     { name:"Postman",     color:"#f97316",bg:"#1a0a00",icon:"PM",category:"API Testing",desc:"API design, testing and documentation in one tool. Every backend developer needs this." },
     { name:"Figma",       color:"#f472b6",bg:"#1a0011",icon:"Fig",category:"Design",desc:"Collaborative UI design in the browser. The industry standard for product design and developer handoff." },
@@ -625,21 +625,21 @@ const ECO_DATA = {
     { name:"Prisma",         lang:"TypeScript",color:"#60a5fa",bg:"#00111f",desc:"Next-generation ORM for TypeScript and Node.js. Type-safe database access with auto-generated types." },
     { name:"Zod",            lang:"TypeScript",color:"#60a5fa",bg:"#00111f",desc:"TypeScript-first schema validation. Parse and validate any data at runtime with a beautiful, composable API." },
     { name:"ggplot2",        lang:"R",color:"#f472b6",bg:"#1a0011",desc:"The grammar of graphics for R. Build layered, publication-quality data visualisations declaratively." },
-    { name:"dplyr",          lang:"R",color:"#f472b6",bg:"#1a0011",desc:"Tidyverse data manipulation — filter, select, mutate, group_by, summarise. The standard for R data work." },
+    { name:"dplyr",          lang:"R",color:"#f472b6",bg:"#1a0011",desc:"Tidyverse data manipulation - filter, select, mutate, group_by, summarise. The standard for R data work." },
     { name:"Tokio",          lang:"Rust",color:"#f97316",bg:"#1a0a00",desc:"Async runtime for Rust. Powers some of the world's highest-throughput network services." },
     { name:"Serde",          lang:"Rust",color:"#f97316",bg:"#1a0a00",desc:"Serialisation/deserialisation framework for Rust. Handles JSON, TOML, YAML with zero-copy efficiency." },
     { name:"http (Dart)",    lang:"Dart",color:"#5eead4",bg:"#001a17",desc:"The official Dart package for HTTP requests. Simple, clean API for REST calls in Flutter apps." },
     { name:"Kotlinx Coroutines",lang:"Kotlin",color:"#a78bfa",bg:"#0c0c1a",desc:"Official Kotlin async library. Lightweight threads (coroutines) and Flow for reactive streams." },
   ],
   cloud: [
-    { name:"AWS",           color:"#f97316",bg:"#1a0a00",icon:"AWS",provider:"Amazon",desc:"The largest cloud platform with 200+ services. EC2, S3, Lambda, RDS, SageMaker — the industry default." },
+    { name:"AWS",           color:"#f97316",bg:"#1a0a00",icon:"AWS",provider:"Amazon",desc:"The largest cloud platform with 200+ services. EC2, S3, Lambda, RDS, SageMaker - the industry default." },
     { name:"Google Cloud",  color:"#4285f4",bg:"#00111f",icon:"GCP",provider:"Google",desc:"Google's cloud. Strong in ML/AI (Vertex AI, BigQuery) and Kubernetes (they invented it). Competitive pricing." },
     { name:"Azure",         color:"#00a4ef",bg:"#001220",icon:"Az",provider:"Microsoft",desc:"Microsoft's cloud. Dominant in enterprise and .NET environments. Best Azure Active Directory integration." },
     { name:"Vercel",        color:"#e8eaf2",bg:"#0a0a0f",icon:"▲",provider:"Vercel",desc:"The best deployment platform for frontend and serverless. Zero-config deploys for Next.js, React and more." },
     { name:"Supabase",      color:"#4ade80",bg:"#0a1f0a",icon:"Su",provider:"Supabase",desc:"Open-source Firebase alternative. PostgreSQL + auth + real-time + storage. Free tier is genuinely generous." },
     { name:"Cloudflare",    color:"#f97316",bg:"#1a0a00",icon:"CF",provider:"Cloudflare",desc:"CDN, DNS, Workers (edge functions), R2 storage and DDoS protection. Runs at the edge, globally." },
     { name:"Railway",       color:"#a78bfa",bg:"#0c0c1a",icon:"Ry",provider:"Railway",desc:"Deploy backends with a single command. Supports any language, Postgres included. Best DX for indie developers." },
-    { name:"GitHub Actions",color:"#e8eaf2",bg:"#0a0a0f",icon:"⚙",provider:"GitHub",desc:"CI/CD built into GitHub. Run tests, build Docker images, deploy — all on every push." },
+    { name:"GitHub Actions",color:"#e8eaf2",bg:"#0a0a0f",icon:"⚙",provider:"GitHub",desc:"CI/CD built into GitHub. Run tests, build Docker images, deploy - all on every push." },
   ],
 };
 
@@ -720,7 +720,7 @@ export function Ecosystem() {
             </motion.h1>
             <motion.p initial={{ opacity:0,y:14 }} animate={{ opacity:1,y:0 }} transition={{ delay:0.24 }}
               style={{ fontFamily:"'Lora',serif",fontStyle:"italic",fontSize:"clamp(15px,2vw,18px)",color:T.t2,lineHeight:1.82,maxWidth:540,margin:"0 auto 36px" }}>
-              16 languages. 14 frameworks. 9 databases. 12 dev tools. 16 key modules. The modern software ecosystem — organised, described, and linked to where you learn each one.
+              16 languages. 14 frameworks. 9 databases. 12 dev tools. 16 key modules. The modern software ecosystem - organised, described, and linked to where you learn each one.
             </motion.p>
 
             {/* Animated count row */}
@@ -797,7 +797,7 @@ export function Ecosystem() {
           </motion.section>
         </AnimatePresence>
 
-        {/* RELATIONSHIPS MAP — horizontal scroll strip */}
+        {/* RELATIONSHIPS MAP - horizontal scroll strip */}
         <section style={{ padding:"60px 0",background:T.deep,borderTop:`1px solid ${T.b1}`,overflow:"hidden" }}>
           <div style={{ maxWidth:1100,margin:"0 auto",padding:"0 24px",marginBottom:24 }}>
             <Reveal>
@@ -842,7 +842,7 @@ export function Ecosystem() {
               <div style={{ textAlign:"center",marginBottom:36 }}>
                 <Pill icon={Sparkles} label="Where to Start" color={T.gold} T={T} />
                 <h2 style={{ fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:"clamp(24px,4vw,38px)",color:T.t1,letterSpacing:"-0.7px",marginBottom:10 }}>Don't Learn Everything. Learn the Right Things.</h2>
-                <p style={{ fontFamily:"'Lora',serif",fontStyle:"italic",fontSize:16,color:T.t2,maxWidth:480,margin:"0 auto" }}>The ecosystem looks enormous — and it is. But you only need a tiny slice of it to get your first job.</p>
+                <p style={{ fontFamily:"'Lora',serif",fontStyle:"italic",fontSize:16,color:T.t2,maxWidth:480,margin:"0 auto" }}>The ecosystem looks enormous - and it is. But you only need a tiny slice of it to get your first job.</p>
               </div>
             </Reveal>
             <div style={{ display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:14 }}>

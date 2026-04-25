@@ -57,7 +57,7 @@ export default function NotFound() {
         </motion.h1>
         <motion.p initial={{opacity:0}} animate={{opacity:1}} transition={{delay:0.26}}
           style={{fontFamily:"'Lora',serif",fontStyle:"italic",fontSize:16,color:T.t2,lineHeight:1.75,maxWidth:440,marginBottom:36}}>
-          Maybe it was moved, maybe it was never here, or maybe you're a tiny bit lost. Either way — here's where you actually want to go:
+          Maybe it was moved, maybe it was never here, or maybe you're a tiny bit lost. Either way - here's where you actually want to go:
         </motion.p>
 
         {/* Quick links grid */}

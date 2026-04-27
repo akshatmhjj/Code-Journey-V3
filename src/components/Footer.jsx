@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FaTwitter, FaInstagram, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { ArrowUpRight, Zap, Code2, Globe, BookOpen, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 /* ─── Fixed dark cosmic palette - never changes with platform theme ─── */
 const C = {
@@ -75,7 +76,7 @@ const LinkGroup = ({ title, links }) => (
       letterSpacing: "2px", textTransform: "uppercase", color: C.t3, margin: 0,
     }}>{title}</h4>
     {links.map(link => (
-      <a key={link.label} href={link.href || "#"}
+      <Link key={link.label} to={link.href || "#"}
         style={{
           display: "inline-flex", alignItems: "center", gap: 5,
           fontFamily: "'Syne', sans-serif", fontSize: 14, fontWeight: 500,
@@ -88,7 +89,7 @@ const LinkGroup = ({ title, links }) => (
           onMouseLeave={e => e.currentTarget.style.opacity = "0.5"}
         />
         {link.label}
-      </a>
+      </Link>
     ))}
   </div>
 );
@@ -412,14 +413,14 @@ export default function Footer() {
                 { label: "Terms",    href: "/terms"          },
                 { label: "Licensing",href: "/licensing"      },
               ].map(l => (
-                <a key={l.label} href={l.href} style={{
+                <Link key={l.label} to={l.href} style={{
                   fontFamily: "'Syne', sans-serif", fontSize: 12.5, fontWeight: 500,
                   color: C.t3, textDecoration: "none", transition: "color 0.15s",
                 }}
                   onMouseEnter={e => e.currentTarget.style.color = C.t1}
                   onMouseLeave={e => e.currentTarget.style.color = C.t3}>
                   {l.label}
-                </a>
+                </Link>
               ))}
             </div>
 

@@ -444,8 +444,8 @@ const STEPS = [
    SECTION: STATS
 ══════════════════════════════════════════════════════════════ */
 const STATS = [
-  { value:"9",    unit:"Languages",     icon:Code2   },
-  { value:"15+",  unit:"Snippets",     icon:BookOpen },
+  { value:"10",    unit:"Languages",     icon:Code2   },
+  { value:"50+",  unit:"Snippets",     icon:BookOpen },
   { value:"3",    unit:"Career Tracks", icon:Layers  },
   { value:"100%", unit:"In-Browser",    icon:Zap     },
 ];

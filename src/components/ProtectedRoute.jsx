@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 import { Navigate } from "react-router-dom";
+import {CJPageLoader} from "../components/Cjloader";
+
 
 export default function ProtectedRoute({ children }) {
     const [user, setUser] = useState(undefined); // undefined = loading
@@ -16,15 +18,7 @@ export default function ProtectedRoute({ children }) {
     // loading state
     if (user === undefined) {
         return (
-            <div style={{
-                height: "100vh",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 18
-            }}>
-                Loading...
-            </div>
+            <CJPageLoader/>
         );
     }
 

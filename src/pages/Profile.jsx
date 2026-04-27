@@ -12,6 +12,7 @@ import {
   AlertTriangle, Flag,
 } from "lucide-react";
 import { supabase } from "../lib/supabase";
+import CJLoader from "../components/Cjloader";
 
 /* ─── Mock alert (replace with real useAlert when wired) ───── */
 const useAlert = () => ({ showAlert: (m, t) => console.log(`[${t}] ${m}`) });
@@ -410,6 +411,7 @@ export default function Profile() {
   const { showAlert } = useAlert();
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [memberSince, setMemberSince] = useState("");
 
   /* theme */
   const [themeKey, setThemeKey] = useState(getStoredTheme);
@@ -467,6 +469,17 @@ export default function Profile() {
       if (!sessionStorage.getItem("login_logged")) {
         logActivity("User logged in");
         sessionStorage.setItem("login_logged", "true");
+      }
+      if (cu?.created_at) {
+        const date = new Date(cu.created_at);
+
+        const formatted = date.toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        });
+
+        setMemberSince(formatted);
       }
       const { data } = await supabase.from("profiles").select("*").eq("id", cu.id).single();
       if (data) setProfile({ name: data.full_name, email: data.email, username: data.email.split("@")[0] });
@@ -595,17 +608,14 @@ export default function Profile() {
   /* ═══════════════════════════════════════════════════════
      LOADING / NO PROFILE
   ═══════════════════════════════════════════════════════ */
-  if (loading || actionLoading) return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: T.shell, gap: 14 }}>
-      <FontLink />
-      <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }}>
-        <Loader2 size={36} color={T.accent} />
-      </motion.div>
-      <p style={{ fontFamily: "'Syne',sans-serif", color: T.t3, fontSize: 14 }}>
-        {loading ? "Loading your profile…" : "Processing…"}
-      </p>
-    </div>
-  );
+  if (loading || actionLoading) {
+    return (
+      <CJLoader
+        message={loading ? "Loading your profile…" : "Processing…"}
+        minTime={600}
+      />
+    );
+  }
   if (!profile) return (
     <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: T.shell }}>
       <FontLink /><p style={{ fontFamily: "'Syne',sans-serif", color: T.t2 }}>No profile found.</p>
@@ -621,8 +631,8 @@ export default function Profile() {
     const metrics = [
       { label: "Notes", value: notes.length, unit: "total", color: T.accent, icon: StickyNote },
       { label: "Tasks", value: tasks.filter(t => t.status === "completed").length, unit: "done", color: T.teal, icon: CheckCircle2 },
-      { label: "Streak", value: "7", unit: "days", color: T.gold, icon: Zap },
-      { label: "XP", value: "340", unit: "pts", color: T.green, icon: Star },
+      // { label: "Streak", value: "7", unit: "days", color: T.gold, icon: Zap },
+      // { label: "XP", value: "340", unit: "pts", color: T.green, icon: Star },
     ];
     const activityList = activity.length
       ? activity.map(a => ({ label: a.action, time: timeAgo(a.created_at), icon: Activity, color: T.accent }))
@@ -658,7 +668,7 @@ export default function Profile() {
             </div>
             <div style={{ background: T.panel, border: `1px solid ${T.b2}`, borderRadius: 10, padding: "10px 14px", textAlign: "center", flexShrink: 0 }}>
               <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, color: T.t3, textTransform: "uppercase", letterSpacing: "1px", margin: "0 0 3px" }}>Member since</p>
-              <p style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 14, color: T.t1, margin: 0 }}>Jan 2024</p>
+              <p style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 14, color: T.t1, margin: 0 }}>{memberSince}</p>
             </div>
           </div>
         </div>

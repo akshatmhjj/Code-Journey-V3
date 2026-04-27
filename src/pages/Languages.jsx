@@ -730,7 +730,7 @@ export default function Languages() {
             <Reveal delay={0.1}>
               <div style={{border:`1px solid ${T.b2}`,borderRadius:16,overflow:"hidden"}}>
                 {/* Header */}
-                <div style={{display:"grid",gridTemplateColumns:"1.5fr 1fr 1fr 1fr 1.5fr",background:T.panel,borderBottom:`1px solid ${T.b1}`,padding:"12px 20px"}}>
+                <div style={{display:"grid",gridTemplateColumns:"1.5fr 1fr 1  fr 1fr 1.5fr",background:T.panel,borderBottom:`1px solid ${T.b1}`,padding:"12px 20px"}}>
                   {["Language","Track","Level","Time","Best For"].map(h=>(
                     <span key={h} style={{fontFamily:"'JetBrains Mono',monospace",fontSize:10,fontWeight:700,color:T.t3,textTransform:"uppercase",letterSpacing:"1px"}}>{h}</span>
                   ))}

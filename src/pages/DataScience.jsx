@@ -8,7 +8,7 @@ function useTheme() { const [T, setT] = useState(getT); useEffect(() => { const 
 
 function hlPy(line) {
   let s = line.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  s = s.replace(/(#[^\n]*)/g, '<span style="color:#6a9955;font-style:italic">$1</span>');
+  s = s.replace(/(#[^\n]*)/g, '<span>$1</span>');
   s = s.replace(/("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|"""[\s\S]*?"""|\'\'\'[\s\S]*?\'\'\')/g, '<span style="color:#ce9178">$1</span>');
   s = s.replace(/\b(def|class|return|if|elif|else|for|while|in|import|from|with|as|print|True|False|None|lambda|and|or|not|try|except|raise|pass|break|continue|yield|async|await|SELECT|FROM|WHERE|GROUP|BY|ORDER|JOIN|ON|HAVING|LIMIT|WITH|AS|INNER|LEFT|RIGHT|FULL|OUTER|COUNT|SUM|AVG|MAX|MIN|RANK|LAG|LEAD|PARTITION|OVER|ROUND|NULLIF|COALESCE|CASE|WHEN|THEN|END|INTO|INSERT|UPDATE|SET|DELETE|DISTINCT|UNION|INTERSECT|EXCEPT|CREATE|TABLE|INDEX|VIEW|ROW_NUMBER)\b/g, '<span style="color:#c792ea">$1</span>');
   s = s.replace(/\b(\d+\.?\d*)\b/g, '<span style="color:#f78c6c">$1</span>');
@@ -122,7 +122,7 @@ const PipelineDiagram = ({ T }) => (
   <svg viewBox="0 0 480 80" style={{ width: "100%", maxWidth: 480, display: "block" }}>
     {[
       ["Collect", 20, "#4ade80"], ["Clean", 100, "#60a5fa"], ["Explore", 180, "#a78bfa"],
-      ["Visualise", 260, "#f472b6"], ["Model", 340, "#f97316"], ["Communicate", 410, "#fbbf24"]
+      ["Visualise", 260, "#f472b6"], ["Model", 340, "#f97316"]
     ].map(([lbl, x, col], i, arr) => (
       <g key={lbl}>
         <rect x={x} y="20" width="72" height="30" rx="6" fill={col + "16"} stroke={col + "55"} strokeWidth="1.5" />

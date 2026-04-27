@@ -198,7 +198,7 @@ export default function Snippets() {
         {/* FILTER BAR */}
         <div style={{ background:T.card, borderBottom:`1px solid ${T.border}`, top:60, zIndex:40,
           backdropFilter:"blur(16px)", WebkitBackdropFilter:"blur(16px)" }}>
-          <div style={{ maxWidth:860, margin:"0 auto", padding:"0 24px" }}>
+          <div style={{ maxWidth:970, margin:"0 auto", padding:"0 24px" }}>
             <div className="fscroll" style={{ display:"flex", alignItems:"center", gap:5, padding:"9px 0" }}>
               {["all",...LANGS].map(l => chip(l==="all"?"All":l, lang===l, LANG_META[l]?.color||T.acc, ()=>setLang(l)))}
               <div style={{ width:1, height:18, background:T.border, flexShrink:0, margin:"0 3px" }}/>

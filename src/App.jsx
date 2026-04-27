@@ -19,6 +19,7 @@ import Layout from './components/Layout.jsx'
 import AuthPage from './pages/Authpage.jsx'
 import NotFound from './components/Notfound.jsx';
 
+import { CJLoaderProvider, CJPageLoader } from "./components/Cjloader";
 import ProtectedRoute from './components/ProtectedRoute';
 
 // import Editor from './pages/Editor.jsx'
@@ -26,48 +27,51 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
-    <Router>
-      <Routes>
+    <CJLoaderProvider>
+      <Router>
 
-        {/* PUBLIC ROUTES */}
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-        </Route>
+        <CJPageLoader />
 
-        <Route path="/login" element={<AuthPage />} />
-        <Route path="/register" element={<AuthPage />} />
+        <Routes>
 
-        {/* PROTECTED ROUTES */}
-        <Route
-          element={
-            <ProtectedRoute>
-              <Layout />
-            </ProtectedRoute>
-          }
-        >
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/logs" element={<Logs />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/privacy-policy" element={<Privacy />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/licensing" element={<Licensing />} />
-          <Route path="/tracks" element={<Languages />} />
-          <Route path="/tracks/web" element={<WebDev />} />
-          <Route path="/tracks/app" element={<AppDev />} />
-          <Route path="/tracks/data" element={<DataScience />} />
-          <Route path="/careers" element={<Careers />} />
-          <Route path="/ecosystem" element={<Ecosystem />} />
-          <Route path="/roadmap" element={<Roadmap />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/glossary" element={<Glossary />} />
-          <Route path="/snippets" element={<Snippets />} />
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+          </Route>
 
-          <Route path="*" element={<NotFound />} />
-        </Route>
+          <Route path="/login" element={<AuthPage />} />
+          <Route path="/register" element={<AuthPage />} />
 
-      </Routes>
-    </Router>
+          <Route
+            element={
+              <ProtectedRoute>
+                <Layout />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/logs" element={<Logs />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/privacy-policy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/licensing" element={<Licensing />} />
+            <Route path="/tracks" element={<Languages />} />
+            <Route path="/tracks/web" element={<WebDev />} />
+            <Route path="/tracks/app" element={<AppDev />} />
+            <Route path="/tracks/data" element={<DataScience />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/ecosystem" element={<Ecosystem />} />
+            <Route path="/roadmap" element={<Roadmap />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/glossary" element={<Glossary />} />
+            <Route path="/snippets" element={<Snippets />} />
+
+            <Route path="*" element={<NotFound />} />
+          </Route>
+
+        </Routes>
+      </Router>
+    </CJLoaderProvider>
   );
 }
 

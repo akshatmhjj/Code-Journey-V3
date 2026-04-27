@@ -10,8 +10,8 @@ function useTheme(){const[T,setT]=useState(getT);useEffect(()=>{const iv=setInte
 /* SYNTAX HIGHLIGHT */
 function hl(line){
   let s=line.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-  s=s.replace(/(\/\/[^\n]*)/g,'<span style="color:#6a9955;font-style:italic">$1</span>');
-  s=s.replace(/(<!--.*?-->)/g,'<span style="color:#6a9955;font-style:italic">$1</span>');
+  s=s.replace(/(\/\/[^\n]*)/g,'<span>$1</span>');
+  s=s.replace(/(<!--.*?-->)/g,'<span>$1</span>');
   s=s.replace(/("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|`(?:[^`\\]|\\.)*`)/g,'<span style="color:#ce9178">$1</span>');
   s=s.replace(/\b(function|return|const|let|var|if|else|for|while|async|await|import|export|from|default|class|new|this|typeof|interface|type|extends|Promise|void|boolean|string|number)\b/g,'<span style="color:#c792ea">$1</span>');
   s=s.replace(/\b(\d+\.?\d*)\b/g,'<span style="color:#f78c6c">$1</span>');
@@ -114,8 +114,8 @@ const DomTree=({T})=>(
     <line x1="360" y1="104" x2="270" y2="130" stroke={T.b2} strokeWidth="1"/>
     <line x1="360" y1="104" x2="360" y2="130" stroke={T.b2} strokeWidth="1"/>
     <line x1="360" y1="104" x2="450" y2="130" stroke={T.b2} strokeWidth="1"/>
-    {[["&lt;nav&gt;",220,"#22c55e"],["&lt;main&gt;",310,"#22c55e"],["&lt;footer&gt;",400,"#22c55e"]].map(([txt,x,col])=>(
-      <g key={txt}><rect x={x-40} y="130" width="90" height="24" rx="4" fill={col+"0e"} stroke={col+"44"} strokeWidth="1"/><text x={x} y="146" textAnchor="middle" fill={col} fontSize="10" fontFamily="JetBrains Mono">{txt}</text></g>
+    {[["&lt;nav&gt;",220,"#22c55e"],["&lt;main&gt;",310,"#22c55e"],["&lt;foot&gt;",400,"#22c55e"]].map(([txt,x,col])=>(
+      <g key={txt}><rect x={x-40} y="130" width="80" height="24" rx="4" fill={col+"0e"} stroke={col+"44"} strokeWidth="1"/><text x={x} y="146" textAnchor="middle" fill={col} fontSize="10" fontFamily="JetBrains Mono">{txt}</text></g>
     ))}
     {/* main children */}
     <line x1="360" y1="154" x2="310" y2="175" stroke={T.b2} strokeWidth="1"/>
@@ -179,11 +179,11 @@ const ComponentDiagram=({T})=>(
     {[["&lt;Header/&gt;",50,"#f97316"],["&lt;Feed/&gt;",190,"#22c55e"],["&lt;Sidebar/&gt;",330,"#a78bfa"]].map(([n,x,c])=>(
       <g key={n}><rect x={x} y="76" width="100" height="26" rx="5" fill={c+"14"} stroke={c+"44"} strokeWidth="1.5"/><text x={x+50} y="93" textAnchor="middle" fill={c} fontSize="10" fontFamily="JetBrains Mono" fontWeight="700">{n}</text></g>
     ))}
-    <line x1="100" y1="102" x2="60" y2="126" stroke={T.b2} strokeWidth="1"/>
-    <line x1="100" y1="102" x2="140" y2="126" stroke={T.b2} strokeWidth="1"/>
+    {/* <line x1="100" y1="102" x2="60" y2="126" stroke={T.b2} strokeWidth="1"/>
+    <line x1="100" y1="102" x2="140" y2="126" stroke={T.b2} strokeWidth="1"/> */}
     <line x1="240" y1="102" x2="205" y2="126" stroke={T.b2} strokeWidth="1"/>
     <line x1="240" y1="102" x2="275" y2="126" stroke={T.b2} strokeWidth="1"/>
-    {[["&lt;Logo/&gt;",20],["&lt;Nav/&gt;",100],["&lt;Post/&gt;",165],["&lt;Post/&gt;",245]].map(([n,x])=>(
+    {[["&lt;Post/&gt;",165],["&lt;Post/&gt;",245]].map(([n,x])=>(
       <g key={x}><rect x={x} y="126" width="72" height="22" rx="4" fill={T.b1} stroke={T.b2} strokeWidth="1"/><text x={x+36} y="141" textAnchor="middle" fill={T.t3} fontSize="9" fontFamily="JetBrains Mono">{n}</text></g>
     ))}
     <text x="240" y="170" textAnchor="middle" fill={T.t3} fontSize="9.5" fontFamily="JetBrains Mono">Each box is independent - change one without breaking others</text>

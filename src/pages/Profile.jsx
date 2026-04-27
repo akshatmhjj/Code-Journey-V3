@@ -12,6 +12,7 @@ import {
   AlertTriangle, Flag,
 } from "lucide-react";
 import { supabase } from "../lib/supabase";
+import CJLoader from "../components/Cjloader";
 
 /* ─── Mock alert (replace with real useAlert when wired) ───── */
 const useAlert = () => ({ showAlert: (m, t) => console.log(`[${t}] ${m}`) });
@@ -595,17 +596,14 @@ export default function Profile() {
   /* ═══════════════════════════════════════════════════════
      LOADING / NO PROFILE
   ═══════════════════════════════════════════════════════ */
-  if (loading || actionLoading) return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: T.shell, gap: 14 }}>
-      <FontLink />
-      <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }}>
-        <Loader2 size={36} color={T.accent} />
-      </motion.div>
-      <p style={{ fontFamily: "'Syne',sans-serif", color: T.t3, fontSize: 14 }}>
-        {loading ? "Loading your profile…" : "Processing…"}
-      </p>
-    </div>
-  );
+  if (loading || actionLoading) {
+    return (
+      <CJLoader
+        message={loading ? "Loading your profile…" : "Processing…"}
+        minTime={600}
+      />
+    );
+  }
   if (!profile) return (
     <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: T.shell }}>
       <FontLink /><p style={{ fontFamily: "'Syne',sans-serif", color: T.t2 }}>No profile found.</p>

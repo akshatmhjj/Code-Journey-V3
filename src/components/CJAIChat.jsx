@@ -551,7 +551,7 @@ export default function CJAIChat({ isLoggedIn = false }) {
 
                         {/* ── MESSAGES ── */}
                         <div className="cjai-scroll" style={{
-                            flex: 1, overflowY: "auto",
+                            flex: 1, overflowY: "auto", overscrollBehavior: "contain",
                             padding: "14px 14px 8px",
                             display: "flex", flexDirection: "column", gap: 12,
                         }}>

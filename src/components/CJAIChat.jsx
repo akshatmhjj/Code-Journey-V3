@@ -617,7 +617,7 @@ export default function CJAIChat({ isLoggedIn = false }) {
                                             <div style={{ minWidth: 0 }}>
                                                 {formatMessage(msg.content, T)}
                                             </div>
-                                        )}
+                                        )}z
                                     </div>
                                 </div>
                             ))}
@@ -761,7 +761,7 @@ export default function CJAIChat({ isLoggedIn = false }) {
                     border: "none", cursor: "pointer",
                     background: open
                         ? T.dark ? "rgba(20,18,40,0.95)" : "rgba(255,255,255,0.95)"
-                        : "linear-gradient(135deg,#7c6ee0,#5eead4)",
+                        : "linear-gradient(135deg, #ff3b3b, #1a0000)",
                     boxShadow: open
                         ? `0 4px 20px rgba(0,0,0,0.4), 0 0 0 1px ${T.acc}44`
                         : "0 4px 24px rgba(124,110,224,0.55)",

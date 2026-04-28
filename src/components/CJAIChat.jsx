@@ -364,6 +364,31 @@ export default function CJAIChat({ isLoggedIn = false }) {
         if (open) setTimeout(() => inputRef.current?.focus(), 180);
     }, [open]);
 
+    const typeWriter = (fullText, id) => {
+        let index = 0;
+
+        setMessages(prev => [
+            ...prev,
+            { id, role: "assistant", content: "" } 
+        ]);
+
+        const interval = setInterval(() => {
+            index++;
+
+            setMessages(prev =>
+                prev.map(msg =>
+                    msg.id === id
+                        ? { ...msg, content: fullText.slice(0, index) }
+                        : msg
+                )
+            );
+
+            if (index >= fullText.length) {
+                clearInterval(interval);
+            }
+        }, 12); 
+    };
+
     const sendMessage = useCallback(async (text) => {
         const trimmed = (text || input).trim();
         if (!trimmed || loading) return;
@@ -383,7 +408,8 @@ export default function CJAIChat({ isLoggedIn = false }) {
             // Only send last 12 messages to stay within context limits
             const context = newMessages.slice(-12);
             const reply = await askGemini(context);
-            setMessages(prev => [...prev, { id: ++idRef.current, role: "assistant", content: reply }]);
+            const newId = ++idRef.current;
+            typeWriter(reply, newId);
         } catch (err) {
             setError(err.message || "Something went wrong. Try again.");
         } finally {

@@ -514,7 +514,7 @@ export default function CJAIChat({ isLoggedIn = false }) {
                                         padding: "0px 4x", borderRadius: 100,
                                         background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.3)",
                                     }}>
-                                        <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 7, color: "#22c55e", fontWeight: 700 }}>ONLINE</span>
+                                        {/* <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 7, color: "#22c55e", fontWeight: 700 }}>ONLINE</span> */}
                                     </div>
                                 </div>
                                 <p style={{ fontFamily: "'Lora',serif", fontStyle: "italic", fontSize: 11, color: T.t3, margin: 0 }}>

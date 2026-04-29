@@ -482,7 +482,7 @@ const LangPanel = ({ lang, trackColor, T, onClose, isMobile }) => (
     <div style={{ background: T.surface, border: `1px solid ${lang.color}33`, borderRadius: 20, overflow: "hidden", boxShadow: `0 24px 60px rgba(0,0,0,0.5),0 0 0 1px ${lang.color}22` }}>
       {/* Panel header */}
       <div style={{ background: `linear-gradient(135deg,${lang.color}14 0%,transparent 100%)`, borderBottom: `1px solid ${lang.color}22`, padding: "28px 28px 24px", position: "relative" }}>
-        <button onClick={onClose} style={{ position: "absolute", top: 16, right: 16, width: 28, height: 28, borderRadius: "50%", background: T.hover, border: `1px solid ${T.b1}`, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", color: T.t2, fontSize: 16, lineHeight: 1 }}>×</button>
+        <button onClick={onClose} style={{ position: "absolute", top: 10, right: 10, width: 24, height: 24, borderRadius: "50%", background: T.hover, border: `1px solid ${T.b1}`, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", color: T.t2, fontSize: 16, lineHeight: 1 }}>×</button>
 
         <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 14, flexWrap: "wrap" }}>
           <div style={{ width: 52, height: 52, borderRadius: 14, background: lang.bg, border: `1px solid ${lang.color}44`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 15, fontWeight: 700, color: lang.color, fontFamily: "'JetBrains Mono',monospace", flexShrink: 0 }}>
@@ -559,7 +559,7 @@ const LangPanel = ({ lang, trackColor, T, onClose, isMobile }) => (
       </div>
 
       {/* CTA BUTTON - ALWAYS FULL WIDTH */}
-      <div style={{ padding: "0 20px 20px" }}>
+      {/* <div style={{ padding: "0 20px 20px" }}>
         <a
           href="/register"
           style={{
@@ -581,7 +581,7 @@ const LangPanel = ({ lang, trackColor, T, onClose, isMobile }) => (
           <Play size={14} />
           Start {lang.name} Exercises
         </a>
-      </div>
+      </div> */}
     </div>
   </motion.div>
 );

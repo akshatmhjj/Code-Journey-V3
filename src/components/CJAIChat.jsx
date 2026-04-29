@@ -1,24 +1,3 @@
-/* CJAIChat.jsx — Code Journey AI Assistant
- *
- * A floating popup chatbot powered by Google Gemini 2.5 Flash.
- * - Login-gated: only shows for authenticated users
- * - Text-selection feature: highlight any text on page → "Ask CJ AI" tooltip
- * - CJ-only system prompt: refuses off-topic questions politely
- * - Markdown-style response formatting (bold, code, lists)
- * - Responsive: full-height on mobile, popup on desktop
- * - Theme-aware: reads localStorage["cj-theme"]
- *
- * SETUP:
- *   1. Get a free Gemini API key from https://aistudio.google.com
- *   2. Add VITE_GEMINI_API_KEY=your_key to your .env file
- *   3. Wrap your App with <CJAIChatProvider> (see bottom of file)
- *   4. Users must be logged in (pass isLoggedIn prop)
- *
- * MODEL: gemini-2.5-flash
- *   Free tier: 10 RPM, 250 requests/day
- *   Paid: $0.30/million input tokens — extremely affordable to scale
- */
-
 import React, {
     useState, useEffect, useRef, useCallback, createContext, useContext,
 } from "react";
@@ -467,12 +446,13 @@ export default function CJAIChat({ isLoggedIn = false }) {
         /* Mobile full-screen */
         @media (max-width: 480px) {
           .cjai-window {
-            bottom: 0 !important;
-            right: 0  !important;
-            left: 0   !important;
-            width: 100vw  !important;
-            height: 100dvh !important;
-            border-radius: 0 !important;
+            bottom: 82px !important;
+            right: 12px  !important;
+            left: auto   !important;
+            width: calc(100vw - 80px) !important;
+            height: 72vh  !important;
+            max-height: 520px !important;
+            border-radius: 16px !important;
           }
         }
       `}</style>
@@ -796,72 +776,3 @@ export default function CJAIChat({ isLoggedIn = false }) {
         </>
     );
 }
-
-/*
- * ══════════════════════════════════════════════════════════════
- * HOW TO ADD THIS ACROSS THE WHOLE WEBSITE
- * ══════════════════════════════════════════════════════════════
- *
- * 1. CREATE .env FILE in project root:
- *
- *    VITE_GEMINI_API_KEY=your_api_key_here
- *
- *    Get your key free at: https://aistudio.google.com/apikey
- *    No credit card needed for the free tier.
- *
- * ──────────────────────────────────────────────────────────────
- *
- * 2. ADD TO YOUR App.jsx (or Layout.jsx):
- *
- *    import CJAIChat from "./components/CJAIChat";
- *
- *    // Inside your router/layout, after <Header /> and before </BrowserRouter>:
- *    function App() {
- *      const [user, setUser] = useState(null);
- *
- *      useEffect(() => {
- *        supabase.auth.getUser().then(({ data }) => setUser(data.user));
- *        supabase.auth.onAuthStateChange((_, session) => setUser(session?.user ?? null));
- *      }, []);
- *
- *      return (
- *        <BrowserRouter>
- *          <Header />
- *          <Routes>...</Routes>
- *          <Footer />
- *          <CJAIChat isLoggedIn={!!user} />   ← add this once, works everywhere
- *        </BrowserRouter>
- *      );
- *    }
- *
- * ──────────────────────────────────────────────────────────────
- *
- * 3. SECURITY:
- *    - API key is in .env and never committed to git
- *    - Add VITE_GEMINI_API_KEY to your .gitignore: already covered by .env
- *    - The system prompt blocks off-topic requests at the AI level
- *    - Only renders for logged-in users (isLoggedIn check)
- *    - For production: proxy requests through a Supabase Edge Function
- *      to keep the API key fully server-side (see below)
- *
- * ──────────────────────────────────────────────────────────────
- *
- * 4. SUPABASE EDGE FUNCTION (optional but recommended for production):
- *
- *    // supabase/functions/cj-ai/index.ts
- *    import { serve } from "https://deno.land/std/http/server.ts";
- *
- *    serve(async (req) => {
- *      const { messages } = await req.json();
- *      const res = await fetch(
- *        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${Deno.env.get("GEMINI_API_KEY")}`,
- *        { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ contents: messages }) }
- *      );
- *      const data = await res.json();
- *      return new Response(JSON.stringify(data), { headers: { "Content-Type": "application/json" } });
- *    });
- *
- *    Then in CJAIChat, call your edge function URL instead of Gemini directly.
- *
- * ══════════════════════════════════════════════════════════════
- */

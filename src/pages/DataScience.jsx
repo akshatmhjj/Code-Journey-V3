@@ -279,67 +279,35 @@ export default function DataScience() {
                 { k: "Jupyter Notebooks", v: ".ipynb files. Mix code, output, and text. The standard for exploratory analysis and sharing results." },
                 { k: "Type Hints", v: "def process(df: pd.DataFrame) -> pd.Series: - hints don't enforce types but make code readable and IDE-friendly." },
               ]} />
-              <CodeWin accent="#4ade80" lang="python" T={T} title="Python - data structures, comprehensions, functions, file I/O" code={`# Python for data science - core patterns
+              <CodeWin accent="#4ade80" lang="python" T={T} title="Python - basics to data thinking" code={`# 1. Variables
+name = "Alex"
+age = 21
 
-# LIST COMPREHENSIONS - the most useful Python feature for data
-sales = [120, 85, 200, 165, 300, 245, 180, 95]
+# 2. List
+sales = [120, 200, 150]
 
-# Filter: only months above target
-good_months = [s for s in sales if s > 150]           # [200, 165, 300, 245, 180]
+# 3. Loop
+for s in sales:
+    print(s)
 
-# Transform: convert to thousands
-in_thousands = [round(s / 1000, 2) for s in sales]
+# 4. Function
+def double(x):
+    return x * 2
 
-# Combine filter + transform
-high_pct = [s / max(sales) * 100 for s in sales if s > 150]
+print(double(5))
 
-# FUNCTIONS - reusable logic
-def growth_rate(current: float, previous: float) -> float:
-    """Calculate month-over-month growth as a percentage."""
-    if previous == 0:
-        return 0.0
-    return ((current - previous) / previous) * 100
+# 5. List comprehension (important)
+high_sales = [s for s in sales if s > 150]
 
-# Apply to pairs of months
-changes = [growth_rate(sales[i], sales[i-1]) for i in range(1, len(sales))]
-print([f"{c:.1f}%" for c in changes])   # ['-29.2%', '135.3%', '-17.5%', ...]
+# 6. Dictionary
+user = {"name": "Alex", "age": 21}
 
-# DICTIONARIES - key-value, great for structured data
-monthly = {
-    'Jan': 120, 'Feb': 85, 'Mar': 200,
-    'Apr': 165, 'May': 300, 'Jun': 245,
-}
+# 7. Real Example
+total = sum(sales)
+avg = total / len(sales)
 
-# Dict comprehension - transform all values
-monthly_pct = {month: f"{val/sum(monthly.values())*100:.1f}%" 
-               for month, val in monthly.items()}
-
-# READING FILES - always use 'with' to auto-close
-import csv
-
-with open('sales.csv', 'r', newline='') as f:
-    reader = csv.DictReader(f)
-    rows = list(reader)             # list of dicts, one per row
-
-# SORTING - sorted() returns new list, .sort() mutates
-top_months = sorted(monthly.items(), key=lambda x: x[1], reverse=True)[:3]
-# [('May', 300), ('Jun', 245), ('Mar', 200)]
-
-# ENUMERATE - get index AND value
-for i, (month, val) in enumerate(monthly.items(), start=1):
-    print(f"  {i:2d}. {month}: {val:,}")
-
-# ZIP - iterate two lists together
-months = list(monthly.keys())
-values = list(monthly.values())
-for month, val in zip(months, values):
-    print(f"{month}: {val}")
-
-# GENERATORS - memory-efficient for huge datasets
-def process_large_file(filepath: str):
-    with open(filepath) as f:
-        for line in f:                   # reads one line at a time
-            yield line.strip().split(',')   # doesn't load entire file in RAM`} />
+print("Total:", total)
+print("Average:", avg)`} />
               <ResourceRow T={T} links={[
                 { label: "Python Official Tutorial", href: "https://docs.python.org/3/tutorial", type: "doc" },
                 { label: "Kaggle Learn Python", href: "https://www.kaggle.com/learn/python", type: "doc" },
@@ -368,73 +336,34 @@ def process_large_file(filepath: str):
                 { k: "apply() / map()", v: "df['name'].apply(str.upper) - apply any function to a column. .map() for Series, .apply() for row/column-level." },
                 { k: "pd.to_datetime()", v: "Convert string dates to datetime objects. Then df['date'].dt.month, dt.year, dt.day_name() give time features." },
               ]} />
-              <CodeWin accent="#60a5fa" lang="python" T={T} title="NumPy & Pandas - the complete EDA workflow" code={`import numpy as np
-import pandas as pd
+              <CodeWin accent="#60a5fa" lang="python" T={T} title="Pandas - from basics to usage" code={`import pandas as pd
 
-# ─── NUMPY - fast array operations ─────────────────────────
-arr = np.array([14.2, 18.5, 22.1, 9.8, 30.4, 25.6])
+# 1. Create DataFrame
+data = {
+    "name": ["A", "B", "C"],
+    "sales": [100, 200, 150]
+}
 
-# Operations apply to every element - no loops needed
-arr_tax   = arr * 1.08                        # multiply all by 1.08
-arr_above = arr[arr > 20]                     # filter: [22.1, 30.4, 25.6]
-arr_norm  = (arr - arr.mean()) / arr.std()    # standardise (z-score)
+df = pd.DataFrame(data)
 
-print(f"Mean: {arr.mean():.2f}, Std: {arr.std():.2f}, Max: {arr.max():.2f}")
+# 2. View data
+print(df.head())
 
-# ─── PANDAS - the data workflow ─────────────────────────────
-df = pd.read_csv('sales.csv', parse_dates=['date'])
+# 3. Select column
+print(df["sales"])
 
-# Step 1: Understand the data
-print(df.shape)           # (rows, cols)
-print(df.dtypes)          # data type of each column
-print(df.isnull().sum())  # missing values per column
-print(df.describe())      # min, max, mean, std for numeric columns
-print(df['category'].value_counts())  # most common categories
+# 4. Filter
+high = df[df["sales"] > 150]
 
-# Step 2: Clean - handle missing values
-df['revenue']  = df['revenue'].fillna(0)
-df['category'] = df['category'].fillna('Unknown')
-df = df.dropna(subset=['customer_id'])  # drop rows missing a critical column
+# 5. Add new column
+df["double_sales"] = df["sales"] * 2
 
-# Step 3: Transform - add useful columns
-df['month']        = df['date'].dt.to_period('M')  # 2026-03
-df['profit_margin']= (df['profit'] / df['revenue'] * 100).round(2)
-df['is_high_value']= df['revenue'] > df['revenue'].quantile(0.9)
+# 6. Grouping (basic idea)
+print(df["sales"].mean())
 
-# Step 4: Aggregate - answer business questions
-# Q: What is total revenue and average margin by category?
-by_category = (
-    df.groupby('category')
-    .agg(
-        total_revenue = ('revenue',       'sum'),
-        avg_margin    = ('profit_margin', 'mean'),
-        order_count   = ('order_id',      'count'),
-    )
-    .round(2)
-    .sort_values('total_revenue', ascending=False)
-)
-print(by_category.head(10))
-
-# Step 5: Combine data with merge (SQL JOIN equivalent)
-customers = pd.read_csv('customers.csv')
-df_joined = pd.merge(
-    df, customers,
-    on='customer_id',
-    how='left',           # keep all orders even if customer data is missing
-)
-
-# Step 6: Pivot table - like Excel pivot
-pivot = df.pivot_table(
-    values='revenue',
-    index='month',
-    columns='category',
-    aggfunc='sum',
-    fill_value=0,
-)
-
-# Step 7: Export results
-by_category.to_csv('category_summary.csv')
-pivot.to_excel('monthly_pivot.xlsx', sheet_name='Revenue')`} />
+# 7. Real Example
+total_sales = df["sales"].sum()
+print("Total:", total_sales)`} />
               <ResourceRow T={T} links={[
                 { label: "Pandas Docs", href: "https://pandas.pydata.org/docs", type: "doc" },
                 { label: "Kaggle Learn Pandas", href: "https://www.kaggle.com/learn/pandas", type: "doc" },
@@ -463,77 +392,26 @@ pivot.to_excel('monthly_pivot.xlsx', sheet_name='Revenue')`} />
                 { k: "Styling", v: "plt.style.use('dark_background'). seaborn.set_theme(style='whitegrid'). Always label axes and add titles." },
                 { k: "Plotly (interactive)", v: "px.bar(df, x='month', y='revenue', color='category') - hover-over data. For dashboards and presentations." },
               ]} />
-              <CodeWin accent="#f472b6" lang="python" T={T} title="Matplotlib & Seaborn - the complete charting workflow" code={`import matplotlib.pyplot as plt
-import seaborn as sns
-import pandas as pd
-import numpy as np
+              <CodeWin accent="#f472b6" lang="python" T={T} title="Matplotlib - simple charts" code={`import matplotlib.pyplot as plt
 
-# Set a clean visual theme
-sns.set_theme(style='darkgrid', palette='muted', font_scale=1.1)
+# 1. Data
+months = ["Jan", "Feb", "Mar"]
+sales = [100, 200, 150]
 
-# ─── FIGURE WITH MULTIPLE SUBPLOTS ────────────────────────
-fig, axes = plt.subplots(2, 2, figsize=(14, 10))
-fig.suptitle('Sales Dashboard - Q1 2026', fontsize=16, fontweight='bold', y=1.02)
+# 2. Line chart
+plt.plot(months, sales)
 
-# 1. BAR CHART - revenue by category
-category_rev = df.groupby('category')['revenue'].sum().sort_values()
-axes[0, 0].barh(category_rev.index, category_rev.values, color='#f472b6', alpha=0.85)
-axes[0, 0].set_title('Revenue by Category')
-axes[0, 0].set_xlabel('Total Revenue ($)')
+# 3. Labels
+plt.title("Sales Over Time")
+plt.xlabel("Month")
+plt.ylabel("Sales")
 
-              # 2. LINE CHART - monthly trend with confidence band
-              monthly = df.groupby('month')['revenue'].agg(['mean', 'std']).reset_index()
-              axes[0, 1].plot(monthly['month'], monthly['mean'], 'o-', color='#60a5fa', linewidth=2)
-              axes[0, 1].fill_between(
-              monthly['month'],
-              monthly['mean'] - monthly['std'],
-              monthly['mean'] + monthly['std'],
-              alpha=0.2, color='#60a5fa'               # shaded confidence interval
-              )
-              axes[0, 1].set_title('Monthly Revenue Trend')
-              axes[0, 1].tick_params(axis='x', rotation=45)
+# 4. Show chart
+plt.show()
 
-              # 3. SCATTER PLOT - revenue vs marketing spend
-              axes[1, 0].scatter(
-              df['marketing_spend'], df['revenue'],
-              c=df['profit_margin'], cmap='RdYlGn',    # colour by profit margin
-              alpha=0.6, edgecolors='none', s=30
-              )
-              axes[1, 0].set_title('Revenue vs Marketing Spend')
-              axes[1, 0].set_xlabel('Marketing Spend ($)')
-              axes[1, 0].set_ylabel('Revenue ($)')
-
-              # 4. CORRELATION HEATMAP - which variables move together?
-              numeric_cols = df.select_dtypes(include=np.number)
-              corr = numeric_cols.corr()
-              sns.heatmap(
-              corr, ax=axes[1, 1],
-              annot=True, fmt='.2f',           # show correlation coefficient in each cell
-              cmap='coolwarm', center=0,       # red = positive, blue = negative
-              square=True, linewidths=0.5
-              )
-              axes[1, 1].set_title('Feature Correlations')
-
-              plt.tight_layout()
-              plt.savefig('dashboard.png', dpi=150, bbox_inches='tight')
-              plt.show()
-
-              # ─── SEABORN - statistical charts in one line ──────────────
-              # Distribution comparison across categories
-              fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
-
-              # Box plot - outliers visible at a glance
-              sns.boxplot(data=df, x='category', y='revenue', ax=ax1, palette='Set2')
-              ax1.set_title('Revenue Distribution by Category')
-              ax1.tick_params(axis='x', rotation=30)
-
-              # Violin plot - shows the full distribution shape
-              sns.violinplot(data=df, x='region', y='profit_margin', ax=ax2, inner='box', palette='muted')
-              ax2.set_title('Profit Margin by Region')
-              ax2.axhline(0, color='red', linestyle='--', alpha=0.5)  # zero-line reference
-
-              plt.tight_layout()
-plt.savefig('distributions.png', dpi=150)`}/>
+# 5. Bar chart
+plt.bar(months, sales)
+plt.show()`} />
               <ResourceRow T={T} links={[
                 { label: "Matplotlib Gallery", href: "https://matplotlib.org/stable/gallery", type: "doc" },
                 { label: "Seaborn Tutorial", href: "https://seaborn.pydata.org/tutorial", type: "doc" },
@@ -560,100 +438,33 @@ plt.savefig('distributions.png', dpi=150)`}/>
                 { k: "CASE WHEN", v: "CASE WHEN score >= 90 THEN 'A' WHEN score >= 80 THEN 'B' ELSE 'C' END - conditional column values" },
                 { k: "NULL handling", v: "COALESCE(value, 0) returns first non-null. IS NULL / IS NOT NULL for filtering. NULLIF(a, b) returns null if a=b." },
               ]} />
-              <CodeWin accent="#a78bfa" lang="python" T={T} title="SQL - JOINs, CTEs, window functions, real analytical query" code={`-- ─── FOUNDATION: JOIN multiple tables ──────────────────────
-SELECT
-    c.name          AS customer_name,
-    c.city,
-    c.segment,
-    COUNT(o.id)     AS total_orders,
-    SUM(o.amount)   AS lifetime_value,
-    AVG(o.amount)   AS avg_order_value,
-    MAX(o.date)     AS last_purchase
-FROM customers c
-LEFT JOIN orders o ON o.customer_id = c.id   -- LEFT keeps customers with 0 orders
-LEFT JOIN order_items oi ON oi.order_id = o.id
-WHERE o.status = 'completed'
-  AND o.date >= DATE_TRUNC('year', CURRENT_DATE)  -- this year only
-GROUP BY c.id, c.name, c.city, c.segment
-HAVING SUM(o.amount) > 500                    -- HAVING filters after GROUP BY
-ORDER BY lifetime_value DESC
-LIMIT 100;
+              <CodeWin accent="#a78bfa" lang="sql" T={T} title="SQL - basics to useful queries" code={`-- 1. Select all
+SELECT * FROM sales;
 
--- ─── CTE: break complex logic into named steps ────────────
-WITH monthly_revenue AS (
-    -- Step 1: aggregate by customer and month
-    SELECT
-        customer_id,
-        DATE_TRUNC('month', order_date)  AS month,
-        SUM(order_total)                 AS revenue
-    FROM orders
-    WHERE status = 'completed'
-    GROUP BY 1, 2
-),
-with_prev AS (
-    -- Step 2: add previous month using LAG window function
-    SELECT
-        customer_id,
-        month,
-        revenue,
-        LAG(revenue) OVER (
-            PARTITION BY customer_id    -- reset for each customer
-            ORDER BY month              -- look at previous month
-        ) AS prev_revenue
-    FROM monthly_revenue
-),
-with_growth AS (
-    -- Step 3: calculate growth rate
-    SELECT
-        customer_id,
-        month,
-        revenue,
-        ROUND(
-            (revenue - prev_revenue) / NULLIF(prev_revenue, 0) * 100, 1
-        ) AS mom_growth_pct            -- month-over-month growth %
-    FROM with_prev
-    WHERE prev_revenue IS NOT NULL     -- skip first month (no previous)
-)
--- Step 4: final output - top growing customers this month
-SELECT
-    c.name,
-    c.segment,
-    w.revenue,
-    w.mom_growth_pct
-FROM with_growth w
-JOIN customers c ON c.id = w.customer_id
-WHERE w.month = DATE_TRUNC('month', CURRENT_DATE)
-  AND w.mom_growth_pct > 0
-ORDER BY w.mom_growth_pct DESC
-LIMIT 20;
+-- 2. Select specific columns
+SELECT name, amount FROM sales;
 
--- ─── WINDOW FUNCTIONS - analytics without collapsing rows ──
-SELECT
-    order_id,
-    customer_id,
-    order_total,
-    -- Rank within each customer (1 = largest order)
-    RANK()        OVER (PARTITION BY customer_id ORDER BY order_total DESC) AS customer_rank,
-    -- Running total of all orders (cumulative)
-    SUM(order_total) OVER (ORDER BY order_date ROWS UNBOUNDED PRECEDING)   AS running_total,
-    -- Percentage of the customer's total this order represents
-    order_total / SUM(order_total) OVER (PARTITION BY customer_id) * 100   AS pct_of_customer_total,
-    -- Previous order amount for this customer
-    LAG(order_total) OVER (PARTITION BY customer_id ORDER BY order_date)    AS prev_order
-FROM orders
-WHERE status = 'completed';
+-- 3. Filter
+SELECT * FROM sales
+WHERE amount > 100;
 
--- ─── CASE WHEN - conditional columns ─────────────────────
-SELECT
-    customer_id,
-    CASE
-        WHEN lifetime_value >= 10000 THEN 'Platinum'
-        WHEN lifetime_value >= 5000  THEN 'Gold'
-        WHEN lifetime_value >= 1000  THEN 'Silver'
-        ELSE                              'Bronze'
-    END AS tier,
-    COALESCE(last_purchase_date, '2020-01-01') AS safe_last_purchase
-FROM customer_summary;`} />
+-- 4. Sort
+SELECT * FROM sales
+ORDER BY amount DESC;
+
+-- 5. Count
+SELECT COUNT(*) FROM sales;
+
+-- 6. Group
+SELECT category, SUM(amount)
+FROM sales
+GROUP BY category;
+
+-- 7. Real Example
+SELECT category, SUM(amount) AS total
+FROM sales
+GROUP BY category
+ORDER BY total DESC;`} />
               <ResourceRow T={T} links={[
                 { label: "DataLemur SQL", href: "https://datalemur.com", type: "doc" },
                 { label: "StrataScratch", href: "https://www.stratascratch.com", type: "doc" },
@@ -680,70 +491,29 @@ FROM customer_summary;`} />
                 { k: "Confidence Intervals", v: "'95% CI: [12.3, 18.7]' - we're 95% sure the true value is in this range. More informative than just the mean." },
                 { k: "A/B Testing", v: "Assign users randomly to control/treatment, measure the metric, run a t-test. Minimum sample size matters - calculate it first." },
               ]} />
-              <CodeWin accent="#38bdf8" lang="python" T={T} title="Statistics - descriptive stats, hypothesis testing, A/B test analysis" code={`import numpy as np
-import pandas as pd
-from scipy import stats
+              <CodeWin accent="#38bdf8" lang="python" T={T} title="Statistics - basic understanding" code={`import numpy as np
 
-# ─── DESCRIPTIVE STATISTICS ───────────────────────────────
-data = df['order_value']
+data = [10, 20, 30, 40, 50]
 
-print(f"Mean:     {data.mean():.2f}")
-print(f"Median:   {data.median():.2f}")
-print(f"Std Dev:  {data.std():.2f}")
-print(f"Skewness: {data.skew():.2f}")   # >0 = right tail, <0 = left tail
-print(f"Kurtosis: {data.kurtosis():.2f}") # >0 = heavy tails
+# 1. Mean
+print(np.mean(data))
 
-# Percentiles - robust to outliers
-p25, p50, p75 = data.quantile([0.25, 0.5, 0.75])
-iqr = p75 - p25
-print(f"IQR: {iqr:.2f} - the middle 50% of values span this range")
+# 2. Median
+print(np.median(data))
 
-# Detect outliers using 1.5 × IQR rule (Tukey fences)
-lower_fence = p25 - 1.5 * iqr
-upper_fence = p75 + 1.5 * iqr
-outliers = data[(data < lower_fence) | (data > upper_fence)]
-print(f"Outliers: {len(outliers)} ({len(outliers)/len(data)*100:.1f}%)")
+# 3. Standard deviation
+print(np.std(data))
 
-# ─── A/B TEST ANALYSIS ────────────────────────────────────
-# Scenario: Did changing the checkout button colour increase conversions?
-control   = df[df['variant'] == 'control']['converted']   # 0 or 1
-treatment = df[df['variant'] == 'treatment']['converted']
+# 4. Simple comparison
+group_a = [10, 12, 14]
+group_b = [20, 22, 24]
 
-# Conversion rates
-cr_control   = control.mean()
-cr_treatment = treatment.mean()
-lift = (cr_treatment - cr_control) / cr_control * 100
-print(f"Control:   {cr_control:.3f} ({cr_control*100:.1f}%)")
-print(f"Treatment: {cr_treatment:.3f} ({cr_treatment*100:.1f}%)")
-print(f"Lift: {lift:+.1f}%")
+print(np.mean(group_a))
+print(np.mean(group_b))
 
-# Statistical significance - two-proportion z-test
-from statsmodels.stats.proportion import proportions_ztest
-
-counts  = [treatment.sum(), control.sum()]
-nobs    = [len(treatment),  len(control)]
-z_stat, p_value = proportions_ztest(counts, nobs)
-
-print(f"\nZ-statistic: {z_stat:.3f}")
-print(f"P-value:     {p_value:.4f}")
-print(f"Significant: {'Yes ✓' if p_value < 0.05 else 'No ✗'} (α = 0.05)")
-
-# Confidence interval for the difference
-from statsmodels.stats.proportion import proportion_confint
-ci_low, ci_high = proportion_confint(treatment.sum(), len(treatment), alpha=0.05)
-print(f"95% CI for treatment: [{ci_low:.3f}, {ci_high:.3f}]")
-
-# ─── MINIMUM SAMPLE SIZE - calculate BEFORE running the test ─
-from statsmodels.stats.power import NormalIndPower
-
-analysis = NormalIndPower()
-n_per_group = analysis.solve_power(
-    effect_size = 0.1,     # smallest meaningful difference you care about
-    alpha       = 0.05,    # false positive rate (Type I error)
-    power       = 0.8,     # 80% chance of detecting a real effect (Type II)
-    ratio       = 1,       # equal group sizes
-)
-print(f"Need {int(n_per_group):,} users per group before concluding anything.")`} />
+# 5. Real Example
+if np.mean(group_b) > np.mean(group_a):
+    print("Group B performs better")`} />
               <ResourceRow T={T} links={[
                 { label: "StatQuest YouTube", href: "https://www.youtube.com/@statquest", type: "yt" },
                 { label: "Think Stats (free)", href: "https://greenteapress.com/thinkstats2", type: "doc" },
@@ -769,101 +539,26 @@ print(f"Need {int(n_per_group):,} users per group before concluding anything.")`
                 { k: "Cross-Validation", v: "Split data into 5 folds, train/test 5 times on different splits. The average score is much more reliable than one train/test split." },
                 { k: "GridSearchCV", v: "Automatically try all combinations of hyperparameters and return the best. Pass param_grid={'n_estimators':[100,200], 'max_depth':[3,5,7]}." },
               ]} />
-              <CodeWin accent="#f97316" lang="python" T={T} title="Machine Learning - full pipeline: preprocessing, training, evaluation, prediction" code={`import pandas as pd
+              <CodeWin accent="#f97316" lang="python" T={T} title="ML - simple prediction idea" code={`from sklearn.linear_model import LinearRegression
 import numpy as np
-from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
-from sklearn.preprocessing   import StandardScaler, OneHotEncoder
-from sklearn.compose         import ColumnTransformer
-from sklearn.pipeline        import Pipeline
-from sklearn.ensemble        import RandomForestClassifier, GradientBoostingClassifier
-from sklearn.metrics         import (classification_report, confusion_matrix,
-                                     roc_auc_score, RocCurveDisplay)
-import matplotlib.pyplot as plt
 
-# ─── PROBLEM: predict if a customer will churn ─────────────
-df = pd.read_csv('customers.csv')
+# 1. Data (features and labels)
+X = np.array([[1], [2], [3], [4]])
+y = np.array([2, 4, 6, 8])
 
-# 1. DEFINE FEATURES AND TARGET
-features = ['age', 'monthly_spend', 'months_active', 'support_tickets',
-            'last_login_days_ago', 'num_products', 'payment_type']
-target   = 'churned'    # 1 = left, 0 = stayed
+# 2. Model
+model = LinearRegression()
 
-X = df[features]
-y = df[target]
+# 3. Train
+model.fit(X, y)
 
-print(f"Class balance: {y.value_counts(normalize=True).round(3)}")
+# 4. Predict
+pred = model.predict([[5]])
 
-# 2. SPLIT - 80% train, 20% test. stratify keeps class balance in both sets
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42, stratify=y
-)
+print(pred)
 
-# 3. PREPROCESSING PIPELINE - automates feature transformations
-numeric_features     = ['age', 'monthly_spend', 'months_active',
-                         'support_tickets', 'last_login_days_ago', 'num_products']
-categorical_features = ['payment_type']
-
-preprocessor = ColumnTransformer([
-    ('num', StandardScaler(), numeric_features),          # normalise: mean=0, std=1
-    ('cat', OneHotEncoder(handle_unknown='ignore'),       # encode strings as 0/1
-             categorical_features),
-])
-
-# 4. FULL PIPELINE - preprocessing + model in one object
-model_pipeline = Pipeline([
-    ('preprocessor', preprocessor),
-    ('classifier',   RandomForestClassifier(
-        n_estimators=200,
-        class_weight='balanced',    # compensates for imbalanced classes
-        random_state=42,
-        n_jobs=-1,                  # use all CPU cores
-    )),
-])
-
-# 5. CROSS-VALIDATION - reliable estimate of real performance
-cv_scores = cross_val_score(model_pipeline, X_train, y_train,
-                             cv=5, scoring='roc_auc', n_jobs=-1)
-print(f"CV AUC: {cv_scores.mean():.3f} ± {cv_scores.std():.3f}")
-
-# 6. TRAIN on full training set, EVALUATE on held-out test set
-model_pipeline.fit(X_train, y_train)
-y_pred      = model_pipeline.predict(X_test)
-y_pred_prob = model_pipeline.predict_proba(X_test)[:, 1]
-
-print("\nClassification Report:")
-print(classification_report(y_test, y_pred,
-      target_names=['Retained', 'Churned']))
-
-auc = roc_auc_score(y_test, y_pred_prob)
-print(f"AUC-ROC: {auc:.3f}   (0.5 = random, 1.0 = perfect)")
-
-# 7. FEATURE IMPORTANCE - which features matter most?
-rf = model_pipeline.named_steps['classifier']
-feature_names = (numeric_features +
-                 model_pipeline.named_steps['preprocessor']
-                               .named_transformers_['cat']
-                               .get_feature_names_out(categorical_features).tolist())
-
-importance_df = (pd.DataFrame({'feature': feature_names,
-                                'importance': rf.feature_importances_})
-                   .sort_values('importance', ascending=False).head(10))
-print("\nTop 10 features:\n", importance_df.to_string(index=False))
-
-# 8. PREDICT on new customers
-new_customers = pd.DataFrame({
-    'age': [35, 22, 58],
-    'monthly_spend': [120, 45, 280],
-    'months_active': [8, 2, 36],
-    'support_tickets': [3, 0, 7],
-    'last_login_days_ago': [2, 30, 1],
-    'num_products': [3, 1, 5],
-    'payment_type': ['credit', 'paypal', 'credit'],
-})
-
-churn_proba = model_pipeline.predict_proba(new_customers)[:, 1]
-for i, prob in enumerate(churn_proba):
-    risk = 'HIGH' if prob > 0.7 else 'MEDIUM' if prob > 0.4 else 'LOW'
-    print(f"Customer {i+1}: {prob:.1%} churn probability - {risk} risk")`} />
+# 5. Real idea
+# model learned: y = 2x`} />
               <ResourceRow T={T} links={[
                 { label: "Scikit-learn User Guide", href: "https://scikit-learn.org/stable/user_guide.html", type: "doc" },
                 { label: "Kaggle Learn ML", href: "https://www.kaggle.com/learn/intro-to-machine-learning", type: "doc" },
@@ -890,84 +585,27 @@ for i, prob in enumerate(churn_proba):
                 { k: "Shiny", v: "Build interactive web dashboards entirely in R - sliders, dropdowns, reactive charts. No JavaScript needed." },
                 { k: "Bioconductor", v: "The R ecosystem for genomics and bioinformatics - 2,000+ packages for biological data analysis." },
               ]} />
-              <CodeWin accent="#f472b6" lang="python" T={T} title="R - tidyverse, ggplot2, statistical tests, linear models" code={`library(tidyverse)    # dplyr + ggplot2 + tidyr + readr + purrr + more
-library(lubridate)    # date/time manipulation
-library(broom)        # tidy model output
+              <CodeWin accent="#f472b6" lang="r" T={T} title="R - basics to data usage" code={`# 1. Vector
+data <- c(10, 20, 30)
 
-# ─── LOAD & CLEAN ─────────────────────────────────────────
-df <- read_csv("sales.csv") |>
-  mutate(
-    date     = ymd(date),
-    month    = floor_date(date, "month"),
-    quarter  = quarter(date, with_year = TRUE),
-    is_high  = amount > quantile(amount, 0.9)
-  ) |>
-  filter(!is.na(customer_id))            # remove rows with missing customer
+# 2. Mean
+mean(data)
 
-# ─── DPLYR - data manipulation ─────────────────────────────
-summary_df <- df |>
-  group_by(category, month) |>
-  summarise(
-    revenue    = sum(amount),
-    orders     = n(),
-    avg_order  = mean(amount),
-    top_cust   = first(customer_id, order_by = desc(amount)),
-    .groups = "drop"
-  ) |>
-  arrange(desc(revenue)) |>
-  mutate(
-    revenue_k   = revenue / 1000,
-    running_rev = cumsum(revenue)         # running total
-  )
-
-# ─── GGPLOT2 - publication-quality charts ──────────────────
-# Line chart with confidence band
-p1 <- df |>
-  group_by(month) |>
-  summarise(mean = mean(amount), sd = sd(amount)) |>
-  ggplot(aes(x = month, y = mean)) +
-  geom_ribbon(aes(ymin = mean - sd, ymax = mean + sd),
-              fill = "#f472b6", alpha = 0.15) +    # confidence band
-  geom_line(colour = "#f472b6", linewidth = 1.2) +
-  geom_point(colour = "#f472b6", size = 2) +
-  scale_y_continuous(labels = scales::dollar_format()) +
-  labs(title = "Monthly Average Order Value",
-       subtitle = "Shaded area = ±1 standard deviation",
-       x = NULL, y = "Avg Order ($)") +
-  theme_minimal(base_size = 13) +
-  theme(plot.title = element_text(face = "bold"))
-
-# Faceted bar chart - one panel per category
-p2 <- summary_df |>
-  ggplot(aes(x = month, y = revenue_k, fill = category)) +
-  geom_col(show.legend = FALSE) +
-  facet_wrap(~ category, scales = "free_y") +    # one chart per category
-  scale_fill_brewer(palette = "Set2") +
-  labs(title = "Revenue by Category", y = "Revenue ($K)", x = NULL) +
-  theme_bw()
-
-# Save high-resolution
-ggsave("dashboard.png", p1, width = 12, height = 6, dpi = 200)
-
-# ─── STATISTICAL TEST - is category difference significant? ─
-model <- aov(amount ~ category, data = df)  # one-way ANOVA
-summary(model)              # F-statistic and p-value
-
-# Post-hoc test: which pairs of categories differ?
-TukeyHSD(model) |> tidy() |> filter(adj.p.value < 0.05)
-
-# ─── LINEAR REGRESSION - what drives order value? ──────────
-lm_model <- lm(
-  amount ~ months_as_customer + num_orders + has_loyalty_card + category,
-  data = df
+# 3. Data frame
+df <- data.frame(
+  name = c("A", "B", "C"),
+  sales = c(100, 200, 150)
 )
 
-# tidy() gives clean coefficient table with p-values
-tidy(lm_model, conf.int = TRUE) |>
-  filter(p.value < 0.05) |>
-  arrange(desc(abs(estimate)))
+# 4. Filter
+df[df$sales > 150, ]
 
-glance(lm_model)  # R², adjusted R², AIC, BIC at a glance`} />
+# 5. Plot
+plot(df$sales)
+
+# 6. Real Example
+total <- sum(df$sales)
+print(total)`} />
               <ResourceRow T={T} links={[
                 { label: "R for Data Science", href: "https://r4ds.had.co.nz", type: "doc" },
                 { label: "ggplot2 docs", href: "https://ggplot2.tidyverse.org", type: "doc" },

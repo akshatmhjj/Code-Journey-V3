@@ -1,4 +1,6 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useEffect, useState } from "react";
+import { supabase } from "./lib/supabase";
 
 import Home from './pages/Home.jsx'
 import Profile from './pages/Profile.jsx'
@@ -14,6 +16,7 @@ import Snippets from './pages/Snippets.jsx'
 import Blog from './pages/Blog.jsx';
 import { FAQ, Privacy, Terms, Licensing } from "./pages/LegalPages";
 import { Careers, Ecosystem } from './pages/Career&Eco.jsx'
+import CJAIChat from "./components/CJAIChat";
 
 import Layout from './components/Layout.jsx'
 import AuthPage from './pages/Authpage.jsx'
@@ -22,10 +25,23 @@ import NotFound from './components/Notfound.jsx';
 import { CJLoaderProvider, CJPageLoader } from "./components/Cjloader";
 import ProtectedRoute from './components/ProtectedRoute';
 
-// import Editor from './pages/Editor.jsx'
-// import Exercises from './pages/Exersises.jsx'
-
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data.user);
+    });
+
+    const { data: listener } = supabase.auth.onAuthStateChange((_, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => {
+      listener.subscription.unsubscribe();
+    };
+  }, []);
+
   return (
     <CJLoaderProvider>
       <Router>
@@ -70,9 +86,12 @@ function App() {
           </Route>
 
         </Routes>
+
+        <CJAIChat isLoggedIn={!!user} />
+
       </Router>
     </CJLoaderProvider>
   );
 }
 
-export default App
+export default App;

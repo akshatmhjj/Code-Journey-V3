@@ -777,7 +777,7 @@ export default function Roadmap() {
                 Pick a stage. Practice your first line. That's it - the rest follows naturally.
               </p>
               <div style={{ display:"flex", gap:12, justifyContent:"center", flexWrap:"wrap" }}>
-                <a href="/register" style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"13px 28px", borderRadius:12, border:"none", background:T.accent, color:"#fff", fontFamily:"'Syne',sans-serif", fontWeight:800, fontSize:15, cursor:"pointer", textDecoration:"none", boxShadow:`0 0 36px ${T.accent}55`, transition:"all 0.18s", animation:"cjGlow 3s ease infinite" }}>
+                <a href="/tracks" style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"13px 28px", borderRadius:12, border:"none", background:T.accent, color:"#fff", fontFamily:"'Syne',sans-serif", fontWeight:800, fontSize:15, cursor:"pointer", textDecoration:"none", boxShadow:`0 0 36px ${T.accent}55`, transition:"all 0.18s", animation:"cjGlow 3s ease infinite" }}>
                   <Zap size={15} /> Start Free
                 </a>
                 <a href="/tracks" style={{ display:"inline-flex", alignItems:"center", gap:7, padding:"13px 22px", borderRadius:12, border:`1px solid ${T.b2}`, background:"transparent", color:T.t1, fontFamily:"'Syne',sans-serif", fontWeight:600, fontSize:15, cursor:"pointer", textDecoration:"none", transition:"all 0.18s" }}

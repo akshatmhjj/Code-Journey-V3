@@ -1058,7 +1058,7 @@ export default function About() {
               </p>
 
               <div style={{display:"flex",gap:14,justifyContent:"center",flexWrap:"wrap"}}>
-                <a href="/register"
+                <a href="/"
                   style={{
                     display:"inline-flex",alignItems:"center",gap:9,
                     padding:"15px 32px",borderRadius:13,border:"none",

@@ -860,7 +860,7 @@ export default function Home() {
                     <p style={{ fontFamily: "'Lora', serif", fontSize: 14.5,
                       color: T.t2, lineHeight: 1.7, marginBottom: 24 }}>{track.desc}</p>
 
-                    <a href="/register"
+                    {/* <a href="/register"
                       style={{ display: "inline-flex", alignItems: "center", gap: 7,
                         padding: "8px 16px", borderRadius: 9,
                         background: `${track.color}14`, border: `1px solid ${track.color}30`,
@@ -868,7 +868,7 @@ export default function Home() {
                         fontWeight: 700, fontSize: 13, textDecoration: "none",
                         transition: "all 0.16s", cursor: "pointer" }}>
                       Start Track <ArrowRight size={13} />
-                    </a>
+                    </a> */}
                   </div>
                 </Reveal>
               ))}

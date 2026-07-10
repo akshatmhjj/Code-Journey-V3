@@ -317,9 +317,9 @@ const CompanyDetail = ({ company, T }) => (
               </div>
             ))}
           </div>
-          <a href="/register" style={{ display:"flex",alignItems:"center",justifyContent:"center",gap:6,padding:"9px 16px",borderRadius:9,border:"none",background:company.color,color:"#fff",fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:13,cursor:"pointer",textDecoration:"none",transition:"opacity 0.18s" }} onMouseEnter={e=>e.currentTarget.style.opacity="0.85"} onMouseLeave={e=>e.currentTarget.style.opacity="1"}>
+          {/* <a href="/register" style={{ display:"flex",alignItems:"center",justifyContent:"center",gap:6,padding:"9px 16px",borderRadius:9,border:"none",background:company.color,color:"#fff",fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:13,cursor:"pointer",textDecoration:"none",transition:"opacity 0.18s" }} onMouseEnter={e=>e.currentTarget.style.opacity="0.85"} onMouseLeave={e=>e.currentTarget.style.opacity="1"}>
             <Target size={13} /> Start Prep
-          </a>
+          </a> */}
         </div>
       </div>
     </div>
@@ -517,7 +517,7 @@ export function Careers() {
               </h2>
               <p style={{ fontFamily:"'Lora',serif",fontStyle:"italic",fontSize:16.5,color:T.t2,lineHeight:1.8,marginBottom:34 }}>Start learning the exact stack your target company uses - inside Code Journey, for free.</p>
               <div style={{ display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap" }}>
-                <a href="/register" style={{ display:"inline-flex",alignItems:"center",gap:8,padding:"13px 28px",borderRadius:12,border:"none",background:T.gold,color:"#000",fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:15,cursor:"pointer",textDecoration:"none",boxShadow:`0 0 36px ${T.gold}50`,transition:"all 0.18s",animation:"cjGlow 3s ease infinite" }}>
+                <a href="/tracks" style={{ display:"inline-flex",alignItems:"center",gap:8,padding:"13px 28px",borderRadius:12,border:"none",background:T.gold,color:"#000",fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:15,cursor:"pointer",textDecoration:"none",boxShadow:`0 0 36px ${T.gold}50`,transition:"all 0.18s",animation:"cjGlow 3s ease infinite" }}>
                   <Zap size={15} /> Start Preparing Free
                 </a>
                 <a href="/tracks" style={{ display:"inline-flex",alignItems:"center",gap:7,padding:"13px 22px",borderRadius:12,border:`1px solid ${T.b2}`,background:"transparent",color:T.t1,fontFamily:"'Syne',sans-serif",fontWeight:600,fontSize:15,cursor:"pointer",textDecoration:"none",transition:"all 0.18s" }} onMouseEnter={e=>{e.currentTarget.style.background=T.hover}} onMouseLeave={e=>{e.currentTarget.style.background="transparent"}}>
@@ -871,9 +871,9 @@ export function Ecosystem() {
                         </div>
                       ))}
                     </div>
-                    <a href="/register" style={{ display:"flex",alignItems:"center",justifyContent:"center",gap:7,marginTop:18,padding:"10px",borderRadius:9,border:`1px solid ${item.color}44`,background:`${item.color}10`,color:item.color,fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:13,cursor:"pointer",textDecoration:"none",transition:"all 0.18s" }} onMouseEnter={e=>e.currentTarget.style.background=`${item.color}20`} onMouseLeave={e=>e.currentTarget.style.background=`${item.color}10`}>
+                    {/* <a href="/register" style={{ display:"flex",alignItems:"center",justifyContent:"center",gap:7,marginTop:18,padding:"10px",borderRadius:9,border:`1px solid ${item.color}44`,background:`${item.color}10`,color:item.color,fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:13,cursor:"pointer",textDecoration:"none",transition:"all 0.18s" }} onMouseEnter={e=>e.currentTarget.style.background=`${item.color}20`} onMouseLeave={e=>e.currentTarget.style.background=`${item.color}10`}>
                       Start this path <ArrowRight size={14} />
-                    </a>
+                    </a> */}
                   </div>
                 </Reveal>
               ))}

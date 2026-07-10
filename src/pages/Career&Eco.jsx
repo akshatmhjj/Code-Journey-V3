@@ -10,6 +10,7 @@
  */
 
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Briefcase, Code2, Brain, Trophy, Target, Zap, Star,
@@ -517,12 +518,12 @@ export function Careers() {
               </h2>
               <p style={{ fontFamily:"'Lora',serif",fontStyle:"italic",fontSize:16.5,color:T.t2,lineHeight:1.8,marginBottom:34 }}>Start learning the exact stack your target company uses - inside Code Journey, for free.</p>
               <div style={{ display:"flex",gap:12,justifyContent:"center",flexWrap:"wrap" }}>
-                <a href="/tracks" style={{ display:"inline-flex",alignItems:"center",gap:8,padding:"13px 28px",borderRadius:12,border:"none",background:T.gold,color:"#000",fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:15,cursor:"pointer",textDecoration:"none",boxShadow:`0 0 36px ${T.gold}50`,transition:"all 0.18s",animation:"cjGlow 3s ease infinite" }}>
+                <Link to="/tracks" style={{ display:"inline-flex",alignItems:"center",gap:8,padding:"13px 28px",borderRadius:12,border:"none",background:T.gold,color:"#000",fontFamily:"'Syne',sans-serif",fontWeight:800,fontSize:15,cursor:"pointer",textDecoration:"none",boxShadow:`0 0 36px ${T.gold}50`,transition:"all 0.18s",animation:"cjGlow 3s ease infinite" }}>
                   <Zap size={15} /> Start Preparing Free
-                </a>
-                <a href="/tracks" style={{ display:"inline-flex",alignItems:"center",gap:7,padding:"13px 22px",borderRadius:12,border:`1px solid ${T.b2}`,background:"transparent",color:T.t1,fontFamily:"'Syne',sans-serif",fontWeight:600,fontSize:15,cursor:"pointer",textDecoration:"none",transition:"all 0.18s" }} onMouseEnter={e=>{e.currentTarget.style.background=T.hover}} onMouseLeave={e=>{e.currentTarget.style.background="transparent"}}>
+                </Link>
+                <Link to="/tracks" style={{ display:"inline-flex",alignItems:"center",gap:7,padding:"13px 22px",borderRadius:12,border:`1px solid ${T.b2}`,background:"transparent",color:T.t1,fontFamily:"'Syne',sans-serif",fontWeight:600,fontSize:15,cursor:"pointer",textDecoration:"none",transition:"all 0.18s" }} onMouseEnter={e=>{e.currentTarget.style.background=T.hover}} onMouseLeave={e=>{e.currentTarget.style.background="transparent"}}>
                   Browse Languages <ArrowRight size={15}/>
-                </a>
+                </Link>
               </div>
             </div>
           </Reveal>

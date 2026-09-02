@@ -1,40 +1,37 @@
 import React, { useEffect, useState, useCallback } from "react";
-// import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-// import api from "../lib/api";
 import {
   User, Mail, LogOut, FileText, LayoutDashboard,
   StickyNote, Settings, Trash2, Loader2, ClipboardList,
   Menu, X, Home, Plus, Pencil, Check, ChevronRight,
   Palette, Moon, Sun, Sunset, Activity, TrendingUp,
   Calendar, Star, Zap, ArrowRight, Circle, CheckCircle2,
-  AlertTriangle, Flag,
+  AlertTriangle, Flag, Terminal, Hash, Layers, Command,
+  ChevronDown, ChevronUp, MoreHorizontal, Dot,
 } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import CJLoader from "../components/Cjloader";
 
-/* ─── Mock alert (replace with real useAlert when wired) ───── */
 const useAlert = () => ({ showAlert: (m, t) => console.log(`[${t}] ${m}`) });
 
-/* ══════════════════════════════════════════════════════════════
-   FONTS + GLOBAL KEYFRAMES
-══════════════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════════
+   GLOBAL FONTS - CONSISTENT ACROSS ENTIRE WEBSITE
+════════════════════════════════════════════════════════════════ */
 const FontLink = () => (
   <style>{`
-    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
-    *{box-sizing:border-box;}
-    @keyframes spin    { from{transform:rotate(0)} to{transform:rotate(360deg)} }
-    @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
-    @keyframes fadeUp  { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
-    @keyframes pulse   { 0%,100%{opacity:1} 50%{opacity:0.5} }
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
   `}</style>
 );
 
-/* ══════════════════════════════════════════════════════════════
-   THEME DEFINITIONS  (all 5 - cosmos default, light enabled,
-   others commented out in Settings to keep UI clean)
-══════════════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════════
+   THEME SYSTEM - MATCHES ENTIRE CODEJOURNEY APP
+════════════════════════════════════════════════════════════════ */
 const THEMES = {
   cosmos: {
     key: "cosmos", label: "Dark Cosmos", icon: Moon,
@@ -49,40 +46,40 @@ const THEMES = {
     sidebarBorder: "rgba(120,130,180,0.1)",
   },
   // void: {
-  //   key:"void", label:"Pure Void", icon:Moon,
-  //   description:"Pitch black minimal - maximum contrast",
-  //   shell:"#000000", deep:"#050507", mid:"#0a0a0f", surface:"#0f0f15",
-  //   panel:"#141419", hover:"#1a1a22", active:"#202030",
-  //   card:"#0f0f15", cardHov:"#161622",
-  //   t1:"#f0f0ff", t2:"#9090b8", t3:"#505070", t4:"#252540",
-  //   b1:"rgba(100,100,200,0.08)", b2:"rgba(100,100,200,0.14)", b3:"rgba(100,100,200,0.22)",
-  //   accent:"#8b7ff0", accentS:"rgba(139,127,240,0.15)",
-  //   teal:"#2dd4bf", green:"#34d399", red:"#fc8181", gold:"#fcd34d",
-  //   sidebarBorder:"rgba(100,100,200,0.1)",
+  //   key: "void", label: "Pure Void", icon: Moon,
+  //   description: "Pitch black minimal - maximum contrast",
+  //   shell: "#000000", deep: "#050507", mid: "#0a0a0f", surface: "#0f0f15",
+  //   panel: "#141419", hover: "#1a1a22", active: "#202030",
+  //   card: "#0f0f15", cardHov: "#161622",
+  //   t1: "#f0f0ff", t2: "#9090b8", t3: "#505070", t4: "#252540",
+  //   b1: "rgba(100,100,200,0.08)", b2: "rgba(100,100,200,0.14)", b3: "rgba(100,100,200,0.22)",
+  //   accent: "#8b7ff0", accentS: "rgba(139,127,240,0.15)",
+  //   teal: "#2dd4bf", green: "#34d399", red: "#fc8181", gold: "#fcd34d",
+  //   sidebarBorder: "rgba(100,100,200,0.1)",
   // },
   // aurora: {
-  //   key:"aurora", label:"Aurora", icon:Sunset,
-  //   description:"Deep teal night - northern lights inspired",
-  //   shell:"#040e0e", deep:"#071414", mid:"#0b1c1c", surface:"#102424",
-  //   panel:"#142a2a", hover:"#1a3333", active:"#1f3d3d",
-  //   card:"#102424", cardHov:"#162e2e",
-  //   t1:"#e0f5f5", t2:"#7ab8b8", t3:"#3d7878", t4:"#1e4444",
-  //   b1:"rgba(80,200,180,0.08)", b2:"rgba(80,200,180,0.15)", b3:"rgba(80,200,180,0.24)",
-  //   accent:"#2dd4bf", accentS:"rgba(45,212,191,0.15)",
-  //   teal:"#5eead4", green:"#4ade80", red:"#f87171", gold:"#fbbf24",
-  //   sidebarBorder:"rgba(80,200,180,0.12)",
+  //   key: "aurora", label: "Aurora", icon: Sunset,
+  //   description: "Deep teal night - northern lights inspired",
+  //   shell: "#040e0e", deep: "#071414", mid: "#0b1c1c", surface: "#102424",
+  //   panel: "#142a2a", hover: "#1a3333", active: "#1f3d3d",
+  //   card: "#102424", cardHov: "#162e2e",
+  //   t1: "#e0f5f5", t2: "#7ab8b8", t3: "#3d7878", t4: "#1e4444",
+  //   b1: "rgba(80,200,180,0.08)", b2: "rgba(80,200,180,0.15)", b3: "rgba(80,200,180,0.24)",
+  //   accent: "#2dd4bf", accentS: "rgba(45,212,191,0.15)",
+  //   teal: "#5eead4", green: "#4ade80", red: "#f87171", gold: "#fbbf24",
+  //   sidebarBorder: "rgba(80,200,180,0.12)",
   // },
   // nord: {
-  //   key:"nord", label:"Nord", icon:Moon,
-  //   description:"Arctic steel blue - calm and focused",
-  //   shell:"#1a1f2e", deep:"#1e2535", mid:"#232c40", surface:"#28334a",
-  //   panel:"#2d3a50", hover:"#344260", active:"#3a4a6e",
-  //   card:"#28334a", cardHov:"#2e3d55",
-  //   t1:"#eceff4", t2:"#9ba8c0", t3:"#5c6a88", t4:"#3a4560",
-  //   b1:"rgba(136,192,208,0.1)", b2:"rgba(136,192,208,0.18)", b3:"rgba(136,192,208,0.28)",
-  //   accent:"#88c0d0", accentS:"rgba(136,192,208,0.15)",
-  //   teal:"#8fbcbb", green:"#a3be8c", red:"#bf616a", gold:"#ebcb8b",
-  //   sidebarBorder:"rgba(136,192,208,0.14)",
+  //   key: "nord", label: "Nord", icon: Moon,
+  //   description: "Arctic steel blue - calm and focused",
+  //   shell: "#1a1f2e", deep: "#1e2535", mid: "#232c40", surface: "#28334a",
+  //   panel: "#2d3a50", hover: "#344260", active: "#3a4a6e",
+  //   card: "#28334a", cardHov: "#2e3d55",
+  //   t1: "#eceff4", t2: "#9ba8c0", t3: "#5c6a88", t4: "#3a4560",
+  //   b1: "rgba(136,192,208,0.1)", b2: "rgba(136,192,208,0.18)", b3: "rgba(136,192,208,0.28)",
+  //   accent: "#88c0d0", accentS: "rgba(136,192,208,0.15)",
+  //   teal: "#8fbcbb", green: "#a3be8c", red: "#bf616a", gold: "#ebcb8b",
+  //   sidebarBorder: "rgba(136,192,208,0.14)",
   // },
   light: {
     key: "light", label: "Light", icon: Sun,
@@ -98,49 +95,12 @@ const THEMES = {
   },
 };
 
-const getStoredTheme = () => { try { return localStorage.getItem("cj-theme") || "light"; } catch { return "light"; } };
+const getStoredTheme = () => { try { return localStorage.getItem("cj-theme") || "cosmos"; } catch { return "cosmos"; } };
 const setStoredTheme = (k) => { try { localStorage.setItem("cj-theme", k); } catch { } };
 
-/* ══════════════════════════════════════════════════════════════
-   SHARED ATOMS
-══════════════════════════════════════════════════════════════ */
-const Av = ({ name, size = 44, T }) => (
-  <div style={{
-    width: size, height: size, borderRadius: "50%", flexShrink: 0,
-    background: `linear-gradient(135deg,${T.accent},${T.teal})`,
-    display: "flex", alignItems: "center", justifyContent: "center",
-    fontSize: size * 0.38, fontWeight: 700, color: "#fff",
-    fontFamily: "'Syne',sans-serif", boxShadow: `0 0 0 2px ${T.accentS}`,
-  }}>
-    {name?.charAt(0).toUpperCase() || "U"}
-  </div>
-);
-
-function NavItem({ id, label, icon: Icon, activeSection, setActiveSection, navigate, setSidebarOpen, T }) {
-  const active = activeSection === id;
-  return (
-    <button
-      onClick={() => { if (id === "home") navigate("/"); else setActiveSection(id); setSidebarOpen(false); }}
-      style={{
-        width: "100%", display: "flex", alignItems: "center", gap: 10,
-        padding: "9px 12px", borderRadius: 9, border: "none", cursor: "pointer",
-        background: active ? T.accentS : "transparent",
-        color: active ? T.accent : T.t2,
-        fontFamily: "'Syne',sans-serif", fontWeight: active ? 600 : 500, fontSize: 13.5,
-        transition: "all 0.14s", textAlign: "left",
-        borderLeft: active ? `2px solid ${T.accent}` : "2px solid transparent",
-      }}
-      onMouseEnter={e => { if (!active) { e.currentTarget.style.background = T.hover; e.currentTarget.style.color = T.t1; } }}
-      onMouseLeave={e => { if (!active) { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = T.t2; } }}>
-      <Icon size={15} />{label}
-      {active && <ChevronRight size={12} style={{ marginLeft: "auto", opacity: 0.4 }} />}
-    </button>
-  );
-}
-
-/* ══════════════════════════════════════════════════════════════
-   CJ MODAL SHELL  - used by all dialogs
-══════════════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════════
+   MODAL COMPONENT
+════════════════════════════════════════════════════════════════ */
 function CJModal({ open, onClose, children, maxWidth = 460, T }) {
   useEffect(() => {
     if (!open) return;
@@ -178,7 +138,6 @@ function CJModal({ open, onClose, children, maxWidth = 460, T }) {
   );
 }
 
-/* ── Modal header row helper ── */
 function ModalHead({ title, onClose, T }) {
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 22 }}>
@@ -191,9 +150,9 @@ function ModalHead({ title, onClose, T }) {
   );
 }
 
-/* ══════════════════════════════════════════════════════════════
-   NOTE MODAL  (create / edit)
-══════════════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════════
+   NOTE MODAL - CONSISTENT WITH WEBAPP
+════════════════════════════════════════════════════════════════ */
 function NoteModal({ editingNote, title, setTitle, content, setContent, onClose, onSubmit, isLoading, T }) {
   return (
     <CJModal open onClose={onClose} maxWidth={460} T={T}>
@@ -230,15 +189,14 @@ function NoteModal({ editingNote, title, setTitle, content, setContent, onClose,
   );
 }
 
-/* ══════════════════════════════════════════════════════════════
-   CONFIRM DELETE MODAL  (shared for notes + tasks + account)
-══════════════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════════
+   CONFIRM DELETE MODAL - CONSISTENT
+════════════════════════════════════════════════════════════════ */
 function ConfirmModal({ open, onClose, onConfirm, title, message, confirmLabel = "Delete", confirmColor, T }) {
   if (!open) return null;
   const color = confirmColor || T.red;
   return (
     <CJModal open={open} onClose={onClose} maxWidth={420} T={T}>
-      {/* Danger icon */}
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 14, textAlign: "center" }}>
         <div style={{
           width: 52, height: 52, borderRadius: "50%",
@@ -279,9 +237,9 @@ function ConfirmModal({ open, onClose, onConfirm, title, message, confirmLabel =
   );
 }
 
-/* ══════════════════════════════════════════════════════════════
-   TASK MODAL  (create new task)
-══════════════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════════
+   TASK MODAL - CONSISTENT
+════════════════════════════════════════════════════════════════ */
 function TaskModal({ open, onClose, onSubmit, taskTitle, setTaskTitle, taskDesc, setTaskDesc, taskPriority, setTaskPriority, T }) {
   const priorityOpts = [
     { value: "low", label: "Low", color: T.teal },
@@ -309,7 +267,6 @@ function TaskModal({ open, onClose, onSubmit, taskTitle, setTaskTitle, taskDesc,
           }}
           onFocus={e => e.target.style.borderColor = T.accent}
           onBlur={e => e.target.style.borderColor = T.b2} />
-        {/* Priority selector - pill style */}
         <div>
           <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, fontWeight: 700, letterSpacing: "1.2px", textTransform: "uppercase", color: T.t3, marginBottom: 8 }}>Priority</p>
           <div style={{ display: "flex", gap: 8 }}>
@@ -346,9 +303,9 @@ function TaskModal({ open, onClose, onSubmit, taskTitle, setTaskTitle, taskDesc,
   );
 }
 
-/* ══════════════════════════════════════════════════════════════
-   NOTE CARD
-══════════════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════════
+   NOTE CARD - CONSISTENT STYLING
+════════════════════════════════════════════════════════════════ */
 const NOTE_COLORS = ["#7c6ee0", "#22c55e", "#f97316", "#ec4899", "#3b82f6", "#f59e0b"];
 const noteColor = title => NOTE_COLORS[title.charCodeAt(0) % NOTE_COLORS.length];
 
@@ -367,7 +324,6 @@ function NoteCard({ note, onEdit, onDelete, T }) {
         display: "flex", flexDirection: "column", gap: 10,
         position: "relative", overflow: "hidden",
       }}>
-      {/* Top accent bar */}
       <div style={{
         position: "absolute", top: 0, left: 0, right: 0, height: 3,
         background: color, borderRadius: "14px 14px 0 0",
@@ -398,11 +354,10 @@ function NoteCard({ note, onEdit, onDelete, T }) {
   );
 }
 
-/* ══════════════════════════════════════════════════════════════
+/* ════════════════════════════════════════════════════════════════
    MAIN PROFILE COMPONENT
-══════════════════════════════════════════════════════════════ */
+════════════════════════════════════════════════════════════════ */
 export default function Profile() {
-  /* ── state ── */
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
@@ -413,11 +368,9 @@ export default function Profile() {
   const [user, setUser] = useState(null);
   const [memberSince, setMemberSince] = useState("");
 
-  /* theme */
   const [themeKey, setThemeKey] = useState(getStoredTheme);
   const T = THEMES[themeKey] || THEMES.cosmos;
 
-  /* notes */
   const [notes, setNotes] = useState([]);
   const [noteTitle, setNoteTitle] = useState("");
   const [noteContent, setNoteContent] = useState("");
@@ -425,27 +378,20 @@ export default function Profile() {
   const [showNoteModal, setShowNoteModal] = useState(false);
   const [noteLoading, setNoteLoading] = useState(false);
   const [loadingNotes, setLoadingNotes] = useState(true);
-  /* note delete confirm */
   const [noteToDelete, setNoteToDelete] = useState(null);
   const [confirmNoteOpen, setConfirmNoteOpen] = useState(false);
 
-  /* tasks */
   const [tasks, setTasks] = useState([]);
   const [showTaskModal, setShowTaskModal] = useState(false);
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDesc, setTaskDesc] = useState("");
   const [taskPriority, setTaskPriority] = useState("medium");
-  /* task delete confirm */
   const [taskToDelete, setTaskToDelete] = useState(null);
   const [confirmTaskOpen, setConfirmTaskOpen] = useState(false);
 
-  /* activity */
   const [activity, setActivity] = useState([]);
-
-  /* account delete */
   const [confirmAccountOpen, setConfirmAccountOpen] = useState(false);
 
-  /* ── theme apply ── */
   const applyTheme = useCallback((key) => {
     setThemeKey(key); setStoredTheme(key);
     const th = THEMES[key];
@@ -458,7 +404,6 @@ export default function Profile() {
     showAlert(`Theme → "${THEMES[key]?.label}"`, "success");
   }, [showAlert]);
 
-  /* ── auth + profile ── */
   useEffect(() => {
     (async () => {
       setLoading(true);
@@ -472,13 +417,9 @@ export default function Profile() {
       }
       if (cu?.created_at) {
         const date = new Date(cu.created_at);
-
         const formatted = date.toLocaleDateString("en-GB", {
-          day: "2-digit",
-          month: "short",
-          year: "numeric",
+          day: "2-digit", month: "short", year: "numeric",
         });
-
         setMemberSince(formatted);
       }
       const { data } = await supabase.from("profiles").select("*").eq("id", cu.id).single();
@@ -489,14 +430,12 @@ export default function Profile() {
 
   useEffect(() => { applyTheme(themeKey); }, []); // eslint-disable-line
 
-  /* hide main header/footer while on profile */
   useEffect(() => {
     const h = document.querySelector("header"); const f = document.querySelector("footer");
     if (h) h.style.display = "none"; if (f) f.style.display = "none";
     return () => { if (h) h.style.display = ""; if (f) f.style.display = ""; };
   }, []);
 
-  /* ── data fetchers ── */
   const fetchNotes = async () => {
     if (!user) return;
     setLoadingNotes(true);
@@ -526,7 +465,6 @@ export default function Profile() {
     fetchActivity();
   };
 
-  /* ── note handlers ── */
   const handleEdit = note => { setEditingNote(note); setNoteTitle(note.title); setNoteContent(note.content); setShowNoteModal(true); };
   const closeNoteModal = () => { setShowNoteModal(false); setEditingNote(null); setNoteTitle(""); setNoteContent(""); };
 
@@ -547,7 +485,6 @@ export default function Profile() {
     setNoteLoading(false);
   };
 
-  /* confirm delete note */
   const handleDeleteNote = note => { setNoteToDelete(note); setConfirmNoteOpen(true); };
   const confirmDeleteNote = async () => {
     if (!noteToDelete) return;
@@ -556,7 +493,6 @@ export default function Profile() {
     setConfirmNoteOpen(false); setNoteToDelete(null);
   };
 
-  /* ── task handlers ── */
   const handleTaskSubmit = async e => {
     e.preventDefault(); if (!taskTitle.trim()) return;
     const { error } = await supabase.from("tasks").insert([{ user_id: user.id, title: taskTitle, description: taskDesc, status: "pending", priority: taskPriority }]);
@@ -564,7 +500,6 @@ export default function Profile() {
     setTaskTitle(""); setTaskDesc(""); setTaskPriority("medium"); setShowTaskModal(false);
   };
 
-  /* confirm delete task */
   const handleDeleteTask = task => { setTaskToDelete(task); setConfirmTaskOpen(true); };
   const confirmDeleteTask = async () => {
     if (!taskToDelete) return;
@@ -575,28 +510,16 @@ export default function Profile() {
 
   const toggleTaskStatus = async (task) => {
     const newStatus = task.status === "completed" ? "pending" : "completed";
-
-    const { error } = await supabase
-      .from("tasks")
-      .update({ status: newStatus })
-      .eq("id", task.id);
-
-    if (error) {
-      console.log(error);
-      showAlert("Failed to update task", "error");
-      return;
-    }
-
+    const { error } = await supabase.from("tasks").update({ status: newStatus }).eq("id", task.id);
+    if (error) { console.log(error); showAlert("Failed to update task", "error"); return; }
     fetchTasks();
     logActivity(`Marked task "${task.title}" as ${newStatus}`);
   };
 
-  /* ── logout ── */
   const handleLogout = async () => {
     await supabase.auth.signOut(); navigate("/");
   };
 
-  /* ── helpers ── */
   const timeAgo = date => {
     const diff = Math.floor((new Date() - new Date(date)) / 1000);
     if (diff < 60) return "just now";
@@ -605,15 +528,9 @@ export default function Profile() {
     return `${Math.floor(h / 24)}d ago`;
   };
 
-  /* ═══════════════════════════════════════════════════════
-     LOADING / NO PROFILE
-  ═══════════════════════════════════════════════════════ */
   if (loading || actionLoading) {
     return (
-      <CJLoader
-        message={loading ? "Loading your profile…" : "Processing…"}
-        minTime={600}
-      />
+      <CJLoader message={loading ? "Loading your profile…" : "Processing…"} minTime={600} />
     );
   }
   if (!profile) return (
@@ -622,17 +539,12 @@ export default function Profile() {
     </div>
   );
 
-  /* ═══════════════════════════════════════════════════════
-     RENDER SECTIONS
-  ═══════════════════════════════════════════════════════ */
-
-  /* ── DASHBOARD ── */
+  /* ─── DASHBOARD ─── */
   const renderDashboard = () => {
     const metrics = [
       { label: "Notes", value: notes.length, unit: "total", color: T.accent, icon: StickyNote },
       { label: "Tasks", value: tasks.filter(t => t.status === "completed").length, unit: "done", color: T.teal, icon: CheckCircle2 },
-      // { label: "Streak", value: "7", unit: "days", color: T.gold, icon: Zap },
-      // { label: "XP", value: "340", unit: "pts", color: T.green, icon: Star },
+      { label: "Open", value: tasks.filter(t => t.status !== "completed").length, unit: "tasks", color: T.gold, icon: ClipboardList },
     ];
     const activityList = activity.length
       ? activity.map(a => ({ label: a.action, time: timeAgo(a.created_at), icon: Activity, color: T.accent }))
@@ -746,7 +658,7 @@ export default function Profile() {
     );
   };
 
-  /* ── NOTES ── */
+  /* ─── NOTES ─── */
   const renderNotes = () => (
     <div style={{ padding: "32px 28px" }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 28, flexWrap: "wrap", gap: 12 }}>
@@ -785,7 +697,7 @@ export default function Profile() {
     </div>
   );
 
-  /* ── TASKS ── */
+  /* ─── TASKS ─── */
   const renderTasks = () => {
     const done = tasks.filter(t => t.status === "completed");
     const todo = tasks.filter(t => t.status !== "completed");
@@ -805,18 +717,12 @@ export default function Profile() {
           <div
             onClick={() => toggleTaskStatus(task)}
             style={{
-              width: 22,
-              height: 22,
-              borderRadius: "50%",
-              flexShrink: 0,
+              width: 22, height: 22, borderRadius: "50%", flexShrink: 0,
               border: `2px solid ${task.status === "completed" ? T.green : T.b2}`,
               background: task.status === "completed" ? `${T.green}22` : "transparent",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              display: "flex", alignItems: "center", justifyContent: "center",
               cursor: "pointer"
-            }}
-          >
+            }}>
             {task.status === "completed" && <Check size={11} color={T.green} />}
           </div>
           <span style={{ flex: 1, fontFamily: "'Syne',sans-serif", fontSize: 13.5, color: task.status === "completed" ? T.t3 : T.t1, textDecoration: task.status === "completed" ? "line-through" : "none", lineHeight: 1.3 }}>{task.title}</span>
@@ -916,7 +822,7 @@ export default function Profile() {
     );
   };
 
-  /* ── SETTINGS ── */
+  /* ─── SETTINGS ─── */
   const renderSettings = () => (
     <div style={{ padding: "32px 28px", animation: "fadeUp 0.35s ease both" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
@@ -955,22 +861,6 @@ export default function Profile() {
           );
         })}
       </div>
-
-      {/* Danger zone */}
-      {/* <div style={{ marginTop: 40, padding: "20px 22px", borderRadius: 14, border: `1px solid ${T.red}28`, background: `${T.red}06` }}>
-        <p style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 12, color: T.red, letterSpacing: "1px", textTransform: "uppercase", marginBottom: 12 }}>Danger Zone</p>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
-          <div>
-            <p style={{ fontFamily: "'Syne',sans-serif", fontWeight: 600, fontSize: 14, color: T.t1, margin: "0 0 3px" }}>Delete account</p>
-            <p style={{ fontFamily: "'Lora',serif", fontStyle: "italic", fontSize: 13, color: T.t3, margin: 0 }}>Permanently removes your account and all data. Cannot be undone.</p>
-          </div>
-          <button onClick={() => setConfirmAccountOpen(true)} style={{ padding: "9px 20px", borderRadius: 10, border: `1px solid ${T.red}44`, background: `${T.red}10`, color: T.red, fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 13, cursor: "pointer", transition: "all 0.14s", whiteSpace: "nowrap", flexShrink: 0 }}
-            onMouseEnter={e => { e.currentTarget.style.background = `${T.red}20`; }}
-            onMouseLeave={e => { e.currentTarget.style.background = `${T.red}10`; }}>
-            Delete account
-          </button>
-        </div>
-      </div> */}
     </div>
   );
 
@@ -984,9 +874,9 @@ export default function Profile() {
     }
   };
 
-  /* ═══════════════════════════════════════════════════════
-     SHELL
-  ═══════════════════════════════════════════════════════ */
+  /* ════════════════════════════════════════════════════════════════
+     SHELL - MATCHES EXACT DESIGN OF ORIGINAL PROFILE
+  ════════════════════════════════════════════════════════════════ */
   return (
     <>
       <FontLink />
@@ -1011,7 +901,15 @@ export default function Profile() {
           {/* Sidebar top */}
           <div style={{ padding: "20px 18px 16px", borderBottom: `1px solid ${T.sidebarBorder}`, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <Av name={profile.name} size={36} T={T} />
+              <div style={{
+                width: 36, height: 36, borderRadius: "50%", flexShrink: 0,
+                background: `linear-gradient(135deg,${T.accent},${T.teal})`,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: 16, fontWeight: 700, color: "#fff",
+                fontFamily: "'Syne',sans-serif", boxShadow: `0 0 0 2px ${T.accentS}`,
+              }}>
+                {profile.name?.charAt(0).toUpperCase() || "U"}
+              </div>
               <div>
                 <p style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 13.5, color: T.t1, margin: "0 0 1px", lineHeight: 1 }}>{profile.name}</p>
                 <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10.5, color: T.t3, margin: 0 }}>@{profile.username}</p>
@@ -1029,9 +927,28 @@ export default function Profile() {
               { id: "notes", label: "Notes", icon: StickyNote },
               { id: "tasks", label: "Tasks", icon: ClipboardList },
               { id: "settings", label: "Theme", icon: Palette },
-            ].map(item => (
-              <NavItem key={item.id} {...item} activeSection={activeSection} setActiveSection={setActiveSection} navigate={navigate} setSidebarOpen={setSidebarOpen} T={T} />
-            ))}
+            ].map(item => {
+              const active = activeSection === item.id;
+              const Icon = item.icon;
+              return (
+                <button key={item.id}
+                  onClick={() => { setActiveSection(item.id); setSidebarOpen(false); }}
+                  style={{
+                    width: "100%", display: "flex", alignItems: "center", gap: 10,
+                    padding: "9px 12px", borderRadius: 9, border: "none", cursor: "pointer",
+                    background: active ? T.accentS : "transparent",
+                    color: active ? T.accent : T.t2,
+                    fontFamily: "'Syne',sans-serif", fontWeight: active ? 600 : 500, fontSize: 13.5,
+                    transition: "all 0.14s", textAlign: "left",
+                    borderLeft: active ? `2px solid ${T.accent}` : "2px solid transparent",
+                  }}
+                  onMouseEnter={e => { if (!active) { e.currentTarget.style.background = T.hover; e.currentTarget.style.color = T.t1; } }}
+                  onMouseLeave={e => { if (!active) { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = T.t2; } }}>
+                  <Icon size={15} />{item.label}
+                  {active && <ChevronRight size={12} style={{ marginLeft: "auto", opacity: 0.4 }} />}
+                </button>
+              );
+            })}
           </nav>
 
           <div className="sidebar-footer" style={{ padding: "14px 12px", borderTop: `1px solid ${T.sidebarBorder}` }}>
@@ -1059,7 +976,15 @@ export default function Profile() {
             </div>
             <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 10 }}>
               <span style={{ fontFamily: "'Syne',sans-serif", fontSize: 13, color: T.t2, fontWeight: 500 }}>Hello, {profile.name?.split(" ")[0] || "there"}</span>
-              <Av name={profile.name} size={30} T={T} />
+              <div style={{
+                width: 30, height: 30, borderRadius: "50%", flexShrink: 0,
+                background: `linear-gradient(135deg,${T.accent},${T.teal})`,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: 12, fontWeight: 700, color: "#fff",
+                fontFamily: "'Syne',sans-serif", boxShadow: `0 0 0 2px ${T.accentS}`,
+              }}>
+                {profile.name?.charAt(0).toUpperCase() || "U"}
+              </div>
             </div>
           </div>
 

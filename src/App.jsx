@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect, useState } from "react";
 import { supabase } from "./lib/supabase";
 
@@ -25,6 +25,16 @@ import NotFound from './components/Notfound.jsx';
 import { CJLoaderProvider, CJPageLoader } from "./components/Cjloader";
 import ProtectedRoute from './components/ProtectedRoute';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   const [user, setUser] = useState(null);
 
@@ -45,6 +55,7 @@ function App() {
   return (
     <CJLoaderProvider>
       <Router>
+        <ScrollToTop />
 
         <CJPageLoader />
 

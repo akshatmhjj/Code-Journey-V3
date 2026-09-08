@@ -63,6 +63,12 @@ function App() {
 
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/privacy-policy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/licensing" element={<Licensing />} />
+            <Route path="/blog" element={<Blog />} />
           </Route>
 
           <Route path="/login" element={<AuthPage />} />
@@ -77,11 +83,6 @@ function App() {
           >
             <Route path="/profile" element={<Profile />} />
             <Route path="/logs" element={<Logs />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/privacy-policy" element={<Privacy />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/licensing" element={<Licensing />} />
             <Route path="/tracks" element={<Languages />} />
             <Route path="/tracks/web" element={<WebDev />} />
             <Route path="/tracks/app" element={<AppDev />} />
@@ -89,7 +90,6 @@ function App() {
             <Route path="/careers" element={<Careers />} />
             <Route path="/ecosystem" element={<Ecosystem />} />
             <Route path="/roadmap" element={<Roadmap />} />
-            <Route path="/blog" element={<Blog />} />
             <Route path="/glossary" element={<Glossary />} />
             <Route path="/snippets" element={<Snippets />} />
 

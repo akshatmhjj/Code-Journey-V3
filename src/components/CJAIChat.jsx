@@ -597,7 +597,7 @@ export default function CJAIChat({ isLoggedIn = false }) {
                                             <div style={{ minWidth: 0 }}>
                                                 {formatMessage(msg.content, T)}
                                             </div>
-                                        )}z
+                                        )}
                                     </div>
                                 </div>
                             ))}

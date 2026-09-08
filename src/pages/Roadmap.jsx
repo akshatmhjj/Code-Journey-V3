@@ -7,6 +7,7 @@
  */
 
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Globe, Smartphone, BarChart2, ChevronDown, CheckCircle2,
@@ -777,14 +778,14 @@ export default function Roadmap() {
                 Pick a stage. Practice your first line. That's it - the rest follows naturally.
               </p>
               <div style={{ display:"flex", gap:12, justifyContent:"center", flexWrap:"wrap" }}>
-                <a href="/register" style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"13px 28px", borderRadius:12, border:"none", background:T.accent, color:"#fff", fontFamily:"'Syne',sans-serif", fontWeight:800, fontSize:15, cursor:"pointer", textDecoration:"none", boxShadow:`0 0 36px ${T.accent}55`, transition:"all 0.18s", animation:"cjGlow 3s ease infinite" }}>
+                <Link to="/tracks" style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"13px 28px", borderRadius:12, border:"none", background:T.accent, color:"#fff", fontFamily:"'Syne',sans-serif", fontWeight:800, fontSize:15, cursor:"pointer", textDecoration:"none", boxShadow:`0 0 36px ${T.accent}55`, transition:"all 0.18s", animation:"cjGlow 3s ease infinite" }}>
                   <Zap size={15} /> Start Free
-                </a>
-                <a href="/tracks" style={{ display:"inline-flex", alignItems:"center", gap:7, padding:"13px 22px", borderRadius:12, border:`1px solid ${T.b2}`, background:"transparent", color:T.t1, fontFamily:"'Syne',sans-serif", fontWeight:600, fontSize:15, cursor:"pointer", textDecoration:"none", transition:"all 0.18s" }}
+                </Link>
+                <Link to="/tracks" style={{ display:"inline-flex", alignItems:"center", gap:7, padding:"13px 22px", borderRadius:12, border:`1px solid ${T.b2}`, background:"transparent", color:T.t1, fontFamily:"'Syne',sans-serif", fontWeight:600, fontSize:15, cursor:"pointer", textDecoration:"none", transition:"all 0.18s" }}
                   onMouseEnter={e => { e.currentTarget.style.background = T.hover; e.currentTarget.style.borderColor = T.b3; }}
                   onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = T.b2; }}>
                   Browse Languages <ArrowRight size={15} />
-                </a>
+                </Link>
               </div>
               <div style={{ marginTop:28, display:"flex", justifyContent:"center", gap:20, flexWrap:"wrap" }}>
                 {["3 tracks","18 stages total","Zero prerequisites"].map(t => (

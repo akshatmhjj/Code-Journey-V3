@@ -913,7 +913,7 @@ export default function Header() {
           gap: 7, marginLeft: "auto", flexShrink: 0,
         }}>
           {/* Search */}
-          <button className="cj-search-pill" onClick={() => setSearch(true)} aria-label="Search">
+          {/* <button className="cj-search-pill" onClick={() => setSearch(true)} aria-label="Search">
             <Search size={13} color="var(--accent-purple)" />
             <span className="cj-search-hint" style={{ display: "flex", alignItems: "center", gap: 6 }}>
               <span>Search</span>
@@ -926,7 +926,7 @@ export default function Header() {
                 fontFamily: "'JetBrains Mono', monospace",
               }}>⌘K</kbd>
             </span>
-          </button>
+          </button> */}
 
           {/* Auth - desktop only */}
           <div className="cj-auth-btns" style={{ display: "flex", gap: 5 }}>

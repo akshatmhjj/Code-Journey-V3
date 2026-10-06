@@ -1,4 +1,12 @@
 - date: 2026-10-06
+  version: "2.0.0-beta.4"
+  title: The whole map, written
+  changes:
+    - type: added
+      text: The last nine routes — Design Engineer, Analytics Engineer, MLOps Engineer, Platform Engineer, Cloud Security Engineer, Solutions Engineer, Developer Advocate, Game Developer and Embedded/IoT Engineer. All 26 routes are now complete.
+    - type: added
+      text: Fifteen new skill pages, including UI design, web animation, Go, internal developer platforms, C#, C++, Unity, C, microcontrollers, RTOS and tech interviewing. All 99 skills on the map now have a page.
+- date: 2026-10-06
   version: "2.0.0-beta.3"
   title: Wave 2 routes
   changes:

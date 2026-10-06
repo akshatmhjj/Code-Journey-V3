@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 export default function sitemap(): MetadataRoute.Sitemap {
   const u = (path: string) => `${SITE.url}${path}`;
   const now = new Date();
-  const fixed = ["", "/roles", "/compass", "/roles/compare", "/gap", "/skills", "/domains", "/resources", "/glossary", "/blog", "/snippets", "/about", "/faq", "/changelog", "/privacy", "/terms"];
+  const fixed = ["", "/roles", "/compass", "/roles/compare", "/gap", "/skills", "/domains", "/resources", "/glossary", "/blog", "/about", "/faq", "/changelog", "/privacy", "/terms"];
   return [
     ...fixed.map((p) => ({ url: u(p), lastModified: now, changeFrequency: "weekly" as const, priority: p === "" ? 1 : 0.7 })),
     ...getRoles().map((r) => ({ url: u(`/roles/${r.slug}`), lastModified: r.updated, changeFrequency: "monthly" as const, priority: 0.9 })),

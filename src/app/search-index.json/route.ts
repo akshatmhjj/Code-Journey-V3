@@ -41,7 +41,6 @@ export function GET() {
       ["About Code Journey", "/about"],
       ["FAQ", "/faq"],
       ["Changelog", "/changelog"],
-      ["Snippets", "/snippets"],
       ["Privacy", "/privacy"],
       ["Terms", "/terms"],
     ].map(([title, href]) => ({ type: "page" as const, title, sub: "Page", href })),

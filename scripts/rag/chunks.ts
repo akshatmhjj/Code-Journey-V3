@@ -151,7 +151,7 @@ export function buildChunks(): Chunk[] {
       "To see what a specific job needs, paste the job post into the gap checker at /gap. It lists the skills the post asks for, which you already have, the foundations you need first, and the best resource for each — all in your browser; the post is never uploaded.",
       `All ${cat.skills.length} skills are at /skills, each with a 60-second brief, a learning checklist and checked resources.`,
       "Fields of tech (web, mobile, data, AI, cloud & DevOps, quality, security, customer-facing, specialist, foundations) are at /domains.",
-      "The resource library with filters is at /resources. Plain-English definitions are at /glossary. Short code snippets are at /snippets. Articles are at /blog.",
+      "The resource library with filters is at /resources. Plain-English definitions are at /glossary. Articles are at /blog.",
       "Search everything with Ctrl+K or \u2318K. Four colour themes are available from the palette icon, and a signed-in person can save their theme to their account.",
       "A free account unlocks CJ AI and My Path: pick a destination role, mark each skill on that route as learning or done, and see your progress, next stations and hours left at /me. Reading every page stays free without an account.",
       `Contact: work.codejourney@gmail.com.`,

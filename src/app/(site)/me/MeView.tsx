@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ArrowRight, Compass, LogOut, MessageCircle } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Bookmark, Compass, LogOut, MessageCircle, X } from "lucide-react";
 import { supabase, useUser } from "@/lib/supabase";
 import { computeProgress, formatHours, formatWeeks, type PathIndex } from "@/lib/path";
 import { CHAT_DAILY_LIMIT, SITE } from "@/lib/site";
@@ -22,6 +22,66 @@ function Card({ title, children, right }: { title: string; children: React.React
       </div>
       {children}
     </section>
+  );
+}
+
+/** Bookmarked resources, newest first, grouped under the skill they were saved from. */
+function SavedResources({ index }: { index: PathIndex }) {
+  const path = usePath();
+  const saved = path?.saved ?? [];
+  const [all, setAll] = useState(false);
+  if (!saved.length) {
+    return (
+      <div className="flex flex-wrap items-center gap-4">
+        <Bookmark size={24} />
+        <p className="max-w-[56ch] flex-1 text-muted">
+          Tap the bookmark next to any resource on a skill page or in the library to keep it here.
+        </p>
+        <Link href="/resources" className="btn btn-line">
+          Open the library
+        </Link>
+      </div>
+    );
+  }
+  const shown = all ? saved : saved.slice(0, 8);
+  return (
+    <>
+      <ul className="divide-y divide-line border-y-2 border-ink">
+        {shown.map((r) => {
+          const skill = r.skillSlug ? index.skills[r.skillSlug] : undefined;
+          return (
+            <li key={r.url} className="grid grid-cols-[1fr_auto] items-center gap-3 py-3">
+              <div className="min-w-0">
+                <a href={r.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-display font-semibold hover:underline">
+                  {r.title} <ArrowUpRight size={15} className="shrink-0" />
+                </a>
+                <p className="mt-0.5 truncate text-sm text-muted">
+                  {skill && r.skillSlug ? (
+                    <Link href={`/skills/${r.skillSlug}`} className="hover:underline">
+                      {skill.title}
+                    </Link>
+                  ) : (
+                    new URL(r.url).hostname.replace(/^www\./, "")
+                  )}
+                </p>
+              </div>
+              <button
+                onClick={() => path?.toggleSaved({ url: r.url, title: r.title })}
+                aria-label={`Remove ${r.title} from saved`}
+                className="grid size-9 place-items-center rounded-full border-2 border-line hover:border-ink"
+              >
+                <X size={16} />
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+      {saved.length > 8 && (
+        <button onClick={() => setAll(!all)} className="mt-4 text-sm font-semibold hover:underline">
+          {all ? "Show fewer" : `Show all ${saved.length}`}
+        </button>
+      )}
+    </>
   );
 }
 
@@ -189,6 +249,19 @@ export function MeView({ index }: { index: PathIndex }) {
             </Link>
           </Card>
         )}
+
+        <Card
+          title="Saved resources"
+          right={
+            path?.saved.length ? (
+              <Link href="/resources" className="text-sm font-semibold hover:underline">
+                Browse the library
+              </Link>
+            ) : undefined
+          }
+        >
+          <SavedResources index={index} />
+        </Card>
 
         <div className="grid gap-6 lg:grid-cols-2">
           <Card title="CJ AI">

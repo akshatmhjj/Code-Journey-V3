@@ -3,6 +3,7 @@ import { ArrowUpRight, BadgeCheck } from "lucide-react";
 import type { Domain, Resource } from "@/lib/content";
 import { RESOURCE_LABEL } from "@/lib/site";
 import { LineGlyph } from "@/components/map/Line";
+import { SaveResource } from "@/components/path/SaveResource";
 
 // Stations are interactive for signed-in people, so they live in their own client component.
 export { SkillStation } from "./Station";
@@ -61,7 +62,16 @@ export function DomainBadge({ domain, withLine = true, href = true }: { domain: 
 
 const COST: Record<string, string> = { free: "Free", freemium: "Free + paid", paid: "Paid" };
 
-export function ResourceList({ resources, showSkills = false }: { resources: (Resource & { skills?: { slug: string; title: string }[] })[]; showSkills?: boolean }) {
+export function ResourceList({
+  resources,
+  showSkills = false,
+  skillSlug,
+}: {
+  resources: (Resource & { skills?: { slug: string; title: string }[] })[];
+  showSkills?: boolean;
+  /** The skill page these resources belong to, stored with a bookmark. */
+  skillSlug?: string;
+}) {
   return (
     <ul className="divide-y divide-line border-y-2 border-ink">
       {resources.map((r) => (
@@ -91,7 +101,10 @@ export function ResourceList({ resources, showSkills = false }: { resources: (Re
               </p>
             )}
           </div>
-          <ArrowUpRight size={20} className="mt-1 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <div className="flex items-center gap-3">
+            <SaveResource url={r.url} title={r.title} skillSlug={skillSlug ?? r.skills?.[0]?.slug} />
+            <ArrowUpRight size={20} className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </div>
         </li>
       ))}
     </ul>

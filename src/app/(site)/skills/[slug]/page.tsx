@@ -129,7 +129,7 @@ export default async function SkillPage({ params }: PageProps<"/skills/[slug]">)
 
         <section aria-labelledby="res-title" className="border-t-2 border-ink pt-10">
           <SectionTitle eyebrow={`Checked ${fmt.format(skill.checked)}`} title="Where to learn it" id="res-title" />
-          <ResourceList resources={skill.resources} />
+          <ResourceList resources={skill.resources} skillSlug={skill.slug} />
         </section>
 
         <section className="border-t-2 border-ink pt-10">

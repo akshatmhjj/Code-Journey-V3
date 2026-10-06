@@ -5,6 +5,7 @@ import { Search } from "lucide-react";
 import type { Resource } from "@/lib/content";
 import { RESOURCE_LABEL } from "@/lib/site";
 import { ResourceList } from "@/components/ui/bits";
+import { usePath } from "@/components/path/PathProvider";
 
 type Item = Resource & { skills: { slug: string; title: string }[]; domains: string[] };
 
@@ -26,6 +27,10 @@ export function ResourceBrowser({ items, domains }: { items: Item[]; domains: { 
   const [domain, setDomain] = useState<string | null>(null);
   const [freeOnly, setFreeOnly] = useState(false);
   const [officialOnly, setOfficialOnly] = useState(false);
+  const [savedOnly, setSavedOnly] = useState(false);
+  const path = usePath();
+  const savedUrls = useMemo(() => new Set((path?.saved ?? []).map((r) => r.url)), [path?.saved]);
+  const showSaved = !!path?.signedIn && savedOnly;
 
   const types = useMemo(() => [...new Set(items.map((i) => i.type))], [items]);
   const shown = useMemo(() => {
@@ -36,9 +41,10 @@ export function ResourceBrowser({ items, domains }: { items: Item[]; domains: { 
         (!domain || i.domains.includes(domain)) &&
         (!freeOnly || i.cost === "free") &&
         (!officialOnly || i.official) &&
+        (!showSaved || savedUrls.has(i.url)) &&
         (!query || `${i.title} ${i.provider ?? ""} ${i.skills.map((s) => s.title).join(" ")}`.toLowerCase().includes(query)),
     );
-  }, [items, q, type, domain, freeOnly, officialOnly]);
+  }, [items, q, type, domain, freeOnly, officialOnly, showSaved, savedUrls]);
 
   return (
     <div className="grid gap-8 lg:grid-cols-[260px_1fr] lg:gap-12">
@@ -73,6 +79,11 @@ export function ResourceBrowser({ items, domains }: { items: Item[]; domains: { 
         <div className="flex flex-wrap gap-2">
           <Chip on={officialOnly} onClick={() => setOfficialOnly(!officialOnly)}>Official only</Chip>
           <Chip on={freeOnly} onClick={() => setFreeOnly(!freeOnly)}>Free only</Chip>
+          {path?.signedIn && (
+            <Chip on={savedOnly} onClick={() => setSavedOnly(!savedOnly)}>
+              Saved ({savedUrls.size})
+            </Chip>
+          )}
         </div>
       </div>
       <div className="min-w-0">

@@ -113,7 +113,7 @@ export function MarketTable({ rows }: { rows: MarketRow[] }) {
 
             <p className="flex justify-between text-[15px] tabular-nums md:block md:text-right">
               <span className="text-muted md:hidden">Starting (India)</span>
-              {r.india?.entry ? lakh(r.india.entry) : <span className="text-muted">—</span>}
+              {r.india?.entry ? lakh(r.india.entry) : <span className="text-muted">-</span>}
             </p>
 
             <p className="flex justify-between text-[15px] tabular-nums md:block md:text-right">
@@ -128,7 +128,7 @@ export function MarketTable({ rows }: { rows: MarketRow[] }) {
                   )}
                 </span>
               ) : (
-                <span className="text-muted">—</span>
+                <span className="text-muted">-</span>
               )}
             </p>
           </li>

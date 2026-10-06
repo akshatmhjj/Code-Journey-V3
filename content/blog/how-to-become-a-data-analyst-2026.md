@@ -22,26 +22,26 @@ Studying about 10 hours a week, reaching job-ready takes roughly **6–8 months*
 
 ### 1. Foundations (8–12 weeks)
 
-- [Spreadsheets](/skills/spreadsheets) — pivot tables, lookups and clean formulas. Still used everywhere.
-- [SQL](/skills/sql) — the single most important skill for this job. Joins, `GROUP BY`, CTEs, then window functions.
-- [Statistics](/skills/statistics) — mean vs median, percentage change, distributions, and why a small sample lies.
+- [Spreadsheets](/skills/spreadsheets) - pivot tables, lookups and clean formulas. Still used everywhere.
+- [SQL](/skills/sql) - the single most important skill for this job. Joins, `GROUP BY`, CTEs, then window functions.
+- [Statistics](/skills/statistics) - mean vs median, percentage change, distributions, and why a small sample lies.
 
 **Project:** take a public dataset (a city's bike-share trips works well), answer five business questions in SQL, and summarise them in a spreadsheet.
 
 ### 2. Core (8–10 weeks)
 
-- [Data visualization](/skills/data-visualization) — choosing the right chart, and removing everything that isn't the point.
-- [BI tools](/skills/bi-tools) — Power BI or Tableau. Pick one; employers mostly ask for either.
-- [Data storytelling](/skills/data-storytelling) — leading with the answer, not the method.
+- [Data visualization](/skills/data-visualization) - choosing the right chart, and removing everything that isn't the point.
+- [BI tools](/skills/bi-tools) - Power BI or Tableau. Pick one; employers mostly ask for either.
+- [Data storytelling](/skills/data-storytelling) - leading with the answer, not the method.
 
 **Project:** a public dashboard on a topic you care about, with a one-page written summary. Done when someone non-technical can tell you the main takeaway.
 
 ### 3. Job-ready (8–12 weeks)
 
 - [Python](/skills/python) and [pandas](/skills/pandas) for cleaning and analysis that outgrows a spreadsheet.
-- [A/B testing](/skills/ab-testing) — how to tell if a change actually worked.
+- [A/B testing](/skills/ab-testing) - how to tell if a change actually worked.
 - [Git](/skills/git), so your work lives somewhere reviewable.
-- [AI coding tools](/skills/ai-coding-tools) — for drafting queries, which you then check against the data.
+- [AI coding tools](/skills/ai-coding-tools) - for drafting queries, which you then check against the data.
 
 **Project:** an analysis notebook that cleans a messy dataset, tests a hypothesis and ends in a clear recommendation, published on GitHub.
 
@@ -49,11 +49,11 @@ Studying about 10 hours a week, reaching job-ready takes roughly **6–8 months*
 
 On PayScale India, data analysts report an average base salary of about **₹5.8 L a year**, with most between ₹2.9 L and ₹10 L, and around ₹4.1 L in the first year. That's one of the largest samples we track (over 2,300 reports). In the US, the closest official category (operations research analysts) has a median of about $89k.
 
-It's a lower starting point than some engineering roles, but it's also one of the most open doors — and a common step towards [data scientist](/roles/data-scientist), [analytics engineer](/roles/analytics-engineer) or [data engineer](/roles/data-engineer). See [pay for every role](/market), with sources.
+It's a lower starting point than some engineering roles, but it's also one of the most open doors - and a common step towards [data scientist](/roles/data-scientist), [analytics engineer](/roles/analytics-engineer) or [data engineer](/roles/data-engineer). See [pay for every role](/market), with sources.
 
 ## How AI is changing it
 
-AI can now write SQL and draft charts from a plain-English question, so "pulling numbers" alone is worth less. Analysts who do well know the business, define metrics carefully, spot when a number is wrong, and explain what it means for a decision. Checking AI-written queries against the data is now part of the job — which is exactly why SQL fundamentals matter more, not less.
+AI can now write SQL and draft charts from a plain-English question, so "pulling numbers" alone is worth less. Analysts who do well know the business, define metrics carefully, spot when a number is wrong, and explain what it means for a decision. Checking AI-written queries against the data is now part of the job - which is exactly why SQL fundamentals matter more, not less.
 
 ## What gets you hired
 

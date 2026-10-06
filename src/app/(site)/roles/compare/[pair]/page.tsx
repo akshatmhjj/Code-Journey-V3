@@ -36,7 +36,7 @@ function payLine(A: CompareRole, B: CompareRole) {
   const a = A.pay.india;
   const b = B.pay.india;
   if (!a || !b) return null;
-  if (Math.abs(a.avg - b.avg) < 0.5) return `Average pay in India is similar — about ${lakh(a.avg)} and ${lakh(b.avg)} a year.`;
+  if (Math.abs(a.avg - b.avg) < 0.5) return `Average pay in India is similar - about ${lakh(a.avg)} and ${lakh(b.avg)} a year.`;
   const [hi, lo] = a.avg > b.avg ? [A, B] : [B, A];
   return `In India, ${hi.title} roles average ${lakh(hi.pay.india!.avg)} a year, against ${lakh(lo.pay.india!.avg)} for ${lo.title}.`;
 }
@@ -71,8 +71,8 @@ export default async function ComparePair({ params }: PageProps<"/roles/compare/
     `Reaching job-ready takes about ${A.jobReady} for ${A.title} and ${B.jobReady} for ${B.title}, studying around 10 hours a week. ` +
     (pay ? `${pay}${usPay} ` : "") +
     (percent >= 40
-      ? "Because so much overlaps, starting one keeps the other open — learn the shared skills first."
-      : "They split early, so it's worth choosing before you go deep — the shared skills are mostly foundations.");
+      ? "Because so much overlaps, starting one keeps the other open - learn the shared skills first."
+      : "They split early, so it's worth choosing before you go deep - the shared skills are mostly foundations.");
 
   return (
     <>

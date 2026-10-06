@@ -72,7 +72,7 @@ function SourceLine({ href, label, note, warn }: { href: string; label: string; 
     <div className="mt-4 grid gap-1 border-t border-line pt-3 text-[13px] text-muted">
       {warn && (
         <p className="flex items-center gap-1.5 font-semibold text-ink">
-          <TriangleAlert size={14} /> Small sample — treat as a rough guide
+          <TriangleAlert size={14} /> Small sample - treat as a rough guide
         </p>
       )}
       {note && <p>≈ {note}</p>}

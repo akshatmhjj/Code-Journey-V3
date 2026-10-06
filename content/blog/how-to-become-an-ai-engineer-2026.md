@@ -6,13 +6,13 @@ excerpt: Not a researcher, not a data scientist. What AI engineers actually buil
 readTime: 7 min
 ---
 
-"AI engineer" is one of the fastest-growing job titles since 2023 — and one of the most misunderstood. It isn't training models from scratch (that's closer to [ML engineer](/roles/ml-engineer) or research). It's building reliable products **on top of** models: chat over a company's documents, agents that complete real tasks, features that summarise, classify and extract.
+"AI engineer" is one of the fastest-growing job titles since 2023 - and one of the most misunderstood. It isn't training models from scratch (that's closer to [ML engineer](/roles/ml-engineer) or research). It's building reliable products **on top of** models: chat over a company's documents, agents that complete real tasks, features that summarise, classify and extract.
 
 This guide follows the [AI Engineer route](/roles/ai-engineer). Each skill links to what to learn and where.
 
 ## What the job actually is
 
-You'll call model APIs, design prompts, connect models to company data with retrieval, give them tools to act with, and — the part most tutorials skip — **measure whether any of it works**. Then you make it fast, cheap and safe enough to ship.
+You'll call model APIs, design prompts, connect models to company data with retrieval, give them tools to act with, and - the part most tutorials skip - **measure whether any of it works**. Then you make it fast, cheap and safe enough to ship.
 
 Job posts are consistent about the order: strong Python and software engineering first, then LLM experience shown through projects.
 
@@ -22,23 +22,23 @@ At about 10 hours a week, plan on **7–10 months** to job-ready.
 
 ### 1. Foundations (10–14 weeks)
 
-- [Python](/skills/python) — well enough to write clean, tested code, not just notebooks.
+- [Python](/skills/python) - well enough to write clean, tested code, not just notebooks.
 - [Git](/skills/git), the [command line](/skills/command-line), [REST APIs](/skills/rest-apis) and [how the internet works](/skills/how-the-internet-works).
 
-**Project:** a Python script that calls a public API, handles errors and retries, and stores the results — with tests.
+**Project:** a Python script that calls a public API, handles errors and retries, and stores the results - with tests.
 
 ### 2. Core (10–14 weeks)
 
-- [LLM APIs](/skills/llm-apis) — tokens, context windows, streaming, structured output, cost.
-- [Prompt engineering](/skills/prompt-engineering) — clear instructions and examples, not magic words.
-- [RAG](/skills/rag) and [vector databases](/skills/vector-databases) — grounding answers in your own data, with citations.
+- [LLM APIs](/skills/llm-apis) - tokens, context windows, streaming, structured output, cost.
+- [Prompt engineering](/skills/prompt-engineering) - clear instructions and examples, not magic words.
+- [RAG](/skills/rag) and [vector databases](/skills/vector-databases) - grounding answers in your own data, with citations.
 
 **Project:** a "chat with your docs" app over a set of PDFs that cites the passages it used. (CJ AI on this site is exactly this kind of app.)
 
 ### 3. Job-ready (10–14 weeks)
 
-- [AI agents](/skills/ai-agents) — tool calling and multi-step tasks, and knowing when *not* to use an agent.
-- [LLM evals](/skills/llm-evals) — test sets and metrics, so "it seems better" becomes a number.
+- [AI agents](/skills/ai-agents) - tool calling and multi-step tasks, and knowing when *not* to use an agent.
+- [LLM evals](/skills/llm-evals) - test sets and metrics, so "it seems better" becomes a number.
 - [Deployment](/skills/deployment) and [observability](/skills/observability).
 - [AI coding tools](/skills/ai-coding-tools).
 
@@ -54,12 +54,12 @@ PayScale doesn't publish a reliable India figure for "AI engineer" yet, so we us
 
 ## How AI is changing it
 
-This role exists because of AI and changes as fast as the models do. Frameworks shift every few months, so chase fundamentals — software engineering, retrieval, evaluation and cost control — rather than whichever library is trending.
+This role exists because of AI and changes as fast as the models do. Frameworks shift every few months, so chase fundamentals - software engineering, retrieval, evaluation and cost control - rather than whichever library is trending.
 
 ## Start this week
 
 1. Read the [LLM APIs](/skills/llm-apis) page and make your first API call.
-2. Collect the documents for your RAG project — your college notes, a product manual, anything real.
+2. Collect the documents for your RAG project - your college notes, a product manual, anything real.
 3. Save the [AI Engineer route](/roles/ai-engineer) to My Path.
 
 Torn between this and machine learning? Compare [AI engineer and ML engineer](/roles/compare/ai-engineer-vs-ml-engineer) side by side.

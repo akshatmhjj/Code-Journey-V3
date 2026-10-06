@@ -9,7 +9,7 @@ import { ComparePicker } from "./ComparePicker";
 export const metadata: Metadata = {
   title: "Compare Tech Roles Side by Side",
   description:
-    "Frontend or full-stack? Data analyst or data scientist? Compare any two tech roles — skills in common, pay, time to job-ready, interviews and how AI is changing each.",
+    "Frontend or full-stack? Data analyst or data scientist? Compare any two tech roles - skills in common, pay, time to job-ready, interviews and how AI is changing each.",
   alternates: { canonical: "/roles/compare" },
 };
 

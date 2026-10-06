@@ -9,7 +9,7 @@ import { MarketTable, type MarketRow } from "./MarketTable";
 export const metadata: Metadata = {
   title: "Tech Salaries in India and the US, Role by Role",
   description:
-    "What 26 tech roles pay in India and the US, and which are growing fastest — from PayScale and the US Bureau of Labor Statistics, with sources and sample sizes for every number.",
+    "What 26 tech roles pay in India and the US, and which are growing fastest - from PayScale and the US Bureau of Labor Statistics, with sources and sample sizes for every number.",
   alternates: { canonical: "/market" },
 };
 
@@ -42,8 +42,8 @@ export default function MarketPage() {
 
   const sources = new Map<string, string>();
   for (const m of Object.values(market.roles)) {
-    if (m.india) sources.set(m.india.url, `PayScale India — ${m.india.title} (${m.india.profiles.toLocaleString("en-IN")} reports, ${fmtMonth(m.india.updated)})`);
-    if (m.us) sources.set(m.us.url, `US BLS Occupational Outlook Handbook — ${m.us.title}`);
+    if (m.india) sources.set(m.india.url, `PayScale India - ${m.india.title} (${m.india.profiles.toLocaleString("en-IN")} reports, ${fmtMonth(m.india.updated)})`);
+    if (m.us) sources.set(m.us.url, `US BLS Occupational Outlook Handbook - ${m.us.title}`);
   }
 
   return (
@@ -91,7 +91,7 @@ export default function MarketPage() {
               <strong className="text-ink">US</strong> is the national median from the Bureau of Labor Statistics (May 2025), and growth is its projection for 2025–35. For comparison, all US jobs are projected to grow 3.5%.
             </li>
             <li>
-              Sources don&apos;t always use our role names. <strong className="text-ink">≈</strong> means we used the closest title they publish — hover it to see which. <TriangleNote /> means fewer than 100 salary reports.
+              Sources don&apos;t always use our role names. <strong className="text-ink">≈</strong> means we used the closest title they publish - hover it to see which. <TriangleNote /> means fewer than 100 salary reports.
             </li>
             <li>Pay varies a lot by city, company and skills. Use these as a starting point for research, not a promise or a negotiation target.</li>
           </ul>

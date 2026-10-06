@@ -13,7 +13,8 @@
     "content:check": "node scripts/check-content.ts",
     "links:check": "node scripts/check-links.ts",
     "rag:ingest": "node --env-file-if-exists=.env scripts/rag/ingest.ts",
-    "rag:eval": "node --env-file-if-exists=.env scripts/rag/eval.ts"
+    "rag:eval": "node --env-file-if-exists=.env scripts/rag/eval.ts",
+    "rag:ask": "node --env-file-if-exists=.env scripts/rag/ask.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.2",

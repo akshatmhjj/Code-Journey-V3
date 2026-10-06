@@ -60,8 +60,21 @@ const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? process.env.VITE_SUPAB
 const db = createClient(url!, anon!, { auth: { persistSession: false } });
 
 type Match = { url: string; similarity: number };
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+async function embedPatiently(q: string): Promise<number[]> {
+  for (let attempt = 0; ; attempt++) {
+    try {
+      return await embedQuery(q);
+    } catch (e) {
+      const status = (e as { status?: number }).status ?? 0;
+      if (attempt >= 8 || ![429, 500, 503].includes(status)) throw e;
+      await sleep(Math.min(2 ** attempt * 4000, 65_000));
+    }
+  }
+}
+
 async function search(q: string): Promise<Match[]> {
-  const v = await embedQuery(q);
+  const v = await embedPatiently(q);
   const { data, error } = await db.rpc("match_doc_chunks", { query_embedding: JSON.stringify(v), query_text: q, match_count: 8 });
   if (error) throw error;
   return data as Match[];
@@ -75,13 +88,13 @@ async function pool<T, R>(items: T[], n: number, fn: (x: T) => Promise<R>) {
 }
 
 const K = 5;
-const results = await pool(cases, 4, async (c) => {
+const results = await pool(cases, 2, async (c) => {
   const m = await search(c.q);
   const urls = m.map((x) => x.url.split("#")[0]);
   const rank = urls.slice(0, K).findIndex((u) => c.expect.some((e) => u === e || (e.endsWith("/") && u.startsWith(e))));
   return { ...c, rank, top: urls.slice(0, 3), topSim: m[0]?.similarity ?? 0 };
 });
-const off = await pool(OFF_TOPIC, 4, async (q) => ({ q, topSim: (await search(q))[0]?.similarity ?? 0 }));
+const off = await pool(OFF_TOPIC, 2, async (q) => ({ q, topSim: (await search(q))[0]?.similarity ?? 0 }));
 
 const hits = results.filter((r) => r.rank >= 0);
 const mrr = results.reduce((a, r) => a + (r.rank >= 0 ? 1 / (r.rank + 1) : 0), 0) / results.length;

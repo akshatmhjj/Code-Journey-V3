@@ -2,8 +2,10 @@
 // Used by the chat route and by scripts (ingest, eval), so it has no Next.js imports.
 
 const BASE = "https://generativelanguage.googleapis.com/v1beta/models";
-export const CHAT_MODEL = process.env.GEMINI_MODEL ?? "gemini-2.5-flash";
-export const EMBED_MODEL = process.env.GEMINI_EMBED_MODEL ?? "gemini-embedding-001";
+// gemini-2.5-* is closed to new API keys; 3.x models think by default, so answers use a low thinking level.
+export const CHAT_MODEL = process.env.GEMINI_MODEL ?? "gemini-3.8-flash";
+export const FAST_MODEL = process.env.GEMINI_FAST_MODEL ?? "gemini-flash-lite-latest";
+export const EMBED_MODEL = process.env.GEMINI_EMBED_MODEL ?? "gemini-embedding-2";
 export const EMBED_DIMS = 768;
 
 function key() {
@@ -56,17 +58,22 @@ export async function embedQuery(text: string): Promise<number[]> {
 
 export type Turn = { role: "user" | "assistant"; content: string };
 
-/** Streams an answer as text deltas. */
+const busy = (e: unknown) => [429, 500, 503].includes((e as { status?: number }).status ?? 0);
+
+/** Streams an answer as text deltas. Falls back to the fast model if the main one is overloaded before streaming starts. */
 export async function* streamAnswer(system: string, turns: Turn[], signal?: AbortSignal): AsyncGenerator<string> {
-  const r = await post(
-    `${CHAT_MODEL}:streamGenerateContent?alt=sse`,
-    {
-      system_instruction: { parts: [{ text: system }] },
-      contents: turns.map((t) => ({ role: t.role === "assistant" ? "model" : "user", parts: [{ text: t.content }] })),
-      generationConfig: { temperature: 0.3, topP: 0.9, maxOutputTokens: 900 },
-    },
-    { signal },
-  );
+  const body = (thinking: boolean) => ({
+    system_instruction: { parts: [{ text: system }] },
+    contents: turns.map((t) => ({ role: t.role === "assistant" ? "model" : "user", parts: [{ text: t.content }] })),
+    generationConfig: { temperature: 0.3, maxOutputTokens: 1200, ...(thinking ? { thinkingConfig: { thinkingLevel: "low" } } : {}) },
+  });
+  let r: Response;
+  try {
+    r = await post(`${CHAT_MODEL}:streamGenerateContent?alt=sse`, body(true), { signal });
+  } catch (e) {
+    if (!busy(e)) throw e;
+    r = await post(`${FAST_MODEL}:streamGenerateContent?alt=sse`, body(false), { signal });
+  }
   const reader = r.body!.getReader();
   const decoder = new TextDecoder();
   let buf = "";
@@ -81,7 +88,8 @@ export async function* streamAnswer(system: string, turns: Turn[], signal?: Abor
       if (!line.startsWith("data:")) continue;
       try {
         const json = JSON.parse(line.slice(5));
-        const text = json?.candidates?.[0]?.content?.parts?.map((p: { text?: string }) => p.text ?? "").join("");
+        const parts: { text?: string; thought?: boolean }[] = json?.candidates?.[0]?.content?.parts ?? [];
+        const text = parts.filter((p) => !p.thought).map((p) => p.text ?? "").join("");
         if (text) yield text;
       } catch {
         /* partial or keep-alive line */
@@ -90,13 +98,17 @@ export async function* streamAnswer(system: string, turns: Turn[], signal?: Abor
   }
 }
 
-/** Non-streaming single answer (used by evals and the question rewriter). */
+/** Non-streaming short answer on the fast model (used by the question rewriter). */
 export async function generate(system: string, prompt: string, maxOutputTokens = 200): Promise<string> {
-  const r = await post(`${CHAT_MODEL}:generateContent`, {
+  const r = await post(`${FAST_MODEL}:generateContent`, {
     system_instruction: { parts: [{ text: system }] },
     contents: [{ role: "user", parts: [{ text: prompt }] }],
     generationConfig: { temperature: 0, maxOutputTokens },
   });
   const data = await r.json();
-  return (data?.candidates?.[0]?.content?.parts ?? []).map((p: { text?: string }) => p.text ?? "").join("").trim();
+  return (data?.candidates?.[0]?.content?.parts ?? [])
+    .filter((p: { thought?: boolean }) => !p.thought)
+    .map((p: { text?: string }) => p.text ?? "")
+    .join("")
+    .trim();
 }

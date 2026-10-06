@@ -34,8 +34,9 @@ async function embedWithRetry(batch: Chunk[]) {
       return await embedDocuments(batch.map((c) => ({ title: c.title, text: c.content })));
     } catch (e) {
       const status = (e as { status?: number }).status;
-      if (attempt < 5 && (status === 429 || (status ?? 0) >= 500)) {
-        const wait = 2 ** attempt * 2000;
+      if (attempt < 8 && (status === 429 || (status ?? 0) >= 500)) {
+        // Free-tier embedding quota is per minute, so back off up to a full minute.
+        const wait = Math.min(2 ** attempt * 4000, 65_000);
         console.warn(`  rate limited (${status}); retrying in ${wait / 1000}s`);
         await sleep(wait);
         continue;

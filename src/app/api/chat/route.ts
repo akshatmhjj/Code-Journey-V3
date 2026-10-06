@@ -81,15 +81,21 @@ export async function POST(req: Request) {
       const s = entitySource(e.kind, e.slug);
       if (s) sources.push(s);
     }
-    const vector = await embedQuery(query);
+    // Semantic search when embeddings are available; keyword search alone if the quota is exhausted.
+    let vector: number[] | null = null;
+    try {
+      vector = await embedQuery(query);
+    } catch (e) {
+      console.warn("CJ AI: embedding unavailable, using keyword search", (e as { status?: number }).status);
+    }
     const { data: matches, error } = await db.rpc("match_doc_chunks", {
-      query_embedding: JSON.stringify(vector),
+      ...(vector ? { query_embedding: JSON.stringify(vector) } : {}),
       query_text: query,
       match_count: 10,
     });
     if (error) throw error;
     const top = (matches ?? []) as Source[];
-    confident = entities.length > 0 || (top[0]?.similarity ?? 0) >= MIN_SIMILARITY;
+    confident = entities.length > 0 || (vector ? (top[0]?.similarity ?? 0) >= MIN_SIMILARITY : top.length > 0);
     for (const m of top) {
       if (sources.length >= MAX_SOURCES) break;
       if (!sources.some((s) => s.key === m.key)) sources.push(m);

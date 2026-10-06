@@ -1,3 +1,29 @@
+- date: 2026-10-09
+  version: "2.0.0-beta.12"
+  title: Sign in with Google or GitHub
+  changes:
+    - type: added
+      text: Sign in or sign up with your Google or GitHub account, as well as email. If you already have an account with the same email, it's the same account.
+- date: 2026-10-09
+  version: "2.0.0-beta.11"
+  title: Share your path
+  changes:
+    - type: added
+      text: Pick a handle on My Path and turn on a public page at codejourney.space/u/your-handle — your destination, progress and ticked skills, stage by stage. Handy for a CV, LinkedIn or GitHub.
+    - type: added
+      text: It's off until you switch it on, shows only the name you choose (never your email), and is kept out of search engines.
+- date: 2026-10-08
+  version: "2.0.0-beta.10"
+  title: Save, rate and suggest resources
+  changes:
+    - type: added
+      text: Bookmark any resource to come back to. Your saved resources are listed on My Path, and the library has a Saved filter.
+    - type: added
+      text: Mark resources as helpful. The helpful count is public; a thumbs-down tells us a link is outdated or broken and is only seen by the Code Journey team.
+    - type: added
+      text: Know a better resource? Suggest one from any skill page. Every suggestion is checked by a person, and you can follow its status on My Path.
+    - type: changed
+      text: The gap checker's note on its limits now appears before you paste a post.
 - date: 2026-10-08
   version: "2.0.0-beta.9"
   title: Job post gap checker

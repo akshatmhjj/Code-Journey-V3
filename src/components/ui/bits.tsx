@@ -3,6 +3,8 @@ import { ArrowUpRight, BadgeCheck } from "lucide-react";
 import type { Domain, Resource } from "@/lib/content";
 import { RESOURCE_LABEL } from "@/lib/site";
 import { LineGlyph } from "@/components/map/Line";
+import { SaveResource } from "@/components/path/SaveResource";
+import { HelpfulVote, VotesProvider } from "@/components/path/ResourceVotes";
 
 // Stations are interactive for signed-in people, so they live in their own client component.
 export { SkillStation } from "./Station";
@@ -61,40 +63,57 @@ export function DomainBadge({ domain, withLine = true, href = true }: { domain: 
 
 const COST: Record<string, string> = { free: "Free", freemium: "Free + paid", paid: "Paid" };
 
-export function ResourceList({ resources, showSkills = false }: { resources: (Resource & { skills?: { slug: string; title: string }[] })[]; showSkills?: boolean }) {
+export function ResourceList({
+  resources,
+  showSkills = false,
+  skillSlug,
+}: {
+  resources: (Resource & { skills?: { slug: string; title: string }[] })[];
+  showSkills?: boolean;
+  /** The skill page these resources belong to, stored with a bookmark. */
+  skillSlug?: string;
+}) {
   return (
-    <ul className="divide-y divide-line border-y-2 border-ink">
-      {resources.map((r) => (
-        <li key={r.url} className="group relative grid grid-cols-[1fr_auto] items-start gap-x-4 gap-y-1 py-4">
-          <div className="min-w-0">
-            <a href={r.url} target="_blank" rel="noopener noreferrer" className="font-display text-lg leading-snug font-semibold after:absolute after:inset-0 group-hover:underline">
-              {r.title}
-            </a>
-            <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted">
-              {r.official && (
-                <span className="inline-flex items-center gap-1 font-semibold text-ink">
-                  <BadgeCheck size={15} /> Official
-                </span>
-              )}
-              {r.provider && <span>{r.provider}</span>}
-              <span className="font-mono text-[11px] tracking-wide uppercase">{RESOURCE_LABEL[r.type]}</span>
-              <span className={r.cost === "free" ? "" : "font-semibold text-ink"}>{COST[r.cost]}</span>
-            </p>
-            {r.note && <p className="mt-1.5 text-[15px]">{r.note}</p>}
-            {showSkills && r.skills && (
-              <p className="relative z-10 mt-2 flex flex-wrap gap-2 text-sm">
-                {r.skills.map((s) => (
-                  <Link key={s.slug} href={`/skills/${s.slug}`} className="rounded-full bg-surface px-2.5 py-0.5 hover:underline">
-                    {s.title}
-                  </Link>
-                ))}
+    <VotesProvider urls={resources.map((r) => r.url)}>
+      <ul className="divide-y divide-line border-y-2 border-ink">
+        {resources.map((r) => (
+          <li key={r.url} className="group relative grid grid-cols-[1fr_auto] items-start gap-x-4 gap-y-1 py-4">
+            <div className="min-w-0">
+              <a href={r.url} target="_blank" rel="noopener noreferrer" className="font-display text-lg leading-snug font-semibold after:absolute after:inset-0 group-hover:underline">
+                {r.title}
+              </a>
+              <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted">
+                {r.official && (
+                  <span className="inline-flex items-center gap-1 font-semibold text-ink">
+                    <BadgeCheck size={15} /> Official
+                  </span>
+                )}
+                {r.provider && <span>{r.provider}</span>}
+                <span className="font-mono text-[11px] tracking-wide uppercase">{RESOURCE_LABEL[r.type]}</span>
+                <span className={r.cost === "free" ? "" : "font-semibold text-ink"}>{COST[r.cost]}</span>
               </p>
-            )}
-          </div>
-          <ArrowUpRight size={20} className="mt-1 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </li>
-      ))}
-    </ul>
+              {r.note && <p className="mt-1.5 text-[15px]">{r.note}</p>}
+              <div className="mt-2">
+                <HelpfulVote url={r.url} title={r.title} skillSlug={skillSlug ?? r.skills?.[0]?.slug} />
+              </div>
+              {showSkills && r.skills && (
+                <p className="relative z-10 mt-2 flex flex-wrap gap-2 text-sm">
+                  {r.skills.map((s) => (
+                    <Link key={s.slug} href={`/skills/${s.slug}`} className="rounded-full bg-surface px-2.5 py-0.5 hover:underline">
+                      {s.title}
+                    </Link>
+                  ))}
+                </p>
+              )}
+            </div>
+            <div className="flex items-center gap-3">
+              <SaveResource url={r.url} title={r.title} skillSlug={skillSlug ?? r.skills?.[0]?.slug} />
+              <ArrowUpRight size={20} className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </div>
+          </li>
+        ))}
+      </ul>
+    </VotesProvider>
   );
 }
 

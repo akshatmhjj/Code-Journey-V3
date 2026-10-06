@@ -5,14 +5,40 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
-type Mode = "signin" | "signup" | "reset" | "update";
+type Mode = "signin" | "signup" | "reset" | "update" | "callback";
+type Provider = "google" | "github";
 
 const COPY: Record<Mode, { title: string; sub: string; button: string }> = {
   signin: { title: "Welcome back", sub: "Pick up your route where you left it.", button: "Sign in" },
   signup: { title: "Create your account", sub: "Free, and it takes under a minute.", button: "Create account" },
   reset: { title: "Reset your password", sub: "We'll email you a link to choose a new one.", button: "Send reset link" },
   update: { title: "Choose a new password", sub: "At least 8 characters.", button: "Save password" },
+  callback: { title: "Signing you in…", sub: "One moment while we finish up.", button: "" },
 };
+
+const PROVIDERS: { id: Provider; label: string; icon: React.ReactNode }[] = [
+  {
+    id: "google",
+    label: "Google",
+    icon: (
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+        <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.4h6.5a5.6 5.6 0 0 1-2.4 3.6v3h3.9c2.2-2.1 3.5-5.1 3.5-8.7Z" />
+        <path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.3v3.1A12 12 0 0 0 12 24Z" />
+        <path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6h-4a12 12 0 0 0 0 10.8l4-3.1Z" />
+        <path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.3 6.6l4 3.1c.9-2.9 3.6-4.9 6.7-4.9Z" />
+      </svg>
+    ),
+  },
+  {
+    id: "github",
+    label: "GitHub",
+    icon: (
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">
+        <path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0C17.3 4.9 18.3 5.2 18.3 5.2c.6 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.1.9 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3" />
+      </svg>
+    ),
+  },
+];
 
 // Supabase auth error codes → messages that say what to do next.
 const AUTH_ERRORS: Record<string, string> = {
@@ -46,6 +72,62 @@ export function AuthForm() {
   const [notice, setNotice] = useState("");
   // For mode=update: has the reset link given us a session yet?
   const [recovery, setRecovery] = useState<"checking" | "ready" | "dead">("checking");
+  // Social sign-in buttons appear only for providers switched on in Supabase.
+  const [providers, setProviders] = useState<Provider[]>([]);
+  const [callbackError, setCallbackError] = useState("");
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/settings`, { headers: { apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY! } })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((s: { external?: Record<string, boolean> } | null) => {
+        if (!cancelled && s?.external) setProviders(PROVIDERS.map((p) => p.id).filter((id) => s.external?.[id]));
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Back from Google or GitHub: finish the session, then go to My Path.
+  useEffect(() => {
+    if (mode !== "callback") return;
+    const sb = supabase();
+    const hash = new URLSearchParams(location.hash.slice(1));
+    const search = new URLSearchParams(location.search);
+    const problem = hash.get("error_description") ?? search.get("error_description");
+    let done = false;
+    const go = () => {
+      if (done) return;
+      done = true;
+      router.replace("/me");
+    };
+    const { data: sub } = sb.auth.onAuthStateChange((_e, session) => session && go());
+    (async () => {
+      // Provider said no (cancelled, or the provider isn't set up).
+      if (problem) return setCallbackError(problem.replace(/\+/g, " "));
+      const code = search.get("code");
+      if (code) {
+        const { error } = await sb.auth.exchangeCodeForSession(code);
+        if (error) return setCallbackError(error.message);
+        return go();
+      }
+      const { data } = await sb.auth.getSession();
+      if (data.session) go();
+      else setTimeout(() => !done && setCallbackError("We couldn't finish signing you in. Please try again."), 4000);
+    })();
+    return () => sub.subscription.unsubscribe();
+  }, [mode, router]);
+
+  async function social(provider: Provider) {
+    setError("");
+    setBusy(true);
+    const { error } = await supabase().auth.signInWithOAuth({ provider, options: { redirectTo: `${location.origin}/login?mode=callback` } });
+    if (error) {
+      setBusy(false);
+      setError(error.message);
+    }
+  }
 
   useEffect(() => {
     if (mode !== "update") return;
@@ -144,7 +226,22 @@ export function AuthForm() {
       )}
       <h1 className="text-[clamp(2rem,4vw,2.75rem)] leading-[1.02] font-bold tracking-[-0.03em]">{COPY[mode].title}</h1>
       <p className="mt-2 text-muted">{COPY[mode].sub}</p>
-      {mode === "update" && recovery !== "ready" ? (
+      {mode === "callback" ? (
+        <div className="mt-8 grid gap-4" role="status">
+          {callbackError ? (
+            <>
+              <p>{callbackError}</p>
+              <button onClick={() => { setMode("signin"); setCallbackError(""); router.replace("/login"); }} className="btn btn-accent w-full">
+                Back to sign in
+              </button>
+            </>
+          ) : (
+            <div className="h-2 overflow-hidden rounded-full bg-surface">
+              <div className="h-full w-1/3 animate-pulse rounded-full bg-accent" />
+            </div>
+          )}
+        </div>
+      ) : mode === "update" && recovery !== "ready" ? (
         <div className="mt-8 grid gap-4" role="status">
           {recovery === "checking" ? (
             <p className="text-muted">Checking your reset link…</p>
@@ -158,7 +255,20 @@ export function AuthForm() {
           )}
         </div>
       ) : (
-      <form onSubmit={onSubmit} className="mt-8 grid gap-5">
+      <>
+      {(mode === "signin" || mode === "signup") && providers.length > 0 && (
+        <div className="mt-8 grid gap-3">
+          {PROVIDERS.filter((p) => providers.includes(p.id)).map((p) => (
+            <button key={p.id} type="button" onClick={() => social(p.id)} disabled={busy} className="btn btn-line w-full disabled:opacity-50">
+              {p.icon} Continue with {p.label}
+            </button>
+          ))}
+          <p className="mt-2 flex items-center gap-3 font-mono text-[11.5px] tracking-wider text-muted uppercase before:h-px before:flex-1 before:bg-line after:h-px after:flex-1 after:bg-line">
+            or with email
+          </p>
+        </div>
+      )}
+      <form onSubmit={onSubmit} className={`${providers.length > 0 && (mode === "signin" || mode === "signup") ? "mt-3" : "mt-8"} grid gap-5`}>
         {mode === "signup" && <Field id="name" label="Name" autoComplete="name" />}
         {mode !== "update" && <Field id="email" label="Email" type="email" autoComplete="email" />}
         {mode !== "reset" && (
@@ -185,6 +295,7 @@ export function AuthForm() {
           {busy ? "One moment…" : COPY[mode].button}
         </button>
       </form>
+      </>
       )}
       <div className="mt-6 flex flex-wrap justify-between gap-2 text-[15px]">
         {mode === "signin" && (

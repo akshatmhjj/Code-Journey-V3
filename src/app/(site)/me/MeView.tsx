@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ArrowRight, Compass, LogOut, MessageCircle } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Bookmark, Compass, Copy, Eye, EyeOff, LogOut, MessageCircle, X } from "lucide-react";
 import { supabase, useUser } from "@/lib/supabase";
 import { computeProgress, formatHours, formatWeeks, type PathIndex } from "@/lib/path";
 import { CHAT_DAILY_LIMIT, SITE } from "@/lib/site";
@@ -22,6 +22,259 @@ function Card({ title, children, right }: { title: string; children: React.React
       </div>
       {children}
     </section>
+  );
+}
+
+/** Bookmarked resources, newest first, grouped under the skill they were saved from. */
+function SavedResources({ index }: { index: PathIndex }) {
+  const path = usePath();
+  const saved = path?.saved ?? [];
+  const [all, setAll] = useState(false);
+  if (!saved.length) {
+    return (
+      <div className="flex flex-wrap items-center gap-4">
+        <Bookmark size={24} />
+        <p className="max-w-[56ch] flex-1 text-muted">
+          Tap the bookmark next to any resource on a skill page or in the library to keep it here.
+        </p>
+        <Link href="/resources" className="btn btn-line">
+          Open the library
+        </Link>
+      </div>
+    );
+  }
+  const shown = all ? saved : saved.slice(0, 8);
+  return (
+    <>
+      <ul className="divide-y divide-line border-y-2 border-ink">
+        {shown.map((r) => {
+          const skill = r.skillSlug ? index.skills[r.skillSlug] : undefined;
+          return (
+            <li key={r.url} className="grid grid-cols-[1fr_auto] items-center gap-3 py-3">
+              <div className="min-w-0">
+                <a href={r.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-display font-semibold hover:underline">
+                  {r.title} <ArrowUpRight size={15} className="shrink-0" />
+                </a>
+                <p className="mt-0.5 truncate text-sm text-muted">
+                  {skill && r.skillSlug ? (
+                    <Link href={`/skills/${r.skillSlug}`} className="hover:underline">
+                      {skill.title}
+                    </Link>
+                  ) : (
+                    new URL(r.url).hostname.replace(/^www\./, "")
+                  )}
+                </p>
+              </div>
+              <button
+                onClick={() => path?.toggleSaved({ url: r.url, title: r.title })}
+                aria-label={`Remove ${r.title} from saved`}
+                className="grid size-9 place-items-center rounded-full border-2 border-line hover:border-ink"
+              >
+                <X size={16} />
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+      {saved.length > 8 && (
+        <button onClick={() => setAll(!all)} className="mt-4 text-sm font-semibold hover:underline">
+          {all ? "Show fewer" : `Show all ${saved.length}`}
+        </button>
+      )}
+    </>
+  );
+}
+
+const HANDLE = /^[a-z0-9][a-z0-9_-]{2,29}$/;
+
+/** Choose a handle and turn the public /u/<handle> page on or off. */
+function SharePath({ userId, defaultName, hasRole }: { userId: string; defaultName: string; hasRole: boolean }) {
+  const [saved, setSaved] = useState<{ handle: string; name: string; isPublic: boolean } | null>(null);
+  const [handle, setHandle] = useState("");
+  const [name, setName] = useState("");
+  const [isPublic, setIsPublic] = useState(false);
+  const [state, setState] = useState<"idle" | "saving" | "saved">("idle");
+  const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    supabase()
+      .from("profiles")
+      .select("handle, public_name, path_public")
+      .eq("id", userId)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (cancelled) return;
+        const row = { handle: data?.handle ?? "", name: data?.public_name ?? defaultName, isPublic: !!data?.path_public };
+        setSaved(row);
+        setHandle(row.handle);
+        setName(row.name);
+        setIsPublic(row.isPublic);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [userId, defaultName]);
+
+  if (!saved) return <div className="h-40 animate-pulse rounded-[var(--radius-md)] bg-surface" />;
+
+  const dirty = handle !== saved.handle || name !== saved.name || isPublic !== saved.isPublic;
+  const link = `${SITE.url.replace(/^https?:\/\//, "")}/u/${saved.handle}`;
+
+  const save = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    const h = handle.trim().toLowerCase();
+    const n = name.trim();
+    if (h && !HANDLE.test(h)) return setError("Handles are 3–30 characters: lowercase letters, numbers, - and _, starting with a letter or number.");
+    if (isPublic && !h) return setError("Pick a handle first — it becomes your link.");
+    if (isPublic && !n) return setError("Add the name you'd like people to see.");
+    setState("saving");
+    const db = supabase();
+    if (h && h !== saved.handle) {
+      const { data: free } = await db.rpc("handle_available", { p_handle: h });
+      if (free === false) {
+        setState("idle");
+        return setError(`@${h} is taken. Try another.`);
+      }
+    }
+    const { error: err } = await db
+      .from("profiles")
+      .upsert({ id: userId, handle: h || null, public_name: n || null, path_public: isPublic }, { onConflict: "id" });
+    if (err) {
+      setState("idle");
+      return setError(
+        err.code === "23505" ? `@${h} is taken. Try another.` : err.message.includes("reserved") ? `@${h} is reserved. Try another.` : "Couldn't save that. Please try again.",
+      );
+    }
+    setSaved({ handle: h, name: n, isPublic });
+    setHandle(h);
+    setName(n);
+    setState("saved");
+    setTimeout(() => setState("idle"), 2500);
+  };
+
+  const field = "h-11 w-full min-w-0 rounded-full border-2 border-ink bg-canvas px-4 outline-none focus:shadow-[3px_3px_0_var(--ink)]";
+  return (
+    <form onSubmit={save} className="grid gap-5">
+      <p className="max-w-[60ch] text-muted">
+        Get a page you can put on your CV, LinkedIn or GitHub showing where you&apos;re heading and how far you&apos;ve got. It shows your chosen name, route and
+        ticked skills — never your email. Off until you turn it on, and it stays out of search engines.
+      </p>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="grid gap-1.5 text-sm">
+          <span className="font-semibold">Handle</span>
+          <span className="flex items-center rounded-full border-2 border-ink bg-canvas pl-4 focus-within:shadow-[3px_3px_0_var(--ink)]">
+            <span className="text-muted">@</span>
+            <input
+              value={handle}
+              onChange={(e) => setHandle(e.target.value.toLowerCase().replace(/[^a-z0-9_-]/g, ""))}
+              maxLength={30}
+              autoCapitalize="none"
+              spellCheck={false}
+              placeholder="your-name"
+              className="h-10 min-w-0 flex-1 bg-transparent pr-4 pl-0.5 outline-none"
+            />
+          </span>
+        </label>
+        <label className="grid gap-1.5 text-sm">
+          <span className="font-semibold">Name shown on the page</span>
+          <input value={name} onChange={(e) => setName(e.target.value)} maxLength={60} className={field} />
+        </label>
+      </div>
+      <label className="flex cursor-pointer items-center gap-3">
+        <input type="checkbox" checked={isPublic} onChange={(e) => setIsPublic(e.target.checked)} className="size-5 accent-[var(--ink)]" />
+        <span className="font-semibold">Make my path page public</span>
+      </label>
+      {isPublic && !hasRole && <p className="text-sm text-muted">Choose a destination above so your page has a route to show.</p>}
+      {error && (
+        <p role="alert" className="text-[15px] font-semibold">
+          {error}
+        </p>
+      )}
+      <div className="flex flex-wrap items-center gap-3">
+        <button type="submit" disabled={!dirty || state === "saving"} className="btn btn-accent disabled:opacity-40">
+          {state === "saving" ? "Saving…" : "Save"}
+        </button>
+        {state === "saved" && (
+          <span role="status" className="text-sm font-semibold">
+            Saved
+          </span>
+        )}
+      </div>
+      {saved.isPublic && saved.handle ? (
+        <div className="flex flex-wrap items-center gap-3 rounded-[var(--radius-md)] bg-surface px-4 py-3">
+          <Eye size={17} />
+          <span className="min-w-0 flex-1 font-mono text-[14px] break-all">{link}</span>
+          <button
+            type="button"
+            onClick={async () => {
+              await navigator.clipboard.writeText(`https://${link}`);
+              setCopied(true);
+              setTimeout(() => setCopied(false), 2000);
+            }}
+            className="inline-flex items-center gap-1.5 text-sm font-semibold hover:underline"
+          >
+            <Copy size={15} /> {copied ? "Copied" : "Copy link"}
+          </button>
+          <Link href={`/u/${saved.handle}`} className="inline-flex items-center gap-1.5 text-sm font-semibold hover:underline">
+            View <ArrowUpRight size={15} />
+          </Link>
+        </div>
+      ) : (
+        <p className="flex items-center gap-2 text-sm text-muted">
+          <EyeOff size={15} /> Your path page is private.
+        </p>
+      )}
+    </form>
+  );
+}
+
+type Suggestion = { id: number; skill_slug: string; url: string; title: string | null; status: "new" | "accepted" | "declined"; created_at: string };
+const SUGGESTION_STATUS = { new: "Waiting for review", accepted: "Added — thank you", declined: "Not added this time" } as const;
+
+/** Resources this person has suggested, and where each one is in review. Hidden until there's at least one. */
+function YourSuggestions({ index, userId }: { index: PathIndex; userId: string }) {
+  const [rows, setRows] = useState<Suggestion[] | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    supabase()
+      .from("resource_suggestions")
+      .select("id, skill_slug, url, title, status, created_at")
+      .eq("user_id", userId)
+      .order("created_at", { ascending: false })
+      .limit(20)
+      .then(({ data }) => !cancelled && setRows((data as Suggestion[] | null) ?? []));
+    return () => {
+      cancelled = true;
+    };
+  }, [userId]);
+  if (!rows?.length) return null;
+  return (
+    <Card title="Your suggestions">
+      <ul className="divide-y divide-line border-y-2 border-ink">
+        {rows.map((r) => (
+          <li key={r.id} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 py-3">
+            <div className="min-w-0">
+              <a href={r.url} target="_blank" rel="noopener noreferrer" className="font-display font-semibold break-all hover:underline">
+                {r.title || new URL(r.url).hostname.replace(/^www\./, "")}
+              </a>
+              <p className="text-sm text-muted">
+                for{" "}
+                <Link href={`/skills/${r.skill_slug}`} className="hover:underline">
+                  {index.skills[r.skill_slug]?.title ?? r.skill_slug}
+                </Link>{" "}
+                · {longDate.format(new Date(r.created_at))}
+              </p>
+            </div>
+            <span className={`font-mono text-[12px] tracking-wide uppercase ${r.status === "accepted" ? "font-bold text-ink" : "text-muted"}`}>
+              {SUGGESTION_STATUS[r.status]}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </Card>
   );
 }
 
@@ -189,6 +442,25 @@ export function MeView({ index }: { index: PathIndex }) {
             </Link>
           </Card>
         )}
+
+        <Card
+          title="Saved resources"
+          right={
+            path?.saved.length ? (
+              <Link href="/resources" className="text-sm font-semibold hover:underline">
+                Browse the library
+              </Link>
+            ) : undefined
+          }
+        >
+          <SavedResources index={index} />
+        </Card>
+
+        <YourSuggestions index={index} userId={user.id} />
+
+        <Card title="Share your path">
+          <SharePath userId={user.id} defaultName={name ?? ""} hasRole={!!role} />
+        </Card>
 
         <div className="grid gap-6 lg:grid-cols-2">
           <Card title="CJ AI">

@@ -65,9 +65,11 @@ export default function Home() {
             <span className="flex items-center gap-2">
               <span className="size-3.5 rounded-full border-[3px] border-ink bg-accent" /> Full route
             </span>
-            <span className="flex items-center gap-2">
-              <span className="size-3 rounded-full border-2 border-faint" /> Being mapped
-            </span>
+            {net.roles.some((r) => !r.live) && (
+              <span className="flex items-center gap-2">
+                <span className="size-3 rounded-full border-2 border-faint" /> Being mapped
+              </span>
+            )}
           </p>
         </SectionTitle>
         <p className="mb-10 max-w-[62ch] text-lg text-muted">
@@ -91,9 +93,9 @@ export default function Home() {
                 Icon: Compass,
                 who: "New to tech",
                 title: "Find the role that fits",
-                text: "Read the one-line summary of each role, compare a few, then follow one route from its first station. Every stage tells you what “done” looks like.",
-                href: "/roles",
-                cta: "Browse roles",
+                text: "Answer eight quick questions and get three roles that suit you, with the reasons. Then follow one route from its first station.",
+                href: "/compass",
+                cta: "Take the 2-minute quiz",
               },
               {
                 Icon: Repeat2,

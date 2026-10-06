@@ -16,6 +16,9 @@ export function HeroSearch({ chips }: { chips: { title: string; href: string }[]
         <span className="min-w-0 flex-1 truncate font-display text-lg text-muted md:text-xl">I want to become a…</span>
         <span className="btn btn-accent hidden sm:inline-flex">Find my route</span>
       </button>
+      <Link href="/compass" className="mt-4 inline-flex items-center gap-2 font-semibold underline decoration-accent decoration-2 underline-offset-4">
+        Not sure yet? Take the 2-minute Compass quiz
+      </Link>
       <div className="mt-5 flex flex-wrap items-center gap-2">
         <span className="mr-1 text-sm text-muted">Popular:</span>
         {chips.map((c) => (

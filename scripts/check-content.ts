@@ -49,6 +49,19 @@ for (const f of md("roles")) {
   for (const a of data.adjacent ?? []) if (!roles.has(a)) errors.push(`roles/${f}: unknown adjacent role "${a}"`);
 }
 
+// Compass: every weighted role must exist, and every role must be reachable.
+{
+  const compass = YAML.parse(fs.readFileSync(path.join(ROOT, "compass.yaml"), "utf8")) as { questions: { id: string; options: { weights: Record<string, number> }[] }[] };
+  const reached = new Set<string>();
+  for (const q of compass.questions)
+    for (const o of q.options)
+      for (const r of Object.keys(o.weights)) {
+        if (!roles.has(r)) errors.push(`compass.yaml (${q.id}): unknown role "${r}"`);
+        reached.add(r);
+      }
+  for (const r of roles) if (!reached.has(r)) warn.push(`compass.yaml: role "${r}" can never be suggested`);
+}
+
 // Parse the standalone data files too, so a YAML slip fails here rather than mid-build.
 for (const f of ["glossary.yaml", "faq.yaml", "changelog.yaml"]) {
   try {

@@ -11,6 +11,8 @@ const LINKS = [
     title: "Explore",
     links: [
       ["/roles", "All roles"],
+      ["/compass", "Compass quiz"],
+      ["/roles/compare", "Compare roles"],
       ["/skills", "All skills"],
       ["/resources", "Resource library"],
       ["/glossary", "Glossary"],

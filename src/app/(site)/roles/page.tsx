@@ -23,8 +23,17 @@ export default function RolesIndex() {
       <PageHead
         eyebrow="Departures"
         title="Where do you want to go?"
-        lede="Every role on the map. Boarding routes have every stage, skill and resource written out. Mapping routes are next in line."
-      />
+        lede="Every role on the map, with every stage, skill and resource written out."
+      >
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Link href="/compass" className="btn btn-accent">
+            Not sure? Take the quiz
+          </Link>
+          <Link href="/roles/compare" className="btn btn-line">
+            Compare two roles
+          </Link>
+        </div>
+      </PageHead>
       <div className="wrap">
         <div className="overflow-hidden rounded-[var(--radius-lg)] border-2 border-ink">
           <div className="band-ink">

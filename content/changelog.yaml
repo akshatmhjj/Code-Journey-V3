@@ -1,3 +1,13 @@
+- date: 2026-10-08
+  version: "2.0.0-beta.8"
+  title: Compass and Compare
+  changes:
+    - type: added
+      text: Compass — eight quick questions that suggest three roles that suit you, with the reasons from your own answers. No account needed.
+    - type: added
+      text: Compare any two roles side by side — skills in common, overlap, time to job-ready, must-have skills, interviews and how AI is changing each. Comparisons can be shared as links.
+    - type: changed
+      text: The "New to tech" path on the home page now starts with Compass, and every role page links to comparisons with its related roles.
 - date: 2026-10-07
   version: "2.0.0-beta.7"
   title: My Path is live

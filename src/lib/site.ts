@@ -16,7 +16,7 @@ export const THEMES = [
 ] as const;
 export type ThemeId = (typeof THEMES)[number]["id"];
 export type Mode = "system" | "light" | "dark";
-export const DEFAULT_THEME: ThemeId = "harbor";
+export const DEFAULT_THEME: ThemeId = "tangerine";
 
 export const RESOURCE_LABEL: Record<string, string> = {
   docs: "Docs",

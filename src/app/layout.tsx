@@ -29,14 +29,14 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F9F9F9" },
-    { media: "(prefers-color-scheme: dark)", color: "#092634" },
+    { media: "(prefers-color-scheme: light)", color: "#FAF3E1" },
+    { media: "(prefers-color-scheme: dark)", color: "#222222" },
   ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-cj="harbor" suppressHydrationWarning className={`${display.variable} ${body.variable} ${code.variable}`}>
+    <html lang="en" data-cj="tangerine" suppressHydrationWarning className={`${display.variable} ${body.variable} ${code.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
         <script dangerouslySetInnerHTML={{ __html: ANALYTICS_SCRIPT }} />

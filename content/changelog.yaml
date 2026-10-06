@@ -1,3 +1,23 @@
+- date: 2026-10-07
+  version: "2.0.0-beta.6"
+  title: Tangerine by default, and themes that follow you
+  changes:
+    - type: changed
+      text: Tangerine is now the theme new visitors see first.
+    - type: added
+      text: Signed-in visitors can save their palette and light/dark choice to their account, so it loads automatically on any device.
+- date: 2026-10-07
+  version: "2.0.0-beta.5"
+  title: CJ AI answers from Code Journey
+  changes:
+    - type: changed
+      text: CJ AI now answers only from Code Journey's own pages. Every answer cites the pages it used, lists them underneath, and links straight to them.
+    - type: added
+      text: Answers stream as they're written, with a stop button and thumbs up/down on each one.
+    - type: added
+      text: When a question isn't covered, CJ AI says so and points to the closest pages instead of guessing.
+    - type: added
+      text: A daily limit of 40 questions per account, so the assistant stays free to run.
 - date: 2026-10-06
   version: "2.0.0-beta.4"
   title: The whole map, written

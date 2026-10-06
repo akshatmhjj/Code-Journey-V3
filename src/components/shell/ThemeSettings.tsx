@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Check, Monitor, Moon, Sun } from "lucide-react";
 import { THEMES, type Mode } from "@/lib/site";
 import { Sheet } from "./Sheet";
@@ -10,6 +11,45 @@ const MODES: { id: Mode; label: string; Icon: typeof Sun }[] = [
   { id: "light", label: "Light", Icon: Sun },
   { id: "dark", label: "Dark", Icon: Moon },
 ];
+
+/** Save to the account, so the same look loads next time on any device. */
+function SaveLook() {
+  const ui = useUI();
+  if (ui.signedIn === undefined) return null;
+
+  if (!ui.signedIn) {
+    return (
+      <p className="border-t border-line pt-4 text-sm text-muted">
+        This look is saved on this device.{" "}
+        <Link href="/login" className="link font-semibold text-ink">
+          Sign in
+        </Link>{" "}
+        to keep it everywhere.
+      </p>
+    );
+  }
+
+  return (
+    <div className="flex flex-wrap items-center gap-3 border-t border-line pt-4">
+      <button onClick={ui.saveLook} disabled={!ui.unsaved || ui.saving === "saving"} className="btn btn-ink disabled:opacity-40">
+        {ui.saving === "saving" ? "Saving…" : "Save to my account"}
+      </button>
+      <p className="text-sm text-muted" role="status">
+        {ui.saving === "error" ? (
+          <span className="text-ink">Couldn&apos;t save. Try again.</span>
+        ) : ui.saving === "saved" ? (
+          <span className="inline-flex items-center gap-1.5 font-semibold text-ink">
+            <Check size={15} /> Saved
+          </span>
+        ) : ui.unsaved ? (
+          "Not saved yet"
+        ) : (
+          "Loads automatically when you sign in"
+        )}
+      </p>
+    </div>
+  );
+}
 
 /** Theme chooser: four palettes x light/dark/system. Also embedded on /me. */
 export function ThemePicker() {
@@ -63,6 +103,7 @@ export function ThemePicker() {
           ))}
         </div>
       </fieldset>
+      <SaveLook />
     </div>
   );
 }
@@ -73,7 +114,7 @@ export function ThemeSettings() {
     <Sheet open={ui.panel === "settings"} onClose={ui.close} label="Theme settings" variant="side">
       <div className="overflow-y-auto p-6 pt-5">
         <h2 className="text-2xl font-bold">Make it yours</h2>
-        <p className="mt-1.5 mb-6 text-muted">Four palettes, four colours each. Your choice is saved on this device.</p>
+        <p className="mt-1.5 mb-6 text-muted">Four palettes, four colours each. Your choice follows you when you sign in.</p>
         <ThemePicker />
       </div>
     </Sheet>

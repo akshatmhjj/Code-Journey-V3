@@ -1,0 +1,46 @@
+# Keeps CJ AI's search index in sync with content/ and checks retrieval quality.
+# Runs when content reaches main, and on demand.
+# Repository secrets needed: GEMINI_API_KEY, SUPABASE_SERVICE_ROLE_KEY,
+# NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY.
+name: CJ AI index
+
+on:
+  push:
+    branches: [main]
+    paths: ["content/**", "scripts/rag/**", "src/lib/gemini.ts"]
+  workflow_dispatch:
+
+concurrency:
+  group: cj-ai-index
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Sync passages (embeds only what changed)
+        run: node scripts/rag/ingest.ts
+      - name: Retrieval evaluation
+        run: node scripts/rag/eval.ts --json rag-eval.json --min-hit 0.85
+      - name: Upload evaluation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rag-eval
+          path: rag-eval.json
+          if-no-files-found: ignore

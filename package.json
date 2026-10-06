@@ -10,7 +10,8 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "next typegen && tsc --noEmit",
-    "content:check": "node scripts/check-content.ts"
+    "content:check": "node scripts/check-content.ts",
+    "links:check": "node scripts/check-links.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.2",

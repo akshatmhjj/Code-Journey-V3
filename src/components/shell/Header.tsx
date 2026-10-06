@@ -113,7 +113,8 @@ export function Header({ roleTitles }: { roleTitles: string[] }) {
           aria-label="Search roles, skills and resources"
         >
           <Search size={18} className="shrink-0" />
-          <span className="flex min-w-0 flex-1 items-baseline gap-1 overflow-hidden text-[15px] whitespace-nowrap text-muted">
+          <span className="hidden min-w-0 flex-1 truncate text-[15px] text-muted lg:inline xl:hidden">Search roles, skills…</span>
+          <span className="flex min-w-0 flex-1 items-baseline gap-1 overflow-hidden text-[15px] whitespace-nowrap text-muted lg:hidden xl:flex">
             I want to become {article(role)}
             <span key={role} className="cj-roll truncate font-semibold text-ink">
               {role}

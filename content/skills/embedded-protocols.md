@@ -3,12 +3,12 @@ title: Embedded Protocols (UART, I2C, SPI, MQTT)
 domain: specialist
 level: intermediate
 hours: 20–30
-brief: How chips, sensors and devices talk to each other — the wired buses inside a device (UART, I2C, SPI) and the messaging protocols that connect devices to the cloud (MQTT).
+brief: How chips, sensors and devices talk to each other - the wired buses inside a device (UART, I2C, SPI) and the messaging protocols that connect devices to the cloud (MQTT).
 prereqs:
   - microcontrollers
 learn:
   - topic: UART
-    detail: Simple serial communication — the debug console of most boards.
+    detail: Simple serial communication - the debug console of most boards.
   - topic: I2C
     detail: Two wires, many devices, addressed by number.
   - topic: SPI
@@ -53,4 +53,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-A temperature sensor doesn't speak English — it speaks I2C. Embedded protocols are the languages chips use to exchange bytes, and MQTT is how millions of small devices send their readings to the cloud without draining their batteries.
+A temperature sensor doesn't speak English - it speaks I2C. Embedded protocols are the languages chips use to exchange bytes, and MQTT is how millions of small devices send their readings to the cloud without draining their batteries.

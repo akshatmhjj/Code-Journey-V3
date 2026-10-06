@@ -3,7 +3,7 @@ title: Test Design & Strategy
 domain: quality
 level: beginner
 hours: 15–25
-brief: Deciding what to test and how — finding the cases most likely to break, choosing the right level of test, and writing bug reports people can act on.
+brief: Deciding what to test and how - finding the cases most likely to break, choosing the right level of test, and writing bug reports people can act on.
 prereqs:
   - testing-basics
 learn:

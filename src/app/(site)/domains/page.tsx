@@ -5,7 +5,7 @@ import { PageHead } from "@/components/ui/bits";
 
 export const metadata: Metadata = {
   title: "Fields of Tech: The Code Journey Network",
-  description: "Web, mobile, data, AI, cloud, quality, security and more — every field of tech as a line on one map.",
+  description: "Web, mobile, data, AI, cloud, quality, security and more - every field of tech as a line on one map.",
   alternates: { canonical: "/domains" },
 };
 

@@ -19,7 +19,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
         <circle cx="300" cy="20" r="11" fill="var(--accent)" stroke="var(--ink)" strokeWidth="4" />
         <circle cx="10" cy="20" r="8" fill="var(--canvas)" stroke="var(--ink)" strokeWidth="4" />
       </svg>
-      <p className="mt-8 max-w-[50ch] text-lg text-muted">That&apos;s a bug on our side, not something you did. Try again — if it keeps happening, let us know what you clicked.</p>
+      <p className="mt-8 max-w-[50ch] text-lg text-muted">That&apos;s a bug on our side, not something you did. Try again - if it keeps happening, let us know what you clicked.</p>
       <div className="mt-8 flex flex-wrap gap-3">
         <button onClick={reset} className="btn btn-accent">
           Try again

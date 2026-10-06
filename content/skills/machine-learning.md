@@ -12,9 +12,9 @@ learn:
   - topic: What is a Model
     detail: A mathematical function that maps inputs (features) to outputs (predictions). You train it on historical data to learn the mapping.
   - topic: Train / Test Split
-    detail: Train on 80%, evaluate on the held-out 20%. Testing on training data is cheating — the model memorised it. NEVER do this.
+    detail: Train on 80%, evaluate on the held-out 20%. Testing on training data is cheating - the model memorised it. NEVER do this.
   - topic: Overfitting
-    detail: The model memorised the training data too well — 98% accuracy in training, 60% on new data. Reduce complexity or add more data.
+    detail: The model memorised the training data too well - 98% accuracy in training, 60% on new data. Reduce complexity or add more data.
   - topic: Linear Regression
     detail: Predict a continuous number (house price, sales amount). Assumes a linear relationship between features and target.
   - topic: Logistic Regression
@@ -61,7 +61,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-Machine learning is pattern recognition at scale. A spam filter that reads 10 million emails and learns which words and patterns correlate with spam — that's ML. A price predictor that studied 500,000 past property sales and learned that bedrooms, location, age, and square footage together predict price — that's ML. You don't program the rules. The algorithm finds them from the data.
+Machine learning is pattern recognition at scale. A spam filter that reads 10 million emails and learns which words and patterns correlate with spam - that's ML. A price predictor that studied 500,000 past property sales and learned that bedrooms, location, age, and square footage together predict price - that's ML. You don't program the rules. The algorithm finds them from the data.
 
 ## A first look
 

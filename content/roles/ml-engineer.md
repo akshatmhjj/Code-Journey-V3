@@ -1,7 +1,7 @@
 ---
 title: ML Engineer
 aliases: [Machine Learning Engineer, Applied ML Engineer, Deep Learning Engineer, ML Software Engineer]
-summary: ML engineers train, deploy and maintain machine learning models in real products — building the data pipelines, training jobs and serving systems that keep models accurate and fast.
+summary: ML engineers train, deploy and maintain machine learning models in real products - building the data pipelines, training jobs and serving systems that keep models accurate and fast.
 whereTheyWork: Tech companies with ranking, search, recommendations or fraud problems; AI labs; autonomous systems and robotics; fintech; and healthcare imaging.
 dayInLife:
   - Build features from raw event data for a recommendation model.
@@ -31,7 +31,7 @@ stages:
   - name: Senior
     summary: ML systems at scale.
     skills: [system-design, kubernetes, aws, llm-apis, spark]
-    project: Design an end-to-end ML system (e.g. feed ranking) — data, training, serving, evaluation and cost — as a design doc.
+    project: Design an end-to-end ML system (e.g. feed ranking) - data, training, serving, evaluation and cost - as a design doc.
     doneWhen: You can make trade-offs between model quality, latency and cost and explain them to non-ML engineers.
 skills:
   must: [python, machine-learning, deep-learning, pytorch, sql, math-for-ml, git]
@@ -41,9 +41,9 @@ tools: [Python, PyTorch, scikit-learn, Jupyter, MLflow or Weights & Biases, Dock
 interview:
   rounds:
     - Recruiter screen
-    - Coding — data structures and algorithms
-    - ML fundamentals — bias/variance, metrics, model choices
-    - ML system design — e.g. design a recommendation or fraud-detection system
+    - Coding - data structures and algorithms
+    - ML fundamentals - bias/variance, metrics, model choices
+    - ML system design - e.g. design a recommendation or fraud-detection system
     - Project deep dive and behavioural round
   practice:
     - { title: Machine Learning Interviews (free book), url: "https://huyenchip.com/ml-interviews-book/", provider: Chip Huyen, type: book, cost: free }
@@ -52,7 +52,7 @@ interview:
     - { title: Kaggle competitions, url: "https://www.kaggle.com/competitions", provider: Kaggle, type: practice, cost: free }
 aiImpact: Foundation models have replaced many custom models for language and vision tasks, so some ML work has moved to fine-tuning, evaluation and serving large models efficiently. Demand stays strong for engineers who understand training deeply and can run models reliably and cheaply at scale.
 market:
-  - text: ML engineer postings increasingly overlap with AI engineering — fine-tuning, serving and evaluating large models alongside classical ML.
+  - text: ML engineer postings increasingly overlap with AI engineering - fine-tuning, serving and evaluating large models alongside classical ML.
   - text: Most roles expect solid software engineering; strong coding often matters as much as maths in interviews.
 adjacent: [ai-engineer, data-scientist, mlops-engineer, backend-engineer]
 updated: 2026-10-06

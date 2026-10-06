@@ -3,7 +3,7 @@ title: Jetpack Compose
 domain: mobile
 level: intermediate
 hours: 40–60
-brief: Jetpack Compose is Android's modern way to build interfaces in Kotlin — you describe what the screen should look like for a given state, and Compose keeps it up to date.
+brief: Jetpack Compose is Android's modern way to build interfaces in Kotlin - you describe what the screen should look like for a given state, and Compose keeps it up to date.
 prereqs:
   - kotlin
 learn:
@@ -60,7 +60,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-The old Android way was to build screens in XML, then write code to find and update each view. In Compose you write a Kotlin function that says "given this data, show this" — and when the data changes, Compose redraws the parts that need it.
+The old Android way was to build screens in XML, then write code to find and update each view. In Compose you write a Kotlin function that says "given this data, show this" - and when the data changes, Compose redraws the parts that need it.
 
 ## A first look
 

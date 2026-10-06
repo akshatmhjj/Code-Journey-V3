@@ -3,7 +3,7 @@ title: Publishing to App Stores
 domain: mobile
 level: beginner
 hours: 10–20
-brief: Getting an app onto Google Play and the Apple App Store — signing, builds, store listings, privacy details, review guidelines and release tracks.
+brief: Getting an app onto Google Play and the Apple App Store - signing, builds, store listings, privacy details, review guidelines and release tracks.
 prereqs:
   - flutter
 learn:
@@ -57,4 +57,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-Building the app is half the job. Publishing means proving to Apple and Google that it's safe, honest about data, and follows their rules — then shipping updates without breaking anyone. A published app is also the strongest portfolio item a mobile developer can have.
+Building the app is half the job. Publishing means proving to Apple and Google that it's safe, honest about data, and follows their rules - then shipping updates without breaking anyone. A published app is also the strongest portfolio item a mobile developer can have.

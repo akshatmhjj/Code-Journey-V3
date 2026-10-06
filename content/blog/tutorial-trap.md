@@ -16,4 +16,4 @@ Completing tutorials feels productive, but you didn’t make decisions. Real dev
 
 ## Break the cycle
 
-Rebuild everything without looking. It will feel slow and frustrating, but that’s where learning actually happens. Struggle is not failure — it’s progress.
+Rebuild everything without looking. It will feel slow and frustrating, but that’s where learning actually happens. Struggle is not failure - it’s progress.

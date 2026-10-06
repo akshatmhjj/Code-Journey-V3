@@ -1,10 +1,10 @@
 ---
 title: Cloud Engineer
 aliases: [Cloud Infrastructure Engineer, AWS Engineer, Azure Engineer, Cloud Architect (junior)]
-summary: Cloud engineers design, build and run infrastructure on AWS, Azure or Google Cloud — networks, compute, storage, identity and cost — so applications are secure, reliable and affordable.
+summary: Cloud engineers design, build and run infrastructure on AWS, Azure or Google Cloud - networks, compute, storage, identity and cost - so applications are secure, reliable and affordable.
 whereTheyWork: Companies moving to or running in the cloud, consultancies and managed-service providers, banks and enterprises, and cloud providers themselves.
 dayInLife:
-  - Set up a new environment — network, database and permissions — with infrastructure as code.
+  - Set up a new environment - network, database and permissions - with infrastructure as code.
   - Help a team move an application from on-premise servers to the cloud.
   - Track down why last month's cloud bill jumped 30%.
   - Tighten permissions after a security review.
@@ -31,7 +31,7 @@ stages:
   - name: Senior
     summary: Architecture, cost and governance at scale.
     skills: [system-design, incident-response, technical-writing]
-    project: Write a migration plan for a legacy app — target architecture, cost estimate, risks and rollback plan.
+    project: Write a migration plan for a legacy app - target architecture, cost estimate, risks and rollback plan.
     doneWhen: You can design multi-account, multi-region setups and defend their cost.
 skills:
   must: [aws, linux, networking, terraform, cloud-security, git]
@@ -41,16 +41,16 @@ tools: [AWS, Azure or Google Cloud consoles and CLIs, Terraform, Docker, Kuberne
 interview:
   rounds:
     - Recruiter screen
-    - Cloud fundamentals — networking, IAM, storage and compute choices
-    - Scenario questions — design or troubleshoot an architecture
-    - Hands-on task — Terraform, scripting or a broken environment
+    - Cloud fundamentals - networking, IAM, storage and compute choices
+    - Scenario questions - design or troubleshoot an architecture
+    - Hands-on task - Terraform, scripting or a broken environment
     - Behavioural round
   practice:
     - { title: AWS Skill Builder, url: "https://skillbuilder.aws/", provider: Amazon Web Services, type: course, cost: freemium, official: true }
     - { title: Microsoft Learn for Azure, url: "https://learn.microsoft.com/en-us/training/azure/", provider: Microsoft, type: course, cost: free, official: true }
     - { title: Google Cloud Skills Boost, url: "https://www.cloudskillsboost.google/", provider: Google, type: course, cost: freemium, official: true }
     - { title: DevOps Exercises, url: "https://github.com/bregman-arie/devops-exercises", provider: Arie Bregman, type: practice, cost: free }
-aiImpact: AI assistants now draft Terraform, IAM policies and architecture diagrams quickly, but mistakes in cloud configuration are expensive and sometimes public. The value is in reviewing that output — security, cost and failure modes — and in designing architectures that fit the business, which AI can't decide on its own.
+aiImpact: AI assistants now draft Terraform, IAM policies and architecture diagrams quickly, but mistakes in cloud configuration are expensive and sometimes public. The value is in reviewing that output - security, cost and failure modes - and in designing architectures that fit the business, which AI can't decide on its own.
 market:
   - text: AWS, Azure and Google Cloud together host most cloud workloads; AWS appears most often in job posts, with Azure strong in large enterprises.
   - text: Cloud certifications (such as AWS Solutions Architect Associate) are widely requested for these roles and help career changers get interviews.
@@ -60,7 +60,7 @@ updated: 2026-10-06
 
 ## Is this role for you?
 
-Cloud engineering suits people who like designing systems and understanding how everything connects — networks, permissions, storage — and who care about doing it securely and affordably.
+Cloud engineering suits people who like designing systems and understanding how everything connects - networks, permissions, storage - and who care about doing it securely and affordably.
 
 ## Cloud Engineer or DevOps Engineer?
 

@@ -3,16 +3,16 @@ title: OWASP Top 10
 domain: security
 level: intermediate
 hours: 20–30
-brief: The OWASP Top 10 is the industry's standard list of the most critical web application security risks — the shared vocabulary of application security.
+brief: The OWASP Top 10 is the industry's standard list of the most critical web application security risks - the shared vocabulary of application security.
 prereqs:
   - web-security
 learn:
   - topic: Broken access control
-    detail: Users acting outside their permissions — the most common serious flaw.
+    detail: Users acting outside their permissions - the most common serious flaw.
   - topic: Cryptographic failures
     detail: Sensitive data exposed through weak or missing encryption.
   - topic: Injection
-    detail: SQL, command and other injection — including cross-site scripting.
+    detail: SQL, command and other injection - including cross-site scripting.
   - topic: Insecure design
     detail: Flaws baked into the design that no code fix can fully patch.
   - topic: Security misconfiguration
@@ -56,4 +56,4 @@ OWASP is a non-profit that collects data on how real applications get attacked. 
 
 ## How to learn it
 
-Don't just read the list. For each category, exploit it in a safe lab (Juice Shop or PortSwigger), then fix it in code. That's what makes it stick — and what interviewers ask about.
+Don't just read the list. For each category, exploit it in a safe lab (Juice Shop or PortSwigger), then fix it in code. That's what makes it stick - and what interviewers ask about.

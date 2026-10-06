@@ -1,7 +1,7 @@
 ---
 title: Android Engineer
 aliases: [Android Developer, Kotlin Developer, Mobile Engineer (Android), Native Android Developer]
-summary: Android engineers build native apps for the world's most-used mobile platform with Kotlin and Jetpack Compose — fast, reliable apps that work across thousands of device models.
+summary: Android engineers build native apps for the world's most-used mobile platform with Kotlin and Jetpack Compose - fast, reliable apps that work across thousands of device models.
 whereTheyWork: Consumer apps, fintech and payments, e-commerce, ride-hailing and delivery, media and streaming, phone makers, and companies with large audiences in markets where Android dominates.
 dayInLife:
   - Build a new screen in Jetpack Compose from a Figma design.
@@ -41,8 +41,8 @@ tools: [Android Studio, Kotlin, Jetpack Compose, Gradle, Retrofit, Room, Hilt, F
 interview:
   rounds:
     - Recruiter screen
-    - Coding — data structures and algorithms, often in Kotlin
-    - Android fundamentals — lifecycle, coroutines, Compose, memory leaks
+    - Coding - data structures and algorithms, often in Kotlin
+    - Android fundamentals - lifecycle, coroutines, Compose, memory leaks
     - Live or take-home app exercise
     - Mobile system design for mid-level and above (e.g. an offline-first chat app)
   practice:
@@ -50,9 +50,9 @@ interview:
     - { title: Now in Android (reference app), url: "https://github.com/android/nowinandroid", provider: Google, type: docs, cost: free, official: true }
     - { title: LeetCode, url: "https://leetcode.com/", provider: LeetCode, type: practice, cost: freemium }
     - { title: Tech Interview Handbook, url: "https://www.techinterviewhandbook.org/", provider: Yangshun Tay, type: docs, cost: free }
-aiImpact: Android Studio's AI assistant and other tools generate Compose UI and boilerplate quickly. What stays valuable is what's genuinely hard on Android — lifecycle and state across process death, performance on low-end devices, fragmentation across manufacturers, and battery and memory budgets.
+aiImpact: Android Studio's AI assistant and other tools generate Compose UI and boilerplate quickly. What stays valuable is what's genuinely hard on Android - lifecycle and state across process death, performance on low-end devices, fragmentation across manufacturers, and battery and memory budgets.
 market:
-  - text: Android has the majority of smartphone users worldwide, which keeps native Android skills in steady demand — especially in markets across Asia, Africa and Latin America.
+  - text: Android has the majority of smartphone users worldwide, which keeps native Android skills in steady demand - especially in markets across Asia, Africa and Latin America.
   - text: Kotlin and Jetpack Compose are now Google's recommended way to build Android apps; most new job posts ask for both.
 adjacent: [cross-platform-mobile-engineer, ios-engineer, backend-engineer]
 updated: 2026-10-06

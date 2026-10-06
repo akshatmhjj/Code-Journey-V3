@@ -10,9 +10,9 @@ learn:
   - topic: Utility classes
     detail: Spacing, colour, typography and layout as small composable classes.
   - topic: Responsive prefixes
-    detail: "md:, lg: — mobile-first breakpoints right in the markup."
+    detail: "md:, lg: - mobile-first breakpoints right in the markup."
   - topic: States
-    detail: "hover:, focus-visible:, disabled:, dark: — without writing selectors."
+    detail: "hover:, focus-visible:, disabled:, dark: - without writing selectors."
   - topic: Theme and design tokens
     detail: Define colours, fonts and spacing once; use them everywhere.
   - topic: Layout
@@ -20,7 +20,7 @@ learn:
   - topic: Avoiding class soup
     detail: Extract components, not @apply everywhere.
   - topic: Still know CSS
-    detail: Tailwind is CSS — specificity, the cascade and layout still matter.
+    detail: Tailwind is CSS - specificity, the cascade and layout still matter.
 resources:
   - title: Tailwind CSS documentation
     url: https://tailwindcss.com/docs
@@ -44,7 +44,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-Instead of naming a class "card" and writing its styles in another file, you write the styles directly: `class="rounded-lg border p-4 shadow"`. It feels odd for a day, then very fast — and every page ends up using the same spacing and colours.
+Instead of naming a class "card" and writing its styles in another file, you write the styles directly: `class="rounded-lg border p-4 shadow"`. It feels odd for a day, then very fast - and every page ends up using the same spacing and colours.
 
 ## Learn CSS first
 

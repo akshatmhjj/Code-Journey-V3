@@ -3,7 +3,7 @@ title: Message Queues & Events
 domain: web
 level: advanced
 hours: 20–30
-brief: Message queues and event streams let services hand off work and react to events without waiting on each other — the backbone of background jobs and scalable systems.
+brief: Message queues and event streams let services hand off work and react to events without waiting on each other - the backbone of background jobs and scalable systems.
 prereqs:
   - rest-apis
 learn:
@@ -45,4 +45,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-When you upload a video, the site doesn't make you wait while it's processed. It drops a note in a queue — "process video 123" — and replies straight away. A separate worker picks up the note when it can. Queues decouple the fast part from the slow part.
+When you upload a video, the site doesn't make you wait while it's processed. It drops a note in a queue - "process video 123" - and replies straight away. A separate worker picks up the note when it can. Queues decouple the fast part from the slow part.

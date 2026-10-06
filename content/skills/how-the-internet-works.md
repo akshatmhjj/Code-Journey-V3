@@ -3,7 +3,7 @@ title: How the Internet Works
 domain: foundations
 level: beginner
 hours: 8–15
-brief: What actually happens between typing a web address and seeing a page — DNS, IP addresses, HTTP requests and responses, and how browsers turn code into pixels.
+brief: What actually happens between typing a web address and seeing a page - DNS, IP addresses, HTTP requests and responses, and how browsers turn code into pixels.
 prereqs: []
 learn:
   - topic: Clients and servers

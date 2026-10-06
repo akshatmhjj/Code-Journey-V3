@@ -8,7 +8,7 @@ prereqs:
   - python
 learn:
   - topic: NumPy Arrays
-    detail: np.array([1,2,3]) — like a list but typed and fast. Supports element-wise operations without loops.
+    detail: np.array([1,2,3]) - like a list but typed and fast. Supports element-wise operations without loops.
   - topic: Broadcasting
     detail: array * 1.08 multiplies every element. array[array > 100] filters without a loop. This is the core NumPy pattern.
   - topic: DataFrame
@@ -16,15 +16,15 @@ learn:
   - topic: Selecting data
     detail: df['column'] for a series. df[['a','b']] for multiple columns. df.loc[row,col] for labels. df.iloc[0,0] for positions.
   - topic: Filtering rows
-    detail: df[df['sales'] > 100] — boolean mask. df.query('sales > 100 and region == "North"') — readable string syntax.
+    detail: df[df['sales'] > 100] - boolean mask. df.query('sales > 100 and region == "North"') - readable string syntax.
   - topic: GroupBy
-    detail: df.groupby('category')['amount'].agg(['mean','sum','count']) — summarise by category in one line.
+    detail: df.groupby('category')['amount'].agg(['mean','sum','count']) - summarise by category in one line.
   - topic: Merge / Join
-    detail: pd.merge(customers, orders, on='customer_id', how='left') — same as SQL LEFT JOIN. Combine related DataFrames.
+    detail: pd.merge(customers, orders, on='customer_id', how='left') - same as SQL LEFT JOIN. Combine related DataFrames.
   - topic: Missing Values
-    detail: df.isnull().sum() — count NaNs per column. df.dropna() removes rows. df.fillna(0) replaces NaN with zero.
+    detail: df.isnull().sum() - count NaNs per column. df.dropna() removes rows. df.fillna(0) replaces NaN with zero.
   - topic: apply() / map()
-    detail: df['name'].apply(str.upper) — apply any function to a column. .map() for Series, .apply() for row/column-level.
+    detail: df['name'].apply(str.upper) - apply any function to a column. .map() for Series, .apply() for row/column-level.
   - topic: pd.to_datetime()
     detail: Convert string dates to datetime objects. Then df['date'].dt.month, dt.year, dt.day_name() give time features.
 resources:
@@ -49,7 +49,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-Imagine you have a spreadsheet with 1 million rows and you need to multiply every value in a column by 1.08 (a tax rate). In plain Python this would loop 1 million times and take maybe 10 seconds. NumPy does it in 0.01 seconds because it uses compiled C code under the hood. Pandas is NumPy plus a spreadsheet interface — you get row labels, column names, and the ability to combine datasets like SQL joins.
+Imagine you have a spreadsheet with 1 million rows and you need to multiply every value in a column by 1.08 (a tax rate). In plain Python this would loop 1 million times and take maybe 10 seconds. NumPy does it in 0.01 seconds because it uses compiled C code under the hood. Pandas is NumPy plus a spreadsheet interface - you get row labels, column names, and the ability to combine datasets like SQL joins.
 
 ## A first look
 

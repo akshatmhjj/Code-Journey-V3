@@ -54,4 +54,4 @@ Your app's database is built for many small reads and writes. A warehouse is bui
 
 ## Try it free
 
-BigQuery has a free tier and public datasets — you can query billions of rows without setting anything up.
+BigQuery has a free tier and public datasets - you can query billions of rows without setting anything up.

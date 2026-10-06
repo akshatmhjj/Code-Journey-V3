@@ -8,7 +8,7 @@ readTime: 4 min
 
 ## The null safety advantage
 
-In JavaScript or Python, null errors often appear at runtime — sometimes long after you wrote the code. Dart forces you to think about null upfront. That means fewer hidden bugs and less confusion. For beginners, this removes an entire category of frustration before it even happens.
+In JavaScript or Python, null errors often appear at runtime - sometimes long after you wrote the code. Dart forces you to think about null upfront. That means fewer hidden bugs and less confusion. For beginners, this removes an entire category of frustration before it even happens.
 
 ## One language, every platform
 
@@ -16,8 +16,8 @@ Dart with Flutter runs on mobile, web, desktop, and more. You don’t need to sw
 
 ## Hot reload as a learning tool
 
-Flutter’s hot reload gives instant feedback — you change something, and it updates immediately. That tight loop helps beginners build intuition faster. Instead of guessing how layouts behave, you see it in real time.
+Flutter’s hot reload gives instant feedback - you change something, and it updates immediately. That tight loop helps beginners build intuition faster. Instead of guessing how layouts behave, you see it in real time.
 
 ## The learning curve is honest
 
-Dart feels harder in the beginning, but it teaches real concepts — structure, typing, and state. That initial difficulty pays off because you’re learning things that actually matter in real projects, not just shortcuts.
+Dart feels harder in the beginning, but it teaches real concepts - structure, typing, and state. That initial difficulty pays off because you’re learning things that actually matter in real projects, not just shortcuts.

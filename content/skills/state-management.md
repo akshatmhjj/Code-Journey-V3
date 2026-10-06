@@ -3,7 +3,7 @@ title: State Management
 domain: web
 level: intermediate
 hours: 15–25
-brief: Deciding where data lives in an app and how it changes — local component state, shared state, and server data that needs caching and syncing.
+brief: Deciding where data lives in an app and how it changes - local component state, shared state, and server data that needs caching and syncing.
 prereqs:
   - react
 learn:
@@ -16,7 +16,7 @@ learn:
   - topic: Context
     detail: Share rarely-changing values (theme, current user) without prop drilling.
   - topic: Server state
-    detail: Data from APIs needs caching, refetching and loading states — TanStack Query handles this.
+    detail: Data from APIs needs caching, refetching and loading states - TanStack Query handles this.
   - topic: Global stores
     detail: Zustand or Redux Toolkit when many distant parts of the app share changing state.
   - topic: URL as state

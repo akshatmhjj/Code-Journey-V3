@@ -1,25 +1,35 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { ArrowLeftRight, ArrowRight } from "lucide-react";
+import type { CompareRole } from "@/lib/content";
+import { growth, lakh, usd } from "@/lib/money";
 
-export type CompareRole = {
-  slug: string;
-  title: string;
-  domain: string;
-  summary: string;
-  whereTheyWork: string;
-  jobReady: string;
-  stages: { name: string; count: number }[];
-  route: string[];
-  must: string[];
-  rounds: string[];
-  aiImpact: string;
-};
+export type { CompareRole };
 
-const DEFAULT_A = "frontend-engineer";
-const DEFAULT_B = "full-stack-engineer";
+function Pay({ r }: { r: CompareRole }) {
+  const { india, us } = r.pay;
+  if (!india && !us) return <p className="text-muted">No reliable public figure</p>;
+  return (
+    <dl className="grid grid-cols-2 gap-3 text-sm">
+      {india && (
+        <div>
+          <dt className="text-muted">India average{india.exact ? "" : " ≈"}</dt>
+          <dd className="font-display text-xl font-bold tabular-nums">{lakh(india.avg)}</dd>
+          {india.entry && <dd className="text-muted tabular-nums">Starting {lakh(india.entry)}</dd>}
+        </div>
+      )}
+      {us && (
+        <div>
+          <dt className="text-muted">US median{us.exact ? "" : " ≈"}</dt>
+          <dd className="font-display text-xl font-bold tabular-nums">{usd(us.median)}</dd>
+          <dd className="text-muted tabular-nums">{growth(us.growth)} jobs by 2035</dd>
+        </div>
+      )}
+    </dl>
+  );
+}
 
 function Chip({ slug, title, tone = "line" }: { slug: string; title: string; tone?: "line" | "accent" }) {
   return (
@@ -51,16 +61,26 @@ function Row({ label, a, b }: { label: string; a: React.ReactNode; b: React.Reac
   );
 }
 
-export function Compare({ roles, skillTitles }: { roles: CompareRole[]; skillTitles: Record<string, string> }) {
-  const params = useSearchParams();
+export function Compare({
+  roles,
+  skillTitles,
+  a: aSlug,
+  b: bSlug,
+  intro,
+}: {
+  roles: CompareRole[];
+  skillTitles: Record<string, string>;
+  a: string;
+  b: string;
+  /** Server-written summary shown under the heading. */
+  intro?: string;
+}) {
   const router = useRouter();
-  const find = (s: string | null, fallback: string) => roles.find((r) => r.slug === s) ?? roles.find((r) => r.slug === fallback)!;
-  const a = find(params.get("a"), DEFAULT_A);
-  const b = find(params.get("b"), a.slug === DEFAULT_B ? DEFAULT_A : DEFAULT_B);
+  const a = roles.find((r) => r.slug === aSlug)!;
+  const b = roles.find((r) => r.slug === bSlug)!;
 
   const set = (next: { a?: string; b?: string }) => {
-    const q = new URLSearchParams({ a: next.a ?? a.slug, b: next.b ?? b.slug });
-    router.replace(`/roles/compare?${q}`, { scroll: false });
+    router.push(`/roles/compare/${next.a ?? a.slug}-vs-${next.b ?? b.slug}`, { scroll: false });
   };
 
   const inB = new Set(b.route);
@@ -91,8 +111,15 @@ export function Compare({ roles, skillTitles }: { roles: CompareRole[]; skillTit
 
   return (
     <div className="wrap py-10 md:py-16">
-      <p className="eyebrow">Compare</p>
-      <h1 className="mt-4 max-w-[16ch] text-[clamp(2.5rem,7vw,4.75rem)] leading-[0.96] font-bold tracking-[-0.04em]">Two routes, side by side.</h1>
+      <p className="eyebrow">
+        <Link href="/roles/compare" className="hover:underline">
+          Compare
+        </Link>
+      </p>
+      <h1 className="mt-4 max-w-[22ch] text-[clamp(2.25rem,6vw,4.25rem)] leading-[0.98] font-bold tracking-[-0.04em]">
+        {a.title} vs {b.title}
+      </h1>
+      {intro && <p className="mt-5 max-w-[68ch] text-lg text-muted">{intro}</p>}
 
       <div className="mt-8 grid items-end gap-3 md:grid-cols-[1fr_auto_1fr]">
         {select(a.slug, (v) => set({ a: v }), "Route A", b.slug)}
@@ -118,7 +145,7 @@ export function Compare({ roles, skillTitles }: { roles: CompareRole[]; skillTit
             </div>
             <p className="max-w-[44ch] text-[15px] text-muted">
               {overlap >= 50
-                ? "These routes overlap a lot — starting one gets you well along the other."
+                ? "These routes overlap a lot - starting one gets you well along the other."
                 : overlap >= 25
                   ? "A solid shared core, then they split. Learn the shared skills first."
                   : "Quite different routes. The shared skills are mostly foundations."}
@@ -188,11 +215,12 @@ export function Compare({ roles, skillTitles }: { roles: CompareRole[]; skillTit
           a={<ol className="grid gap-1">{a.stages.map((s, i) => <li key={s.name}><span className="font-mono text-sm text-muted">{i + 1}</span> {s.name} <span className="text-muted">· {s.count} skills</span></li>)}</ol>}
           b={<ol className="grid gap-1">{b.stages.map((s, i) => <li key={s.name}><span className="font-mono text-sm text-muted">{i + 1}</span> {s.name} <span className="text-muted">· {s.count} skills</span></li>)}</ol>}
         />
+        <Row label="Pay" a={<Pay r={a} />} b={<Pay r={b} />} />
         <Row label="Where they work" a={<p>{a.whereTheyWork}</p>} b={<p>{b.whereTheyWork}</p>} />
         <Row
           label="Interviews"
-          a={<ul className="grid gap-1 text-[15px]">{a.rounds.map((r) => <li key={r}>— {r}</li>)}</ul>}
-          b={<ul className="grid gap-1 text-[15px]">{b.rounds.map((r) => <li key={r}>— {r}</li>)}</ul>}
+          a={<ul className="grid gap-1 text-[15px]">{a.rounds.map((r) => <li key={r}>- {r}</li>)}</ul>}
+          b={<ul className="grid gap-1 text-[15px]">{b.rounds.map((r) => <li key={r}>- {r}</li>)}</ul>}
         />
         <Row label="How AI is changing it" a={<p className="text-[15px]">{a.aiImpact}</p>} b={<p className="text-[15px]">{b.aiImpact}</p>} />
         <Row
@@ -203,6 +231,13 @@ export function Compare({ roles, skillTitles }: { roles: CompareRole[]; skillTit
       </div>
 
       <p className="mt-8 text-muted">
+        Pay figures come from PayScale India and the US Bureau of Labor Statistics; ≈ marks the closest published title.{" "}
+        <Link href="/market" className="link font-semibold text-ink">
+          See all roles and sources
+        </Link>
+        .
+      </p>
+      <p className="mt-3 text-muted">
         Still undecided?{" "}
         <Link href="/compass" className="link font-semibold text-ink">
           Take the 2-minute Compass quiz

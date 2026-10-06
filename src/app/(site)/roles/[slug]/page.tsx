@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Bot, Clock, ExternalLink, Layers, ListChecks } from "lucide-react";
-import { getDomain, getNetwork, getPathIndex, getRole, getRoleEntry, getSkillEntry, type SkillEntry } from "@/lib/content";
+import { getDomain, getMarket, getNetwork, getPathIndex, getRole, getRoleEntry, getSkillEntry, type SkillEntry } from "@/lib/content";
 import { renderMarkdown } from "@/lib/markdown";
 import { SITE } from "@/lib/site";
 import { Trail } from "@/components/ui/Trail";
@@ -12,6 +12,7 @@ import { AskBand } from "@/components/shell/AskBand";
 import { SaveRoute } from "@/components/path/SaveRoute";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Mapping } from "@/components/ui/Mapping";
+import { PayBlock } from "@/components/market/PayBlock";
 
 export function generateStaticParams() {
   return getNetwork().roles.map((r) => ({ slug: r.slug }));
@@ -53,7 +54,7 @@ const TOC = [
   ["route", "The route"],
   ["skills", "Skills by priority"],
   ["interviews", "Interviews"],
-  ["market", "The market"],
+  ["market", "Pay and market"],
   ["more", "Is it for you?"],
 ];
 
@@ -196,7 +197,14 @@ export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
           </section>
 
           <section id="market" className="mt-20 border-t-2 border-ink pt-10" aria-labelledby="market-title">
-            <SectionTitle eyebrow={`The market · ${role.updated.getUTCFullYear()}`} title="What's changing" id="market-title" />
+            <SectionTitle eyebrow={`The market · ${role.updated.getUTCFullYear()}`} title="Pay and what's changing" id="market-title">
+              <Link href="/market" className="text-sm font-semibold hover:underline">
+                Compare pay across all roles
+              </Link>
+            </SectionTitle>
+            <div className="mb-6">
+              <PayBlock market={getMarket().roles[slug] ?? {}} />
+            </div>
             <div className="band-ink overflow-hidden rounded-[var(--radius-lg)]">
               <div className="p-6 md:p-8">
                 <p className="flex items-center gap-2 font-display text-lg font-bold">
@@ -242,7 +250,7 @@ export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
                 {adjacent.map((a) => (
                   <Link
                     key={a.slug}
-                    href={`/roles/compare?a=${slug}&b=${a.slug}`}
+                    href={`/roles/compare/${slug}-vs-${a.slug}`}
                     className="rounded-full border-2 border-ink px-3 py-1 font-semibold hover:bg-ink hover:text-canvas"
                   >
                     {a.title}

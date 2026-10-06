@@ -3,27 +3,27 @@ title: SQL
 domain: data
 level: beginner
 hours: 30–50
-brief: The language every database speaks — non-negotiable for data roles.
+brief: The language every database speaks - non-negotiable for data roles.
 prereqs: []
 learn:
   - topic: SELECT + WHERE
     detail: SELECT name, salary FROM employees WHERE department = 'Engineering' ORDER BY salary DESC LIMIT 10
   - topic: Aggregation
-    detail: COUNT(*), SUM(amount), AVG(score), MAX(date), MIN(price) — collapse many rows into one summary row
+    detail: COUNT(*), SUM(amount), AVG(score), MAX(date), MIN(price) - collapse many rows into one summary row
   - topic: GROUP BY
-    detail: GROUP BY category — split rows into groups, then aggregate each group. WHERE filters before grouping, HAVING after.
+    detail: GROUP BY category - split rows into groups, then aggregate each group. WHERE filters before grouping, HAVING after.
   - topic: JOINs
-    detail: INNER JOIN — only matching rows. LEFT JOIN — all left rows + matches. Use ON to specify the join condition.
+    detail: INNER JOIN - only matching rows. LEFT JOIN - all left rows + matches. Use ON to specify the join condition.
   - topic: Subqueries
     detail: SELECT * FROM orders WHERE customer_id IN (SELECT id FROM customers WHERE country = 'India')
   - topic: CTEs (WITH clauses)
-    detail: WITH monthly AS (SELECT ...) SELECT * FROM monthly — name a subquery and reference it. Essential for readability.
+    detail: WITH monthly AS (SELECT ...) SELECT * FROM monthly - name a subquery and reference it. Essential for readability.
   - topic: Window Functions
-    detail: RANK() OVER (PARTITION BY region ORDER BY sales DESC) — analytics without collapsing rows. The senior analyst skill.
+    detail: RANK() OVER (PARTITION BY region ORDER BY sales DESC) - analytics without collapsing rows. The senior analyst skill.
   - topic: Date functions
-    detail: DATE_TRUNC('month', created_at), EXTRACT(year FROM date), date + INTERVAL '7 days' — work with time data
+    detail: DATE_TRUNC('month', created_at), EXTRACT(year FROM date), date + INTERVAL '7 days' - work with time data
   - topic: CASE WHEN
-    detail: CASE WHEN score >= 90 THEN 'A' WHEN score >= 80 THEN 'B' ELSE 'C' END — conditional column values
+    detail: CASE WHEN score >= 90 THEN 'A' WHEN score >= 80 THEN 'B' ELSE 'C' END - conditional column values
   - topic: NULL handling
     detail: COALESCE(value, 0) returns first non-null. IS NULL / IS NOT NULL for filtering. NULLIF(a, b) returns null if a=b.
 resources:

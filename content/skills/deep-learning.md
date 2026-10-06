@@ -3,7 +3,7 @@ title: Deep Learning
 domain: ai
 level: intermediate
 hours: 60–100
-brief: Neural networks with many layers — the technology behind modern vision, speech and language models. Learn how they're built, trained and evaluated.
+brief: Neural networks with many layers - the technology behind modern vision, speech and language models. Learn how they're built, trained and evaluated.
 prereqs:
   - machine-learning
   - math-for-ml

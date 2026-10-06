@@ -3,7 +3,7 @@ title: UI & UX Design Basics
 domain: web
 level: beginner
 hours: 20–40
-brief: The design fundamentals every interface builder needs — hierarchy, spacing, typography, colour, usability and working in Figma — so what you build is clear and pleasant to use.
+brief: The design fundamentals every interface builder needs - hierarchy, spacing, typography, colour, usability and working in Figma - so what you build is clear and pleasant to use.
 prereqs: []
 learn:
   - topic: Visual hierarchy
@@ -61,7 +61,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-Good interfaces feel obvious: you know where to look, what to tap, and what happened when you did. That comes from a handful of learnable principles — hierarchy, spacing, contrast and consistency — not from talent alone.
+Good interfaces feel obvious: you know where to look, what to tap, and what happened when you did. That comes from a handful of learnable principles - hierarchy, spacing, contrast and consistency - not from talent alone.
 
 ## Why engineers should learn it
 

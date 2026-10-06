@@ -45,7 +45,7 @@ const AUTH_ERRORS: Record<string, string> = {
   invalid_credentials: "That email and password don't match. Check them, or use “Forgot your password?” below.",
   user_already_exists: "An account with this email already exists. Sign in instead, or reset your password.",
   email_exists: "An account with this email already exists. Sign in instead, or reset your password.",
-  email_not_confirmed: "Confirm your email first — the link is in your inbox (check spam too).",
+  email_not_confirmed: "Confirm your email first - the link is in your inbox (check spam too).",
   weak_password: "That password is too easy to guess. Use at least 8 characters with a mix of letters and numbers.",
   over_email_send_rate_limit: "Too many emails sent. Wait a few minutes and try again.",
   over_request_rate_limit: "Too many attempts. Wait a minute and try again.",

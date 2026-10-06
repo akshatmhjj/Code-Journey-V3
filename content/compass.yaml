@@ -1,5 +1,5 @@
 # Compass: a short quiz that suggests roles. Each option adds weight (1–3) to the roles it points to.
-# `why` is shown under a suggested role when that option contributed to it — write it to complete
+# `why` is shown under a suggested role when that option contributed to it - write it to complete
 # the sentence "Because you…".
 
 questions:
@@ -9,7 +9,7 @@ questions:
       - label: Seeing something I built on screen and watching people use it
         why: like seeing your work on screen
         weights: { frontend-engineer: 3, full-stack-engineer: 2, design-engineer: 3, cross-platform-mobile-engineer: 2, android-engineer: 2, ios-engineer: 2, game-developer: 2 }
-      - label: Making a system faster, safer or more reliable — even if no one notices
+      - label: Making a system faster, safer or more reliable - even if no one notices
         why: enjoy making systems reliable
         weights: { backend-engineer: 2, devops-engineer: 3, site-reliability-engineer: 3, platform-engineer: 3, cloud-engineer: 2, data-engineer: 2 }
       - label: Finding the answer to a question hidden in data
@@ -28,13 +28,13 @@ questions:
   - id: visual
     q: How much do you care about how things look and feel?
     options:
-      - label: A lot — I notice when spacing or animation is off
+      - label: A lot - I notice when spacing or animation is off
         why: care about look and feel
         weights: { design-engineer: 3, frontend-engineer: 3, ios-engineer: 2, android-engineer: 2, cross-platform-mobile-engineer: 2, game-developer: 2 }
-      - label: Somewhat — it should be clean, but it's not what excites me
+      - label: Somewhat - it should be clean, but it's not what excites me
         why: want things clean without obsessing over visuals
         weights: { full-stack-engineer: 2, backend-engineer: 1, data-analyst: 1, ai-engineer: 1, developer-advocate: 1 }
-      - label: Not much — I'd rather work behind the scenes
+      - label: Not much - I'd rather work behind the scenes
         why: prefer working behind the scenes
         weights: { backend-engineer: 3, data-engineer: 3, devops-engineer: 2, platform-engineer: 2, site-reliability-engineer: 2, cloud-engineer: 2, mlops-engineer: 2, embedded-engineer: 1, application-security-engineer: 1, cloud-security-engineer: 1 }
 
@@ -70,23 +70,23 @@ questions:
   - id: people
     q: How much do you want to work directly with customers or the public?
     options:
-      - label: A lot — I like explaining things and building trust
+      - label: A lot - I like explaining things and building trust
         why: enjoy explaining things to others
         weights: { solutions-engineer: 3, forward-deployed-engineer: 3, developer-advocate: 3 }
-      - label: Some — with my team and the occasional user
+      - label: Some - with my team and the occasional user
         why: like a balance of teamwork and focus
         weights: { full-stack-engineer: 1, frontend-engineer: 1, data-analyst: 1, ai-engineer: 1, qa-sdet: 1, design-engineer: 1, cross-platform-mobile-engineer: 1, android-engineer: 1, ios-engineer: 1 }
-      - label: As little as possible — I like deep, focused work
+      - label: As little as possible - I like deep, focused work
         why: prefer deep, focused work
         weights: { backend-engineer: 2, data-engineer: 2, ml-engineer: 2, embedded-engineer: 2, platform-engineer: 1, site-reliability-engineer: 1, cloud-security-engineer: 1, application-security-engineer: 1 }
 
   - id: pressure
     q: Something breaks in production at night. How do you feel?
     options:
-      - label: Energised — I want to be the one who fixes it
+      - label: Energised - I want to be the one who fixes it
         why: stay calm when things break
         weights: { site-reliability-engineer: 3, devops-engineer: 2, cloud-engineer: 2, platform-engineer: 1, cloud-security-engineer: 1 }
-      - label: Interested — I'd want to know why it happened
+      - label: Interested - I'd want to know why it happened
         why: want to understand why things fail
         weights: { qa-sdet: 2, application-security-engineer: 2, backend-engineer: 1, data-engineer: 1 }
       - label: I'd rather work somewhere that doesn't happen much
@@ -112,7 +112,7 @@ questions:
       - label: Getting a first job as soon as realistically possible
         why: want a realistic first job soon
         weights: { data-analyst: 2, frontend-engineer: 2, qa-sdet: 2, full-stack-engineer: 1 }
-      - label: Working on what's newest — AI and the frontier
+      - label: Working on what's newest - AI and the frontier
         why: want to work at the frontier
         weights: { ai-engineer: 3, ml-engineer: 2, mlops-engineer: 2, forward-deployed-engineer: 2 }
       - label: Making things that are creative and fun

@@ -3,7 +3,7 @@ title: Observability
 domain: cloud-devops
 level: intermediate
 hours: 20–30
-brief: Logs, metrics and traces that let you understand what a system is doing in production — so you notice problems before users do and find the cause quickly.
+brief: Logs, metrics and traces that let you understand what a system is doing in production - so you notice problems before users do and find the cause quickly.
 prereqs:
   - rest-apis
 learn:
@@ -12,7 +12,7 @@ learn:
   - topic: Structured logging
     detail: JSON logs with request IDs you can search and correlate.
   - topic: Metrics that matter
-    detail: Latency, traffic, errors and saturation — the four golden signals.
+    detail: Latency, traffic, errors and saturation - the four golden signals.
   - topic: Distributed tracing
     detail: Follow one request across services with OpenTelemetry.
   - topic: Dashboards
@@ -52,4 +52,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-Once software is live, you can't attach a debugger to it. Observability is the set of instruments — logs, graphs and traces — that tell you what's happening inside, the way a dashboard tells a pilot about an engine.
+Once software is live, you can't attach a debugger to it. Observability is the set of instruments - logs, graphs and traces - that tell you what's happening inside, the way a dashboard tells a pilot about an engine.

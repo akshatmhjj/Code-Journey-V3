@@ -8,7 +8,7 @@ readTime: 2 min
 
 ## What state is
 
-State is just data that changes — like user input or login status. Every interactive app is built around state changes.
+State is just data that changes - like user input or login status. Every interactive app is built around state changes.
 
 ## The problem
 

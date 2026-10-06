@@ -1,4 +1,4 @@
-// Ask CJ AI from the terminal, without signing in — for checking retrieval and answers locally.
+// Ask CJ AI from the terminal, without signing in - for checking retrieval and answers locally.
 // Uses search + the grounded prompt (not the role/skill exact lookup, which needs the Next.js runtime).
 // Usage: node --env-file-if-exists=.env scripts/rag/ask.ts "How do I become a data engineer?"
 import { createClient } from "@supabase/supabase-js";
@@ -26,7 +26,7 @@ const { data, error } = await db.rpc("match_doc_chunks", { ...(vector ? { query_
 if (error) throw error;
 const sources = data as Source[];
 console.log("\nSources:");
-sources.forEach((s, i) => console.log(`  [${i + 1}] ${s.similarity != null ? s.similarity.toFixed(3) : "  kw "}  ${s.url}  — ${s.heading}`));
+sources.forEach((s, i) => console.log(`  [${i + 1}] ${s.similarity != null ? s.similarity.toFixed(3) : "  kw "}  ${s.url}  - ${s.heading}`));
 console.log("\nAnswer:\n");
 for await (const d of streamAnswer(SYSTEM_PROMPT, [{ role: "user", content: `Sources:\n\n${formatSources(sources)}\n\nQuestion: ${question}` }])) process.stdout.write(d);
 console.log("\n");

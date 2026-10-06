@@ -3,7 +3,7 @@ title: Mobile App Testing
 domain: mobile
 level: intermediate
 hours: 15–25
-brief: Testing mobile apps at every level — unit, widget/component and end-to-end on real devices — so releases don't crash on the phones your users actually have.
+brief: Testing mobile apps at every level - unit, widget/component and end-to-end on real devices - so releases don't crash on the phones your users actually have.
 prereqs:
   - flutter
 learn:
@@ -50,4 +50,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-A bug on the web can be fixed in minutes. A bug in a mobile app sits on people's phones until they update — and app-store reviews take time. Testing mobile apps well means catching problems before they're installed on thousands of devices.
+A bug on the web can be fixed in minutes. A bug in a mobile app sits on people's phones until they update - and app-store reviews take time. Testing mobile apps well means catching problems before they're installed on thousands of devices.

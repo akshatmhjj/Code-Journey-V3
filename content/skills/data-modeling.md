@@ -3,7 +3,7 @@ title: Data Modeling
 domain: data
 level: intermediate
 hours: 20–30
-brief: Designing how data is organised into tables — facts, dimensions and keys — so it's correct, easy to query and consistent across reports.
+brief: Designing how data is organised into tables - facts, dimensions and keys - so it's correct, easy to query and consistent across reports.
 prereqs:
   - sql
 learn:
@@ -14,7 +14,7 @@ learn:
   - topic: Dimensional modelling
     detail: Fact tables (events) and dimension tables (who, what, where) for analytics.
   - topic: Grain
-    detail: Decide exactly what one row means — the most important modelling choice.
+    detail: Decide exactly what one row means - the most important modelling choice.
   - topic: Slowly changing dimensions
     detail: Track how attributes like a customer's plan change over time.
   - topic: Metric definitions

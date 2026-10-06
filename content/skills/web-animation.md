@@ -3,7 +3,7 @@ title: Web Animation & Interaction
 domain: web
 level: intermediate
 hours: 20–30
-brief: Using motion to make interfaces feel responsive and understandable — CSS transitions, keyframes, the Web Animations API and motion libraries — without hurting performance or accessibility.
+brief: Using motion to make interfaces feel responsive and understandable - CSS transitions, keyframes, the Web Animations API and motion libraries - without hurting performance or accessibility.
 prereqs:
   - css
   - javascript

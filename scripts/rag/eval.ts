@@ -104,7 +104,7 @@ const pct = (xs: number[], p: number) => xs[Math.min(xs.length - 1, Math.floor(p
 
 for (const r of results.filter((r) => r.rank < 0)) console.log(`miss  ${r.q}\n      expected ${r.expect.join(" | ")}\n      got      ${r.top.join(" | ")}`);
 console.log(`\nhit@${K}: ${hits.length}/${results.length} (${((hits.length / results.length) * 100).toFixed(1)}%) · MRR ${mrr.toFixed(3)}`);
-console.log(`top similarity — on-topic p5 ${pct(onSims, 0.05).toFixed(3)} p50 ${pct(onSims, 0.5).toFixed(3)} · off-topic max ${offSims.at(-1)!.toFixed(3)} median ${pct(offSims, 0.5).toFixed(3)}`);
+console.log(`top similarity - on-topic p5 ${pct(onSims, 0.05).toFixed(3)} p50 ${pct(onSims, 0.5).toFixed(3)} · off-topic max ${offSims.at(-1)!.toFixed(3)} median ${pct(offSims, 0.5).toFixed(3)}`);
 for (const o of off) console.log(`  off-topic ${o.topSim.toFixed(3)}  ${o.q}`);
 
 const j = process.argv.indexOf("--json");

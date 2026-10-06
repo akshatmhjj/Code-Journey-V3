@@ -11,7 +11,7 @@ learn:
   - topic: Memory
     detail: Stack vs heap, pointers, and why manual memory management is hard.
   - topic: RAII and smart pointers
-    detail: unique_ptr and shared_ptr — modern, safer ownership.
+    detail: unique_ptr and shared_ptr - modern, safer ownership.
   - topic: Classes
     detail: Constructors, destructors, copy and move semantics.
   - topic: The standard library
@@ -50,4 +50,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-Most languages manage memory for you. C++ lets you manage it yourself, which makes it extremely fast — and makes mistakes more dangerous. Modern C++ (C++17 and later) gives you safer tools, and learning them is what separates good C++ from painful C++.
+Most languages manage memory for you. C++ lets you manage it yourself, which makes it extremely fast - and makes mistakes more dangerous. Modern C++ (C++17 and later) gives you safer tools, and learning them is what separates good C++ from painful C++.

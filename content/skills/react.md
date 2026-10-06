@@ -3,16 +3,16 @@ title: React
 domain: web
 level: intermediate
 hours: 60–90
-brief: Build UIs like LEGO — components you assemble, not HTML you repeat.
+brief: Build UIs like LEGO - components you assemble, not HTML you repeat.
 prereqs:
   - javascript
 learn:
   - topic: Components
     detail: Function components are the only way. They take props, return JSX. Think of them as custom HTML tags.
   - topic: Props
-    detail: <UserCard name='Alex' role='admin' /> — pass data into a component like HTML attributes
+    detail: <UserCard name='Alex' role='admin' /> - pass data into a component like HTML attributes
   - topic: useState
-    detail: const [count, setCount] = useState(0) — when state changes, React re-renders only the affected component
+    detail: const [count, setCount] = useState(0) - when state changes, React re-renders only the affected component
   - topic: useEffect
     detail: "Runs after render. Use for: fetching data, subscriptions, DOM manipulation. Cleanup with return fn."
   - topic: useRef
@@ -22,13 +22,13 @@ learn:
   - topic: Context API
     detail: Share state globally without prop-drilling. createContext → Provider wraps the tree → useContext reads it.
   - topic: React Router
-    detail: <BrowserRouter> → <Routes> → <Route path='/about' element={<About/>}/> — client-side navigation
+    detail: <BrowserRouter> → <Routes> → <Route path='/about' element={<About/>}/> - client-side navigation
   - topic: React Query / SWR
     detail: Server state management. Handles caching, background refetching, loading/error states for you.
   - topic: Forms
     detail: "Controlled: value={state} onChange={setState}. Uncontrolled: useRef. React Hook Form for complex forms."
 resources:
-  - title: react.dev — Learn React
+  - title: react.dev - Learn React
     url: https://react.dev/learn
     provider: Meta
     type: docs

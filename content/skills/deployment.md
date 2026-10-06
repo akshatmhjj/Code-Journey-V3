@@ -3,7 +3,7 @@ title: Deploying Web Apps
 domain: cloud-devops
 level: beginner
 hours: 10–20
-brief: Getting your app from your laptop onto the internet — choosing a host, configuring environments and domains, and shipping updates safely.
+brief: Getting your app from your laptop onto the internet - choosing a host, configuring environments and domains, and shipping updates safely.
 prereqs:
   - git
 learn:
@@ -52,4 +52,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-An app nobody can open isn't finished. Deployment is the last mile: putting your code on a server, connecting a domain, keeping secrets safe and making updates routine. Modern platforms make the first deploy take minutes — learn what they do for you so you can debug when it goes wrong.
+An app nobody can open isn't finished. Deployment is the last mile: putting your code on a server, connecting a domain, keeping secrets safe and making updates routine. Modern platforms make the first deploy take minutes - learn what they do for you so you can debug when it goes wrong.

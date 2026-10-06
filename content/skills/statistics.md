@@ -11,11 +11,11 @@ learn:
   - topic: Distributions
     detail: Normal (bell curve), Poisson (rare events), Binomial (yes/no trials). Knowing which distribution fits your data matters.
   - topic: Central Limit Theorem
-    detail: Take enough samples and their means will be normally distributed — even if the original data isn't. The foundation of inference.
+    detail: Take enough samples and their means will be normally distributed - even if the original data isn't. The foundation of inference.
   - topic: Hypothesis Testing
     detail: "H₀ (null: no difference) vs H₁ (alternative: there is a difference). p-value < 0.05 means reject H₀."
   - topic: t-test
-    detail: Comparing means of two groups. scipy.stats.ttest_ind(group_a, group_b) — are these groups statistically different?
+    detail: Comparing means of two groups. scipy.stats.ttest_ind(group_a, group_b) - are these groups statistically different?
   - topic: Chi-squared test
     detail: Testing if two categorical variables are related. Are conversion rates different by device type?
   - topic: Correlation vs Causation
@@ -23,9 +23,9 @@ learn:
   - topic: Effect Size
     detail: A result can be statistically significant but practically meaningless. Cohen's d measures how large the real difference is.
   - topic: Confidence Intervals
-    detail: "'95% CI: [12.3, 18.7]' — we're 95% sure the true value is in this range. More informative than just the mean."
+    detail: "'95% CI: [12.3, 18.7]' - we're 95% sure the true value is in this range. More informative than just the mean."
   - topic: A/B Testing
-    detail: Assign users randomly to control/treatment, measure the metric, run a t-test. Minimum sample size matters — calculate it first.
+    detail: Assign users randomly to control/treatment, measure the metric, run a t-test. Minimum sample size matters - calculate it first.
 resources:
   - title: SciPy statistics tutorial (scipy.stats)
     url: https://docs.scipy.org/doc/scipy/tutorial/stats.html
@@ -58,7 +58,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-Statistics is the language of uncertainty. Without it, you might look at two groups and say 'group A did better than group B' — but was that difference real, or just random noise? Statistics gives you the tools to answer that question with a number: 'there's a 97% probability that this difference is real, not coincidence.' Every A/B test, every ML model evaluation, every business report needs this foundation.
+Statistics is the language of uncertainty. Without it, you might look at two groups and say 'group A did better than group B' - but was that difference real, or just random noise? Statistics gives you the tools to answer that question with a number: 'there's a 97% probability that this difference is real, not coincidence.' Every A/B test, every ML model evaluation, every business report needs this foundation.
 
 ## A first look
 

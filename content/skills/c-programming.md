@@ -3,7 +3,7 @@ title: C Programming
 domain: specialist
 level: intermediate
 hours: 50–80
-brief: C is the language closest to the hardware that's still widely used — the foundation of operating systems, firmware and embedded devices.
+brief: C is the language closest to the hardware that's still widely used - the foundation of operating systems, firmware and embedded devices.
 prereqs: []
 learn:
   - topic: Syntax and compilation
@@ -49,4 +49,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-C gives you almost no safety net — no garbage collector, no bounds checks — and in return you control exactly what the machine does. That's why it's still the language of firmware, operating systems and anything where every byte and microsecond counts.
+C gives you almost no safety net - no garbage collector, no bounds checks - and in return you control exactly what the machine does. That's why it's still the language of firmware, operating systems and anything where every byte and microsecond counts.

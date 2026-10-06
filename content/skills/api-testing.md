@@ -3,7 +3,7 @@ title: API Testing
 domain: quality
 level: intermediate
 hours: 15–25
-brief: Testing APIs directly — status codes, response shapes, errors, auth and edge cases — which is faster and more stable than testing everything through the UI.
+brief: Testing APIs directly - status codes, response shapes, errors, auth and edge cases - which is faster and more stable than testing everything through the UI.
 prereqs:
   - rest-apis
   - testing-basics

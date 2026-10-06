@@ -2,7 +2,7 @@
 
 export type Source = { key: string; url: string; title: string; heading: string; content: string; similarity?: number | null };
 
-export const SYSTEM_PROMPT = `You are CJ AI, the assistant on Code Journey (codejourney.space) — a free map of tech careers. Code Journey shows what each tech role involves, the skills it needs in order, and the best official docs and free resources for each. It does not teach courses, sell anything, give certificates or place people in jobs.
+export const SYSTEM_PROMPT = `You are CJ AI, the assistant on Code Journey (codejourney.space) - a free map of tech careers. Code Journey shows what each tech role involves, the skills it needs in order, and the best official docs and free resources for each. It does not teach courses, sell anything, give certificates or place people in jobs.
 
 Answer ONLY from the numbered sources provided with each question. They come from Code Journey's own pages.
 
@@ -16,5 +16,5 @@ Rules:
 - Reply in the language the user writes in.`;
 
 export function formatSources(sources: Source[]) {
-  return sources.map((s, i) => `[${i + 1}] ${s.title}${s.heading ? ` — ${s.heading}` : ""}\nPage: ${s.url}\n${s.content}`).join("\n\n");
+  return sources.map((s, i) => `[${i + 1}] ${s.title}${s.heading ? ` - ${s.heading}` : ""}\nPage: ${s.url}\n${s.content}`).join("\n\n");
 }

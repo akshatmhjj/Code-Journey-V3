@@ -14,7 +14,7 @@ export function SaveRoute({ index, roleSlug, roleTitle }: { index: PathIndex; ro
     return (
       <div className="rounded-[var(--radius-md)] border-2 border-dashed border-line-strong p-4 text-sm text-muted">
         <p className="font-display font-semibold text-ink">Save this route</p>
-        <p className="mt-1">Track your progress station by station — free, and every page stays open to read.</p>
+        <p className="mt-1">Track your progress station by station - free, and every page stays open to read.</p>
         <Link href="/login" className="btn btn-line mt-3 min-h-9 w-full text-sm">
           Sign in to save
         </Link>

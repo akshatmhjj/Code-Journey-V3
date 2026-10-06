@@ -18,7 +18,7 @@ export function Mapping({ kind, title, summary, domain, trail }: { kind: "role" 
             This {kind === "role" ? "route" : "station"} is being mapped
           </p>
           <p className="mt-3 text-muted">
-            We&apos;re writing the full {kind === "role" ? "route — stages, skills, projects and resources" : "skill page — what to learn and the best resources"} now. Meanwhile, the rest of
+            We&apos;re writing the full {kind === "role" ? "route - stages, skills, projects and resources" : "skill page - what to learn and the best resources"} now. Meanwhile, the rest of
             the {domain.name} line is open.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">

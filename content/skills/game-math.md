@@ -3,7 +3,7 @@ title: Maths for Games
 domain: specialist
 level: intermediate
 hours: 30–50
-brief: The maths behind movement, cameras, collisions and physics in games — vectors, trigonometry, matrices and a little calculus, learned visually and applied in code.
+brief: The maths behind movement, cameras, collisions and physics in games - vectors, trigonometry, matrices and a little calculus, learned visually and applied in code.
 prereqs: []
 learn:
   - topic: Vectors
@@ -49,4 +49,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-Every time a character moves, a camera follows or a bullet hits, there's maths behind it — mostly vectors and angles. You don't need advanced maths to make games, but understanding these basics turns "copy this snippet" into "I know how to make it do what I want".
+Every time a character moves, a camera follows or a bullet hits, there's maths behind it - mostly vectors and angles. You don't need advanced maths to make games, but understanding these basics turns "copy this snippet" into "I know how to make it do what I want".

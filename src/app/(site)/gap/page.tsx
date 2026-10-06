@@ -4,7 +4,7 @@ import { GapAnalyser } from "./GapAnalyser";
 
 export const metadata: Metadata = {
   title: "Job Post Skill Gap Checker",
-  description: "Paste any tech job post to see which skills it asks for, which you already have, and the best free resources to learn the rest. Runs in your browser — nothing is uploaded.",
+  description: "Paste any tech job post to see which skills it asks for, which you already have, and the best free resources to learn the rest. Runs in your browser - nothing is uploaded.",
   alternates: { canonical: "/gap" },
 };
 

@@ -73,7 +73,7 @@ export default function Home() {
           </p>
         </SectionTitle>
         <p className="mb-10 max-w-[62ch] text-lg text-muted">
-          Each line is a field. Each station is a role. All lines leave from Foundations — the skills nearly every route shares — then fan out to where you want to go.
+          Each line is a field. Each station is a role. All lines leave from Foundations - the skills nearly every route shares - then fan out to where you want to go.
         </p>
         <div className="hidden rounded-[var(--radius-lg)] border-2 border-ink p-4 md:block lg:p-8">
           <NetworkMap domains={net.domains} roles={net.roles} />
@@ -101,7 +101,7 @@ export default function Home() {
                 Icon: Repeat2,
                 who: "Switching or levelling up",
                 title: "See what's missing",
-                text: "Paste a job post you want. See which skills it asks for, which you already have, and where to learn the rest — in a sensible order.",
+                text: "Paste a job post you want. See which skills it asks for, which you already have, and where to learn the rest - in a sensible order.",
                 href: "/gap",
                 cta: "Check a job post",
               },

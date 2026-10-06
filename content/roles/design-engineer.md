@@ -1,7 +1,7 @@
 ---
 title: Design Engineer
 aliases: [UI Engineer, Creative Developer, Design Technologist, Frontend Design Engineer]
-summary: Design engineers work where design meets code — turning ideas into polished, interactive interfaces, building design systems, and prototyping in the browser instead of handing off static mockups.
+summary: Design engineers work where design meets code - turning ideas into polished, interactive interfaces, building design systems, and prototyping in the browser instead of handing off static mockups.
 whereTheyWork: Product companies that compete on experience, developer-tool and design-tool companies, agencies and studios, and design-systems teams at large companies.
 dayInLife:
   - Prototype a new interaction directly in code to test how it feels.
@@ -31,7 +31,7 @@ stages:
   - name: Senior
     summary: Owning the experience across a product.
     skills: [system-design, technical-writing, state-management]
-    project: Lead a visual refresh of an existing product — audit, plan, design tokens, rollout — and write it up.
+    project: Lead a visual refresh of an existing product - audit, plan, design tokens, rollout - and write it up.
     doneWhen: Your taste and standards shape how the whole product looks and feels.
 skills:
   must: [html, css, javascript, react, ui-design, accessibility]
@@ -41,15 +41,15 @@ tools: [Figma, VS Code or Cursor, React, CSS and Tailwind, Framer Motion or the 
 interview:
   rounds:
     - Recruiter or design-lead screen
-    - Portfolio walkthrough — your process and decisions, not just the result
-    - Live build — recreate a design or an interaction in code
-    - Design critique — improve an existing interface
+    - Portfolio walkthrough - your process and decisions, not just the result
+    - Live build - recreate a design or an interaction in code
+    - Design critique - improve an existing interface
     - Behavioural round on working with designers and engineers
   practice:
     - { title: Frontend Mentor, url: "https://www.frontendmentor.io/", provider: Frontend Mentor, type: practice, cost: freemium }
     - { title: Front End Interview Handbook, url: "https://www.frontendinterviewhandbook.com/", provider: GreatFrontEnd, type: docs, cost: free }
     - { title: Laws of UX, url: "https://lawsofux.com/", provider: Jon Yablonski, type: docs, cost: free }
-aiImpact: AI tools can now turn a screenshot or prompt into working UI, which makes generic interfaces cheap. That increases the value of taste — knowing what makes an interface feel good — and of the details AI often gets wrong, like motion, accessibility and consistency across a product.
+aiImpact: AI tools can now turn a screenshot or prompt into working UI, which makes generic interfaces cheap. That increases the value of taste - knowing what makes an interface feel good - and of the details AI often gets wrong, like motion, accessibility and consistency across a product.
 market:
   - text: Design engineer has become a recognised title at product-focused companies, especially developer-tool and design-tool companies.
   - text: Postings usually ask for strong React and CSS plus a portfolio showing interaction work; formal design training is a plus, not a requirement.
@@ -63,4 +63,4 @@ Design engineering suits people who care how things look *and* feel, and who'd r
 
 ## Frontend or design engineer?
 
-Most design engineers start as [Frontend Engineers](/roles/frontend-engineer) with a strong interest in design. If you love the craft of interfaces — motion, typography, spacing — this is where that pays off.
+Most design engineers start as [Frontend Engineers](/roles/frontend-engineer) with a strong interest in design. If you love the craft of interfaces - motion, typography, spacing - this is where that pays off.

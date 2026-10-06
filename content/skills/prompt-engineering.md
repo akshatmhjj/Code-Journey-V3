@@ -3,7 +3,7 @@ title: Prompt Engineering
 domain: ai
 level: beginner
 hours: 10–20
-brief: Writing instructions that get reliable, useful results from language models — clear goals, context, examples and output formats — and testing that they work.
+brief: Writing instructions that get reliable, useful results from language models - clear goals, context, examples and output formats - and testing that they work.
 prereqs:
   - llm-apis
 learn:

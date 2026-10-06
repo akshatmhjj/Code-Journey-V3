@@ -256,3 +256,114 @@ export const getGapData = cache((): GapData =>
     })),
   }),
 );
+
+/* ── Market: pay and demand (content/market.yaml) ─────────── */
+
+const IndiaPay = z.object({
+  title: z.string(),
+  avg: z.number(),
+  p10: z.number(),
+  p90: z.number(),
+  entry: z.number().optional(),
+  profiles: z.number().int(),
+  updated: z.coerce.date(),
+  url: z.url(),
+});
+const UsPay = z.object({ title: z.string(), median: z.number().int(), growth: z.number(), url: z.url() });
+const MarketFile = z.object({
+  checked: z.coerce.date(),
+  india: z.record(z.string(), IndiaPay),
+  us: z.record(z.string(), UsPay),
+  roles: z.record(
+    z.string(),
+    z.object({ india: z.string().optional(), india_exact: z.boolean().default(true), us: z.string().optional(), us_exact: z.boolean().default(true) }),
+  ),
+});
+
+export type RoleMarket = {
+  india?: z.infer<typeof IndiaPay> & { exact: boolean };
+  us?: z.infer<typeof UsPay> & { exact: boolean };
+};
+
+/** Pay and growth per role, resolved to the source rows. Unknown keys fail the build. */
+export const getMarket = cache(() => {
+  const m = parse(MarketFile, YAML.parse(read("market.yaml")), "market.yaml");
+  const roles: Record<string, RoleMarket> = {};
+  for (const [slug, r] of Object.entries(m.roles)) {
+    if (r.india && !m.india[r.india]) throw new Error(`market.yaml: role "${slug}" points at unknown india key "${r.india}"`);
+    if (r.us && !m.us[r.us]) throw new Error(`market.yaml: role "${slug}" points at unknown us key "${r.us}"`);
+    roles[slug] = {
+      india: r.india ? { ...m.india[r.india], exact: r.india_exact } : undefined,
+      us: r.us ? { ...m.us[r.us], exact: r.us_exact } : undefined,
+    };
+  }
+  return { checked: m.checked, roles };
+});
+
+/* ── Compare ──────────────────────────────────────────────── */
+
+/** "10–14" week ranges for the first three stages → "7–10 months". */
+function jobReady(weeks: (string | undefined)[]) {
+  let lo = 0;
+  let hi = 0;
+  for (const w of weeks) {
+    const m = w?.match(/(\d+)\D+(\d+)/);
+    if (m) {
+      lo += +m[1];
+      hi += +m[2];
+    }
+  }
+  return hi ? `${Math.round(lo / 4.3)}–${Math.round(hi / 4.3)} months` : "Varies";
+}
+
+/** Everything the compare view needs for each written role. */
+export const getCompareRoles = cache(() => {
+  const domains = new Map(getCatalog().domains.map((d) => [d.slug, d.name]));
+  const entries = new Map(getNetwork().roles.map((r) => [r.slug, r]));
+  const market = getMarket().roles;
+  return getRoles()
+    .map((r) => {
+      const m = market[r.slug] ?? {};
+      return {
+        slug: r.slug,
+        title: r.title,
+        domain: domains.get(entries.get(r.slug)?.domain ?? "") ?? "",
+        summary: r.summary,
+        whereTheyWork: r.whereTheyWork,
+        jobReady: jobReady(r.stages.slice(0, 3).map((s) => s.weeks)),
+        stages: r.stages.map((s) => ({ name: s.name, count: s.skills.length })),
+        route: [...new Set([...r.stages.flatMap((s) => s.skills), ...r.skills.must, ...r.skills.should, ...r.skills.nice])],
+        must: r.skills.must,
+        rounds: r.interview.rounds,
+        aiImpact: r.aiImpact,
+        pay: {
+          india: m.india ? { avg: m.india.avg, entry: m.india.entry ?? null, exact: m.india.exact, title: m.india.title } : null,
+          us: m.us ? { median: m.us.median, growth: m.us.growth, exact: m.us.exact, title: m.us.title } : null,
+        },
+      };
+    })
+    .sort((a, b) => a.title.localeCompare(b.title));
+});
+export type CompareRole = ReturnType<typeof getCompareRoles>[number];
+
+/**
+ * Pairs worth their own indexable page: every role with each of its related roles.
+ * The first time a pair appears sets its canonical order ("data-analyst-vs-data-scientist").
+ */
+export const getComparePairs = cache(() => {
+  const written = new Set(getRoles().map((r) => r.slug));
+  const seen = new Set<string>();
+  const pairs: { a: string; b: string }[] = [];
+  for (const r of getRoles()) {
+    for (const other of r.adjacent) {
+      if (!written.has(other) || other === r.slug) continue;
+      const key = [r.slug, other].sort().join("|");
+      if (seen.has(key)) continue;
+      seen.add(key);
+      pairs.push({ a: r.slug, b: other });
+    }
+  }
+  return pairs;
+});
+
+export const pairSlug = (a: string, b: string) => `${a}-vs-${b}`;

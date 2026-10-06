@@ -52,4 +52,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-A game engine does the heavy lifting — drawing graphics, simulating physics, playing sound — so you can focus on the game itself. In Unity you build worlds from objects, attach behaviour written in C#, and publish the result to phones, PCs, consoles or the web.
+A game engine does the heavy lifting - drawing graphics, simulating physics, playing sound - so you can focus on the game itself. In Unity you build worlds from objects, attach behaviour written in C#, and publish the result to phones, PCs, consoles or the web.

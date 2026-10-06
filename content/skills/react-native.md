@@ -16,15 +16,15 @@ learn:
   - topic: FlatList
     detail: The performant equivalent of HTML table or map() rendering. Only renders visible items. Use this for any list of items.
   - topic: Pressable
-    detail: The correct way to handle taps. Replace touchables with Pressable — it supports complex press states and accessibility.
+    detail: The correct way to handle taps. Replace touchables with Pressable - it supports complex press states and accessibility.
   - topic: React Navigation
     detail: "The standard navigation library. Stack navigator, Tab navigator, Drawer navigator. Navigate with navigation.navigate('Profile', { id: 1 })"
   - topic: AsyncStorage
-    detail: "@react-native-async-storage/async-storage — key-value store that persists between app launches. Use for tokens, preferences."
+    detail: "@react-native-async-storage/async-storage - key-value store that persists between app launches. Use for tokens, preferences."
   - topic: Expo
     detail: Build React Native apps without Xcode or Android Studio. Expo Go app lets you preview instantly on your phone. expo-camera, expo-location, etc.
   - topic: useColorScheme
-    detail: const isDark = useColorScheme() === 'dark' — detect the user's system theme and apply the right colours.
+    detail: const isDark = useColorScheme() === 'dark' - detect the user's system theme and apply the right colours.
   - topic: Bridge vs JSI
     detail: Modern RN uses JSI (JavaScript Interface) for direct JS-to-native calls without the asynchronous bridge. Much faster.
 resources:
@@ -54,7 +54,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-React Native is the bridge between web and mobile. You write code that looks almost identical to React — same useState, same useEffect, same component model — but instead of rendering HTML elements, React Native maps them to real native iOS and Android components. View becomes UIView (iOS) or ViewGroup (Android). Text becomes UILabel or TextView. You get native performance without learning two new platforms. Shopify's merchant app, Facebook Ads Manager, and Discord mobile are React Native.
+React Native is the bridge between web and mobile. You write code that looks almost identical to React - same useState, same useEffect, same component model - but instead of rendering HTML elements, React Native maps them to real native iOS and Android components. View becomes UIView (iOS) or ViewGroup (Android). Text becomes UILabel or TextView. You get native performance without learning two new platforms. Shopify's merchant app, Facebook Ads Manager, and Discord mobile are React Native.
 
 ## A first look
 

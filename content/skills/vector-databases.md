@@ -3,7 +3,7 @@ title: Vector Databases
 domain: ai
 level: intermediate
 hours: 10–20
-brief: Vector databases store embeddings and find the most similar ones fast — the search engine behind semantic search, recommendations and RAG.
+brief: Vector databases store embeddings and find the most similar ones fast - the search engine behind semantic search, recommendations and RAG.
 prereqs:
   - llm-apis
 learn:

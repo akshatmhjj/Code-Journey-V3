@@ -13,6 +13,7 @@ const LINKS = [
       ["/roles", "All roles"],
       ["/compass", "Compass quiz"],
       ["/roles/compare", "Compare roles"],
+      ["/market", "Pay by role"],
       ["/gap", "Job post checker"],
       ["/skills", "All skills"],
       ["/resources", "Resource library"],
@@ -87,7 +88,7 @@ export function Footer() {
             <div>
               <p className="font-mono text-[12px] tracking-[0.14em] text-muted uppercase">Terminus</p>
               <p className="mt-3 max-w-[17ch] font-display text-[clamp(2rem,4.4vw,3.25rem)] leading-[1] font-bold tracking-[-0.03em]">
-                End of the line — or the start of yours.
+                End of the line - or the start of yours.
               </p>
             </div>
             <DepartureBoard departures={departures} />

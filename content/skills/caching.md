@@ -45,4 +45,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-If a thousand people ask for today's top products, there's no need to calculate the list a thousand times. Calculate it once, keep it in fast memory for a few minutes, and hand out copies. That's caching — and deciding when the copy is too old is the hard part.
+If a thousand people ask for today's top products, there's no need to calculate the list a thousand times. Calculate it once, keep it in fast memory for a few minutes, and hand out copies. That's caching - and deciding when the copy is too old is the hard part.

@@ -67,7 +67,7 @@ export default function RolesIndex() {
                       <span className="text-[15px]">{d.name}</span>
                       <LineGlyph style={d.line} width={34} className="hidden lg:block" />
                     </span>
-                    <span className="hidden text-right font-mono tabular-nums md:block">{stops ?? "—"}</span>
+                    <span className="hidden text-right font-mono tabular-nums md:block">{stops ?? "-"}</span>
                     <span className="row-start-1 flex items-center justify-end gap-2 md:row-auto">
                       {r.live ? (
                         <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-2.5 py-1 font-mono text-[11px] font-bold tracking-wider text-on-accent uppercase">

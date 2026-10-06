@@ -3,7 +3,7 @@ title: Developer Content & Speaking
 domain: customer
 level: beginner
 hours: 15–30
-brief: Teaching developers through tutorials, docs, videos and talks — choosing the right format, making examples that actually work, and building a public body of work.
+brief: Teaching developers through tutorials, docs, videos and talks - choosing the right format, making examples that actually work, and building a public body of work.
 prereqs:
   - technical-writing
 learn:
@@ -20,7 +20,7 @@ learn:
   - topic: Community
     detail: Answer questions publicly and turn repeated answers into content.
   - topic: Measuring impact
-    detail: Completion, questions reduced and developer feedback — not just views.
+    detail: Completion, questions reduced and developer feedback - not just views.
 resources:
   - title: Google Technical Writing courses
     url: https://developers.google.com/tech-writing
@@ -53,4 +53,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-A great tutorial saves thousands of developers an afternoon each. Developer content is the craft of explaining technical things so clearly — with examples that really work — that people succeed on their first try.
+A great tutorial saves thousands of developers an afternoon each. Developer content is the craft of explaining technical things so clearly - with examples that really work - that people succeed on their first try.

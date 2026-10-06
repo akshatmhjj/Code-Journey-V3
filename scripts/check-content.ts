@@ -21,7 +21,7 @@ for (const [kind, list] of [["role", cat.roles], ["skill", cat.skills]] as const
   for (const x of list) {
     // An unquoted comma inside a { … } entry silently splits the value into extra keys.
     const extra = Object.keys(x).filter((k) => !ALLOWED[kind].includes(k));
-    if (extra.length) errors.push(`catalog: ${kind} "${x.slug}" has unexpected keys (${extra.join(", ")}) — quote values that contain commas`);
+    if (extra.length) errors.push(`catalog: ${kind} "${x.slug}" has unexpected keys (${extra.join(", ")}) - quote values that contain commas`);
     if (seen.has(x.slug)) errors.push(`catalog: duplicate ${kind} "${x.slug}"`);
     seen.add(x.slug);
     if (!domains.has(x.domain)) errors.push(`catalog: ${kind} "${x.slug}" has unknown domain "${x.domain}"`);
@@ -66,6 +66,21 @@ for (const f of md("roles")) {
 {
   const al = YAML.parse(fs.readFileSync(path.join(ROOT, "skill-aliases.yaml"), "utf8")) as { skills: Record<string, unknown> };
   for (const k of Object.keys(al.skills ?? {})) if (!skills.has(k)) errors.push(`skill-aliases.yaml: unknown skill "${k}"`);
+}
+
+// Market data: every role is listed, and every pointer resolves.
+{
+  const m = YAML.parse(fs.readFileSync(path.join(ROOT, "market.yaml"), "utf8")) as {
+    india: Record<string, unknown>;
+    us: Record<string, unknown>;
+    roles: Record<string, { india?: string; us?: string }>;
+  };
+  for (const [slug, r] of Object.entries(m.roles ?? {})) {
+    if (!roles.has(slug)) errors.push(`market.yaml: unknown role "${slug}"`);
+    if (r?.india && !m.india?.[r.india]) errors.push(`market.yaml: ${slug} → unknown india key "${r.india}"`);
+    if (r?.us && !m.us?.[r.us]) errors.push(`market.yaml: ${slug} → unknown us key "${r.us}"`);
+  }
+  for (const r of roles) if (!(r in (m.roles ?? {}))) warn.push(`market.yaml: role "${r}" has no market entry`);
 }
 
 // Parse the standalone data files too, so a YAML slip fails here rather than mid-build.

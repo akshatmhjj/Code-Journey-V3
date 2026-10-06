@@ -3,7 +3,7 @@ title: LLM Evaluation
 domain: ai
 level: intermediate
 hours: 15–25
-brief: Measuring whether an LLM feature actually works — building test sets, scoring outputs with code, people and other models, and catching regressions before users do.
+brief: Measuring whether an LLM feature actually works - building test sets, scoring outputs with code, people and other models, and catching regressions before users do.
 prereqs:
   - llm-apis
 learn:
@@ -16,7 +16,7 @@ learn:
   - topic: Code-based checks
     detail: Format, length, required facts and forbidden content.
   - topic: LLM-as-judge
-    detail: Using a model to grade — with a clear rubric and checks against human labels.
+    detail: Using a model to grade - with a clear rubric and checks against human labels.
   - topic: Human review
     detail: When people need to judge, and how to make it consistent.
   - topic: Evals in CI

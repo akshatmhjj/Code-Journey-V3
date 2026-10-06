@@ -13,10 +13,46 @@ export type Chunk = { key: string; source_type: string; url: string; title: stri
 type Res = { title: string; url?: string; provider?: string; type: string; cost?: string; official?: boolean };
 
 const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), "utf8");
+type MarketYaml = {
+  checked: string;
+  india: Record<string, { title: string; avg: number; p10: number; p90: number; entry?: number; profiles: number; updated: string; url: string }>;
+  us: Record<string, { title: string; median: number; growth: number; url: string }>;
+  roles: Record<string, { india?: string; india_exact?: boolean; us?: string; us_exact?: boolean }>;
+};
+const market = YAML.parse(read("market.yaml")) as MarketYaml;
+const lakhs = (n: number) => `₹${Number.isInteger(n) ? n : n.toFixed(1)} lakh`;
+
+/** Plain-language pay summary for one role, with sources, from content/market.yaml. */
+function payText(slug: string) {
+  const r = market.roles[slug];
+  const i = r?.india ? market.india[r.india] : undefined;
+  const u = r?.us ? market.us[r.us] : undefined;
+  if (!i && !u) return "";
+  const out: string[] = [];
+  if (i) {
+    out.push(
+      `India: average base pay about ${lakhs(i.avg)} a year; most earn between ${lakhs(i.p10)} and ${lakhs(i.p90)}` +
+        (i.entry ? `; under 1 year's experience about ${lakhs(i.entry)}` : "") +
+        `. Source: PayScale India, ${i.profiles} salary reports, updated ${String(i.updated).slice(0, 7)}` +
+        (r.india_exact === false ? ` (closest published title: ${i.title})` : "") +
+        `. ${i.url}`,
+    );
+  }
+  if (u) {
+    out.push(
+      `United States: median pay $${u.median.toLocaleString("en-US")} a year (May 2025); jobs projected to grow ${u.growth}% from 2025 to 2035, against 3.5% for all jobs. Source: US Bureau of Labor Statistics` +
+        (r.us_exact === false ? ` (closest category: ${u.title})` : "") +
+        `. ${u.url}`,
+    );
+  }
+  out.push("Pay varies a lot by city, company and skills. Full table with sources: /market");
+  return out.join("\n\n");
+}
+
 const md = (dir: string) => fs.readdirSync(path.join(ROOT, dir)).filter((f) => f.endsWith(".md")).sort();
 const hash = (s: string) => crypto.createHash("sha256").update(s).digest("hex").slice(0, 16);
 const list = (xs: string[]) => xs.map((x) => `- ${x}`).join("\n");
-const resLine = (r: Res) => `${r.title}${r.provider ? ` (${r.provider})` : ""} — ${r.official ? "official, " : ""}${r.type}, ${r.cost ?? "free"}${r.url ? ` — ${r.url}` : ""}`;
+const resLine = (r: Res) => `${r.title}${r.provider ? ` (${r.provider})` : ""} - ${r.official ? "official, " : ""}${r.type}, ${r.cost ?? "free"}${r.url ? ` - ${r.url}` : ""}`;
 
 /** Split Markdown body into sections by "## " headings. */
 function sections(body: string) {
@@ -48,7 +84,7 @@ export function buildChunks(): Chunk[] {
 
   const chunks: Omit<Chunk, "content_hash">[] = [];
   const add = (c: Omit<Chunk, "content_hash" | "content"> & { body: string }) =>
-    chunks.push({ key: c.key, source_type: c.source_type, url: c.url, title: c.title, heading: c.heading, content: `${c.title}${c.heading ? ` — ${c.heading}` : ""}\n\n${c.body.trim()}` });
+    chunks.push({ key: c.key, source_type: c.source_type, url: c.url, title: c.title, heading: c.heading, content: `${c.title}${c.heading ? ` - ${c.heading}` : ""}\n\n${c.body.trim()}` });
 
   /* Roles */
   for (const f of md("roles")) {
@@ -78,6 +114,8 @@ export function buildChunks(): Chunk[] {
       key: `role:${slug}#market`, source_type: "role", url: `${url}#market`, title, heading: "The market and how AI is changing the role",
       body: `${r.aiImpact}\n\n${list(r.market.map((m: { text: string }) => m.text))}\n\nRelated roles: ${r.adjacent.map((a: string) => roleTitle.get(a) ?? a).join(", ")}.`,
     });
+    const pay = payText(slug);
+    if (pay) add({ key: `role:${slug}#pay`, source_type: "role", url: `${url}#market`, title, heading: "Pay in India and the US", body: pay });
     for (const s of sections(content)) add({ key: `role:${slug}#${slugify(s.heading)}`, source_type: "role", url: `${url}#more`, title, heading: s.heading, body: s.text });
   }
 
@@ -102,7 +140,7 @@ export function buildChunks(): Chunk[] {
     for (const sec of sections(content)) add({ key: `skill:${slug}#${slugify(sec.heading)}`, source_type: "skill", url, title, heading: sec.heading, body: sec.text });
   }
 
-  /* Which roles use each skill — answers "which jobs need SQL?" */
+  /* Which roles use each skill - answers "which jobs need SQL?" */
   const usage = new Map<string, string[]>();
   for (const f of md("roles")) {
     const { data: r } = matter(read(`roles/${f}`));
@@ -120,7 +158,7 @@ export function buildChunks(): Chunk[] {
     const skills = cat.skills.filter((s) => s.domain === d.slug);
     add({
       key: `domain:${d.slug}`, source_type: "domain", url: `/domains/${d.slug}`, title: `${d.name} (field of tech)`, heading: "Roles and skills in this field",
-      body: `${d.tagline}\n${roles.length ? `Roles: ${roles.map((r) => `${r.title} — ${r.oneLiner}`).join(" ")}\n` : ""}Skills: ${skills.map((s) => s.title).join(", ")}.`,
+      body: `${d.tagline}\n${roles.length ? `Roles: ${roles.map((r) => `${r.title} - ${r.oneLiner}`).join(" ")}\n` : ""}Skills: ${skills.map((s) => s.title).join(", ")}.`,
     });
   }
 
@@ -147,11 +185,11 @@ export function buildChunks(): Chunk[] {
     body: [
       "Code Journey is a free map of tech careers. It does not teach courses or sell anything; it shows each role's route and links to the best official docs and free resources.",
       `All ${cat.roles.length} career routes are at /roles. Each route has stages, skills by priority, interviews, and how AI is changing the role.`,
-      "Not sure which role fits? The Compass quiz at /compass asks eight questions and suggests three roles with reasons. Compare any two roles side by side — shared skills, time to job-ready, interviews — at /roles/compare.",
-      "To see what a specific job needs, paste the job post into the gap checker at /gap. It lists the skills the post asks for, which you already have, the foundations you need first, and the best resource for each — all in your browser; the post is never uploaded.",
+      "Not sure which role fits? The Compass quiz at /compass asks eight questions and suggests three roles with reasons. Compare any two roles side by side - shared skills, time to job-ready, interviews - at /roles/compare.",
+      "To see what a specific job needs, paste the job post into the gap checker at /gap. It lists the skills the post asks for, which you already have, the foundations you need first, and the best resource for each - all in your browser; the post is never uploaded.",
       `All ${cat.skills.length} skills are at /skills, each with a 60-second brief, a learning checklist and checked resources.`,
       "Fields of tech (web, mobile, data, AI, cloud & DevOps, quality, security, customer-facing, specialist, foundations) are at /domains.",
-      "The resource library with filters is at /resources. Plain-English definitions are at /glossary. Articles are at /blog.",
+      "The resource library with filters is at /resources. Plain-English definitions are at /glossary. Pay and job growth for every role, with sources, is at /market. Side-by-side role comparisons are at /roles/compare. Articles are at /blog.",
       "Search everything with Ctrl+K or \u2318K. Four colour themes are available from the palette icon, and a signed-in person can save their theme to their account.",
       "A free account unlocks CJ AI and My Path: pick a destination role, mark each skill on that route as learning or done, and see your progress, next stations and hours left at /me. Reading every page stays free without an account.",
       `Contact: work.codejourney@gmail.com.`,

@@ -7,7 +7,7 @@ brief: Excel and Google Sheets are still the most-used data tools in business. A
 prereqs: []
 learn:
   - topic: Clean structure
-    detail: One header row, one record per row, consistent types — the basis of everything else.
+    detail: One header row, one record per row, consistent types - the basis of everything else.
   - topic: Core formulas
     detail: SUM, AVERAGE, COUNTIFS, SUMIFS, IF and text functions.
   - topic: Lookups
@@ -50,4 +50,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-Before SQL and Python, most business questions are answered in a spreadsheet — and many still are. Being fast and careful in Excel or Sheets is often the first thing a data analyst interview tests.
+Before SQL and Python, most business questions are answered in a spreadsheet - and many still are. Being fast and careful in Excel or Sheets is often the first thing a data analyst interview tests.

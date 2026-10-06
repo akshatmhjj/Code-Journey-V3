@@ -5,7 +5,7 @@ import { DomainBadge, PageHead, SkillStation } from "@/components/ui/bits";
 
 export const metadata: Metadata = {
   title: "Every Tech Skill, Explained with the Best Resources",
-  description: "Browse every skill on the Code Journey map — from HTML and SQL to Kubernetes and RAG — with a 60-second brief, a learning checklist and the best free resources.",
+  description: "Browse every skill on the Code Journey map - from HTML and SQL to Kubernetes and RAG - with a 60-second brief, a learning checklist and the best free resources.",
   alternates: { canonical: "/skills" },
 };
 
@@ -18,7 +18,7 @@ export default function SkillsIndex() {
       <PageHead
         eyebrow="Stations"
         title="Every skill on the map."
-        lede={`${net.skills.length} skills across ${net.domains.length} lines. ${live} have full pages today — a brief, a checklist and checked resources. The rest are being written.`}
+        lede={`${net.skills.length} skills across ${net.domains.length} lines. ${live} have full pages today - a brief, a checklist and checked resources. The rest are being written.`}
       />
       <div className="wrap grid gap-14">
         {net.domains.map((d) => {

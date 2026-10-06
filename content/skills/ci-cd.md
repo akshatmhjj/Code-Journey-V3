@@ -14,7 +14,7 @@ learn:
   - topic: Build artefacts
     detail: Build once, deploy the same artefact everywhere.
   - topic: Environments
-    detail: Preview, staging and production — and promotion between them.
+    detail: Preview, staging and production - and promotion between them.
   - topic: Secrets in CI
     detail: Store credentials safely; never echo them in logs.
   - topic: Speed

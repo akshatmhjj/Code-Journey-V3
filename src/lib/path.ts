@@ -24,7 +24,7 @@ export type Progress = {
   learning: number;
   total: number;
   percent: number;
-  /** The first stage that isn't finished — where the person is now. */
+  /** The first stage that isn't finished - where the person is now. */
   currentStage: number;
   stages: { name: string; weeks?: string; skills: string[]; done: number; total: number; percent: number }[];
   /** The next few unstarted or in-progress skills, in route order. */

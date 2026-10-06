@@ -3,7 +3,7 @@ title: Workflow Orchestration (Airflow)
 domain: data
 level: intermediate
 hours: 20–30
-brief: Orchestrators schedule and run data and ML pipelines — handling dependencies, retries and monitoring. Apache Airflow is the most widely used.
+brief: Orchestrators schedule and run data and ML pipelines - handling dependencies, retries and monitoring. Apache Airflow is the most widely used.
 prereqs:
   - python
 learn:
@@ -44,4 +44,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-A data pipeline might pull from an API, clean the data, load it into a warehouse, then refresh a model — every night, in order, retrying if something fails. An orchestrator is the conductor that makes sure each step runs at the right time and tells you when one doesn't.
+A data pipeline might pull from an API, clean the data, load it into a warehouse, then refresh a model - every night, in order, retrying if something fails. An orchestrator is the conductor that makes sure each step runs at the right time and tells you when one doesn't.

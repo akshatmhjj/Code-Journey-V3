@@ -128,7 +128,7 @@ function SharePath({ userId, defaultName, hasRole }: { userId: string; defaultNa
     const h = handle.trim().toLowerCase();
     const n = name.trim();
     if (h && !HANDLE.test(h)) return setError("Handles are 3–30 characters: lowercase letters, numbers, - and _, starting with a letter or number.");
-    if (isPublic && !h) return setError("Pick a handle first — it becomes your link.");
+    if (isPublic && !h) return setError("Pick a handle first - it becomes your link.");
     if (isPublic && !n) return setError("Add the name you'd like people to see.");
     setState("saving");
     const db = supabase();
@@ -160,7 +160,7 @@ function SharePath({ userId, defaultName, hasRole }: { userId: string; defaultNa
     <form onSubmit={save} className="grid gap-5">
       <p className="max-w-[60ch] text-muted">
         Get a page you can put on your CV, LinkedIn or GitHub showing where you&apos;re heading and how far you&apos;ve got. It shows your chosen name, route and
-        ticked skills — never your email. Off until you turn it on, and it stays out of search engines.
+        ticked skills - never your email. Off until you turn it on, and it stays out of search engines.
       </p>
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-1.5 text-sm">
@@ -232,7 +232,7 @@ function SharePath({ userId, defaultName, hasRole }: { userId: string; defaultNa
 }
 
 type Suggestion = { id: number; skill_slug: string; url: string; title: string | null; status: "new" | "accepted" | "declined"; created_at: string };
-const SUGGESTION_STATUS = { new: "Waiting for review", accepted: "Added — thank you", declined: "Not added this time" } as const;
+const SUGGESTION_STATUS = { new: "Waiting for review", accepted: "Added - thank you", declined: "Not added this time" } as const;
 
 /** Resources this person has suggested, and where each one is in review. Hidden until there's at least one. */
 function YourSuggestions({ index, userId }: { index: PathIndex; userId: string }) {
@@ -464,9 +464,9 @@ export function MeView({ index }: { index: PathIndex }) {
 
         <div className="grid gap-6 lg:grid-cols-2">
           <Card title="CJ AI">
-            <p className="text-muted">Answers about roles, skills and where to learn them — from Code Journey&apos;s own pages, with sources.</p>
+            <p className="text-muted">Answers about roles, skills and where to learn them - from Code Journey&apos;s own pages, with sources.</p>
             <p className="mt-4 font-display text-lg font-semibold tabular-nums">
-              {asked === null ? "—" : `${asked} of ${CHAT_DAILY_LIMIT}`} <span className="font-sans text-sm font-normal text-muted">questions used today</span>
+              {asked === null ? "-" : `${asked} of ${CHAT_DAILY_LIMIT}`} <span className="font-sans text-sm font-normal text-muted">questions used today</span>
             </p>
             <p className="mt-1 text-sm text-muted">The allowance resets at midnight UTC.</p>
             <Link href="/faq" className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold hover:underline">

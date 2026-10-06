@@ -3,7 +3,7 @@ title: Internal Developer Platforms
 domain: cloud-devops
 level: advanced
 hours: 25–40
-brief: Internal developer platforms give engineers self-service golden paths — create a service, deploy it, observe it — so product teams ship without each solving infrastructure from scratch.
+brief: Internal developer platforms give engineers self-service golden paths - create a service, deploy it, observe it - so product teams ship without each solving infrastructure from scratch.
 prereqs:
   - kubernetes
   - ci-cd
@@ -51,4 +51,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-When every team has to figure out Kubernetes, CI, secrets and monitoring on its own, everyone is slow and everything is different. An internal platform packages the best way to do it into a few self-service commands — so building a new service takes minutes, not weeks.
+When every team has to figure out Kubernetes, CI, secrets and monitoring on its own, everyone is slow and everything is different. An internal platform packages the best way to do it into a few self-service commands - so building a new service takes minutes, not weeks.

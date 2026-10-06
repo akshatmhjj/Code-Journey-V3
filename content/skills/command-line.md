@@ -7,19 +7,19 @@ brief: The command line lets you control a computer by typing instead of clickin
 prereqs: []
 learn:
   - topic: Navigating
-    detail: pwd, ls, cd — know where you are and move around the file system.
+    detail: pwd, ls, cd - know where you are and move around the file system.
   - topic: Files and folders
-    detail: mkdir, touch, cp, mv, rm — create, copy, move and delete (carefully).
+    detail: mkdir, touch, cp, mv, rm - create, copy, move and delete (carefully).
   - topic: Reading files
-    detail: cat, less, head, tail -f — look inside files and follow logs as they grow.
+    detail: cat, less, head, tail -f - look inside files and follow logs as they grow.
   - topic: Searching
-    detail: grep and find — locate text in files and files on disk.
+    detail: grep and find - locate text in files and files on disk.
   - topic: Pipes and redirection
-    detail: "| > >> — chain small commands into powerful ones."
+    detail: "| > >> - chain small commands into powerful ones."
   - topic: Permissions
-    detail: chmod, chown and sudo — who can read, write and run what.
+    detail: chmod, chown and sudo - who can read, write and run what.
   - topic: Processes
-    detail: ps, top, kill — see what's running and stop what's stuck.
+    detail: ps, top, kill - see what's running and stop what's stuck.
   - topic: Environment
     detail: PATH, environment variables and your shell config (.zshrc or .bashrc).
 resources:
@@ -49,7 +49,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-Clicking through folders is fine for a few files. Typing `grep -r "TODO" src` finds every TODO in a project in a second. The command line is a faster, scriptable way to tell a computer what to do — and on servers it's often the only way.
+Clicking through folders is fine for a few files. Typing `grep -r "TODO" src` finds every TODO in a project in a second. The command line is a faster, scriptable way to tell a computer what to do - and on servers it's often the only way.
 
 ## Why it matters
 

@@ -3,7 +3,7 @@ title: Tech Interviewing
 domain: foundations
 level: beginner
 hours: 20–40
-brief: How tech hiring actually works — résumés, coding rounds, system design, behavioural questions and offers — and how to prepare for each without burning out.
+brief: How tech hiring actually works - résumés, coding rounds, system design, behavioural questions and offers - and how to prepare for each without burning out.
 prereqs: []
 learn:
   - topic: The process
@@ -13,7 +13,7 @@ learn:
   - topic: Coding rounds
     detail: Think aloud, clarify, start simple, test your code.
   - topic: System design rounds
-    detail: Requirements first, then trade-offs — for mid-level and above.
+    detail: Requirements first, then trade-offs - for mid-level and above.
   - topic: Behavioural questions
     detail: "Prepare stories with the STAR format: situation, task, action, result."
   - topic: Role-specific rounds
@@ -53,7 +53,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-Interviews are a skill separate from the job. Many strong engineers fail them because they never practised explaining their thinking under time pressure. Knowing what each round tests — and rehearsing out loud — makes a bigger difference than another month of studying.
+Interviews are a skill separate from the job. Many strong engineers fail them because they never practised explaining their thinking under time pressure. Knowing what each round tests - and rehearsing out loud - makes a bigger difference than another month of studying.
 
 ## Where to look on Code Journey
 

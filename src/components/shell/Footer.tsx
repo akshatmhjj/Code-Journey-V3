@@ -13,6 +13,7 @@ const LINKS = [
       ["/roles", "All roles"],
       ["/compass", "Compass quiz"],
       ["/roles/compare", "Compare roles"],
+      ["/gap", "Job post checker"],
       ["/skills", "All skills"],
       ["/resources", "Resource library"],
       ["/glossary", "Glossary"],

@@ -1,4 +1,14 @@
 - date: 2026-10-08
+  version: "2.0.0-beta.9"
+  title: Job post gap checker
+  changes:
+    - type: added
+      text: Paste any tech job post to see the skills it asks for, which you already have, and what to learn next — in prerequisite order, with the best resource for each and an estimate of the time it'll take.
+    - type: added
+      text: It also flags foundations the post assumes but doesn't mention, like JavaScript behind a React job, and lists tech it names that Code Journey doesn't cover yet.
+    - type: added
+      text: It runs entirely in your browser — the job post is never uploaded. Signed in, your answers save straight to My Path.
+- date: 2026-10-08
   version: "2.0.0-beta.8"
   title: Compass and Compare
   changes:

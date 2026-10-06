@@ -1,0 +1,153 @@
+# How the job-post gap analyser recognises skills.
+#
+# Each skill is matched by its catalog title, by anything in brackets in that title
+# ("BI Tools (Power BI, Tableau, Looker)" → power bi, tableau, looker), and by the aliases below.
+# Matching ignores case and needs whole words ("sql" won't match inside "mysql").
+#
+# A leading "=" makes an alias case-sensitive. Use it for words that are also everyday English:
+# "=React" matches "React" but not "react quickly to incidents".
+# `auto: false` turns off matching on the title itself (needed when the title is such a word).
+
+skills:
+  # Foundations
+  git: [git, github, gitlab, bitbucket, version control, source control]
+  command-line: [command line, terminal, cli, shell]
+  how-the-internet-works: [http, https, dns, web fundamentals, tcp/ip]
+  data-structures-algorithms: [data structures, algorithms, dsa, leetcode, problem solving skills]
+  system-design: [system design, distributed systems, scalability, scalable systems, microservices, software architecture, high availability]
+  testing-basics: [unit testing, unit tests, tdd, test-driven, test driven, automated tests, integration tests]
+  ai-coding-tools: [copilot, github copilot, cursor, claude code, ai-assisted development, ai coding assistants, ai tools]
+  technical-writing: [technical writing, documentation, technical documentation, design docs]
+  interviewing: []
+  math-for-ml: [linear algebra, calculus, probability theory]
+
+  # Web
+  html: [html5]
+  css: [css3, sass, scss, less css, responsive design]
+  javascript: [js, es6, ecmascript, vanilla js]
+  typescript: [ts]
+  react: { auto: false, aliases: ["=React", react.js, reactjs, react hooks, react router] }
+  nextjs: [next.js, next js]
+  tailwind-css: [tailwind, tailwindcss]
+  accessibility: [accessibility, a11y, wcag, aria, screen readers]
+  web-performance: [core web vitals, lighthouse, page speed, web vitals, frontend performance]
+  frontend-testing: [jest, testing library, react testing library, vitest, storybook tests]
+  state-management: [redux, redux toolkit, zustand, mobx, react query, tanstack query, recoil]
+  design-systems: [design system, component library, storybook]
+  ui-design: [figma, ui/ux, ux design, ui design, user experience, "=Sketch", wireframes, wireframing]
+  web-animation: [animations, framer motion, gsap, css animations, micro-interactions]
+  nodejs: [node.js, nodejs, "=Express", express.js, expressjs, nestjs, fastify]
+  rest-apis: ["=REST", restful, rest api, api design, openapi, swagger, apis, api development, web services]
+  graphql: [apollo]
+  authentication: [authentication, authorization, oauth, oauth2, oauth 2.0, jwt, sso, single sign-on, openid connect, oidc, auth0]
+  web-security: [web security, xss, csrf, secure coding, application security, security best practices]
+  caching: [redis, memcached, cdn, caching]
+  message-queues: [kafka, apache kafka, rabbitmq, sqs, pub/sub, pubsub, message queue, message queues, event-driven, event driven, event streaming, celery]
+  postgresql: [postgres, postgresql, psql]
+
+  # Mobile
+  dart: []
+  flutter: []
+  react-native: [react native, expo]
+  kotlin: []
+  jetpack-compose: [jetpack compose, compose ui]
+  swift: { auto: false, aliases: ["=Swift", swift 5, swift language] }
+  swiftui: [swift ui, uikit]
+  app-store-publishing: [app store, google play, play store, testflight, play console, app store connect]
+  mobile-testing: [espresso, xcuitest, xctest, detox, appium, maestro]
+
+  # Data
+  python: [python3, django, flask, fastapi]
+  sql: [mysql, sql server, mssql, t-sql, tsql, pl/sql, sqlite, relational databases, rdbms, sql queries]
+  pandas: [pandas, numpy]
+  data-visualization: [data visualization, data visualisation, matplotlib, seaborn, plotly, dashboards, d3.js]
+  statistics: [statistical analysis, statistical, hypothesis testing, regression analysis, linear regression, logistic regression, probability]
+  spreadsheets: { aliases: ["=Excel", ms excel, microsoft excel, google sheets, vlookup, xlookup, pivot tables, power query] }
+  bi-tools: [business intelligence, qlik, metabase, superset, looker studio, dax]
+  data-modeling: [data modeling, data modelling, dimensional modeling, dimensional modelling, star schema, kimball, data models]
+  spark: { aliases: [pyspark, databricks, "=Spark"] }
+  airflow: [dagster, prefect, workflow orchestration, data orchestration, data pipelines, etl, elt]
+  dbt: [dbt core, dbt cloud]
+  data-warehouses: [redshift, data warehouse, data warehousing, synapse, lakehouse, delta lake, iceberg]
+  data-storytelling: [storytelling, communicate insights, present findings, presenting insights, data-driven recommendations]
+  ab-testing: [a/b testing, a/b tests, ab testing, a/b test, experimentation, experiment design, controlled experiments]
+  r: { auto: false, aliases: [r programming, rstudio, tidyverse, ggplot2, r language, "=R,", "=R/", "=R and", "=or R"] }
+
+  # AI
+  machine-learning: [machine learning, ml, scikit-learn, sklearn, xgboost, lightgbm, predictive modeling, predictive modelling]
+  deep-learning: [deep learning, neural networks, neural network, cnn, cnns, transformers, computer vision, nlp]
+  pytorch: [torch]
+  llm-apis: [llm, llms, large language models, openai, openai api, gemini, anthropic, claude, gpt, generative ai, genai, hugging face]
+  prompt-engineering: [prompt engineering, prompting, prompt design]
+  rag: [retrieval augmented, retrieval-augmented, langchain, llamaindex, llama index, semantic search]
+  vector-databases: [vector database, vector databases, vector db, pinecone, pgvector, weaviate, qdrant, chroma, milvus, embeddings]
+  ai-agents: [ai agents, agentic, langgraph, tool calling, function calling, mcp, model context protocol, multi-agent]
+  llm-evals: [evals, llm evaluation, evaluation frameworks, model evaluation, red teaming]
+  mlops: [mlops, mlflow, kubeflow, sagemaker, vertex ai, model deployment, model serving, feature store, weights & biases, wandb]
+
+  # Cloud & DevOps
+  linux: [linux, unix, ubuntu, rhel, centos, debian]
+  networking: [tcp/ip, vpc, load balancers, load balancing, subnets, firewalls, vpn, dns management]
+  shell-scripting: [bash, shell scripting, shell scripts, powershell]
+  docker: [containers, containerization, containerisation, dockerfile, docker compose]
+  kubernetes: [k8s, helm, eks, gke, aks, openshift, container orchestration]
+  ci-cd: [ci/cd, cicd, ci cd, continuous integration, continuous delivery, continuous deployment, github actions, gitlab ci, jenkins, circleci, argo cd, argocd]
+  terraform: [infrastructure as code, iac, pulumi, cloudformation, opentofu, cdk]
+  aws: [amazon web services, ec2, s3, aws lambda, rds, dynamodb, cloudwatch]
+  observability: [monitoring, prometheus, grafana, datadog, new relic, opentelemetry, logging, splunk, elk, alerting, tracing]
+  deployment: [vercel, netlify, heroku, fly.io, release management]
+  incident-response: [on-call, on call, incident response, incident management, pagerduty, postmortems, post-mortems, root cause analysis, sre practices]
+  go: { auto: false, aliases: [golang, go language, go programming, "=Go,", "=Go and", "=or Go", "=Go/"] }
+  internal-developer-platforms: [backstage, platform engineering, developer platform, internal developer platform, golden paths, gitops, developer experience]
+
+  # Quality
+  test-design: [test cases, test plans, test planning, test strategy, manual testing, exploratory testing, regression testing, qa]
+  test-automation: [test automation, automation testing, automated testing, selenium, cypress, webdriverio, testng, junit]
+  playwright: []
+  api-testing: [api testing, postman, rest assured, soapui, contract testing]
+  performance-testing: [load testing, performance testing, stress testing, jmeter, k6, locust, gatling]
+
+  # Security
+  owasp-top-10: [owasp]
+  threat-modeling: [threat modelling, threat modeling, stride, risk assessment]
+  security-testing: [penetration testing, pen testing, pentest, vulnerability assessment, vulnerability scanning, burp suite, owasp zap, sast, dast, snyk, semgrep]
+  cloud-security: [cloud security, iam, cspm, guardduty, security hub, zero trust, soc 2, iso 27001]
+
+  # Customer-facing
+  working-with-customers: [customer-facing, client-facing, stakeholder management, pre-sales, presales, solution design, discovery calls]
+  developer-content: [developer relations, devrel, technical content, conference talks, public speaking, developer advocacy, community building]
+
+  # Specialist
+  csharp: [c#, .net, dotnet, asp.net]
+  cpp: [c++, cpp, c/c++]
+  unity: { auto: false, aliases: ["=Unity", unity3d, unity engine] }
+  game-math: [vector math, 3d math, game physics, quaternions]
+  c-programming: [c/c++, embedded c, c programming, ansi c, c language]
+  electronics-basics: [electronics, schematics, oscilloscope, multimeter, pcb, circuit design, hardware debugging]
+  microcontrollers: [microcontroller, mcu, mcus, firmware, bare metal, bare-metal]
+  rtos: [rtos, freertos, zephyr, real-time operating system, real-time systems]
+  embedded-protocols: [can bus, canbus, bluetooth low energy, ble, modbus, zigbee, lorawan, serial communication]
+
+# Tech that often appears in job posts but has no Code Journey page yet. Shown honestly as
+# "mentioned, not covered". Each entry: display name → phrases to look for.
+not_covered:
+  Java: ["=Java", spring boot, spring framework, jvm]
+  Azure: [azure, microsoft azure]
+  Google Cloud: [gcp, google cloud]
+  Angular: [angular, angularjs]
+  Vue: [vue, vue.js, vuejs, nuxt]
+  Svelte: [svelte, sveltekit]
+  MongoDB: [mongodb, mongo]
+  NoSQL databases: [nosql, cassandra, couchbase]
+  Elasticsearch: [elasticsearch, opensearch]
+  Ruby: [ruby, rails, ruby on rails]
+  PHP: [php, laravel, symfony]
+  Rust: ["=Rust"]
+  Scala: [scala]
+  Ansible: [ansible, chef, puppet]
+  Hadoop: [hadoop, hive, hdfs]
+  SAS: ["=SAS"]
+  Salesforce: [salesforce]
+  Jira and Agile: [jira, agile, scrum, kanban]
+  Unreal Engine: [unreal, unreal engine]
+  Objective-C: [objective-c]

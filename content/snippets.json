@@ -1,0 +1,702 @@
+[
+ {
+  "id": "html-layout",
+  "skill": "html",
+  "title": "Layout",
+  "description": "Basic layout",
+  "tags": [
+   "layout"
+  ],
+  "code": "<!DOCTYPE html>\n<html>\n<head>\n  <title>App</title>\n  <style>body{margin:0;font-family:sans-serif}</style>\n</head>\n<body>\n  <header>Header</header>\n  <main><h1>Hello</h1></main>\n  <footer>Footer</footer>\n</body>\n</html>"
+ },
+ {
+  "id": "html-form",
+  "skill": "html",
+  "title": "Form",
+  "description": "Submit form",
+  "tags": [
+   "form"
+  ],
+  "code": "<form onsubmit=\"handle(event)\">\n  <input id=\"name\" placeholder=\"Name\"/>\n  <button>Send</button>\n</form>\n<script>\nfunction handle(e){\n  e.preventDefault();\n  console.log(name.value);\n}\n</script>"
+ },
+ {
+  "id": "html-table",
+  "skill": "html",
+  "title": "Table",
+  "description": "Table UI",
+  "tags": [
+   "table"
+  ],
+  "code": "<table border=\"1\">\n<tr><th>Name</th><th>Age</th></tr>\n<tr><td>A</td><td>20</td></tr>\n<tr><td>B</td><td>25</td></tr>\n</table>"
+ },
+ {
+  "id": "html-card",
+  "skill": "html",
+  "title": "Card",
+  "description": "UI card",
+  "tags": [
+   "ui"
+  ],
+  "code": "<div class=\"card\">\n  <img src=\"img.jpg\" width=\"100%\"/>\n  <h3>Title</h3>\n  <button onclick=\"alert('Hi')\">Click</button>\n</div>"
+ },
+ {
+  "id": "html-media",
+  "skill": "html",
+  "title": "Media",
+  "description": "Audio video",
+  "tags": [
+   "media"
+  ],
+  "code": "<video controls width=\"300\">\n  <source src=\"a.mp4\">\n</video>\n<audio controls>\n  <source src=\"a.mp3\">\n</audio>"
+ },
+ {
+  "id": "css-flex",
+  "skill": "css",
+  "title": "Flex",
+  "description": "Center",
+  "tags": [
+   "layout"
+  ],
+  "code": ".box{\n  display:flex;\n  justify-content:center;\n  align-items:center;\n  height:100vh;\n  background:#111;\n  color:#fff;\n}"
+ },
+ {
+  "id": "css-grid",
+  "skill": "css",
+  "title": "Grid",
+  "description": "Grid layout",
+  "tags": [
+   "layout"
+  ],
+  "code": ".grid{\n  display:grid;\n  grid-template-columns:repeat(3,1fr);\n  gap:10px;\n}\n.item{background:#eee;padding:10px}"
+ },
+ {
+  "id": "css-card",
+  "skill": "css",
+  "title": "Card",
+  "description": "Card style",
+  "tags": [
+   "ui"
+  ],
+  "code": ".card{\n  padding:16px;\n  border-radius:10px;\n  box-shadow:0 4px 10px rgba(0,0,0,.2);\n  transition:.3s;\n}"
+ },
+ {
+  "id": "css-hover",
+  "skill": "css",
+  "title": "Hover",
+  "description": "Hover effect",
+  "tags": [
+   "anim"
+  ],
+  "code": ".btn{\n  padding:10px;\n}\n.btn:hover{\n  transform:scale(1.1);\n  background:#333;\n  color:#fff;\n}"
+ },
+ {
+  "id": "css-scroll",
+  "skill": "css",
+  "title": "Scroll",
+  "description": "Hide scroll",
+  "tags": [
+   "ui"
+  ],
+  "code": "body{overflow:auto}\n::-webkit-scrollbar{\n  width:0;\n}"
+ },
+ {
+  "id": "js-fetch",
+  "skill": "javascript",
+  "title": "Fetch",
+  "description": "API call",
+  "tags": [
+   "api"
+  ],
+  "code": "async function getData(url){\n  try{\n    const res=await fetch(url);\n    if(!res.ok) throw Error();\n    const data=await res.json();\n    console.log(data);\n    return data;\n  }catch(e){\n    console.log(e);\n  }\n}"
+ },
+ {
+  "id": "js-debounce",
+  "skill": "javascript",
+  "title": "Debounce",
+  "description": "Delay fn",
+  "tags": [
+   "perf"
+  ],
+  "code": "function debounce(fn,d=300){\n  let t;\n  return(...a)=>{\n    clearTimeout(t);\n    t=setTimeout(()=>fn(...a),d);\n  }\n}"
+ },
+ {
+  "id": "js-clone",
+  "skill": "javascript",
+  "title": "Clone",
+  "description": "Deep copy",
+  "tags": [
+   "obj"
+  ],
+  "code": "function clone(o){\n  if(typeof o!==\"object\") return o;\n  const r={};\n  for(let k in o){\n    r[k]=clone(o[k]);\n  }\n  return r;\n}"
+ },
+ {
+  "id": "js-sleep",
+  "skill": "javascript",
+  "title": "Sleep",
+  "description": "Delay",
+  "tags": [
+   "async"
+  ],
+  "code": "const sleep=ms=>new Promise(r=>setTimeout(r,ms));\nasync function run(){\n  console.log(\"start\");\n  await sleep(1000);\n  console.log(\"end\");\n}"
+ },
+ {
+  "id": "js-throttle",
+  "skill": "javascript",
+  "title": "Throttle",
+  "description": "Limit",
+  "tags": [
+   "perf"
+  ],
+  "code": "function throttle(fn,l=300){\n  let w=false;\n  return(...a)=>{\n    if(!w){\n      fn(...a);\n      w=true;\n      setTimeout(()=>w=false,l);\n    }\n  }\n}"
+ },
+ {
+  "id": "ts-fetch",
+  "skill": "typescript",
+  "title": "Fetch",
+  "description": "Typed",
+  "tags": [
+   "api"
+  ],
+  "code": "async function fetchData<T>(url:string):Promise<T|null>{\n  try{\n    const r=await fetch(url);\n    return await r.json() as T;\n  }catch{return null;}\n}"
+ },
+ {
+  "id": "ts-result",
+  "skill": "typescript",
+  "title": "Result",
+  "description": "Safe",
+  "tags": [
+   "types"
+  ],
+  "code": "type Result<T> =\n {ok:true,data:T}|\n {ok:false,error:Error};\n\nasync function safe<T>(fn:()=>Promise<T>):Promise<Result<T>>{\n  try{return {ok:true,data:await fn()};}\n  catch(e){return {ok:false,error:e as Error};}\n}"
+ },
+ {
+  "id": "ts-enum",
+  "skill": "typescript",
+  "title": "Enum",
+  "description": "Roles",
+  "tags": [
+   "types"
+  ],
+  "code": "enum Role{Admin=\"ADMIN\",User=\"USER\"}\n\nfunction check(r:Role){\n  return r===Role.Admin;\n}"
+ },
+ {
+  "id": "ts-guard",
+  "skill": "typescript",
+  "title": "Guard",
+  "description": "Type check",
+  "tags": [
+   "types"
+  ],
+  "code": "function isStr(x:any):x is string{\n  return typeof x===\"string\";\n}\n\nfunction run(x:any){\n  if(isStr(x)) console.log(x);\n}"
+ },
+ {
+  "id": "ts-update",
+  "skill": "typescript",
+  "title": "Update",
+  "description": "Partial",
+  "tags": [
+   "types"
+  ],
+  "code": "type User={name:string;age:number};\n\nfunction update(u:User,p:Partial<User>){\n  return {...u,...p};\n}"
+ },
+ {
+  "id": "node-server",
+  "skill": "nodejs",
+  "title": "Server",
+  "description": "Basic",
+  "tags": [
+   "server"
+  ],
+  "code": "const http=require(\"http\");\n\nhttp.createServer((req,res)=>{\n  res.writeHead(200,{\"Content-Type\":\"text/plain\"});\n  res.write(\"Hello\");\n  res.end();\n}).listen(3000);"
+ },
+ {
+  "id": "node-route",
+  "skill": "nodejs",
+  "title": "Route",
+  "description": "Routing",
+  "tags": [
+   "server"
+  ],
+  "code": "const http=require(\"http\");\n\nhttp.createServer((req,res)=>{\n  if(req.url===\"/\") res.end(\"Home\");\n  else res.end(\"404\");\n}).listen(3000);"
+ },
+ {
+  "id": "node-json",
+  "skill": "nodejs",
+  "title": "JSON",
+  "description": "Send JSON",
+  "tags": [
+   "api"
+  ],
+  "code": "const http=require(\"http\");\n\nhttp.createServer((req,res)=>{\n  res.setHeader(\"Content-Type\",\"application/json\");\n  res.end(JSON.stringify({msg:\"ok\"}));\n}).listen(3000);"
+ },
+ {
+  "id": "node-fs",
+  "skill": "nodejs",
+  "title": "FS",
+  "description": "Read file",
+  "tags": [
+   "fs"
+  ],
+  "code": "const fs=require(\"fs\");\n\nfs.readFile(\"a.txt\",\"utf8\",(e,d)=>{\n  if(!e) console.log(d);\n});"
+ },
+ {
+  "id": "node-env",
+  "skill": "nodejs",
+  "title": "Env",
+  "description": "Vars",
+  "tags": [
+   "env"
+  ],
+  "code": "require(\"dotenv\").config();\n\nconsole.log(process.env.KEY);"
+ },
+ {
+  "id": "sql-select",
+  "skill": "sql",
+  "title": "Select",
+  "description": "Get data",
+  "tags": [
+   "basic"
+  ],
+  "code": "SELECT name,age\nFROM users\nWHERE age>18\nORDER BY age DESC;"
+ },
+ {
+  "id": "sql-insert",
+  "skill": "sql",
+  "title": "Insert",
+  "description": "Add",
+  "tags": [
+   "basic"
+  ],
+  "code": "INSERT INTO users(name,age)\nVALUES('A',20),('B',22);"
+ },
+ {
+  "id": "sql-update",
+  "skill": "sql",
+  "title": "Update",
+  "description": "Modify",
+  "tags": [
+   "basic"
+  ],
+  "code": "UPDATE users\nSET age=age+1\nWHERE active=1;"
+ },
+ {
+  "id": "sql-delete",
+  "skill": "sql",
+  "title": "Delete",
+  "description": "Remove",
+  "tags": [
+   "basic"
+  ],
+  "code": "DELETE FROM users\nWHERE age<18;"
+ },
+ {
+  "id": "sql-join",
+  "skill": "sql",
+  "title": "Join",
+  "description": "Combine",
+  "tags": [
+   "join"
+  ],
+  "code": "SELECT u.name,o.total\nFROM users u\nJOIN orders o\nON u.id=o.user_id;"
+ },
+ {
+  "id": "r-fetch",
+  "skill": "react",
+  "title": "Fetch Hook",
+  "description": "Fetch",
+  "tags": [
+   "hook"
+  ],
+  "code": "function useFetch(url){\n  const [d,setD]=useState(null);\n  useEffect(()=>{\n    fetch(url).then(r=>r.json()).then(setD);\n  },[url]);\n  return d;\n}"
+ },
+ {
+  "id": "r-local",
+  "skill": "react",
+  "title": "Local",
+  "description": "Storage",
+  "tags": [
+   "hook"
+  ],
+  "code": "function useLocal(k,v){\n  const [val,setVal]=useState(v);\n  useEffect(()=>{\n    localStorage.setItem(k,JSON.stringify(val));\n  },[val]);\n  return [val,setVal];\n}"
+ },
+ {
+  "id": "r-toggle",
+  "skill": "react",
+  "title": "Toggle",
+  "description": "Bool",
+  "tags": [
+   "hook"
+  ],
+  "code": "function useToggle(i=false){\n  const [v,setV]=useState(i);\n  return [v,()=>setV(x=>!x)];\n}"
+ },
+ {
+  "id": "r-debounce",
+  "skill": "react",
+  "title": "Debounce",
+  "description": "Delay",
+  "tags": [
+   "hook"
+  ],
+  "code": "function useDebounce(v,d=300){\n  const [val,setVal]=useState(v);\n  useEffect(()=>{\n    const t=setTimeout(()=>setVal(v),d);\n    return()=>clearTimeout(t);\n  },[v]);\n  return val;\n}"
+ },
+ {
+  "id": "r-memo",
+  "skill": "react",
+  "title": "Memo",
+  "description": "Optimize",
+  "tags": [
+   "perf"
+  ],
+  "code": "const Comp=({v})=>{\n  return <div>{v}</div>;\n}\n\nexport default React.memo(Comp);"
+ },
+ {
+  "id": "dart-main",
+  "skill": "dart",
+  "title": "Main",
+  "description": "Basic",
+  "tags": [
+   "base"
+  ],
+  "code": "void main(){\n  print(\"Hello\");\n  greet(\"Dev\");\n}\n\nvoid greet(String n){\n  print(\"Hi $n\");\n}"
+ },
+ {
+  "id": "dart-list",
+  "skill": "dart",
+  "title": "List",
+  "description": "Map",
+  "tags": [
+   "list"
+  ],
+  "code": "var nums=[1,2,3];\nvar doubled=nums.map((e)=>e*2).toList();\n\nprint(doubled);"
+ },
+ {
+  "id": "dart-class",
+  "skill": "dart",
+  "title": "Class",
+  "description": "Model",
+  "tags": [
+   "oop"
+  ],
+  "code": "class User{\n  String name;\n  User(this.name);\n}\n\nvoid main(){\n  print(User(\"A\").name);\n}"
+ },
+ {
+  "id": "dart-async",
+  "skill": "dart",
+  "title": "Async",
+  "description": "Future",
+  "tags": [
+   "async"
+  ],
+  "code": "Future run() async{\n  await Future.delayed(Duration(seconds:1));\n  print(\"Done\");\n}"
+ },
+ {
+  "id": "dart-null",
+  "skill": "dart",
+  "title": "Null",
+  "description": "Safety",
+  "tags": [
+   "base"
+  ],
+  "code": "String? name;\n\nvoid main(){\n  print(name ?? \"Guest\");\n}"
+ },
+ {
+  "id": "fl-container",
+  "skill": "flutter",
+  "title": "Container",
+  "description": "UI",
+  "tags": [
+   "ui"
+  ],
+  "code": "Container(\n  padding:EdgeInsets.all(10),\n  child:Text(\"Hello\"),\n)"
+ },
+ {
+  "id": "fl-list",
+  "skill": "flutter",
+  "title": "List",
+  "description": "ListView",
+  "tags": [
+   "ui"
+  ],
+  "code": "ListView.builder(\n  itemCount:5,\n  itemBuilder:(c,i){\n    return Text(\"$i\");\n  },\n)"
+ },
+ {
+  "id": "fl-nav",
+  "skill": "flutter",
+  "title": "Nav",
+  "description": "Navigate",
+  "tags": [
+   "nav"
+  ],
+  "code": "Navigator.push(\n context,\n MaterialPageRoute(builder:(_)=>Page()),\n);"
+ },
+ {
+  "id": "fl-state",
+  "skill": "flutter",
+  "title": "State",
+  "description": "Update",
+  "tags": [
+   "state"
+  ],
+  "code": "setState(() {\n  count++;\n});"
+ },
+ {
+  "id": "fl-future",
+  "skill": "flutter",
+  "title": "Future",
+  "description": "Async UI",
+  "tags": [
+   "async"
+  ],
+  "code": "FutureBuilder(\n future:fetch(),\n builder:(c,s){\n  if(s.hasData) return Text(\"Done\");\n  return CircularProgressIndicator();\n });"
+ },
+ {
+  "id": "swift-func",
+  "skill": "swift",
+  "title": "Func",
+  "description": "Basic",
+  "tags": [
+   "base"
+  ],
+  "code": "func greet(name:String)->String{\n return \"Hello (name)\"\n}"
+ },
+ {
+  "id": "swift-opt",
+  "skill": "swift",
+  "title": "Optional",
+  "description": "Null",
+  "tags": [
+   "base"
+  ],
+  "code": "var n:String?=\"A\"\n\nprint(n ?? \"Guest\")"
+ },
+ {
+  "id": "swift-arr",
+  "skill": "swift",
+  "title": "Array",
+  "description": "Map",
+  "tags": [
+   "list"
+  ],
+  "code": "let nums=[1,2,3]\n\nlet d=nums.map{$0*2}"
+ },
+ {
+  "id": "swift-class",
+  "skill": "swift",
+  "title": "Class",
+  "description": "Model",
+  "tags": [
+   "oop"
+  ],
+  "code": "class User{\n var name:String\n init(n:String){name=n}\n}"
+ },
+ {
+  "id": "swift-api",
+  "skill": "swift",
+  "title": "API",
+  "description": "Fetch",
+  "tags": [
+   "net"
+  ],
+  "code": "URLSession.shared.dataTask(with:url){\n d,_,_ in print(d)\n}.resume()"
+ },
+ {
+  "id": "py-read",
+  "skill": "python",
+  "title": "Read",
+  "description": "File",
+  "tags": [
+   "file"
+  ],
+  "code": "with open(\"a.txt\") as f:\n  data=f.read()\n  print(data)"
+ },
+ {
+  "id": "py-json",
+  "skill": "python",
+  "title": "JSON",
+  "description": "Parse",
+  "tags": [
+   "file"
+  ],
+  "code": "import json\n\nwith open(\"a.json\") as f:\n  data=json.load(f)\n  print(data)"
+ },
+ {
+  "id": "py-loop",
+  "skill": "python",
+  "title": "Loop",
+  "description": "Iter",
+  "tags": [
+   "base"
+  ],
+  "code": "for i in range(5):\n  print(i)"
+ },
+ {
+  "id": "py-func",
+  "skill": "python",
+  "title": "Func",
+  "description": "Basic",
+  "tags": [
+   "base"
+  ],
+  "code": "def greet(n):\n  return \"Hello \"+n\n\nprint(greet(\"Dev\"))"
+ },
+ {
+  "id": "py-env",
+  "skill": "python",
+  "title": "Env",
+  "description": "Vars",
+  "tags": [
+   "env"
+  ],
+  "code": "import os\n\nprint(os.getenv(\"KEY\"))"
+ },
+ {
+  "id": "r-read",
+  "skill": "r",
+  "title": "Read",
+  "description": "CSV",
+  "tags": [
+   "data"
+  ],
+  "code": "data<-read.csv(\"a.csv\")\n\nhead(data)"
+ },
+ {
+  "id": "r-plot",
+  "skill": "r",
+  "title": "Plot",
+  "description": "Graph",
+  "tags": [
+   "viz"
+  ],
+  "code": "x<-c(1,2,3)\ny<-c(2,4,6)\n\nplot(x,y)"
+ },
+ {
+  "id": "r-mean",
+  "skill": "r",
+  "title": "Mean",
+  "description": "Avg",
+  "tags": [
+   "stats"
+  ],
+  "code": "mean(c(1,2,3))"
+ },
+ {
+  "id": "r-filter",
+  "skill": "r",
+  "title": "Filter",
+  "description": "Subset",
+  "tags": [
+   "data"
+  ],
+  "code": "subset(data,age>18)"
+ },
+ {
+  "id": "r-dplyr",
+  "skill": "r",
+  "title": "Select",
+  "description": "Cols",
+  "tags": [
+   "data"
+  ],
+  "code": "library(dplyr)\n\ndata%>%select(name)"
+ },
+ {
+  "id": "kt-func",
+  "skill": "kotlin",
+  "title": "Func",
+  "description": "Basic",
+  "tags": [
+   "base"
+  ],
+  "code": "fun greet(n:String):String{\n return \"Hello $n\"\n}"
+ },
+ {
+  "id": "kt-null",
+  "skill": "kotlin",
+  "title": "Null",
+  "description": "Safe",
+  "tags": [
+   "base"
+  ],
+  "code": "var n:String?=null\n\nprintln(n?: \"Guest\")"
+ },
+ {
+  "id": "kt-list",
+  "skill": "kotlin",
+  "title": "List",
+  "description": "Map",
+  "tags": [
+   "list"
+  ],
+  "code": "val nums=listOf(1,2,3)\n\nval d=nums.map{it*2}"
+ },
+ {
+  "id": "kt-class",
+  "skill": "kotlin",
+  "title": "Class",
+  "description": "Model",
+  "tags": [
+   "oop"
+  ],
+  "code": "data class User(val n:String)"
+ },
+ {
+  "id": "kt-cor",
+  "skill": "kotlin",
+  "title": "Coroutine",
+  "description": "Async",
+  "tags": [
+   "async"
+  ],
+  "code": "GlobalScope.launch{\n delay(1000)\n println(\"Done\")\n}"
+ },
+ {
+  "id": "rs-func",
+  "skill": "rust",
+  "title": "Func",
+  "description": "Basic",
+  "tags": [
+   "base"
+  ],
+  "code": "fn greet(n:&str)->String{\n format!(\"Hello {}\",n)\n}"
+ },
+ {
+  "id": "rs-var",
+  "skill": "rust",
+  "title": "Var",
+  "description": "Mutable",
+  "tags": [
+   "base"
+  ],
+  "code": "let mut x=5;\nx+=1;"
+ },
+ {
+  "id": "rs-vec",
+  "skill": "rust",
+  "title": "Vec",
+  "description": "Map",
+  "tags": [
+   "list"
+  ],
+  "code": "let v=vec![1,2,3];\nlet d:Vec<_>=v.iter().map(|x|x*2).collect();"
+ },
+ {
+  "id": "rs-match",
+  "skill": "rust",
+  "title": "Match",
+  "description": "Control",
+  "tags": [
+   "ctrl"
+  ],
+  "code": "match x{\n 1=>println!(\"one\"),\n _=>println!(\"other\")\n}"
+ },
+ {
+  "id": "rs-file",
+  "skill": "rust",
+  "title": "File",
+  "description": "Read",
+  "tags": [
+   "file"
+  ],
+  "code": "use std::fs;\n\nlet d=fs::read_to_string(\"a.txt\").unwrap();"
+ }
+]

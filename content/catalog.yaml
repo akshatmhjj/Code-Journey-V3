@@ -1,0 +1,166 @@
+# The Code Journey network: every domain (line), role (destination) and skill (station).
+# A role or skill only gets its own page once its Markdown file exists in content/roles or content/skills.
+# Everything listed here still appears on the map, marked as "being mapped".
+
+domains:
+  - slug: web
+    code: WEB
+    name: Web
+    line: solid
+    tagline: Sites and web apps, from the browser to the server.
+  - slug: mobile
+    code: MOB
+    name: Mobile
+    line: double
+    tagline: Apps for phones and tablets, native or cross-platform.
+  - slug: data
+    code: DAT
+    name: Data
+    line: dashed
+    tagline: Turning raw data into answers, dashboards and pipelines.
+  - slug: ai
+    code: AI
+    name: AI
+    line: dotted
+    tagline: Models, LLM applications and the systems around them.
+  - slug: cloud-devops
+    code: OPS
+    name: Cloud & DevOps
+    line: thin
+    tagline: Shipping, running and scaling software reliably.
+  - slug: quality
+    code: QA
+    name: Quality
+    line: dashdot
+    tagline: Proving software works before users find out it doesn't.
+  - slug: security
+    code: SEC
+    name: Security
+    line: short
+    tagline: Keeping systems, data and users safe.
+  - slug: customer
+    code: FDE
+    name: Customer-facing
+    line: hollow
+    tagline: Engineers who build alongside customers and partners.
+  - slug: specialist
+    code: SPL
+    name: Specialist
+    line: rail
+    tagline: Games, devices and other deep niches.
+  - slug: foundations
+    code: CS
+    name: Foundations
+    line: hub
+    tagline: The shared skills almost every route passes through.
+
+roles:
+  - { slug: frontend-engineer, title: Frontend Engineer, domain: web, wave: 1, oneLiner: Builds the part of a product people see and touch in the browser. }
+  - { slug: backend-engineer, title: Backend Engineer, domain: web, wave: 1, oneLiner: Builds the APIs, data stores and services behind an app. }
+  - { slug: full-stack-engineer, title: Full-Stack Engineer, domain: web, wave: 1, oneLiner: Ships features end to end, from database to UI. }
+  - { slug: design-engineer, title: Design Engineer, domain: web, wave: 3, oneLiner: Sits between design and code; owns interaction and polish. }
+  - { slug: cross-platform-mobile-engineer, title: Cross-platform Mobile Engineer, domain: mobile, wave: 1, oneLiner: Ships one codebase to iOS and Android with Flutter or React Native. }
+  - { slug: android-engineer, title: Android Engineer, domain: mobile, wave: 2, oneLiner: Builds native Android apps with Kotlin and Jetpack Compose. }
+  - { slug: ios-engineer, title: iOS Engineer, domain: mobile, wave: 2, oneLiner: Builds native iPhone and iPad apps with Swift and SwiftUI. }
+  - { slug: data-analyst, title: Data Analyst, domain: data, wave: 1, oneLiner: Answers business questions with SQL, spreadsheets and dashboards. }
+  - { slug: data-scientist, title: Data Scientist, domain: data, wave: 1, oneLiner: Uses statistics and models to explain and predict. }
+  - { slug: data-engineer, title: Data Engineer, domain: data, wave: 2, oneLiner: Builds the pipelines and warehouses everyone else queries. }
+  - { slug: analytics-engineer, title: Analytics Engineer, domain: data, wave: 3, oneLiner: Models clean, tested datasets for analysts with SQL and dbt. }
+  - { slug: ai-engineer, title: AI Engineer, domain: ai, wave: 1, oneLiner: Builds products on top of LLMs — retrieval, agents, evals. }
+  - { slug: ml-engineer, title: ML Engineer, domain: ai, wave: 1, oneLiner: Trains, ships and maintains machine learning models in production. }
+  - { slug: mlops-engineer, title: MLOps Engineer, domain: ai, wave: 3, oneLiner: Runs the infrastructure that trains, serves and monitors models. }
+  - { slug: devops-engineer, title: DevOps Engineer, domain: cloud-devops, wave: 1, oneLiner: Automates how code gets built, tested and deployed. }
+  - { slug: cloud-engineer, title: Cloud Engineer, domain: cloud-devops, wave: 2, oneLiner: Designs and runs infrastructure on AWS, Azure or Google Cloud. }
+  - { slug: site-reliability-engineer, title: Site Reliability Engineer, domain: cloud-devops, wave: 2, oneLiner: Keeps production fast and up, and makes failure boring. }
+  - { slug: platform-engineer, title: Platform Engineer, domain: cloud-devops, wave: 3, oneLiner: Builds the internal tools other engineers ship on. }
+  - { slug: qa-sdet, title: QA Engineer / SDET, domain: quality, wave: 1, oneLiner: Designs and automates tests so releases don't break things. }
+  - { slug: application-security-engineer, title: Application Security Engineer, domain: security, wave: 2, oneLiner: Finds and fixes security flaws in the software a company builds. }
+  - { slug: cloud-security-engineer, title: Cloud Security Engineer, domain: security, wave: 3, oneLiner: Secures cloud accounts, identities and infrastructure. }
+  - { slug: forward-deployed-engineer, title: Forward Deployed Engineer, domain: customer, wave: 2, oneLiner: Embeds with customers to build and ship real solutions on a product. }
+  - { slug: solutions-engineer, title: Solutions Engineer, domain: customer, wave: 3, oneLiner: Designs how a product fits a customer's systems, before and after the sale. }
+  - { slug: developer-advocate, title: Developer Advocate, domain: customer, wave: 3, oneLiner: Teaches developers to use a platform through docs, demos and talks. }
+  - { slug: game-developer, title: Game Developer, domain: specialist, wave: 3, oneLiner: Builds games with engines like Unity, Unreal or Godot. }
+  - { slug: embedded-engineer, title: Embedded / IoT Engineer, domain: specialist, wave: 3, oneLiner: Writes software for hardware — sensors, devices, firmware. }
+
+skills:
+  # Foundations
+  - { slug: how-the-internet-works, title: How the Internet Works, domain: foundations }
+  - { slug: command-line, title: Command Line & Linux Basics, domain: foundations }
+  - { slug: git, title: Git & GitHub, domain: foundations }
+  - { slug: data-structures-algorithms, title: Data Structures & Algorithms, domain: foundations }
+  - { slug: system-design, title: System Design, domain: foundations }
+  - { slug: testing-basics, title: Testing Basics, domain: foundations }
+  - { slug: ai-coding-tools, title: Working with AI Coding Tools, domain: foundations }
+  - { slug: technical-writing, title: Technical Writing, domain: foundations }
+  - { slug: interviewing, title: Tech Interviewing, domain: foundations }
+  # Web
+  - { slug: html, title: HTML, domain: web }
+  - { slug: css, title: CSS, domain: web }
+  - { slug: javascript, title: JavaScript, domain: web }
+  - { slug: typescript, title: TypeScript, domain: web }
+  - { slug: react, title: React, domain: web }
+  - { slug: nextjs, title: Next.js, domain: web }
+  - { slug: tailwind-css, title: Tailwind CSS, domain: web }
+  - { slug: accessibility, title: Web Accessibility, domain: web }
+  - { slug: web-performance, title: Web Performance, domain: web }
+  - { slug: frontend-testing, title: Frontend Testing, domain: web }
+  - { slug: state-management, title: State Management, domain: web }
+  - { slug: design-systems, title: Design Systems, domain: web }
+  - { slug: nodejs, title: Node.js, domain: web }
+  - { slug: rest-apis, title: REST APIs, domain: web }
+  - { slug: graphql, title: GraphQL, domain: web }
+  - { slug: authentication, title: Authentication & Authorization, domain: web }
+  - { slug: web-security, title: Web Security Basics, domain: web }
+  # Mobile
+  - { slug: dart, title: Dart, domain: mobile }
+  - { slug: flutter, title: Flutter, domain: mobile }
+  - { slug: react-native, title: React Native, domain: mobile }
+  - { slug: kotlin, title: Kotlin, domain: mobile }
+  - { slug: jetpack-compose, title: Jetpack Compose, domain: mobile }
+  - { slug: swift, title: Swift, domain: mobile }
+  - { slug: swiftui, title: SwiftUI, domain: mobile }
+  - { slug: app-store-publishing, title: Publishing to App Stores, domain: mobile }
+  # Data
+  - { slug: python, title: Python, domain: data }
+  - { slug: sql, title: SQL, domain: data }
+  - { slug: pandas, title: NumPy & pandas, domain: data }
+  - { slug: data-visualization, title: Data Visualization, domain: data }
+  - { slug: statistics, title: Statistics, domain: data }
+  - { slug: spreadsheets, title: Spreadsheets, domain: data }
+  - { slug: bi-tools, title: BI Tools (Power BI, Tableau, Looker), domain: data }
+  - { slug: data-modeling, title: Data Modeling, domain: data }
+  - { slug: postgresql, title: PostgreSQL, domain: data }
+  - { slug: spark, title: Apache Spark, domain: data }
+  - { slug: airflow, title: Workflow Orchestration (Airflow), domain: data }
+  - { slug: dbt, title: dbt, domain: data }
+  - { slug: r, title: R, domain: data }
+  # AI
+  - { slug: machine-learning, title: Machine Learning, domain: ai }
+  - { slug: deep-learning, title: Deep Learning, domain: ai }
+  - { slug: pytorch, title: PyTorch, domain: ai }
+  - { slug: llm-apis, title: LLM APIs, domain: ai }
+  - { slug: prompt-engineering, title: Prompt Engineering, domain: ai }
+  - { slug: rag, title: Retrieval-Augmented Generation (RAG), domain: ai }
+  - { slug: ai-agents, title: AI Agents & Tool Use, domain: ai }
+  - { slug: llm-evals, title: LLM Evaluation, domain: ai }
+  - { slug: vector-databases, title: Vector Databases, domain: ai }
+  - { slug: mlops, title: MLOps, domain: ai }
+  # Cloud & DevOps
+  - { slug: linux, title: Linux Administration, domain: cloud-devops }
+  - { slug: networking, title: Networking, domain: cloud-devops }
+  - { slug: docker, title: Docker, domain: cloud-devops }
+  - { slug: kubernetes, title: Kubernetes, domain: cloud-devops }
+  - { slug: ci-cd, title: CI/CD, domain: cloud-devops }
+  - { slug: terraform, title: Infrastructure as Code (Terraform), domain: cloud-devops }
+  - { slug: aws, title: AWS, domain: cloud-devops }
+  - { slug: observability, title: Observability, domain: cloud-devops }
+  - { slug: deployment, title: Deploying Web Apps, domain: cloud-devops }
+  # Quality
+  - { slug: test-automation, title: Test Automation, domain: quality }
+  - { slug: playwright, title: Playwright, domain: quality }
+  - { slug: api-testing, title: API Testing, domain: quality }
+  - { slug: performance-testing, title: Performance Testing, domain: quality }
+  # Security
+  - { slug: owasp-top-10, title: OWASP Top 10, domain: security }
+  - { slug: threat-modeling, title: Threat Modeling, domain: security }
+  - { slug: cloud-security, title: Cloud Security, domain: security }

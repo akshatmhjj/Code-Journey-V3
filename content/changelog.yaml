@@ -1,0 +1,18 @@
+- date: 2026-10-06
+  version: "2.0.0-beta"
+  title: Code Journey 2.0 foundation
+  changes:
+    - type: added
+      text: A new site built around roles, skills and resources, with a network map of every tech career route.
+    - type: added
+      text: Four colour themes — Harbor, Juniper, Tangerine and Orchard — each with light and dark modes.
+    - type: added
+      text: Search across roles, skills, resources and the glossary from anywhere with ⌘K or Ctrl+K.
+    - type: added
+      text: The Frontend Engineer route, the first of ten launch roles.
+    - type: changed
+      text: Every page is now public. An account is only needed to save progress.
+    - type: changed
+      text: CJ AI now runs on our server, so no keys are exposed in the browser.
+    - type: removed
+      text: Notes, tasks and the unfinished in-browser editor. Your saved notes stay in your account data.

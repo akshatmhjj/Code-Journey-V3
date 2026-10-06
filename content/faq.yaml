@@ -1,0 +1,26 @@
+- group: About Code Journey
+  items:
+    - q: What is Code Journey?
+      a: A free map of tech careers. For each role — Frontend Engineer, Data Analyst, AI Engineer and more — it shows what the job involves, which skills it needs in what order, and the best places to learn each one. We curate and point you to the best material; we don't teach courses ourselves.
+    - q: Is it free?
+      a: Yes. Every role, skill and resource page is free and open without an account. An account only lets you save your progress.
+    - q: Do you sell courses or earn commission on links?
+      a: No. We don't sell courses and we don't use affiliate links. Paid resources are listed only when they're clearly worth it, and they're labelled as paid.
+    - q: Who is it for?
+      a: Newcomers who don't yet know which role fits them, people switching from another field or role, and working engineers who want a quick brief on an unfamiliar area and a link to the official docs.
+- group: Using the site
+  items:
+    - q: Where should I start if I'm completely new?
+      a: Open the network map or browse Roles, read the one-sentence summary of a few, and pick the one that sounds most like you. Then follow that role's route from the first station. Every stage tells you what "done" looks like before you move on.
+    - q: How do you choose resources?
+      a: Official documentation comes first, then the best free material, then paid options only where they add something free material doesn't. Every resource shows when its link was last checked.
+    - q: How long will it take to become job-ready?
+      a: It depends on your starting point and hours. Each role shows rough week ranges per stage, assuming about 10 hours a week. Treat them as a guide, not a deadline.
+    - q: Can I suggest a resource or report a broken link?
+      a: Yes — that's coming with accounts. Until then, email the team at the address on the About page.
+- group: Accounts and privacy
+  items:
+    - q: Do I need an account?
+      a: No. Reading everything is open to all. An account is for saving your route, and for CJ AI, our assistant.
+    - q: What do you do with my data?
+      a: We store your name, email and progress to run your account, and use Google Analytics to understand which pages help people. We never sell data. The Privacy page has the details.

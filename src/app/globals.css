@@ -92,7 +92,7 @@
   --line: color-mix(in oklab, var(--ink) 13%, var(--canvas));
   --line-strong: color-mix(in oklab, var(--ink) 30%, var(--canvas));
   --raise: color-mix(in oklab, var(--ink) 4%, var(--canvas));
-  --header-h: 64px;
+  --header-h: 68px;
 }
 
 @theme inline {
@@ -273,6 +273,21 @@
 }
 .code-block pre code { font-family: inherit; }
 .code-block .token-keyword, .code-block [style*="--shiki-token-keyword"] { font-weight: 600; }
+
+/* Rotating role name in the header search: slides up into place. */
+@keyframes cj-roll {
+  from { transform: translateY(70%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.cj-roll { display: inline-block; animation: cj-roll 0.45s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+/* Logo: the j's dot hops on hover. */
+.cj-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+.group:hover .cj-dot { transform: translateY(-5px); }
 
 @media (prefers-reduced-motion: reduce) {
   .trains { display: none; }

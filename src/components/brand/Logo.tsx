@@ -12,7 +12,7 @@ export function Mark({ size = 32, className }: { size?: number; className?: stri
           strokeLinejoin="round"
         />
         <circle cx="29" cy="25.88" r="5" fill="var(--canvas)" stroke="var(--ink)" strokeWidth="3.4" />
-        <circle cx="50" cy="14" r="7" fill="var(--accent)" stroke="var(--canvas)" strokeWidth="2.5" />
+        <circle className="cj-dot" cx="50" cy="14" r="7" fill="var(--accent)" stroke="var(--canvas)" strokeWidth="2.5" />
       </g>
     </svg>
   );

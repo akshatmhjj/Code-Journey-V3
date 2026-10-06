@@ -20,6 +20,7 @@ const nextConfig: NextConfig = {
       { source: "/licensing", destination: "/terms", permanent: true },
       { source: "/privacy-policy", destination: "/privacy", permanent: true },
       { source: "/profile", destination: "/me", permanent: true },
+      { source: "/snippets", destination: "/skills", permanent: true },
       { source: "/register", destination: "/login?mode=signup", permanent: true },
       // Will point at /market once market notes ship (Phase 5).
       { source: "/careers", destination: "/roles", permanent: false },

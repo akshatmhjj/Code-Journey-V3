@@ -17,7 +17,6 @@ const LINKS = [
       ["/skills", "All skills"],
       ["/resources", "Resource library"],
       ["/glossary", "Glossary"],
-      ["/snippets", "Snippets"],
     ],
   },
   {

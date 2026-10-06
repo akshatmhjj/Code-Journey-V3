@@ -14,6 +14,17 @@ const COPY: Record<Mode, { title: string; button: string }> = {
   update: { title: "Choose a new password", button: "Save password" },
 };
 
+// Supabase auth error codes → messages that say what to do next.
+const AUTH_ERRORS: Record<string, string> = {
+  invalid_credentials: "That email and password don't match. Check them, or use “Forgot your password?” below.",
+  user_already_exists: "An account with this email already exists. Sign in instead, or reset your password.",
+  email_exists: "An account with this email already exists. Sign in instead, or reset your password.",
+  email_not_confirmed: "Confirm your email first — the link is in your inbox (check spam too).",
+  weak_password: "That password is too easy to guess. Use at least 8 characters with a mix of letters and numbers.",
+  over_email_send_rate_limit: "Too many emails sent. Wait a few minutes and try again.",
+  over_request_rate_limit: "Too many attempts. Wait a minute and try again.",
+};
+
 function Field({ id, label, ...rest }: { id: string; label: string } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div className="grid gap-1.5">
@@ -67,7 +78,8 @@ export function AuthForm() {
         router.push("/me");
       }
     } catch (err) {
-      setError((err as Error).message || "Something went wrong. Try again.");
+      const code = (err as { code?: string }).code ?? "";
+      setError(AUTH_ERRORS[code] ?? ((err as Error).message || "Something went wrong. Try again."));
     } finally {
       setBusy(false);
     }

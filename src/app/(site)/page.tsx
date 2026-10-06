@@ -101,9 +101,9 @@ export default function Home() {
                 Icon: Repeat2,
                 who: "Switching or levelling up",
                 title: "See what's missing",
-                text: "Open your target role, skim the must-have skills, and jump straight to the ones you don't have yet. Skip what you already know.",
-                href: "/skills",
-                cta: "Browse skills",
+                text: "Paste a job post you want. See which skills it asks for, which you already have, and where to learn the rest — in a sensible order.",
+                href: "/gap",
+                cta: "Check a job post",
               },
               {
                 Icon: Gauge,

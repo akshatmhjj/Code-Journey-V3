@@ -62,6 +62,12 @@ for (const f of md("roles")) {
   for (const r of roles) if (!reached.has(r)) warn.push(`compass.yaml: role "${r}" can never be suggested`);
 }
 
+// Gap analyser aliases: every skill key must exist.
+{
+  const al = YAML.parse(fs.readFileSync(path.join(ROOT, "skill-aliases.yaml"), "utf8")) as { skills: Record<string, unknown> };
+  for (const k of Object.keys(al.skills ?? {})) if (!skills.has(k)) errors.push(`skill-aliases.yaml: unknown skill "${k}"`);
+}
+
 // Parse the standalone data files too, so a YAML slip fails here rather than mid-build.
 for (const f of ["glossary.yaml", "faq.yaml", "changelog.yaml"]) {
   try {

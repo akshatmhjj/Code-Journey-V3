@@ -7,6 +7,7 @@ import YAML from "yaml";
 import { z } from "zod";
 import type { PathIndex } from "./path";
 import type { CompassQuestion } from "./compass";
+import { buildGapData, type GapData } from "./gap";
 
 const ROOT = path.join(process.cwd(), "content");
 
@@ -234,3 +235,24 @@ const Compass = z.object({
 
 /** The Compass quiz (content/compass.yaml). */
 export const getCompass = cache((): CompassQuestion[] => parse(Compass, YAML.parse(read("compass.yaml")), "compass.yaml").questions);
+
+const AliasEntry = z.union([z.array(z.string()), z.object({ auto: z.boolean().optional(), aliases: z.array(z.string()).default([]) })]);
+const Aliases = z.object({
+  skills: z.record(z.string(), AliasEntry),
+  not_covered: z.record(z.string(), z.array(z.string())),
+});
+
+/** Everything the job-post gap analyser needs, built from the catalog, skill pages and content/skill-aliases.yaml. */
+export const getGapData = cache((): GapData =>
+  buildGapData({
+    catalogSkills: getCatalog().skills,
+    aliases: parse(Aliases, YAML.parse(read("skill-aliases.yaml")), "skill-aliases.yaml"),
+    written: getSkills(),
+    roles: getRoles().map((r) => ({
+      slug: r.slug,
+      title: r.title,
+      names: [r.title, ...r.aliases].filter((n) => n.length > 3),
+      route: [...new Set([...r.stages.flatMap((st) => st.skills), ...r.skills.must, ...r.skills.should, ...r.skills.nice])],
+    })),
+  }),
+);

@@ -109,9 +109,14 @@ function RouteProgress({ index, roleSlug }: { index: PathIndex; roleSlug: string
         </div>
       )}
 
-      <Link href={`/roles/${roleSlug}`} className="btn btn-ink justify-self-start">
-        Open the full route <ArrowRight size={17} />
-      </Link>
+      <div className="flex flex-wrap gap-3">
+        <Link href={`/roles/${roleSlug}`} className="btn btn-ink">
+          Open the full route <ArrowRight size={17} />
+        </Link>
+        <Link href="/gap" className="btn btn-line">
+          Check a job post against it
+        </Link>
+      </div>
     </div>
   );
 }

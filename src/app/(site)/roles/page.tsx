@@ -32,6 +32,9 @@ export default function RolesIndex() {
           <Link href="/roles/compare" className="btn btn-line">
             Compare two roles
           </Link>
+          <Link href="/gap" className="btn btn-line">
+            Check a job post
+          </Link>
         </div>
       </PageHead>
       <div className="wrap">

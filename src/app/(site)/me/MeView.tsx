@@ -85,6 +85,53 @@ function SavedResources({ index }: { index: PathIndex }) {
   );
 }
 
+type Suggestion = { id: number; skill_slug: string; url: string; title: string | null; status: "new" | "accepted" | "declined"; created_at: string };
+const SUGGESTION_STATUS = { new: "Waiting for review", accepted: "Added — thank you", declined: "Not added this time" } as const;
+
+/** Resources this person has suggested, and where each one is in review. Hidden until there's at least one. */
+function YourSuggestions({ index, userId }: { index: PathIndex; userId: string }) {
+  const [rows, setRows] = useState<Suggestion[] | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    supabase()
+      .from("resource_suggestions")
+      .select("id, skill_slug, url, title, status, created_at")
+      .eq("user_id", userId)
+      .order("created_at", { ascending: false })
+      .limit(20)
+      .then(({ data }) => !cancelled && setRows((data as Suggestion[] | null) ?? []));
+    return () => {
+      cancelled = true;
+    };
+  }, [userId]);
+  if (!rows?.length) return null;
+  return (
+    <Card title="Your suggestions">
+      <ul className="divide-y divide-line border-y-2 border-ink">
+        {rows.map((r) => (
+          <li key={r.id} className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 py-3">
+            <div className="min-w-0">
+              <a href={r.url} target="_blank" rel="noopener noreferrer" className="font-display font-semibold break-all hover:underline">
+                {r.title || new URL(r.url).hostname.replace(/^www\./, "")}
+              </a>
+              <p className="text-sm text-muted">
+                for{" "}
+                <Link href={`/skills/${r.skill_slug}`} className="hover:underline">
+                  {index.skills[r.skill_slug]?.title ?? r.skill_slug}
+                </Link>{" "}
+                · {longDate.format(new Date(r.created_at))}
+              </p>
+            </div>
+            <span className={`font-mono text-[12px] tracking-wide uppercase ${r.status === "accepted" ? "font-bold text-ink" : "text-muted"}`}>
+              {SUGGESTION_STATUS[r.status]}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </Card>
+  );
+}
+
 /** Pick or change the destination you're working towards. */
 function RoutePicker({ index, value, onChange }: { index: PathIndex; value: string | null; onChange: (slug: string) => void }) {
   const roles = [...index.roles].sort((a, b) => a.title.localeCompare(b.title));
@@ -262,6 +309,8 @@ export function MeView({ index }: { index: PathIndex }) {
         >
           <SavedResources index={index} />
         </Card>
+
+        <YourSuggestions index={index} userId={user.id} />
 
         <div className="grid gap-6 lg:grid-cols-2">
           <Card title="CJ AI">

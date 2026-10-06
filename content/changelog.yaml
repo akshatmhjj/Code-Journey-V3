@@ -1,4 +1,16 @@
 - date: 2026-10-08
+  version: "2.0.0-beta.10"
+  title: Save, rate and suggest resources
+  changes:
+    - type: added
+      text: Bookmark any resource to come back to. Your saved resources are listed on My Path, and the library has a Saved filter.
+    - type: added
+      text: Mark resources as helpful. The helpful count is public; a thumbs-down tells us a link is outdated or broken and is only seen by the Code Journey team.
+    - type: added
+      text: Know a better resource? Suggest one from any skill page. Every suggestion is checked by a person, and you can follow its status on My Path.
+    - type: changed
+      text: The gap checker's note on its limits now appears before you paste a post.
+- date: 2026-10-08
   version: "2.0.0-beta.9"
   title: Job post gap checker
   changes:

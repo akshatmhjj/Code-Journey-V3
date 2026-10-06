@@ -6,6 +6,7 @@ import { getDomain, getNetwork, getSkill, getSkillEntry, getSkills, getSnippets,
 import { highlight, renderMarkdown } from "@/lib/markdown";
 import { SITE } from "@/lib/site";
 import { Trail } from "@/components/ui/Trail";
+import { SuggestResource } from "@/components/path/SuggestResource";
 import { DomainBadge, ResourceList, SectionTitle, SkillStation } from "@/components/ui/bits";
 import { Mapping } from "@/components/ui/Mapping";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -130,6 +131,7 @@ export default async function SkillPage({ params }: PageProps<"/skills/[slug]">)
         <section aria-labelledby="res-title" className="border-t-2 border-ink pt-10">
           <SectionTitle eyebrow={`Checked ${fmt.format(skill.checked)}`} title="Where to learn it" id="res-title" />
           <ResourceList resources={skill.resources} skillSlug={skill.slug} />
+          <SuggestResource skillSlug={skill.slug} skillTitle={skill.title} existing={skill.resources.map((r) => r.url)} />
         </section>
 
         <section className="border-t-2 border-ink pt-10">

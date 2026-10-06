@@ -1,3 +1,17 @@
+- date: 2026-10-07
+  version: "2.0.0-beta.13"
+  title: Market notes, comparison pages and roadmap guides
+  changes:
+    - type: added
+      text: Market notes at /market — what every role pays in India and the US, and which are growing fastest, from PayScale and the US Bureau of Labor Statistics. Every number links to its source and shows its sample size.
+    - type: added
+      text: Every role page now has a pay section, and comparisons show pay side by side.
+    - type: added
+      text: Each comparison has its own page, like Data Analyst vs Data Scientist, with a short written answer. The compare page now lists popular comparisons.
+    - type: added
+      text: Four new guides — becoming a data analyst or AI engineer, and roadmaps for frontend and DevOps in 2026.
+    - type: removed
+      text: The Snippets page. Code examples are still on each skill page.
 - date: 2026-10-09
   version: "2.0.0-beta.12"
   title: Sign in with Google or GitHub

@@ -63,7 +63,7 @@ const NAV = [
   {
     label: "Platform", icon: Zap, color: "#f97316",
     children: [
-      { label: "Careers", href: "/careers", desc: "Companies hiring from CJ", color: "#22c55e", icon: "⬡" },
+      { label: "Careers", href: "/careers", desc: "Where tech roles hire", color: "#22c55e", icon: "⬡" },
       { label: "Ecosystem", href: "/ecosystem", desc: "Tools & frameworks map", color: "#60a5fa", icon: "◈" },
       // { label: "Changelog",  href: "/logs",      desc: "Platform updates",            color: "#a78bfa", icon: "◌" },
       { label: "About", href: "/about", desc: "Our mission", color: "#5eead4", icon: "◉" },

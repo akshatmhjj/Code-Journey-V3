@@ -74,14 +74,7 @@ function App() {
           <Route path="/login" element={<AuthPage />} />
           <Route path="/register" element={<AuthPage />} />
 
-          <Route
-            element={
-              <ProtectedRoute>
-                <Layout />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="/profile" element={<Profile />} />
+          <Route element={<Layout />}>
             <Route path="/logs" element={<Logs />} />
             <Route path="/tracks" element={<Languages />} />
             <Route path="/tracks/web" element={<WebDev />} />
@@ -92,8 +85,17 @@ function App() {
             <Route path="/roadmap" element={<Roadmap />} />
             <Route path="/glossary" element={<Glossary />} />
             <Route path="/snippets" element={<Snippets />} />
-
             <Route path="*" element={<NotFound />} />
+          </Route>
+
+          <Route
+            element={
+              <ProtectedRoute>
+                <Layout />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="/profile" element={<Profile />} />
           </Route>
 
         </Routes>

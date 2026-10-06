@@ -5,6 +5,22 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Code Journey</title>
+    <!-- Google Analytics 4. Production host only. Ads signals always denied; analytics denied in EEA/UK/CH until a consent banner exists. -->
+    <script>
+      if (/(^|\.)codejourney\.space$/.test(location.hostname)) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        var noAds = { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' };
+        gtag('consent', 'default', Object.assign({ analytics_storage: 'denied', region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'] }, noAds));
+        gtag('consent', 'default', Object.assign({ analytics_storage: 'granted' }, noAds));
+        gtag('js', new Date());
+        gtag('config', 'G-ZFFH1ZLHTY');
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-ZFFH1ZLHTY';
+        document.head.appendChild(s);
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

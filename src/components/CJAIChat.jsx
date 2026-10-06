@@ -15,96 +15,20 @@ const THEMES = {
 const getT = () => { try { return THEMES[localStorage.getItem("cj-theme")] || THEMES.light; } catch { return THEMES.light; } };
 function useTheme() { const [T, set] = useState(getT); useEffect(() => { const iv = setInterval(() => { const f = getT(); if (f.acc !== T.acc) set(f); }, 500); return () => clearInterval(iv); }, [T]); return T; }
 
-/* ══ GEMINI API CALL ════════════════════════════════════════ */
-const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-
-/* The system prompt — this is what trains the bot to be CJ-specific */
-const SYSTEM_PROMPT = `You are CJ AI, the intelligent assistant for Code Journey — a browser-native learning platform for software engineering beginners.
-
-YOUR IDENTITY:
-- Name: CJ AI
-- Platform: Code Journey (codejourney.dev)
-- Purpose: Help learners understand programming concepts, navigate the platform, and make progress on their learning path
-
-WHAT YOU HELP WITH:
-1. Explaining programming concepts from any of the three CJ tracks:
-   - Web Dev: HTML, CSS, JavaScript, TypeScript, React, Node.js
-   - App Dev: Flutter, Dart, Kotlin, Swift, React Native
-   - Data Science: Python, NumPy, Pandas, SQL, Machine Learning, R
-2. Answering questions about how Code Journey works (roadmap, exercises, glossary, IDE, profile, notes, tasks)
-3. Helping users understand code snippets they highlight and send you
-4. Giving career advice specific to the three tracks
-5. Explaining technical terms in plain English
-6. Helping debug or understand code examples
-
-HOW YOU RESPOND:
-- Be concise but complete. No padding, no filler.
-- Use plain English analogies for complex concepts — the CJ way
-- Format code with triple backticks and the language name
-- Use **bold** for key terms
-- Use numbered lists for steps, bullet points for options
-- Keep responses focused — if you can answer in 3 sentences, do it in 3 sentences
-- For code questions, always show a real, working example
-
-WHAT YOU DON'T DO:
-- Answer questions completely unrelated to coding, tech, or the Code Journey platform
-- Write essays, stories, poems, or non-technical content
-- Give financial, legal, or medical advice
-- Discuss competitor platforms in detail
-
-If someone asks something outside your scope, respond with:
-"I'm CJ AI — I'm here to help with coding and Code Journey questions. For [their topic], I'd suggest searching elsewhere. Is there something about your learning journey I can help with?"
-
-PLATFORM CONTEXT:
-- Code Journey has three learning tracks: Web Development, App Development, Data Science
-- Users progress through stages on each track
-- The platform has: a Roadmap, an in-browser IDE (coming soon), Practice exercises, Glossary, Snippet Library, Blog, Leaderboard, Profile with Notes and Tasks
-- The IDE and AI Tutor features are coming in a future release
-- Streaks track daily engagement; XP will launch with the exercises system
-- Theme options: Cosmos (dark), Void, Aurora, Nord, Light
-
-Always be encouraging. Learning to code is hard — acknowledge that and be warm about it.`;
-
+/* ══ CJ AI CALL (server proxy: api/chat.js) ══════════════════ */
 async function askGemini(messages) {
-    if (!API_KEY) throw new Error("VITE_GEMINI_API_KEY not set in .env");
-
-    // Build conversation history for Gemini
-    const contents = messages.map(m => ({
-        role: m.role === "assistant" ? "model" : "user",
-        parts: [{ text: m.content }],
-    }));
-
-    const res = await fetch(`${GEMINI_URL}?key=${API_KEY}`, {
+    const { data: { session } } = await supabase.auth.getSession();
+    const res = await fetch("/api/chat", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-            contents,
-            generationConfig: {
-                temperature: 0.7,
-                topP: 0.85,
-                maxOutputTokens: 1024,
-            },
-            safetySettings: [
-                { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
-                { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
-                { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
-                { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
-            ],
-        }),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${session?.access_token ?? ""}`,
+        },
+        body: JSON.stringify({ messages }),
     });
-
-    if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        if (res.status === 429) throw new Error("Rate limit reached. Please wait a moment and try again.");
-        throw new Error(err?.error?.message || `API error ${res.status}`);
-    }
-
-    const data = await res.json();
-    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (!text) throw new Error("No response received.");
-    return text;
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || `API error ${res.status}`);
+    return data.text;
 }
 
 /* ══ MARKDOWN FORMATTER ═════════════════════════════════════ */

@@ -1,3 +1,47 @@
+# Code Journey
+
+The map of tech careers: every role, the skills it takes in order, and the best official docs and free resources for each. Live at [codejourney.space](https://www.codejourney.space).
+
+## Stack
+
+Next.js 16 (App Router, TypeScript), Tailwind CSS 4, Supabase (auth + Postgres), Gemini for CJ AI, deployed on Vercel. Almost every page is pre-rendered as static HTML.
+
+## Run it
+
+```bash
+npm install
+npm run dev
+```
+
+`.env` needs `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` (the old `VITE_` names also work) and `GEMINI_API_KEY` (server only, never `NEXT_PUBLIC_`).
+
+| Command | What it does |
+| --- | --- |
+| `npm run build` | Checks content links, then builds |
+| `npm run lint` / `npm run typecheck` | ESLint / TypeScript |
+| `npm run content:check` | Cross-checks roles, skills and catalog references |
+
+## Content
+
+Everything people read lives in `content/`, not in components:
+
+- `catalog.yaml` — the network: domains (lines), roles (destinations), skills (stations). Anything listed shows on the map; it gets a full page once its Markdown file exists.
+- `roles/<slug>.md` — a full route: stages, skills by priority, interviews, market notes.
+- `skills/<slug>.md` — 60-second brief, learning checklist, resources (official first).
+- `blog/`, `glossary.yaml`, `snippets.json`, `faq.yaml`, `changelog.yaml`.
+
+Schemas are in `src/lib/content.ts`; a bad field fails the build with a clear message.
+
+## Themes
+
+Four palettes (Harbor, Juniper, Tangerine, Orchard) of four colours each, light and dark, defined as CSS variables in `src/app/globals.css`. Accent colours are fills only on light canvases; use `--hl` for accent-coloured text.
+
+## Database
+
+Schema changes go in `supabase/migrations` and are applied with `supabase db push`.
+
+---
+
 ### Commit Conventions
 
 **`feat:`** - A new feature or page added to the platform.

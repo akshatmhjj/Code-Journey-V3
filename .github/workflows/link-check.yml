@@ -1,0 +1,36 @@
+# Weekly check that every resource link in content/ still works.
+# A failed run emails the repository owner; the summary lists broken links and where they're used.
+name: Link check
+
+on:
+  schedule:
+    - cron: "0 4 * * 1" # Mondays 04:00 UTC
+  workflow_dispatch:
+  pull_request:
+    paths: ["content/**"]
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Check content references
+        run: node scripts/check-content.ts
+      - name: Check external links
+        run: node scripts/check-links.ts --json link-report.json
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-report
+          path: link-report.json
+          if-no-files-found: ignore

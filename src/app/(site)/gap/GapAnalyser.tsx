@@ -77,7 +77,28 @@ export function GapAnalyser({ data }: { data: GapData }) {
         We&apos;ll pick out the skills it asks for, check them against your route, and point you to the best place to learn each one you don&apos;t have yet.
       </p>
 
-      <div className="mt-10 grid gap-4">
+      <aside
+        role="note"
+        aria-labelledby="gap-note-title"
+        className="mt-8 grid max-w-[78ch] grid-cols-[auto_1fr] gap-x-3 gap-y-1 rounded-[var(--radius-md)] border-2 border-ink p-4 md:p-5"
+      >
+        <Info size={20} className="mt-0.5" aria-hidden="true" />
+        <p id="gap-note-title" className="font-display font-bold">
+          Before you paste: a quick note
+        </p>
+        <div className="col-start-2 grid gap-1.5 text-[15px] text-muted">
+          <p>
+            This is an automated check that runs on our side only, so the results may not be fully accurate. It looks for skill names and common synonyms from Code Journey&apos;s own list, so it can miss
+            skills written in unusual ways, misread a word used in another sense, or give weight to a &ldquo;nice to have&rdquo; as if it were required.
+          </p>
+          <p>
+            It isn&apos;t a judgement of whether you&apos;re right for the job, and it doesn&apos;t know what the employer will actually ask. Time estimates are rough
+            averages. Always read the full post yourself, and treat this as a starting point for what to learn next.
+          </p>
+        </div>
+      </aside>
+
+      <div className="mt-6 grid gap-4">
         <label htmlFor="gap-text" className="sr-only">
           Job post
         </label>
@@ -172,27 +193,6 @@ export function GapAnalyser({ data }: { data: GapData }) {
                     </dl>
                   </div>
                 </section>
-
-                <aside
-                  role="note"
-                  aria-labelledby="gap-note-title"
-                  className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 rounded-[var(--radius-md)] border-2 border-ink p-4 md:p-5"
-                >
-                  <Info size={20} className="mt-0.5" aria-hidden="true" />
-                  <p id="gap-note-title" className="font-display font-bold">
-                    A quick note on these results
-                  </p>
-                  <div className="col-start-2 grid gap-1.5 text-[15px] text-muted">
-                    <p>
-                      This is an automated check that runs on our side only. It looks for skill names and common synonyms from Code Journey&apos;s own list, so it can miss
-                      skills written in unusual ways, misread a word used in another sense, or give weight to a &ldquo;nice to have&rdquo; as if it were required.
-                    </p>
-                    <p>
-                      It isn&apos;t a judgement of whether you&apos;re right for the job, and it doesn&apos;t know what the employer will actually ask. Time estimates are rough
-                      averages. Always read the full post yourself, and treat this as a starting point for what to learn next.
-                    </p>
-                  </div>
-                </aside>
 
                 {!signedIn && (
                   <p className="rounded-[var(--radius-md)] bg-surface px-4 py-3 text-[15px]">

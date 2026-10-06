@@ -1,0 +1,285 @@
+@import "tailwindcss";
+
+/*
+  Code Journey design tokens.
+  Each theme is four colours: canvas, ink, support, accent. Everything else is mixed from them.
+  <html data-cj="harbor|juniper|tangerine|orchard" data-mode="light|dark">; no data-mode = follow the OS.
+  Contrast rules (measured): accent colours are fills only on light canvases; --hl is the accent
+  that is safe as small text in the current theme.
+*/
+
+:root,
+[data-cj="harbor"] {
+  --canvas: #f9f9f9;
+  --ink: #092634;
+  --support: #004e72;
+  --accent: #ff6e42;
+  --on-accent: #092634;
+  --hl: #004e72;
+  --surface: color-mix(in oklab, var(--support) 7%, var(--canvas));
+  color-scheme: light;
+}
+[data-cj="juniper"] {
+  --canvas: #efe9d7;
+  --ink: #343723;
+  --support: #898861;
+  --accent: #7d2826;
+  --on-accent: #efe9d7;
+  --hl: #7d2826;
+  --surface: color-mix(in oklab, var(--support) 16%, var(--canvas));
+  color-scheme: light;
+}
+[data-cj="tangerine"] {
+  --canvas: #faf3e1;
+  --ink: #222222;
+  --support: #f5e7c6;
+  --accent: #ff6d1f;
+  --on-accent: #222222;
+  --hl: #222222;
+  --surface: var(--support);
+  color-scheme: light;
+}
+[data-cj="orchard"] {
+  --canvas: #f5e6c5;
+  --ink: #3f422e;
+  --support: #9f886f;
+  --accent: #d78b30;
+  --on-accent: #3f422e;
+  --hl: #3f422e;
+  --surface: color-mix(in oklab, var(--support) 16%, var(--canvas));
+  color-scheme: light;
+}
+
+/* Dark: canvas and ink swap. Same values twice: explicit choice, and OS preference when no choice. */
+[data-cj="harbor"][data-mode="dark"] {
+  --canvas: #092634; --ink: #f9f9f9; --support: #004e72; --accent: #ff6e42; --on-accent: #092634; --hl: #ff6e42;
+  --surface: color-mix(in oklab, var(--support) 38%, var(--canvas)); color-scheme: dark;
+}
+[data-cj="juniper"][data-mode="dark"] {
+  --canvas: #343723; --ink: #efe9d7; --support: #898861; --accent: #7d2826; --on-accent: #efe9d7; --hl: #efe9d7;
+  --surface: color-mix(in oklab, var(--support) 18%, var(--canvas)); color-scheme: dark;
+}
+[data-cj="tangerine"][data-mode="dark"] {
+  --canvas: #222222; --ink: #faf3e1; --support: #f5e7c6; --accent: #ff6d1f; --on-accent: #222222; --hl: #ff6d1f;
+  --surface: color-mix(in oklab, var(--support) 7%, var(--canvas)); color-scheme: dark;
+}
+[data-cj="orchard"][data-mode="dark"] {
+  --canvas: #3f422e; --ink: #f5e6c5; --support: #9f886f; --accent: #d78b30; --on-accent: #3f422e; --hl: #f5e6c5;
+  --surface: color-mix(in oklab, var(--support) 18%, var(--canvas)); color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  [data-cj="harbor"]:not([data-mode]) {
+    --canvas: #092634; --ink: #f9f9f9; --support: #004e72; --accent: #ff6e42; --on-accent: #092634; --hl: #ff6e42;
+    --surface: color-mix(in oklab, var(--support) 38%, var(--canvas)); color-scheme: dark;
+  }
+  [data-cj="juniper"]:not([data-mode]) {
+    --canvas: #343723; --ink: #efe9d7; --support: #898861; --accent: #7d2826; --on-accent: #efe9d7; --hl: #efe9d7;
+    --surface: color-mix(in oklab, var(--support) 18%, var(--canvas)); color-scheme: dark;
+  }
+  [data-cj="tangerine"]:not([data-mode]) {
+    --canvas: #222222; --ink: #faf3e1; --support: #f5e7c6; --accent: #ff6d1f; --on-accent: #222222; --hl: #ff6d1f;
+    --surface: color-mix(in oklab, var(--support) 7%, var(--canvas)); color-scheme: dark;
+  }
+  [data-cj="orchard"]:not([data-mode]) {
+    --canvas: #3f422e; --ink: #f5e6c5; --support: #9f886f; --accent: #d78b30; --on-accent: #3f422e; --hl: #f5e6c5;
+    --surface: color-mix(in oklab, var(--support) 18%, var(--canvas)); color-scheme: dark;
+  }
+}
+
+:root {
+  --muted: color-mix(in oklab, var(--ink) 74%, var(--canvas));
+  --faint: color-mix(in oklab, var(--ink) 52%, var(--canvas));
+  --line: color-mix(in oklab, var(--ink) 13%, var(--canvas));
+  --line-strong: color-mix(in oklab, var(--ink) 30%, var(--canvas));
+  --raise: color-mix(in oklab, var(--ink) 4%, var(--canvas));
+  --header-h: 64px;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-ink: var(--ink);
+  --color-support: var(--support);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-hl: var(--hl);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-raise: var(--raise);
+  --font-display: var(--font-display), "Avenir Next", "Segoe UI", sans-serif;
+  --font-sans: var(--font-body), "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-code), ui-monospace, Menlo, monospace;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --breakpoint-xs: 26rem;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-h) + 24px);
+  }
+  body {
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  a {
+    text-underline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* A band in the opposite colours (ink background). Helper vars avoid a self-reference cycle. */
+  .band-ink {
+    --swap-canvas: var(--ink);
+    --swap-ink: var(--canvas);
+  }
+  .band-ink > * {
+    --canvas: var(--swap-canvas);
+    --ink: var(--swap-ink);
+    --hl: var(--swap-ink);
+    --muted: color-mix(in oklab, var(--ink) 74%, var(--canvas));
+    --faint: color-mix(in oklab, var(--ink) 52%, var(--canvas));
+    --line: color-mix(in oklab, var(--ink) 18%, var(--canvas));
+    --line-strong: color-mix(in oklab, var(--ink) 34%, var(--canvas));
+    --raise: color-mix(in oklab, var(--ink) 8%, var(--canvas));
+    --surface: color-mix(in oklab, var(--ink) 8%, var(--canvas));
+    background: var(--canvas);
+    color: var(--ink);
+  }
+  .wrap {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) {
+    .wrap { padding-inline: 1.5rem; }
+  }
+  @media (min-width: 1024px) {
+    .wrap { padding-inline: 2rem; }
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--hl);
+  }
+  .link {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+  }
+  .link:hover { text-decoration-thickness: 3px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0 1.1rem;
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1;
+    white-space: nowrap;
+    transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-accent { background: var(--accent); color: var(--on-accent); }
+  .btn-accent:hover { background: color-mix(in oklab, var(--accent) 88%, var(--ink)); }
+  .btn-ink { background: var(--ink); color: var(--canvas); }
+  .btn-ink:hover { background: color-mix(in oklab, var(--ink) 86%, var(--canvas)); }
+  .btn-line { border: 2px solid var(--ink); }
+  .btn-line:hover { background: var(--raise); }
+
+  /* Long-form content rendered from Markdown */
+  .prose {
+    max-width: 68ch;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+  .prose > * + * { margin-top: 1.1em; }
+  .prose h2 { font-size: 1.6rem; margin-top: 2.2em; font-weight: 700; }
+  .prose h3 { font-size: 1.25rem; margin-top: 1.8em; font-weight: 600; }
+  .prose a { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
+  .prose ul, .prose ol { padding-left: 1.3em; }
+  .prose ul { list-style: square; }
+  .prose ol { list-style: decimal; }
+  .prose li + li { margin-top: 0.35em; }
+  .prose li::marker { color: var(--faint); }
+  .prose strong { font-weight: 600; }
+  .prose blockquote { border-left: 4px solid var(--accent); padding-left: 1rem; color: var(--muted); }
+  .prose :not(pre) > code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    padding: 0.12em 0.35em;
+    border-radius: 4px;
+    background: var(--surface);
+  }
+  .prose pre { margin-top: 1.4em; }
+}
+
+/* Code blocks: Shiki css-variables theme mapped onto the four theme colours. */
+.code-block {
+  --shiki-foreground: var(--ink);
+  --shiki-background: var(--surface);
+  --shiki-token-constant: var(--hl);
+  --shiki-token-string: var(--muted);
+  --shiki-token-comment: var(--faint);
+  --shiki-token-keyword: var(--hl);
+  --shiki-token-parameter: var(--ink);
+  --shiki-token-function: var(--ink);
+  --shiki-token-string-expression: var(--muted);
+  --shiki-token-punctuation: var(--faint);
+  --shiki-token-link: var(--hl);
+}
+.code-block pre {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  padding: 1rem 1.15rem;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  border: 1px solid var(--line);
+}
+.code-block pre code { font-family: inherit; }
+.code-block .token-keyword, .code-block [style*="--shiki-token-keyword"] { font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) {
+  .trains { display: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

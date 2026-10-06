@@ -1,7 +1,11 @@
 node_modules/
-dist/
-.envsupabase/.temp/
 .next/
+out/
+dist/
+.env
+.env*.local
+supabase/.temp/
 next-env.d.ts
 *.tsbuildinfo
 .vercel
+.DS_Store

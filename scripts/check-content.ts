@@ -15,9 +15,13 @@ const domains = new Set(cat.domains.map((d) => d.slug));
 const roles = new Set(cat.roles.map((r) => r.slug));
 const skills = new Set(cat.skills.map((s) => s.slug));
 
+const ALLOWED = { role: ["slug", "title", "domain", "wave", "oneLiner"], skill: ["slug", "title", "domain"] };
 for (const [kind, list] of [["role", cat.roles], ["skill", cat.skills]] as const) {
   const seen = new Set<string>();
   for (const x of list) {
+    // An unquoted comma inside a { … } entry silently splits the value into extra keys.
+    const extra = Object.keys(x).filter((k) => !ALLOWED[kind].includes(k));
+    if (extra.length) errors.push(`catalog: ${kind} "${x.slug}" has unexpected keys (${extra.join(", ")}) — quote values that contain commas`);
     if (seen.has(x.slug)) errors.push(`catalog: duplicate ${kind} "${x.slug}"`);
     seen.add(x.slug);
     if (!domains.has(x.domain)) errors.push(`catalog: ${kind} "${x.slug}" has unknown domain "${x.domain}"`);

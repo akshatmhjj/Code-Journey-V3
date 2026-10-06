@@ -58,6 +58,8 @@ export function DomainBadge({ domain, withLine = true, href = true }: { domain: 
 
 /** A skill shown as a station: linked when it has a page, muted when still being mapped. */
 export function SkillStation({ skill, here = false }: { skill: SkillEntry | { slug: string; title: string; live: boolean }; here?: boolean }) {
+  // Chips show the short name; "Microcontrollers (Arduino, ESP32, STM32)" → "Microcontrollers".
+  const title = skill.title.replace(/\s*\(.*\)$/, "");
   const dot = (
     <span
       aria-hidden="true"
@@ -70,7 +72,7 @@ export function SkillStation({ skill, here = false }: { skill: SkillEntry | { sl
     return (
       <span className="inline-flex items-center gap-2 rounded-full border-2 border-dashed border-line-strong px-3 py-1.5 text-[15px] text-muted" title="Skill page being written">
         {dot}
-        {skill.title}
+        {title}
       </span>
     );
   return (
@@ -79,7 +81,7 @@ export function SkillStation({ skill, here = false }: { skill: SkillEntry | { sl
       className="inline-flex items-center gap-2 rounded-full border-2 border-ink px-3 py-1.5 text-[15px] font-semibold transition-colors hover:bg-ink hover:text-canvas"
     >
       {dot}
-      {skill.title}
+      {title}
     </Link>
   );
 }

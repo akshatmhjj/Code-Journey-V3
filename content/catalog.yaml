@@ -55,32 +55,32 @@ domains:
     tagline: The shared skills almost every route passes through.
 
 roles:
-  - { slug: frontend-engineer, title: Frontend Engineer, domain: web, wave: 1, oneLiner: Builds the part of a product people see and touch in the browser. }
-  - { slug: backend-engineer, title: Backend Engineer, domain: web, wave: 1, oneLiner: Builds the APIs, data stores and services behind an app. }
-  - { slug: full-stack-engineer, title: Full-Stack Engineer, domain: web, wave: 1, oneLiner: Ships features end to end, from database to UI. }
-  - { slug: design-engineer, title: Design Engineer, domain: web, wave: 3, oneLiner: Sits between design and code; owns interaction and polish. }
-  - { slug: cross-platform-mobile-engineer, title: Cross-platform Mobile Engineer, domain: mobile, wave: 1, oneLiner: Ships one codebase to iOS and Android with Flutter or React Native. }
-  - { slug: android-engineer, title: Android Engineer, domain: mobile, wave: 2, oneLiner: Builds native Android apps with Kotlin and Jetpack Compose. }
-  - { slug: ios-engineer, title: iOS Engineer, domain: mobile, wave: 2, oneLiner: Builds native iPhone and iPad apps with Swift and SwiftUI. }
-  - { slug: data-analyst, title: Data Analyst, domain: data, wave: 1, oneLiner: Answers business questions with SQL, spreadsheets and dashboards. }
-  - { slug: data-scientist, title: Data Scientist, domain: data, wave: 1, oneLiner: Uses statistics and models to explain and predict. }
-  - { slug: data-engineer, title: Data Engineer, domain: data, wave: 2, oneLiner: Builds the pipelines and warehouses everyone else queries. }
-  - { slug: analytics-engineer, title: Analytics Engineer, domain: data, wave: 3, oneLiner: Models clean, tested datasets for analysts with SQL and dbt. }
-  - { slug: ai-engineer, title: AI Engineer, domain: ai, wave: 1, oneLiner: Builds products on top of LLMs — retrieval, agents, evals. }
-  - { slug: ml-engineer, title: ML Engineer, domain: ai, wave: 1, oneLiner: Trains, ships and maintains machine learning models in production. }
-  - { slug: mlops-engineer, title: MLOps Engineer, domain: ai, wave: 3, oneLiner: Runs the infrastructure that trains, serves and monitors models. }
-  - { slug: devops-engineer, title: DevOps Engineer, domain: cloud-devops, wave: 1, oneLiner: Automates how code gets built, tested and deployed. }
-  - { slug: cloud-engineer, title: Cloud Engineer, domain: cloud-devops, wave: 2, oneLiner: Designs and runs infrastructure on AWS, Azure or Google Cloud. }
-  - { slug: site-reliability-engineer, title: Site Reliability Engineer, domain: cloud-devops, wave: 2, oneLiner: Keeps production fast and up, and makes failure boring. }
-  - { slug: platform-engineer, title: Platform Engineer, domain: cloud-devops, wave: 3, oneLiner: Builds the internal tools other engineers ship on. }
-  - { slug: qa-sdet, title: QA Engineer / SDET, domain: quality, wave: 1, oneLiner: Designs and automates tests so releases don't break things. }
-  - { slug: application-security-engineer, title: Application Security Engineer, domain: security, wave: 2, oneLiner: Finds and fixes security flaws in the software a company builds. }
-  - { slug: cloud-security-engineer, title: Cloud Security Engineer, domain: security, wave: 3, oneLiner: Secures cloud accounts, identities and infrastructure. }
-  - { slug: forward-deployed-engineer, title: Forward Deployed Engineer, domain: customer, wave: 2, oneLiner: Embeds with customers to build and ship real solutions on a product. }
-  - { slug: solutions-engineer, title: Solutions Engineer, domain: customer, wave: 3, oneLiner: Designs how a product fits a customer's systems, before and after the sale. }
-  - { slug: developer-advocate, title: Developer Advocate, domain: customer, wave: 3, oneLiner: Teaches developers to use a platform through docs, demos and talks. }
-  - { slug: game-developer, title: Game Developer, domain: specialist, wave: 3, oneLiner: Builds games with engines like Unity, Unreal or Godot. }
-  - { slug: embedded-engineer, title: Embedded / IoT Engineer, domain: specialist, wave: 3, oneLiner: Writes software for hardware — sensors, devices, firmware. }
+  - { slug: frontend-engineer, title: Frontend Engineer, domain: web, wave: 1, oneLiner: "Builds the part of a product people see and touch in the browser." }
+  - { slug: backend-engineer, title: Backend Engineer, domain: web, wave: 1, oneLiner: "Builds the APIs, data stores and services behind an app." }
+  - { slug: full-stack-engineer, title: Full-Stack Engineer, domain: web, wave: 1, oneLiner: "Ships features end to end, from database to UI." }
+  - { slug: design-engineer, title: Design Engineer, domain: web, wave: 3, oneLiner: "Sits between design and code; owns interaction and polish." }
+  - { slug: cross-platform-mobile-engineer, title: Cross-platform Mobile Engineer, domain: mobile, wave: 1, oneLiner: "Ships one codebase to iOS and Android with Flutter or React Native." }
+  - { slug: android-engineer, title: Android Engineer, domain: mobile, wave: 2, oneLiner: "Builds native Android apps with Kotlin and Jetpack Compose." }
+  - { slug: ios-engineer, title: iOS Engineer, domain: mobile, wave: 2, oneLiner: "Builds native iPhone and iPad apps with Swift and SwiftUI." }
+  - { slug: data-analyst, title: Data Analyst, domain: data, wave: 1, oneLiner: "Answers business questions with SQL, spreadsheets and dashboards." }
+  - { slug: data-scientist, title: Data Scientist, domain: data, wave: 1, oneLiner: "Uses statistics and models to explain and predict." }
+  - { slug: data-engineer, title: Data Engineer, domain: data, wave: 2, oneLiner: "Builds the pipelines and warehouses everyone else queries." }
+  - { slug: analytics-engineer, title: Analytics Engineer, domain: data, wave: 3, oneLiner: "Models clean, tested datasets for analysts with SQL and dbt." }
+  - { slug: ai-engineer, title: AI Engineer, domain: ai, wave: 1, oneLiner: "Builds products on top of LLMs — retrieval, agents, evals." }
+  - { slug: ml-engineer, title: ML Engineer, domain: ai, wave: 1, oneLiner: "Trains, ships and maintains machine learning models in production." }
+  - { slug: mlops-engineer, title: MLOps Engineer, domain: ai, wave: 3, oneLiner: "Runs the infrastructure that trains, serves and monitors models." }
+  - { slug: devops-engineer, title: DevOps Engineer, domain: cloud-devops, wave: 1, oneLiner: "Automates how code gets built, tested and deployed." }
+  - { slug: cloud-engineer, title: Cloud Engineer, domain: cloud-devops, wave: 2, oneLiner: "Designs and runs infrastructure on AWS, Azure or Google Cloud." }
+  - { slug: site-reliability-engineer, title: Site Reliability Engineer, domain: cloud-devops, wave: 2, oneLiner: "Keeps production fast and up, and makes failure boring." }
+  - { slug: platform-engineer, title: Platform Engineer, domain: cloud-devops, wave: 3, oneLiner: "Builds the internal tools other engineers ship on." }
+  - { slug: qa-sdet, title: QA Engineer / SDET, domain: quality, wave: 1, oneLiner: "Designs and automates tests so releases don't break things." }
+  - { slug: application-security-engineer, title: Application Security Engineer, domain: security, wave: 2, oneLiner: "Finds and fixes security flaws in the software a company builds." }
+  - { slug: cloud-security-engineer, title: Cloud Security Engineer, domain: security, wave: 3, oneLiner: "Secures cloud accounts, identities and infrastructure." }
+  - { slug: forward-deployed-engineer, title: Forward Deployed Engineer, domain: customer, wave: 2, oneLiner: "Embeds with customers to build and ship real solutions on a product." }
+  - { slug: solutions-engineer, title: Solutions Engineer, domain: customer, wave: 3, oneLiner: "Designs how a product fits a customer's systems, before and after the sale." }
+  - { slug: developer-advocate, title: Developer Advocate, domain: customer, wave: 3, oneLiner: "Teaches developers to use a platform through docs, demos and talks." }
+  - { slug: game-developer, title: Game Developer, domain: specialist, wave: 3, oneLiner: "Builds games with engines like Unity, Unreal or Godot." }
+  - { slug: embedded-engineer, title: Embedded / IoT Engineer, domain: specialist, wave: 3, oneLiner: "Writes software for hardware — sensors, devices, firmware." }
 
 skills:
   # Foundations
@@ -107,6 +107,8 @@ skills:
   - { slug: frontend-testing, title: Frontend Testing, domain: web }
   - { slug: state-management, title: State Management, domain: web }
   - { slug: design-systems, title: Design Systems, domain: web }
+  - { slug: ui-design, title: UI & UX Design Basics, domain: web }
+  - { slug: web-animation, title: Web Animation & Interaction, domain: web }
   - { slug: nodejs, title: Node.js, domain: web }
   - { slug: rest-apis, title: REST APIs, domain: web }
   - { slug: graphql, title: GraphQL, domain: web }
@@ -131,13 +133,13 @@ skills:
   - { slug: data-visualization, title: Data Visualization, domain: data }
   - { slug: statistics, title: Statistics, domain: data }
   - { slug: spreadsheets, title: Spreadsheets, domain: data }
-  - { slug: bi-tools, title: BI Tools (Power BI, Tableau, Looker), domain: data }
+  - { slug: bi-tools, title: "BI Tools (Power BI, Tableau, Looker)", domain: data }
   - { slug: data-modeling, title: Data Modeling, domain: data }
   - { slug: postgresql, title: PostgreSQL, domain: data }
   - { slug: spark, title: Apache Spark, domain: data }
   - { slug: airflow, title: Workflow Orchestration (Airflow), domain: data }
   - { slug: dbt, title: dbt, domain: data }
-  - { slug: data-warehouses, title: Data Warehouses (BigQuery, Snowflake), domain: data }
+  - { slug: data-warehouses, title: "Data Warehouses (BigQuery, Snowflake)", domain: data }
   - { slug: r, title: R, domain: data }
   - { slug: data-storytelling, title: Data Storytelling, domain: data }
   - { slug: ab-testing, title: A/B Testing & Experiments, domain: data }
@@ -163,6 +165,8 @@ skills:
   - { slug: observability, title: Observability, domain: cloud-devops }
   - { slug: deployment, title: Deploying Web Apps, domain: cloud-devops }
   - { slug: shell-scripting, title: Shell Scripting (Bash), domain: cloud-devops }
+  - { slug: go, title: Go, domain: cloud-devops }
+  - { slug: internal-developer-platforms, title: Internal Developer Platforms, domain: cloud-devops }
   - { slug: incident-response, title: Incident Response & On-call, domain: cloud-devops }
   # Quality
   - { slug: test-automation, title: Test Automation, domain: quality }
@@ -174,6 +178,17 @@ skills:
   - { slug: owasp-top-10, title: OWASP Top 10, domain: security }
   - { slug: threat-modeling, title: Threat Modeling, domain: security }
   - { slug: cloud-security, title: Cloud Security, domain: security }
-  - { slug: security-testing, title: Security Testing (SAST, DAST, Pentesting), domain: security }
+  - { slug: security-testing, title: "Security Testing (SAST, DAST, Pentesting)", domain: security }
   # Customer-facing
   - { slug: working-with-customers, title: Working with Customers, domain: customer }
+  - { slug: developer-content, title: Developer Content & Speaking, domain: customer }
+  # Specialist
+  - { slug: csharp, title: C#, domain: specialist }
+  - { slug: cpp, title: C++, domain: specialist }
+  - { slug: unity, title: Unity, domain: specialist }
+  - { slug: game-math, title: Maths for Games, domain: specialist }
+  - { slug: c-programming, title: C Programming, domain: specialist }
+  - { slug: electronics-basics, title: Electronics Basics, domain: specialist }
+  - { slug: microcontrollers, title: "Microcontrollers (Arduino, ESP32, STM32)", domain: specialist }
+  - { slug: rtos, title: Real-Time Operating Systems, domain: specialist }
+  - { slug: embedded-protocols, title: "Embedded Protocols (UART, I2C, SPI, MQTT)", domain: specialist }

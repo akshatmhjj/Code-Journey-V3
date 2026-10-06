@@ -133,9 +133,10 @@ export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
           </section>
 
           <section id="route" className="mt-20 border-t-2 border-ink pt-10" aria-labelledby="route-title">
-            <SectionTitle eyebrow="The route" title={`From zero to ${role.title.toLowerCase()}`} id="route-title" />
+            <SectionTitle eyebrow="The route" title={`Your route to ${role.title}`} id="route-title" />
             <p className="mb-10 max-w-[62ch] text-muted">
-              Take the stations in order. Solid stations link to a skill page with the best resources. Dashed ones are still being written.
+              Take the stations in order. Each one links to a skill page with what to learn and the best resources.
+              {[...allSkills].some((x) => !skillOf(x).live) && " Dashed stations are still being written."}
             </p>
             <RouteStages stages={role.stages} skillOf={skillOf} />
           </section>

@@ -166,7 +166,7 @@ export function GapAnalyser({ data }: { data: GapData }) {
                             </button>
                           )}
                           {signedIn && path?.roleSlug && path.roleSlug !== top.slug && (
-                            <Link href={`/roles/compare?a=${path.roleSlug}&b=${top.slug}`} className="btn btn-line">
+                            <Link href={`/roles/compare/${path.roleSlug}-vs-${top.slug}`} className="btn btn-line">
                               <Scale size={16} /> Compare with my route
                             </Link>
                           )}

@@ -37,6 +37,7 @@ export function GET() {
     ...[
       ["Compass - which role fits me?", "/compass"],
       ["Compare two roles", "/roles/compare"],
+      ["Pay and job growth by role", "/market"],
       ["Job post gap checker - what am I missing?", "/gap"],
       ["About Code Journey", "/about"],
       ["FAQ", "/faq"],

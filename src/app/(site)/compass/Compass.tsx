@@ -112,7 +112,7 @@ function Results({ questions, answers, roles, onRestart }: { questions: CompassQ
           </ul>
         </div>
         <div className="flex flex-wrap gap-3">
-          <Link href={`/roles/compare?a=${top[0].slug}&b=${top[1].slug}`} className="btn btn-accent">
+          <Link href={`/roles/compare/${top[0].slug}-vs-${top[1].slug}`} className="btn btn-accent">
             <Scale size={17} /> Compare the top two
           </Link>
           <button onClick={onRestart} className="btn btn-line">

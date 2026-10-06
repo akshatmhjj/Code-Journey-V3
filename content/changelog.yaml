@@ -1,4 +1,10 @@
 - date: 2026-10-09
+  version: "2.0.0-beta.12"
+  title: Sign in with Google or GitHub
+  changes:
+    - type: added
+      text: Sign in or sign up with your Google or GitHub account, as well as email. If you already have an account with the same email, it's the same account.
+- date: 2026-10-09
   version: "2.0.0-beta.11"
   title: Share your path
   changes:

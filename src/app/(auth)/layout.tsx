@@ -6,7 +6,7 @@ import { ThemeIconButton } from "@/components/shell/ThemeIconButton";
 import type { LineStyle } from "@/lib/content";
 
 const STEPS = [
-  { t: "Create a free account", d: "Email and a password. That's it." },
+  { t: "Create a free account", d: "Takes under a minute. No card, no catch." },
   { t: "Pick a destination", d: "Any role on the map — switch whenever you like." },
   { t: "Tick off each station", d: "See what's done and what's next on your route." },
   { t: "Ask CJ AI along the way", d: "Questions about roles, skills and where to start." },

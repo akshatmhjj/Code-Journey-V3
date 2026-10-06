@@ -137,6 +137,7 @@ skills:
   - { slug: spark, title: Apache Spark, domain: data }
   - { slug: airflow, title: Workflow Orchestration (Airflow), domain: data }
   - { slug: dbt, title: dbt, domain: data }
+  - { slug: data-warehouses, title: Data Warehouses (BigQuery, Snowflake), domain: data }
   - { slug: r, title: R, domain: data }
   - { slug: data-storytelling, title: Data Storytelling, domain: data }
   - { slug: ab-testing, title: A/B Testing & Experiments, domain: data }
@@ -162,6 +163,7 @@ skills:
   - { slug: observability, title: Observability, domain: cloud-devops }
   - { slug: deployment, title: Deploying Web Apps, domain: cloud-devops }
   - { slug: shell-scripting, title: Shell Scripting (Bash), domain: cloud-devops }
+  - { slug: incident-response, title: Incident Response & On-call, domain: cloud-devops }
   # Quality
   - { slug: test-automation, title: Test Automation, domain: quality }
   - { slug: playwright, title: Playwright, domain: quality }
@@ -172,3 +174,6 @@ skills:
   - { slug: owasp-top-10, title: OWASP Top 10, domain: security }
   - { slug: threat-modeling, title: Threat Modeling, domain: security }
   - { slug: cloud-security, title: Cloud Security, domain: security }
+  - { slug: security-testing, title: Security Testing (SAST, DAST, Pentesting), domain: security }
+  # Customer-facing
+  - { slug: working-with-customers, title: Working with Customers, domain: customer }

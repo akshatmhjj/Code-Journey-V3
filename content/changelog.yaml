@@ -1,4 +1,12 @@
 - date: 2026-10-06
+  version: "2.0.0-beta.3"
+  title: Wave 2 routes
+  changes:
+    - type: added
+      text: Full routes for Android Engineer, iOS Engineer, Data Engineer, Cloud Engineer, Site Reliability Engineer, Application Security Engineer and Forward Deployed Engineer — 17 routes now live.
+    - type: added
+      text: New skill pages for Jetpack Compose, SwiftUI, data warehouses, incident response, the OWASP Top 10, threat modelling, security testing and working with customers.
+- date: 2026-10-06
   version: "2.0.0-beta.2"
   title: All ten launch routes
   changes:

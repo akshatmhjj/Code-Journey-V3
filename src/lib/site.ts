@@ -30,4 +30,6 @@ export const RESOURCE_LABEL: Record<string, string> = {
   community: "Community",
 };
 
+export const CHAT_DAILY_LIMIT = 40;
+
 export const STAGE_LEVEL = ["Foundations", "Core", "Job-ready", "Senior"];

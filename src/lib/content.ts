@@ -5,6 +5,7 @@ import { cache } from "react";
 import matter from "gray-matter";
 import YAML from "yaml";
 import { z } from "zod";
+import type { PathIndex } from "./path";
 
 const ROOT = path.join(process.cwd(), "content");
 
@@ -200,4 +201,20 @@ export const getLibraryStatus = cache(() => {
   const skills = getSkills();
   const last = skills.reduce((d, s) => (s.checked > d ? s.checked : d), new Date(0));
   return { checked: last, resources: getAllResources().length };
+});
+
+/** Compact route data for client components (My Path progress). */
+export const getPathIndex = cache((): PathIndex => {
+  const net = getNetwork();
+  const written = new Map(getSkills().map((s) => [s.slug, s]));
+  const domain = new Map(net.roles.map((r) => [r.slug, r.domain]));
+  return {
+    roles: getRoles().map((r) => ({
+      slug: r.slug,
+      title: r.title,
+      domain: domain.get(r.slug) ?? "",
+      stages: r.stages.map((s) => ({ name: s.name, weeks: s.weeks, skills: s.skills })),
+    })),
+    skills: Object.fromEntries(net.skills.map((s) => [s.slug, { title: s.title, hours: written.get(s.slug)?.hours, live: s.live }])),
+  };
 });

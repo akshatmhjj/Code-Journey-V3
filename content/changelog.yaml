@@ -1,4 +1,16 @@
 - date: 2026-10-07
+  version: "2.0.0-beta.7"
+  title: My Path is live
+  changes:
+    - type: added
+      text: Pick a destination role and tick off each skill on its route as "learning" or "done". Stations you've finished fill in on the route itself.
+    - type: added
+      text: Your profile now shows how far along you are — percentage complete, progress per stage, which stage you're on, your next stations, and the hours and months left at ten hours a week.
+    - type: added
+      text: Every role page now has a "Make this my route" button and a progress summary in its sidebar.
+    - type: added
+      text: Your profile also shows your CJ AI questions used today, your account details, and how to get your data exported or deleted.
+- date: 2026-10-07
   version: "2.0.0-beta.6"
   title: Tangerine by default, and themes that follow you
   changes:

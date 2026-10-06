@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { ArrowUpRight, BadgeCheck } from "lucide-react";
-import type { Domain, Resource, SkillEntry } from "@/lib/content";
+import type { Domain, Resource } from "@/lib/content";
 import { RESOURCE_LABEL } from "@/lib/site";
 import { LineGlyph } from "@/components/map/Line";
+
+// Stations are interactive for signed-in people, so they live in their own client component.
+export { SkillStation } from "./Station";
 
 export function PageHead({
   eyebrow,
@@ -53,36 +56,6 @@ export function DomainBadge({ domain, withLine = true, href = true }: { domain: 
     </Link>
   ) : (
     <span className="inline-flex items-center gap-2">{inner}</span>
-  );
-}
-
-/** A skill shown as a station: linked when it has a page, muted when still being mapped. */
-export function SkillStation({ skill, here = false }: { skill: SkillEntry | { slug: string; title: string; live: boolean }; here?: boolean }) {
-  // Chips show the short name; "Microcontrollers (Arduino, ESP32, STM32)" → "Microcontrollers".
-  const title = skill.title.replace(/\s*\(.*\)$/, "");
-  const dot = (
-    <span
-      aria-hidden="true"
-      className={`size-3.5 shrink-0 rounded-full border-[3px] ${
-        here ? "border-ink bg-accent" : skill.live ? "border-ink bg-canvas" : "border-line-strong bg-canvas"
-      }`}
-    />
-  );
-  if (!skill.live)
-    return (
-      <span className="inline-flex items-center gap-2 rounded-full border-2 border-dashed border-line-strong px-3 py-1.5 text-[15px] text-muted" title="Skill page being written">
-        {dot}
-        {title}
-      </span>
-    );
-  return (
-    <Link
-      href={`/skills/${skill.slug}`}
-      className="inline-flex items-center gap-2 rounded-full border-2 border-ink px-3 py-1.5 text-[15px] font-semibold transition-colors hover:bg-ink hover:text-canvas"
-    >
-      {dot}
-      {title}
-    </Link>
   );
 }
 

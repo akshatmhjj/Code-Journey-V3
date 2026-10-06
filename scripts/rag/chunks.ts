@@ -150,7 +150,8 @@ export function buildChunks(): Chunk[] {
       `All ${cat.skills.length} skills are at /skills, each with a 60-second brief, a learning checklist and checked resources.`,
       "Fields of tech (web, mobile, data, AI, cloud & DevOps, quality, security, customer-facing, specialist, foundations) are at /domains.",
       "The resource library with filters is at /resources. Plain-English definitions are at /glossary. Short code snippets are at /snippets. Articles are at /blog.",
-      "Search everything with Ctrl+K or ⌘K. Change the colour theme with the palette icon. An account (free) is needed for CJ AI; My Path progress tracking is coming soon.",
+      "Search everything with Ctrl+K or \u2318K. Four colour themes are available from the palette icon, and a signed-in person can save their theme to their account.",
+      "A free account unlocks CJ AI and My Path: pick a destination role, mark each skill on that route as learning or done, and see your progress, next stations and hours left at /me. Reading every page stays free without an account.",
       `Contact: work.codejourney@gmail.com.`,
     ].join("\n"),
   });

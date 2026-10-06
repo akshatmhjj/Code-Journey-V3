@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
 type Mode = "signin" | "signup" | "reset" | "update";
@@ -44,6 +44,42 @@ export function AuthForm() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  // For mode=update: has the reset link given us a session yet?
+  const [recovery, setRecovery] = useState<"checking" | "ready" | "dead">("checking");
+
+  useEffect(() => {
+    if (mode !== "update") return;
+    const sb = supabase();
+    const hash = new URLSearchParams(location.hash.slice(1));
+    const search = new URLSearchParams(location.search);
+    const dead = () => setRecovery("dead");
+    const ready = () => setRecovery("ready");
+
+    const { data: sub } = sb.auth.onAuthStateChange((event, session) => {
+      if (event === "PASSWORD_RECOVERY" || session) ready();
+    });
+
+    (async () => {
+      // Supabase sends one of three shapes depending on project settings.
+      if (hash.get("error") || search.get("error")) return dead();
+      const code = search.get("code");
+      const tokenHash = search.get("token_hash");
+      if (code) {
+        const { error } = await sb.auth.exchangeCodeForSession(code);
+        return error ? dead() : ready();
+      }
+      if (tokenHash) {
+        const { error } = await sb.auth.verifyOtp({ token_hash: tokenHash, type: "recovery" });
+        return error ? dead() : ready();
+      }
+      // Implicit flow: supabase-js reads #access_token itself; getSession waits for that.
+      const { data } = await sb.auth.getSession();
+      if (data.session) ready();
+      else setTimeout(() => setRecovery((r) => (r === "checking" ? "dead" : r)), 1500);
+    })();
+
+    return () => sub.subscription.unsubscribe();
+  }, [mode]);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -107,6 +143,20 @@ export function AuthForm() {
         </div>
       )}
       <h2 className="text-2xl font-bold">{COPY[mode].title}</h2>
+      {mode === "update" && recovery !== "ready" ? (
+        <div className="mt-5 grid gap-4" role="status">
+          {recovery === "checking" ? (
+            <p className="text-muted">Checking your reset link…</p>
+          ) : (
+            <>
+              <p>This reset link has expired, was already used, or didn&apos;t open on the right page. Links work once, for about an hour.</p>
+              <button onClick={() => { setMode("reset"); setError(""); }} className="btn btn-accent w-full">
+                Send a new reset link
+              </button>
+            </>
+          )}
+        </div>
+      ) : (
       <form onSubmit={onSubmit} className="mt-5 grid gap-4">
         {mode === "signup" && <Field id="name" label="Name" autoComplete="name" />}
         {mode !== "update" && <Field id="email" label="Email" type="email" autoComplete="email" />}
@@ -134,6 +184,7 @@ export function AuthForm() {
           {busy ? "One moment…" : COPY[mode].button}
         </button>
       </form>
+      )}
       <div className="mt-5 flex flex-wrap justify-between gap-2 text-[15px]">
         {mode === "signin" && (
           <button onClick={() => setMode("reset")} className="link">

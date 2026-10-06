@@ -6,6 +6,7 @@ import matter from "gray-matter";
 import YAML from "yaml";
 import { z } from "zod";
 import type { PathIndex } from "./path";
+import type { CompassQuestion } from "./compass";
 
 const ROOT = path.join(process.cwd(), "content");
 
@@ -218,3 +219,18 @@ export const getPathIndex = cache((): PathIndex => {
     skills: Object.fromEntries(net.skills.map((s) => [s.slug, { title: s.title, hours: written.get(s.slug)?.hours, live: s.live }])),
   };
 });
+
+const Compass = z.object({
+  questions: z
+    .array(
+      z.object({
+        id: z.string(),
+        q: z.string(),
+        options: z.array(z.object({ label: z.string(), why: z.string(), weights: z.record(z.string(), z.number().int().min(1).max(3)) })).min(2),
+      }),
+    )
+    .min(3),
+});
+
+/** The Compass quiz (content/compass.yaml). */
+export const getCompass = cache((): CompassQuestion[] => parse(Compass, YAML.parse(read("compass.yaml")), "compass.yaml").questions);

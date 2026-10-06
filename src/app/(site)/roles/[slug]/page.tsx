@@ -237,6 +237,18 @@ export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
                   </Link>
                 ))}
               </div>
+              <p className="mt-6 flex flex-wrap items-center gap-2 text-[15px]">
+                <span className="text-muted">Compare {role.title} with:</span>
+                {adjacent.map((a) => (
+                  <Link
+                    key={a.slug}
+                    href={`/roles/compare?a=${slug}&b=${a.slug}`}
+                    className="rounded-full border-2 border-ink px-3 py-1 font-semibold hover:bg-ink hover:text-canvas"
+                  >
+                    {a.title}
+                  </Link>
+                ))}
+              </p>
             </section>
           )}
         </div>

@@ -147,6 +147,7 @@ export function buildChunks(): Chunk[] {
     body: [
       "Code Journey is a free map of tech careers. It does not teach courses or sell anything; it shows each role's route and links to the best official docs and free resources.",
       `All ${cat.roles.length} career routes are at /roles. Each route has stages, skills by priority, interviews, and how AI is changing the role.`,
+      "Not sure which role fits? The Compass quiz at /compass asks eight questions and suggests three roles with reasons. Compare any two roles side by side — shared skills, time to job-ready, interviews — at /roles/compare.",
       `All ${cat.skills.length} skills are at /skills, each with a 60-second brief, a learning checklist and checked resources.`,
       "Fields of tech (web, mobile, data, AI, cloud & DevOps, quality, security, customer-facing, specialist, foundations) are at /domains.",
       "The resource library with filters is at /resources. Plain-English definitions are at /glossary. Short code snippets are at /snippets. Articles are at /blog.",

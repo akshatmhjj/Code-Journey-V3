@@ -7,11 +7,11 @@ import { supabase } from "@/lib/supabase";
 
 type Mode = "signin" | "signup" | "reset" | "update";
 
-const COPY: Record<Mode, { title: string; button: string }> = {
-  signin: { title: "Welcome back", button: "Sign in" },
-  signup: { title: "Create your account", button: "Create account" },
-  reset: { title: "Reset your password", button: "Send reset link" },
-  update: { title: "Choose a new password", button: "Save password" },
+const COPY: Record<Mode, { title: string; sub: string; button: string }> = {
+  signin: { title: "Welcome back", sub: "Pick up your route where you left it.", button: "Sign in" },
+  signup: { title: "Create your account", sub: "Free, and it takes under a minute.", button: "Create account" },
+  reset: { title: "Reset your password", sub: "We'll email you a link to choose a new one.", button: "Send reset link" },
+  update: { title: "Choose a new password", sub: "At least 8 characters.", button: "Save password" },
 };
 
 // Supabase auth error codes → messages that say what to do next.
@@ -122,9 +122,9 @@ export function AuthForm() {
   }
 
   return (
-    <div className="w-full max-w-md justify-self-center rounded-[var(--radius-lg)] border-2 border-ink p-6 shadow-[6px_6px_0_var(--ink)] md:p-8">
+    <div className="w-full max-w-[420px]">
       {(mode === "signin" || mode === "signup") && (
-        <div className="mb-6 grid grid-cols-2 rounded-full border-2 border-ink p-1" role="tablist">
+        <div className="mb-10 grid grid-cols-2 rounded-full border-2 border-ink p-1" role="tablist">
           {(["signin", "signup"] as const).map((m) => (
             <button
               key={m}
@@ -142,9 +142,10 @@ export function AuthForm() {
           ))}
         </div>
       )}
-      <h2 className="text-2xl font-bold">{COPY[mode].title}</h2>
+      <h1 className="text-[clamp(2rem,4vw,2.75rem)] leading-[1.02] font-bold tracking-[-0.03em]">{COPY[mode].title}</h1>
+      <p className="mt-2 text-muted">{COPY[mode].sub}</p>
       {mode === "update" && recovery !== "ready" ? (
-        <div className="mt-5 grid gap-4" role="status">
+        <div className="mt-8 grid gap-4" role="status">
           {recovery === "checking" ? (
             <p className="text-muted">Checking your reset link…</p>
           ) : (
@@ -157,7 +158,7 @@ export function AuthForm() {
           )}
         </div>
       ) : (
-      <form onSubmit={onSubmit} className="mt-5 grid gap-4">
+      <form onSubmit={onSubmit} className="mt-8 grid gap-5">
         {mode === "signup" && <Field id="name" label="Name" autoComplete="name" />}
         {mode !== "update" && <Field id="email" label="Email" type="email" autoComplete="email" />}
         {mode !== "reset" && (
@@ -185,7 +186,7 @@ export function AuthForm() {
         </button>
       </form>
       )}
-      <div className="mt-5 flex flex-wrap justify-between gap-2 text-[15px]">
+      <div className="mt-6 flex flex-wrap justify-between gap-2 text-[15px]">
         {mode === "signin" && (
           <button onClick={() => setMode("reset")} className="link">
             Forgot your password?

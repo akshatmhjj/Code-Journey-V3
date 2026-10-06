@@ -1,15 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Familjen_Grotesk, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
-import { getNetwork } from "@/lib/content";
 import { SITE } from "@/lib/site";
 import { UIProvider, THEME_SCRIPT } from "@/components/shell/UIProvider";
-import { Header } from "@/components/shell/Header";
-import { Footer } from "@/components/shell/Footer";
-import { MobileDock } from "@/components/shell/MobileDock";
 import { CommandPalette } from "@/components/shell/CommandPalette";
 import { ThemeSettings } from "@/components/shell/ThemeSettings";
-import { NetworkOverlay } from "@/components/shell/NetworkOverlay";
-import { ChatPanel } from "@/components/shell/ChatPanel";
 import { ConsentBanner, ANALYTICS_SCRIPT } from "@/components/shell/Consent";
 import { JsonLd } from "@/components/ui/JsonLd";
 import "./globals.css";
@@ -41,8 +35,6 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const net = getNetwork();
-  const roleTitles = net.roles.filter((r) => r.wave === 1).map((r) => r.title);
   return (
     <html lang="en" data-cj="harbor" suppressHydrationWarning className={`${display.variable} ${body.variable} ${code.variable}`}>
       <head>
@@ -58,16 +50,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className="min-h-dvh pb-[76px] md:pb-0">
+      <body className="min-h-dvh">
         <UIProvider>
-          <Header roleTitles={roleTitles} />
-          <main id="main">{children}</main>
-          <Footer />
-          <MobileDock />
+          {children}
           <CommandPalette />
           <ThemeSettings />
-          <NetworkOverlay domains={net.domains} roles={net.roles} />
-          <ChatPanel />
           <ConsentBanner />
         </UIProvider>
       </body>

@@ -1,7 +1,9 @@
 import Link from "next/link";
+import SiteLayout from "./(site)/layout";
 
 export default function NotFound() {
   return (
+    <SiteLayout>
     <div className="wrap py-20 md:py-32">
       <p className="eyebrow">Error 404</p>
       <h1 className="mt-5 max-w-[14ch] text-[clamp(3rem,9vw,6.5rem)] leading-[0.92] font-bold tracking-[-0.045em]">This station isn&apos;t on the map.</h1>
@@ -21,5 +23,6 @@ export default function NotFound() {
         </Link>
       </div>
     </div>
+    </SiteLayout>
   );
 }

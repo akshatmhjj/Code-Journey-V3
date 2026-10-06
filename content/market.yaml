@@ -1,0 +1,72 @@
+# Pay and demand for each role. Every number is copied from a public source on the date below — never estimated.
+#
+# india: PayScale India. Self-reported base salary in lakh rupees a year (1 L = ₹1,00,000).
+#        avg = average, p10/p90 = 10th and 90th percentile, entry = average for under 1 year's experience.
+#        PayScale rounds its top band to ₹20 L or ₹30 L, so treat p90 as "about".
+# us:    US Bureau of Labor Statistics, Occupational Outlook Handbook. Median pay May 2025, projected growth 2025–35.
+#        For comparison, all US jobs are projected to grow 3.5% over 2025–35 (https://www.bls.gov/news.release/ecopro.nr0.htm).
+#
+# Roles are mapped to the closest title each source publishes. `exact: false` marks a nearest match, shown as "closest title".
+checked: 2026-10-09
+
+india:
+  front-end: { title: Front End Developer / Engineer, avg: 6.65, p10: 2.92, p90: 20, entry: 3.58, profiles: 872, updated: 2026-07-07, url: "https://www.payscale.com/research/IN/Job=Front_End_Developer_%2F_Engineer/Salary" }
+  back-end: { title: Back End Developer / Engineer, avg: 6.81, p10: 2.6, p90: 20, entry: 4.58, profiles: 130, updated: 2026-03-19, url: "https://www.payscale.com/research/IN/Job=Back_End_Developer%2F_Engineer/Salary" }
+  full-stack: { title: Full Stack Software Developer, avg: 6.92, p10: 2.97, p90: 20, entry: 4.04, profiles: 823, updated: 2026-07-10, url: "https://www.payscale.com/research/IN/Job=Full_Stack_Software_Developer/Salary" }
+  mobile: { title: Mobile Applications Developer, avg: 7.01, p10: 2.41, p90: 20, entry: 2.94, profiles: 80, updated: 2026-01-23, url: "https://www.payscale.com/research/IN/Job=Mobile_Applications_Developer/Salary" }
+  android: { title: Android Software Developer, avg: 6.91, p10: 2.96, p90: 20, entry: 2.37, profiles: 208, updated: 2026-06-24, url: "https://www.payscale.com/research/IN/Job=Android_Software_Developer/Salary" }
+  ios: { title: iOS Developer, avg: 7.8, p10: 2.96, p90: 20, entry: 2.59, profiles: 129, updated: 2026-05-17, url: "https://www.payscale.com/research/IN/Job=iOS_Developer/Salary" }
+  ui-developer: { title: UI Developer, avg: 7.08, p10: 2.86, p90: 20, entry: 3.12, profiles: 206, updated: 2025-07-14, url: "https://www.payscale.com/research/IN/Job=UI_Developer/Salary" }
+  data-analyst: { title: Data Analyst, avg: 5.77, p10: 2.89, p90: 10, entry: 4.13, profiles: 2389, updated: 2026-07-10, url: "https://www.payscale.com/research/IN/Job=Data_Analyst/Salary" }
+  data-scientist: { title: Data Scientist, avg: 10.18, p10: 3.12, p90: 20, entry: 5.95, profiles: 1267, updated: 2026-07-09, url: "https://www.payscale.com/research/IN/Job=Data_Scientist/Salary" }
+  data-engineer: { title: Data Engineer, avg: 9.75, p10: 4.1, p90: 20, entry: 5.18, profiles: 1284, updated: 2026-07-14, url: "https://www.payscale.com/research/IN/Job=Data_Engineer/Salary" }
+  ml-engineer: { title: Machine Learning Engineer, avg: 10.23, p10: 3.62, p90: 30, entry: 5.96, profiles: 232, updated: 2026-07-11, url: "https://www.payscale.com/research/IN/Job=Machine_Learning_Engineer/Salary" }
+  devops: { title: DevOps Engineer, avg: 9.98, p10: 4.01, p90: 30, entry: 4.53, profiles: 896, updated: 2026-07-08, url: "https://www.payscale.com/research/IN/Job=Development_Operations_(DevOps)_Engineer/Salary" }
+  sre: { title: Site Reliability Engineer (SRE), avg: 17.48, p10: 4.05, p90: 30, entry: 5.5, profiles: 272, updated: 2026-06-24, url: "https://www.payscale.com/research/IN/Job=Site_Reliability_Engineer_(SRE)/Salary" }
+  cloud-solutions: { title: Cloud Solutions Engineer, avg: 7.09, p10: 2.23, p90: 30, profiles: 74, updated: 2026-05-08, url: "https://www.payscale.com/research/IN/Job=Cloud_Solutions_Engineer/Salary" }
+  security: { title: Security Engineer, avg: 10.08, p10: 4.01, p90: 20, entry: 4.02, profiles: 117, updated: 2026-04-06, url: "https://www.payscale.com/research/IN/Job=Security_Engineer/Salary" }
+  sdet: { title: "Software Development Engineer, Test (SDET)", avg: 9.37, p10: 3.93, p90: 20, entry: 4.01, profiles: 198, updated: 2026-06-08, url: "https://www.payscale.com/research/IN/Job=Software_Development_Engineer%2C_Test_(SDET)/Salary" }
+  embedded: { title: Embedded Software Engineer, avg: 5.82, p10: 2.33, p90: 10, entry: 4.08, profiles: 186, updated: 2026-06-15, url: "https://www.payscale.com/research/IN/Job=Embedded_Software_Engineer/Salary" }
+  game: { title: Video Game Programmer, avg: 7.0, p10: 2.17, p90: 20, entry: 3.3, profiles: 12, updated: 2026-01-16, url: "https://www.payscale.com/research/IN/Job=Video_Game_Programmer/Salary" }
+  solutions: { title: Solutions Engineer, avg: 9.72, p10: 3.39, p90: 20, entry: 5.5, profiles: 74, updated: 2026-03-27, url: "https://www.payscale.com/research/IN/Job=Solutions_Engineer/Salary" }
+  software-engineer: { title: Software Engineer, avg: 8.14, p10: 3.5, p90: 20, entry: 5.37, profiles: 4950, updated: 2026-07-12, url: "https://www.payscale.com/research/IN/Job=Software_Engineer/Salary" }
+
+us:
+  software-developers: { title: Software developers, median: 135980, growth: 10, url: "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm" }
+  qa: { title: Software quality assurance analysts and testers, median: 104300, growth: 6, url: "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm" }
+  web-designers: { title: Web and digital interface designers, median: 104000, growth: 6, url: "https://www.bls.gov/ooh/computer-and-information-technology/web-developers.htm" }
+  data-scientists: { title: Data scientists, median: 120230, growth: 35, url: "https://www.bls.gov/ooh/math/data-scientists.htm" }
+  operations-research: { title: Operations research analysts, median: 88940, growth: 12, url: "https://www.bls.gov/ooh/math/operations-research-analysts.htm" }
+  database-architects: { title: Database architects, median: 139500, growth: 9, url: "https://www.bls.gov/ooh/computer-and-information-technology/database-administrators.htm" }
+  research-scientists: { title: Computer and information research scientists, median: 140300, growth: 22, url: "https://www.bls.gov/ooh/computer-and-information-technology/computer-and-information-research-scientists.htm" }
+  network-architects: { title: Computer network architects, median: 134050, growth: 8, url: "https://www.bls.gov/ooh/computer-and-information-technology/computer-network-architects.htm" }
+  infosec: { title: Information security analysts, median: 129180, growth: 21, url: "https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm" }
+  sales-engineers: { title: Sales engineers, median: 124900, growth: 3, url: "https://www.bls.gov/ooh/sales/sales-engineers.htm" }
+
+roles:
+  frontend-engineer: { india: front-end, us: software-developers, us_exact: false }
+  backend-engineer: { india: back-end, us: software-developers }
+  full-stack-engineer: { india: full-stack, us: software-developers }
+  cross-platform-mobile-engineer: { india: mobile, us: software-developers }
+  android-engineer: { india: android, us: software-developers }
+  ios-engineer: { india: ios, us: software-developers }
+  design-engineer: { india: ui-developer, india_exact: false, us: web-designers, us_exact: false }
+  data-analyst: { india: data-analyst, us: operations-research, us_exact: false }
+  data-scientist: { india: data-scientist, us: data-scientists }
+  data-engineer: { india: data-engineer, us: database-architects, us_exact: false }
+  analytics-engineer: { india: data-engineer, india_exact: false, us: database-architects, us_exact: false }
+  ml-engineer: { india: ml-engineer, us: research-scientists, us_exact: false }
+  ai-engineer: { india: ml-engineer, india_exact: false, us: software-developers, us_exact: false }
+  mlops-engineer: { india: ml-engineer, india_exact: false, us: software-developers, us_exact: false }
+  devops-engineer: { india: devops, us: software-developers, us_exact: false }
+  site-reliability-engineer: { india: sre, us: software-developers, us_exact: false }
+  platform-engineer: { india: devops, india_exact: false, us: software-developers, us_exact: false }
+  cloud-engineer: { india: cloud-solutions, india_exact: false, us: network-architects, us_exact: false }
+  cloud-security-engineer: { india: security, india_exact: false, us: infosec, us_exact: false }
+  application-security-engineer: { india: security, india_exact: false, us: infosec, us_exact: false }
+  qa-sdet: { india: sdet, us: qa }
+  embedded-engineer: { india: embedded, us: software-developers }
+  game-developer: { india: game, us: software-developers, us_exact: false }
+  solutions-engineer: { india: solutions, us: sales-engineers, us_exact: false }
+  forward-deployed-engineer: { india: software-engineer, india_exact: false, us: software-developers, us_exact: false }
+  developer-advocate: {}

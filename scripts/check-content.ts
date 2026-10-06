@@ -68,6 +68,21 @@ for (const f of md("roles")) {
   for (const k of Object.keys(al.skills ?? {})) if (!skills.has(k)) errors.push(`skill-aliases.yaml: unknown skill "${k}"`);
 }
 
+// Market data: every role is listed, and every pointer resolves.
+{
+  const m = YAML.parse(fs.readFileSync(path.join(ROOT, "market.yaml"), "utf8")) as {
+    india: Record<string, unknown>;
+    us: Record<string, unknown>;
+    roles: Record<string, { india?: string; us?: string }>;
+  };
+  for (const [slug, r] of Object.entries(m.roles ?? {})) {
+    if (!roles.has(slug)) errors.push(`market.yaml: unknown role "${slug}"`);
+    if (r?.india && !m.india?.[r.india]) errors.push(`market.yaml: ${slug} → unknown india key "${r.india}"`);
+    if (r?.us && !m.us?.[r.us]) errors.push(`market.yaml: ${slug} → unknown us key "${r.us}"`);
+  }
+  for (const r of roles) if (!(r in (m.roles ?? {}))) warn.push(`market.yaml: role "${r}" has no market entry`);
+}
+
 // Parse the standalone data files too, so a YAML slip fails here rather than mid-build.
 for (const f of ["glossary.yaml", "faq.yaml", "changelog.yaml"]) {
   try {

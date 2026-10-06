@@ -93,6 +93,7 @@ skills:
   - { slug: ai-coding-tools, title: Working with AI Coding Tools, domain: foundations }
   - { slug: technical-writing, title: Technical Writing, domain: foundations }
   - { slug: interviewing, title: Tech Interviewing, domain: foundations }
+  - { slug: math-for-ml, title: Maths for Machine Learning, domain: foundations }
   # Web
   - { slug: html, title: HTML, domain: web }
   - { slug: css, title: CSS, domain: web }
@@ -111,6 +112,8 @@ skills:
   - { slug: graphql, title: GraphQL, domain: web }
   - { slug: authentication, title: Authentication & Authorization, domain: web }
   - { slug: web-security, title: Web Security Basics, domain: web }
+  - { slug: caching, title: Caching (Redis), domain: web }
+  - { slug: message-queues, title: Message Queues & Events, domain: web }
   # Mobile
   - { slug: dart, title: Dart, domain: mobile }
   - { slug: flutter, title: Flutter, domain: mobile }
@@ -120,6 +123,7 @@ skills:
   - { slug: swift, title: Swift, domain: mobile }
   - { slug: swiftui, title: SwiftUI, domain: mobile }
   - { slug: app-store-publishing, title: Publishing to App Stores, domain: mobile }
+  - { slug: mobile-testing, title: Mobile App Testing, domain: mobile }
   # Data
   - { slug: python, title: Python, domain: data }
   - { slug: sql, title: SQL, domain: data }
@@ -134,6 +138,8 @@ skills:
   - { slug: airflow, title: Workflow Orchestration (Airflow), domain: data }
   - { slug: dbt, title: dbt, domain: data }
   - { slug: r, title: R, domain: data }
+  - { slug: data-storytelling, title: Data Storytelling, domain: data }
+  - { slug: ab-testing, title: A/B Testing & Experiments, domain: data }
   # AI
   - { slug: machine-learning, title: Machine Learning, domain: ai }
   - { slug: deep-learning, title: Deep Learning, domain: ai }
@@ -155,11 +161,13 @@ skills:
   - { slug: aws, title: AWS, domain: cloud-devops }
   - { slug: observability, title: Observability, domain: cloud-devops }
   - { slug: deployment, title: Deploying Web Apps, domain: cloud-devops }
+  - { slug: shell-scripting, title: Shell Scripting (Bash), domain: cloud-devops }
   # Quality
   - { slug: test-automation, title: Test Automation, domain: quality }
   - { slug: playwright, title: Playwright, domain: quality }
   - { slug: api-testing, title: API Testing, domain: quality }
   - { slug: performance-testing, title: Performance Testing, domain: quality }
+  - { slug: test-design, title: Test Design & Strategy, domain: quality }
   # Security
   - { slug: owasp-top-10, title: OWASP Top 10, domain: security }
   - { slug: threat-modeling, title: Threat Modeling, domain: security }

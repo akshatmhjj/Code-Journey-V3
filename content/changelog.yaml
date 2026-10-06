@@ -1,4 +1,14 @@
 - date: 2026-10-06
+  version: "2.0.0-beta.2"
+  title: All ten launch routes
+  changes:
+    - type: added
+      text: Full routes for Backend, Full-Stack, Cross-platform Mobile, Data Analyst, Data Scientist, AI Engineer, ML Engineer, DevOps and QA/SDET — joining Frontend.
+    - type: added
+      text: 58 new skill pages, from Git and system design to RAG, Kubernetes and Playwright. Every skill on every launch route now has its own page.
+    - type: added
+      text: A weekly automatic check of every resource link.
+- date: 2026-10-06
   version: "2.0.0-beta"
   title: Code Journey 2.0 foundation
   changes:

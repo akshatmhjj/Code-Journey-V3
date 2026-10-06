@@ -1,3 +1,11 @@
+- date: 2026-10-09
+  version: "2.0.0-beta.11"
+  title: Share your path
+  changes:
+    - type: added
+      text: Pick a handle on My Path and turn on a public page at codejourney.space/u/your-handle — your destination, progress and ticked skills, stage by stage. Handy for a CV, LinkedIn or GitHub.
+    - type: added
+      text: It's off until you switch it on, shows only the name you choose (never your email), and is kept out of search engines.
 - date: 2026-10-08
   version: "2.0.0-beta.10"
   title: Save, rate and suggest resources

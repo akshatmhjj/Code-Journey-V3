@@ -17,7 +17,7 @@ export default function Privacy() {
         <h2>What we collect</h2>
         <ul>
           <li><strong>Account details</strong> — your name and email address when you sign up, and the date you joined.</li>
-          <li><strong>Your progress</strong> — when My Path launches, the role you&apos;re working towards and which skills you&apos;ve marked.</li>
+          <li><strong>Your progress</strong> — the role you&apos;re working towards, which skills you&apos;ve marked as learning or done, and your chosen theme.</li>
           <li><strong>Questions to CJ AI</strong> — the messages you send are passed to Google&apos;s Gemini API to generate an answer. We don&apos;t store your conversation on our servers.</li>
           <li><strong>Usage analytics</strong> — Google Analytics records which pages are visited, from what kind of device and roughly where. Advertising features are switched off. Visitors in the EU, UK and Switzerland are asked before analytics is enabled.</li>
           <li><strong>Settings on your device</strong> — your theme, mode and cookie choice are kept in your browser&apos;s local storage, and a sign-in session if you have an account.</li>

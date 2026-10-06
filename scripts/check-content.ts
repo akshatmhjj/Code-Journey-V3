@@ -49,6 +49,20 @@ for (const f of md("roles")) {
   for (const a of data.adjacent ?? []) if (!roles.has(a)) errors.push(`roles/${f}: unknown adjacent role "${a}"`);
 }
 
+// Parse the standalone data files too, so a YAML slip fails here rather than mid-build.
+for (const f of ["glossary.yaml", "faq.yaml", "changelog.yaml"]) {
+  try {
+    YAML.parse(fs.readFileSync(path.join(ROOT, f), "utf8"));
+  } catch (e) {
+    errors.push(`${f}: ${(e as Error).message.split("\n")[0]}`);
+  }
+}
+try {
+  JSON.parse(fs.readFileSync(path.join(ROOT, "snippets.json"), "utf8"));
+} catch (e) {
+  errors.push(`snippets.json: ${(e as Error).message}`);
+}
+
 for (const w of warn) console.warn("warn:", w);
 if (errors.length) {
   for (const e of errors) console.error("error:", e);

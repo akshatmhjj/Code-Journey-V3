@@ -10,6 +10,7 @@ import { DomainBadge, ResourceList, SectionTitle, SkillStation } from "@/compone
 import { Mapping } from "@/components/ui/Mapping";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { AskBand } from "@/components/shell/AskBand";
+import { SkillProgress } from "@/components/path/SkillProgress";
 
 export function generateStaticParams() {
   return getNetwork().skills.map((s) => ({ slug: s.slug }));
@@ -102,6 +103,9 @@ export default async function SkillPage({ params }: PageProps<"/skills/[slug]">)
               <dd className="flex flex-wrap gap-2">
                 {skill.prereqs.length ? skill.prereqs.map((p) => <SkillStation key={p} skill={entry(p)} />) : <span>None. A good first station.</span>}
               </dd>
+            </div>
+            <div className="pt-1">
+              <SkillProgress slug={slug} />
             </div>
           </dl>
         </div>

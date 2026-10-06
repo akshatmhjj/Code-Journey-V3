@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Bot, Clock, ExternalLink, Layers, ListChecks } from "lucide-react";
-import { getDomain, getNetwork, getRole, getRoleEntry, getSkillEntry, type SkillEntry } from "@/lib/content";
+import { getDomain, getNetwork, getPathIndex, getRole, getRoleEntry, getSkillEntry, type SkillEntry } from "@/lib/content";
 import { renderMarkdown } from "@/lib/markdown";
 import { SITE } from "@/lib/site";
 import { Trail } from "@/components/ui/Trail";
 import { DomainBadge, ResourceList, SectionTitle, SkillStation } from "@/components/ui/bits";
 import { RouteStages } from "@/components/map/RouteStages";
 import { AskBand } from "@/components/shell/AskBand";
+import { SaveRoute } from "@/components/path/SaveRoute";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Mapping } from "@/components/ui/Mapping";
 
@@ -70,6 +71,12 @@ export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
   const jobReady = totalWeeks(role.stages.slice(0, 3).map((s) => s.weeks));
   const allSkills = new Set(role.stages.flatMap((s) => s.skills));
   const adjacent = role.adjacent.map((a) => getRoleEntry(a)).filter((a) => !!a);
+
+  // Just this route's data, so the client component stays small.
+  const full = getPathIndex();
+  const thisRole = full.roles.find((r) => r.slug === slug)!;
+  const onRoute = new Set(thisRole.stages.flatMap((st) => st.skills));
+  const pathIndex = { roles: [thisRole], skills: Object.fromEntries([...onRoute].filter((k) => full.skills[k]).map((k) => [k, full.skills[k]])) };
   const fmt = new Intl.DateTimeFormat("en-GB", { month: "long", year: "numeric", timeZone: "UTC" });
 
   return (
@@ -247,9 +254,8 @@ export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
                 </li>
               ))}
             </ol>
-            <div className="mt-8 rounded-[var(--radius-md)] border-2 border-dashed border-line-strong p-4 text-sm text-muted">
-              <p className="font-display font-semibold text-ink">Save this route</p>
-              <p className="mt-1">Tracking your progress arrives with My Path. Every page stays free to read.</p>
+            <div className="mt-8">
+              <SaveRoute index={pathIndex} roleSlug={slug} roleTitle={role.title} />
             </div>
           </nav>
         </aside>

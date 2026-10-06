@@ -1,7 +1,7 @@
 ---
 title: iOS Engineer
 aliases: [iOS Developer, Swift Developer, Apple Platforms Engineer, Mobile Engineer (iOS)]
-summary: iOS engineers build native apps for iPhone and iPad with Swift and SwiftUI — polished, fast apps that follow Apple's design conventions and pass App Store review.
+summary: iOS engineers build native apps for iPhone and iPad with Swift and SwiftUI - polished, fast apps that follow Apple's design conventions and pass App Store review.
 whereTheyWork: Consumer apps, fintech, health and fitness, media, productivity tools, agencies, and companies whose customers skew towards iPhone.
 dayInLife:
   - Build a screen in SwiftUI that adapts to every iPhone size and Dynamic Type setting.
@@ -13,7 +13,7 @@ stages:
   - name: Foundations
     summary: Swift, Git and the basics of networking.
     skills: [swift, git, command-line, how-the-internet-works, data-structures-algorithms]
-    project: Solve twenty small problems in Swift Playgrounds or Xcode — optionals, structs, enums, protocols and closures.
+    project: Solve twenty small problems in Swift Playgrounds or Xcode - optionals, structs, enums, protocols and closures.
     doneWhen: You're comfortable with optionals, value vs reference types, protocols and async/await.
     weeks: 8–12
   - name: Core
@@ -41,8 +41,8 @@ tools: [A Mac with Xcode, Swift, SwiftUI, Instruments, SwiftData or Core Data, T
 interview:
   rounds:
     - Recruiter screen
-    - Coding — algorithms, often in Swift
-    - iOS fundamentals — memory management, concurrency, SwiftUI state
+    - Coding - algorithms, often in Swift
+    - iOS fundamentals - memory management, concurrency, SwiftUI state
     - Take-home or live app exercise
     - Mobile system design for mid-level and above
   practice:
@@ -50,7 +50,7 @@ interview:
     - { title: Develop in Swift tutorials, url: "https://developer.apple.com/tutorials/develop-in-swift", provider: Apple, type: course, cost: free, official: true }
     - { title: LeetCode, url: "https://leetcode.com/", provider: LeetCode, type: practice, cost: freemium }
     - { title: Tech Interview Handbook, url: "https://www.techinterviewhandbook.org/", provider: Yangshun Tay, type: docs, cost: free }
-aiImpact: Xcode and other assistants now complete Swift and SwiftUI code well, so writing views is less of a differentiator. What stands out is platform depth — concurrency correctness, performance, accessibility, privacy rules and keeping up with Apple's yearly changes — plus the taste to make apps feel native.
+aiImpact: Xcode and other assistants now complete Swift and SwiftUI code well, so writing views is less of a differentiator. What stands out is platform depth - concurrency correctness, performance, accessibility, privacy rules and keeping up with Apple's yearly changes - plus the taste to make apps feel native.
 market:
   - text: iOS users tend to spend more in apps, so many consumer and subscription businesses invest heavily in native iOS teams.
   - text: SwiftUI is Apple's recommended UI framework; most new iOS job posts expect it alongside UIKit knowledge for older code.
@@ -60,7 +60,7 @@ updated: 2026-10-06
 
 ## Is this role for you?
 
-iOS suits people who care about detail and polish and enjoy working within a well-designed platform. You'll need a Mac — Apple's tools only run on macOS.
+iOS suits people who care about detail and polish and enjoy working within a well-designed platform. You'll need a Mac - Apple's tools only run on macOS.
 
 ## Native or cross-platform?
 

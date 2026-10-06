@@ -12,7 +12,7 @@ learn:
   - topic: Unit tests
     detail: Test one function or module in isolation with clear inputs and expected outputs.
   - topic: Integration tests
-    detail: Check that pieces work together — your API with a real database, for example.
+    detail: Check that pieces work together - your API with a real database, for example.
   - topic: End-to-end tests
     detail: Drive the real app like a user would; fewer, slower, but high confidence.
   - topic: The test pyramid
@@ -20,7 +20,7 @@ learn:
   - topic: Arrange, act, assert
     detail: A simple structure that keeps tests readable.
   - topic: Mocks and fakes
-    detail: Replace slow or external dependencies — sparingly.
+    detail: Replace slow or external dependencies - sparingly.
   - topic: Running tests in CI
     detail: Tests only protect you if they run on every change.
 resources:

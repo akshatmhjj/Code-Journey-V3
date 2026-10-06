@@ -1,6 +1,6 @@
 import { ogCard, OG_SIZE } from "@/lib/og";
 
-export const alt = "Code Journey — the map of tech careers";
+export const alt = "Code Journey - the map of tech careers";
 export const size = OG_SIZE;
 export const contentType = "image/png";
 

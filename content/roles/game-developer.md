@@ -1,7 +1,7 @@
 ---
 title: Game Developer
 aliases: [Game Programmer, Gameplay Engineer, Unity Developer, Unreal Developer]
-summary: Game developers program the systems that make games work — gameplay, physics, AI, input, UI and performance — usually with engines like Unity, Unreal or Godot.
+summary: Game developers program the systems that make games work - gameplay, physics, AI, input, UI and performance - usually with engines like Unity, Unreal or Godot.
 whereTheyWork: Game studios of every size, mobile game companies, indie teams, and simulation, training and XR companies.
 dayInLife:
   - Implement a new gameplay mechanic from a designer's spec.
@@ -19,7 +19,7 @@ stages:
   - name: Core
     summary: A game engine, properly.
     skills: [unity, ui-design]
-    project: A small 2D or 3D game in Unity with several levels, enemies, sound, menus and save data — published on itch.io.
+    project: A small 2D or 3D game in Unity with several levels, enemies, sound, menus and save data - published on itch.io.
     doneWhen: You can build gameplay systems in an engine without following a tutorial step by step.
     weeks: 14–20
   - name: Job-ready
@@ -41,15 +41,15 @@ tools: [Unity (C#) or Unreal Engine (C++) or Godot, Visual Studio or Rider, Git 
 interview:
   rounds:
     - Recruiter screen
-    - Portfolio review — playable games you made and the code behind them
-    - Coding — C# or C++, maths and algorithms
+    - Portfolio review - playable games you made and the code behind them
+    - Coding - C# or C++, maths and algorithms
     - Engine-specific questions or a take-home gameplay task
     - Behavioural round on teamwork and finishing projects
   practice:
     - { title: itch.io game jams, url: "https://itch.io/jams", provider: itch.io, type: practice, cost: free }
     - { title: Game Programming Patterns (free online book), url: "https://gameprogrammingpatterns.com/", provider: Robert Nystrom, type: book, cost: free }
     - { title: Unity Learn, url: "https://learn.unity.com/", provider: Unity, type: course, cost: free, official: true }
-aiImpact: AI tools now help with code, placeholder art and prototyping, letting small teams build more. Finished, polished, fun games still depend on game-feel, performance and design judgement — and a portfolio of shipped games remains the strongest signal for hiring.
+aiImpact: AI tools now help with code, placeholder art and prototyping, letting small teams build more. Finished, polished, fun games still depend on game-feel, performance and design judgement - and a portfolio of shipped games remains the strongest signal for hiring.
 market:
   - text: The games industry is competitive and hiring is cyclical; a portfolio of finished, playable games matters more than credentials.
   - text: Unity (C#) dominates mobile and indie games; Unreal (C++) dominates high-end console and PC titles.
@@ -59,7 +59,7 @@ updated: 2026-10-06
 
 ## Is this role for you?
 
-Game development suits people who love games *and* enjoy the hard engineering behind them — maths, performance, and systems that must run 60 times a second. Expect long iteration on "feel".
+Game development suits people who love games *and* enjoy the hard engineering behind them - maths, performance, and systems that must run 60 times a second. Expect long iteration on "feel".
 
 ## Finish things
 

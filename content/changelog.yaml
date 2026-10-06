@@ -9,7 +9,7 @@
   title: Share your path
   changes:
     - type: added
-      text: Pick a handle on My Path and turn on a public page at codejourney.space/u/your-handle — your destination, progress and ticked skills, stage by stage. Handy for a CV, LinkedIn or GitHub.
+      text: Pick a handle on My Path and turn on a public page at codejourney.space/u/your-handle - your destination, progress and ticked skills, stage by stage. Handy for a CV, LinkedIn or GitHub.
     - type: added
       text: It's off until you switch it on, shows only the name you choose (never your email), and is kept out of search engines.
 - date: 2026-10-08
@@ -29,19 +29,19 @@
   title: Job post gap checker
   changes:
     - type: added
-      text: Paste any tech job post to see the skills it asks for, which you already have, and what to learn next — in prerequisite order, with the best resource for each and an estimate of the time it'll take.
+      text: Paste any tech job post to see the skills it asks for, which you already have, and what to learn next - in prerequisite order, with the best resource for each and an estimate of the time it'll take.
     - type: added
       text: It also flags foundations the post assumes but doesn't mention, like JavaScript behind a React job, and lists tech it names that Code Journey doesn't cover yet.
     - type: added
-      text: It runs entirely in your browser — the job post is never uploaded. Signed in, your answers save straight to My Path.
+      text: It runs entirely in your browser - the job post is never uploaded. Signed in, your answers save straight to My Path.
 - date: 2026-10-08
   version: "2.0.0-beta.8"
   title: Compass and Compare
   changes:
     - type: added
-      text: Compass — eight quick questions that suggest three roles that suit you, with the reasons from your own answers. No account needed.
+      text: Compass - eight quick questions that suggest three roles that suit you, with the reasons from your own answers. No account needed.
     - type: added
-      text: Compare any two roles side by side — skills in common, overlap, time to job-ready, must-have skills, interviews and how AI is changing each. Comparisons can be shared as links.
+      text: Compare any two roles side by side - skills in common, overlap, time to job-ready, must-have skills, interviews and how AI is changing each. Comparisons can be shared as links.
     - type: changed
       text: The "New to tech" path on the home page now starts with Compass, and every role page links to comparisons with its related roles.
 - date: 2026-10-07
@@ -51,7 +51,7 @@
     - type: added
       text: Pick a destination role and tick off each skill on its route as "learning" or "done". Stations you've finished fill in on the route itself.
     - type: added
-      text: Your profile now shows how far along you are — percentage complete, progress per stage, which stage you're on, your next stations, and the hours and months left at ten hours a week.
+      text: Your profile now shows how far along you are - percentage complete, progress per stage, which stage you're on, your next stations, and the hours and months left at ten hours a week.
     - type: added
       text: Every role page now has a "Make this my route" button and a progress summary in its sidebar.
     - type: added
@@ -81,7 +81,7 @@
   title: The whole map, written
   changes:
     - type: added
-      text: The last nine routes — Design Engineer, Analytics Engineer, MLOps Engineer, Platform Engineer, Cloud Security Engineer, Solutions Engineer, Developer Advocate, Game Developer and Embedded/IoT Engineer. All 26 routes are now complete.
+      text: The last nine routes - Design Engineer, Analytics Engineer, MLOps Engineer, Platform Engineer, Cloud Security Engineer, Solutions Engineer, Developer Advocate, Game Developer and Embedded/IoT Engineer. All 26 routes are now complete.
     - type: added
       text: Fifteen new skill pages, including UI design, web animation, Go, internal developer platforms, C#, C++, Unity, C, microcontrollers, RTOS and tech interviewing. All 99 skills on the map now have a page.
 - date: 2026-10-06
@@ -89,7 +89,7 @@
   title: Wave 2 routes
   changes:
     - type: added
-      text: Full routes for Android Engineer, iOS Engineer, Data Engineer, Cloud Engineer, Site Reliability Engineer, Application Security Engineer and Forward Deployed Engineer — 17 routes now live.
+      text: Full routes for Android Engineer, iOS Engineer, Data Engineer, Cloud Engineer, Site Reliability Engineer, Application Security Engineer and Forward Deployed Engineer - 17 routes now live.
     - type: added
       text: New skill pages for Jetpack Compose, SwiftUI, data warehouses, incident response, the OWASP Top 10, threat modelling, security testing and working with customers.
 - date: 2026-10-06
@@ -97,7 +97,7 @@
   title: All ten launch routes
   changes:
     - type: added
-      text: Full routes for Backend, Full-Stack, Cross-platform Mobile, Data Analyst, Data Scientist, AI Engineer, ML Engineer, DevOps and QA/SDET — joining Frontend.
+      text: Full routes for Backend, Full-Stack, Cross-platform Mobile, Data Analyst, Data Scientist, AI Engineer, ML Engineer, DevOps and QA/SDET - joining Frontend.
     - type: added
       text: 58 new skill pages, from Git and system design to RAG, Kubernetes and Playwright. Every skill on every launch route now has its own page.
     - type: added
@@ -109,7 +109,7 @@
     - type: added
       text: A new site built around roles, skills and resources, with a network map of every tech career route.
     - type: added
-      text: Four colour themes — Harbor, Juniper, Tangerine and Orchard — each with light and dark modes.
+      text: Four colour themes - Harbor, Juniper, Tangerine and Orchard - each with light and dark modes.
     - type: added
       text: Search across roles, skills, resources and the glossary from anywhere with ⌘K or Ctrl+K.
     - type: added

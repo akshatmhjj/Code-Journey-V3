@@ -1,7 +1,7 @@
 ---
 title: Application Security Engineer
 aliases: [AppSec Engineer, Product Security Engineer, Security Engineer, DevSecOps Engineer]
-summary: Application security engineers find and fix security flaws in the software a company builds — reviewing designs and code, testing for vulnerabilities, and building guardrails so developers ship secure code by default.
+summary: Application security engineers find and fix security flaws in the software a company builds - reviewing designs and code, testing for vulnerabilities, and building guardrails so developers ship secure code by default.
 whereTheyWork: Tech and SaaS companies, banks and fintech, healthcare, e-commerce, security consultancies, and government and defence contractors.
 dayInLife:
   - Threat-model a new payments feature with the team building it.
@@ -41,8 +41,8 @@ tools: [Burp Suite, OWASP ZAP, Semgrep or CodeQL, dependency scanners, a secrets
 interview:
   rounds:
     - Recruiter screen
-    - Web security fundamentals — explain and fix common vulnerabilities
-    - Secure code review — find the bugs in a snippet
+    - Web security fundamentals - explain and fix common vulnerabilities
+    - Secure code review - find the bugs in a snippet
     - Threat modelling or design review exercise
     - Coding or scripting, and a behavioural round
   practice:
@@ -50,7 +50,7 @@ interview:
     - { title: OWASP Juice Shop, url: "https://owasp.org/www-project-juice-shop/", provider: OWASP, type: practice, cost: free, official: true }
     - { title: Hack The Box, url: "https://www.hackthebox.com/", provider: Hack The Box, type: practice, cost: freemium }
     - { title: TryHackMe, url: "https://tryhackme.com/", provider: TryHackMe, type: practice, cost: freemium }
-aiImpact: AI coding tools increase the volume of code shipped — and AI-generated code can repeat insecure patterns confidently. That raises demand for people who can review code, design guardrails and automate checks at scale. AI features also bring new risks, such as prompt injection and data leakage, that AppSec teams now own.
+aiImpact: AI coding tools increase the volume of code shipped - and AI-generated code can repeat insecure patterns confidently. That raises demand for people who can review code, design guardrails and automate checks at scale. AI features also bring new risks, such as prompt injection and data leakage, that AppSec teams now own.
 market:
   - text: Application security is one of the most consistently hired specialisms in cybersecurity, especially at companies building their own software.
   - text: Postings usually want development experience plus web security knowledge; certifications help less than demonstrable skills (labs, write-ups, bug bounty findings).
@@ -60,7 +60,7 @@ updated: 2026-10-06
 
 ## Is this role for you?
 
-AppSec suits curious people who enjoy figuring out how things break — and who can explain risks to developers without lecturing. It sits between development and security, so coding ability matters as much as security knowledge.
+AppSec suits curious people who enjoy figuring out how things break - and who can explain risks to developers without lecturing. It sits between development and security, so coding ability matters as much as security knowledge.
 
 ## A common path
 

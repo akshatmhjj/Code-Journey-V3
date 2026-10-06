@@ -3,7 +3,7 @@ title: JavaScript
 domain: web
 level: beginner
 hours: 80–120
-brief: The brain — makes pages think, respond, and come alive.
+brief: The brain - makes pages think, respond, and come alive.
 prereqs:
   - html
   - css
@@ -15,17 +15,17 @@ learn:
   - topic: DOM Manipulation
     detail: document.querySelector('#btn') gets the element. .textContent, .style, .classList let you change it. This is the core skill.
   - topic: Events
-    detail: addEventListener('click', fn) — user clicks, scrolls, types, hovers. Your code runs in response.
+    detail: addEventListener('click', fn) - user clicks, scrolls, types, hovers. Your code runs in response.
   - topic: Array Methods
-    detail: .map(), .filter(), .reduce(), .find(), .some() — transform data without loops. The backbone of modern JS.
+    detail: .map(), .filter(), .reduce(), .find(), .some() - transform data without loops. The backbone of modern JS.
   - topic: Destructuring
-    detail: const {name, age} = user — extract values in one line. const [first, ...rest] = arr — same for arrays.
+    detail: const {name, age} = user - extract values in one line. const [first, ...rest] = arr - same for arrays.
   - topic: Fetch & Promises
     detail: fetch('/api/data') returns a Promise. async/await makes it read like synchronous code without blocking the browser.
   - topic: Error Handling
-    detail: try { await fetch(url) } catch(err) { handle gracefully } — always handle what can go wrong.
+    detail: try { await fetch(url) } catch(err) { handle gracefully } - always handle what can go wrong.
   - topic: Modules (ES6)
-    detail: import {greet} from './utils.js' — split code into files. export makes functions available to other files.
+    detail: import {greet} from './utils.js' - split code into files. export makes functions available to other files.
   - topic: Closures
     detail: A function that 'remembers' the variables from where it was created, even after that scope is gone. Counters and event handlers use this constantly.
 resources:
@@ -60,7 +60,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-HTML and CSS are like a beautiful printed poster — it looks great but you can't interact with it. JavaScript is what makes the poster come alive: pressing a button changes the text, a form checks your input before submitting, a timer counts down, data loads from the internet without reloading the page. It's the only language that runs natively inside every browser — no installation needed.
+HTML and CSS are like a beautiful printed poster - it looks great but you can't interact with it. JavaScript is what makes the poster come alive: pressing a button changes the text, a form checks your input before submitting, a timer counts down, data loads from the internet without reloading the page. It's the only language that runs natively inside every browser - no installation needed.
 
 ## How it works
 

@@ -68,7 +68,7 @@ export async function POST(req: Request) {
   // 3. Daily limit.
   const { data: allowed, error: limitError } = await db.rpc("consume_chat_message", { daily_limit: DAILY_LIMIT });
   if (limitError) return json(503, { error: "CJ AI is unavailable right now. Try again shortly." });
-  if (!allowed) return json(429, { error: `You've asked ${DAILY_LIMIT} questions today — that's the daily limit. It resets at midnight UTC.` });
+  if (!allowed) return json(429, { error: `You've asked ${DAILY_LIMIT} questions today - that's the daily limit. It resets at midnight UTC.` });
 
   // 4. Retrieve: exact role/skill pages first, then hybrid search.
   const question = turns[turns.length - 1].content;
@@ -120,7 +120,7 @@ export async function POST(req: Request) {
             controller,
             "delta",
             "Code Journey doesn't cover that yet. I can help with tech careers, the skills each role needs and where to learn them" +
-              (shown.length ? " — these pages are the closest match:" : "."),
+              (shown.length ? " - these pages are the closest match:" : "."),
           );
         } else {
           const prompt = `Sources:\n\n${formatSources(sources)}\n\nQuestion: ${question}`;

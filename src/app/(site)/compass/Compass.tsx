@@ -43,7 +43,7 @@ function Results({ questions, answers, roles, onRestart }: { questions: CompassQ
           Three routes worth a look.
         </h1>
         <p className="mt-4 max-w-[58ch] text-lg text-muted">
-          Based on your answers. Read each route&apos;s &ldquo;week in the life&rdquo; — that&apos;s the best test of whether it really fits.
+          Based on your answers. Read each route&apos;s &ldquo;week in the life&rdquo; - that&apos;s the best test of whether it really fits.
         </p>
       </div>
 
@@ -89,7 +89,7 @@ function Results({ questions, answers, roles, onRestart }: { questions: CompassQ
                 )}
                 {path?.signedIn && path.roleSlug === r.slug && (
                   <Link href="/me" className="btn btn-line">
-                    Your route — open My Path
+                    Your route - open My Path
                   </Link>
                 )}
               </div>
@@ -143,11 +143,11 @@ export function Compass({ questions, roles }: { questions: CompassQuestion[]; ro
             <p className="eyebrow">Compass</p>
             <h1 className="mt-4 max-w-[13ch] text-[clamp(2.75rem,7.5vw,5.5rem)] leading-[0.94] font-bold tracking-[-0.04em]">Not sure where you fit?</h1>
             <p className="mt-6 max-w-[50ch] text-xl text-muted">
-              Eight quick questions about what you enjoy. You&apos;ll get three roles that suit you, with the reasons — and the full route for each.
+              Eight quick questions about what you enjoy. You&apos;ll get three roles that suit you, with the reasons - and the full route for each.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <button onClick={() => setStarted(true)} className="btn btn-accent h-14 px-7 text-lg">
-                Start — about 2 minutes <ArrowRight size={19} />
+                Start - about 2 minutes <ArrowRight size={19} />
               </button>
               <Link href="/roles" className="font-semibold underline decoration-accent decoration-2 underline-offset-4">
                 Or browse all {Object.keys(roles).length} roles
@@ -198,7 +198,7 @@ export function Compass({ questions, roles }: { questions: CompassQuestion[]; ro
             >
               <ArrowLeft size={17} /> Back
             </button>
-            <span className="text-sm text-muted">Pick the closest — you can go back.</span>
+            <span className="text-sm text-muted">Pick the closest - you can go back.</span>
           </div>
         </div>
       )}

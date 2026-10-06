@@ -3,13 +3,13 @@ title: AWS
 domain: cloud-devops
 level: intermediate
 hours: 40–70
-brief: Amazon Web Services is the largest cloud platform. Learn the core building blocks — compute, storage, databases, networking and identity — and how to run apps on them safely and affordably.
+brief: Amazon Web Services is the largest cloud platform. Learn the core building blocks - compute, storage, databases, networking and identity - and how to run apps on them safely and affordably.
 prereqs:
   - linux
   - networking
 learn:
   - topic: Accounts, regions and IAM
-    detail: Users, roles and policies — least privilege from day one.
+    detail: Users, roles and policies - least privilege from day one.
   - topic: Compute
     detail: EC2 virtual machines, Lambda functions and container services (ECS, EKS).
   - topic: Storage
@@ -57,7 +57,7 @@ Instead of buying servers, companies rent them from cloud providers by the hour.
 
 ## Which cloud?
 
-AWS has the largest market share; Azure is strong in enterprises and GCP in data and AI. Concepts transfer well — learn one properly, then the others are mostly new names.
+AWS has the largest market share; Azure is strong in enterprises and GCP in data and AI. Concepts transfer well - learn one properly, then the others are mostly new names.
 
 ## Watch your bill
 

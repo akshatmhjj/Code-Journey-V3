@@ -5,7 +5,7 @@ import { ResourceBrowser } from "./ResourceBrowser";
 
 export const metadata: Metadata = {
   title: "Resource Library: Official Docs and the Best Free Material",
-  description: "Every resource on Code Journey in one place — official documentation first, then the best free courses, books, videos and practice sites. Every link checked.",
+  description: "Every resource on Code Journey in one place - official documentation first, then the best free courses, books, videos and practice sites. Every link checked.",
   alternates: { canonical: "/resources" },
 };
 

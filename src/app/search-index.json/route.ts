@@ -35,9 +35,9 @@ export function GET() {
     ...getGlossary().map((t) => ({ type: "term" as const, title: t.term, sub: t.definition.slice(0, 90), href: `/glossary/${t.slug}` })),
     ...getPosts().map((p) => ({ type: "post" as const, title: p.title, sub: p.excerpt, href: `/blog/${p.slug}` })),
     ...[
-      ["Compass — which role fits me?", "/compass"],
+      ["Compass - which role fits me?", "/compass"],
       ["Compare two roles", "/roles/compare"],
-      ["Job post gap checker — what am I missing?", "/gap"],
+      ["Job post gap checker - what am I missing?", "/gap"],
       ["About Code Journey", "/about"],
       ["FAQ", "/faq"],
       ["Changelog", "/changelog"],

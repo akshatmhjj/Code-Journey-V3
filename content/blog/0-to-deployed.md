@@ -12,7 +12,7 @@ You don’t need to know everything. You need to build layouts, fetch data, hand
 
 ## The one project
 
-A GitHub profile explorer is perfect because it covers everything — layout, API calls, error states, and deployment. It’s simple enough to finish but real enough to matter.
+A GitHub profile explorer is perfect because it covers everything - layout, API calls, error states, and deployment. It’s simple enough to finish but real enough to matter.
 
 ## What to skip
 

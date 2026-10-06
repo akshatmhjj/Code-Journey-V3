@@ -17,7 +17,7 @@ export function NetworkOverlay({ domains, roles }: { domains: Domain[]; roles: R
           <p className="eyebrow">The network</p>
           <h2 className="mt-3 max-w-3xl text-[clamp(2rem,5vw,3.5rem)] font-bold">Where do you want to go?</h2>
           <p className="mt-3 max-w-2xl text-lg text-muted">
-            Every line is a field of tech; every station is a role with its full route — stages, skills and the best resources for each.
+            Every line is a field of tech; every station is a role with its full route - stages, skills and the best resources for each.
           </p>
           <div className="mt-10">
             <NetworkList domains={domains} roles={roles} onNavigate={close} />

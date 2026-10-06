@@ -10,7 +10,7 @@ learn:
   - topic: Images and containers
     detail: An image is the recipe; a container is a running copy.
   - topic: Dockerfiles
-    detail: FROM, COPY, RUN, CMD — build your own images.
+    detail: FROM, COPY, RUN, CMD - build your own images.
   - topic: Layers and caching
     detail: Order instructions so rebuilds are fast.
   - topic: Smaller, safer images

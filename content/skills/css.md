@@ -3,26 +3,26 @@ title: CSS
 domain: web
 level: beginner
 hours: 40–60
-brief: Paint, furniture, lighting — make the blueprint beautiful.
+brief: Paint, furniture, lighting - make the blueprint beautiful.
 prereqs:
   - html
 learn:
   - topic: Selectors
-    detail: "element, .class, #id, [attr], :hover, :focus, ::before — target any element"
+    detail: "element, .class, #id, [attr], :hover, :focus, ::before - target any element"
   - topic: Box Model
     detail: Every element = content + padding + border + margin. Understanding this unlocks all layouts.
   - topic: Flexbox
-    detail: display:flex — arrange children in a row or column. justify-content and align-items do most of the work.
+    detail: display:flex - arrange children in a row or column. justify-content and align-items do most of the work.
   - topic: CSS Grid
-    detail: "display:grid — define rows AND columns. grid-template-columns: repeat(3, 1fr) makes three equal columns instantly."
+    detail: "display:grid - define rows AND columns. grid-template-columns: repeat(3, 1fr) makes three equal columns instantly."
   - topic: Responsive Design
-    detail: "@media (max-width: 640px) {} — change styles based on screen size. Mobile-first is the professional approach."
+    detail: "@media (max-width: 640px) {} - change styles based on screen size. Mobile-first is the professional approach."
   - topic: Custom Properties
-    detail: "--brand-color: #7c6ee0 — define values once, use everywhere. Changing a theme becomes one line."
+    detail: "--brand-color: #7c6ee0 - define values once, use everywhere. Changing a theme becomes one line."
   - topic: Transitions & Anim
-    detail: "transition: all 0.2s ease — smooth property changes on hover. @keyframes for complex animations."
+    detail: "transition: all 0.2s ease - smooth property changes on hover. @keyframes for complex animations."
   - topic: clamp() & fluid type
-    detail: "font-size: clamp(1rem, 2.5vw, 2rem) — text that scales perfectly between screen sizes without media queries."
+    detail: "font-size: clamp(1rem, 2.5vw, 2rem) - text that scales perfectly between screen sizes without media queries."
 resources:
   - cost: free
     title: "MDN: CSS styling basics"
@@ -55,7 +55,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-If HTML is the blueprint, CSS is the interior design. It decides the wall colour, furniture arrangement, lighting, and decoration. Without CSS, every webpage is plain black text on a white background — like a Word document from 1994. CSS is what turns a structural skeleton into something people want to look at.
+If HTML is the blueprint, CSS is the interior design. It decides the wall colour, furniture arrangement, lighting, and decoration. Without CSS, every webpage is plain black text on a white background - like a Word document from 1994. CSS is what turns a structural skeleton into something people want to look at.
 
 ## How it works
 

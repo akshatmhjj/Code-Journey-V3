@@ -39,7 +39,7 @@ export function SuggestResource({ skillSlug, skillTitle, existing }: { skillSlug
     return (
       <div className="mt-6 flex flex-wrap items-center gap-3 rounded-[var(--radius-md)] bg-surface px-5 py-4" role="status">
         <Check size={18} strokeWidth={3} />
-        <p className="flex-1">Thanks — we&apos;ll check it out. You can see its status on My Path.</p>
+        <p className="flex-1">Thanks - we&apos;ll check it out. You can see its status on My Path.</p>
         <button
           onClick={() => {
             setUrl("");
@@ -80,7 +80,7 @@ export function SuggestResource({ skillSlug, skillTitle, existing }: { skillSlug
     }
     const norm = (s: string) => s.replace(/\/+$/, "").toLowerCase();
     if (existing.some((x) => norm(x) === norm(clean))) {
-      setError("That one's already on the list — give it a thumbs up instead.");
+      setError("That one's already on the list - give it a thumbs up instead.");
       return;
     }
     setState("sending");

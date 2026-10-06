@@ -1,7 +1,7 @@
 - group: About Code Journey
   items:
     - q: What is Code Journey?
-      a: A free map of tech careers. For each role — Frontend Engineer, Data Analyst, AI Engineer and more — it shows what the job involves, which skills it needs in what order, and the best places to learn each one. We curate and point you to the best material; we don't teach courses ourselves.
+      a: A free map of tech careers. For each role - Frontend Engineer, Data Analyst, AI Engineer and more - it shows what the job involves, which skills it needs in what order, and the best places to learn each one. We curate and point you to the best material; we don't teach courses ourselves.
     - q: Is it free?
       a: Yes. Every role, skill and resource page is free and open without an account. An account only lets you save your progress.
     - q: Do you sell courses or earn commission on links?
@@ -17,7 +17,7 @@
     - q: How long will it take to become job-ready?
       a: It depends on your starting point and hours. Each role shows rough week ranges per stage, assuming about 10 hours a week. Treat them as a guide, not a deadline.
     - q: Can I suggest a resource or report a broken link?
-      a: Yes — that's coming with accounts. Until then, email the team at the address on the About page.
+      a: Yes - that's coming with accounts. Until then, email the team at the address on the About page.
 - group: Accounts and privacy
   items:
     - q: Do I need an account?

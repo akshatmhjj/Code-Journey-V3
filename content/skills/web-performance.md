@@ -3,12 +3,12 @@ title: Web Performance
 domain: web
 level: intermediate
 hours: 20–30
-brief: Making pages load fast and respond instantly — especially on mid-range phones and slow networks — measured with Core Web Vitals.
+brief: Making pages load fast and respond instantly - especially on mid-range phones and slow networks - measured with Core Web Vitals.
 prereqs:
   - javascript
 learn:
   - topic: Core Web Vitals
-    detail: LCP (loading), INP (responsiveness) and CLS (visual stability) — what they measure and good targets.
+    detail: LCP (loading), INP (responsiveness) and CLS (visual stability) - what they measure and good targets.
   - topic: Measuring
     detail: Lighthouse, Chrome DevTools Performance panel and real-user data.
   - topic: JavaScript cost
@@ -51,7 +51,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-Every extra second of loading loses users. Web performance is about sending less, sending it sooner and doing less work in the browser — so pages feel instant even on a cheap phone on a train.
+Every extra second of loading loses users. Web performance is about sending less, sending it sooner and doing less work in the browser - so pages feel instant even on a cheap phone on a train.
 
 ## Why it matters
 

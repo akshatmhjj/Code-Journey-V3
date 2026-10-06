@@ -3,17 +3,17 @@ title: Test Automation
 domain: quality
 level: intermediate
 hours: 25–40
-brief: Building and maintaining automated test suites that run on every change — choosing tools, keeping tests fast and stable, and making failures easy to understand.
+brief: Building and maintaining automated test suites that run on every change - choosing tools, keeping tests fast and stable, and making failures easy to understand.
 prereqs:
   - test-design
   - playwright
 learn:
   - topic: What to automate
-    detail: Repetitive, high-value, stable checks — not everything.
+    detail: Repetitive, high-value, stable checks - not everything.
   - topic: The test pyramid in practice
     detail: Balance unit, API and end-to-end tests.
   - topic: Frameworks
-    detail: Playwright, Cypress and Selenium — strengths and trade-offs.
+    detail: Playwright, Cypress and Selenium - strengths and trade-offs.
   - topic: Flaky tests
     detail: "Find and fix the root causes: timing, shared data, order dependence."
   - topic: Test data and environments
@@ -50,4 +50,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-Automated tests are only useful if people trust them. A suite that's slow or fails randomly gets ignored. Test automation as a skill is about building suites that are fast, stable and clear — so a red build always means something real.
+Automated tests are only useful if people trust them. A suite that's slow or fails randomly gets ignored. Test automation as a skill is about building suites that are fast, stable and clear - so a red build always means something real.

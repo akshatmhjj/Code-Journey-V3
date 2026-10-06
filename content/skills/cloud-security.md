@@ -3,7 +3,7 @@ title: Cloud Security
 domain: security
 level: advanced
 hours: 30–50
-brief: Keeping cloud accounts, identities, networks and data secure — least-privilege access, encryption, logging and catching misconfigurations before attackers do.
+brief: Keeping cloud accounts, identities, networks and data secure - least-privilege access, encryption, logging and catching misconfigurations before attackers do.
 prereqs:
   - aws
 learn:
@@ -43,4 +43,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-Most cloud breaches aren't clever hacks — they're a storage bucket left public, a key committed to GitHub, or a user with far more access than needed. Cloud security is about making those mistakes hard to make and quick to detect.
+Most cloud breaches aren't clever hacks - they're a storage bucket left public, a key committed to GitHub, or a user with far more access than needed. Cloud security is about making those mistakes hard to make and quick to detect.

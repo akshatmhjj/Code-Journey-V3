@@ -26,7 +26,7 @@ export default function Terms() {
         <h2>CJ AI</h2>
         <p>CJ AI is an automated assistant and can be wrong. Check important answers against the official documentation it points to.</p>
         <h2>Your account</h2>
-        <p>Keep your sign-in details to yourself and don&apos;t misuse the service — including automated scraping of CJ AI or attempts to break the site. We may suspend accounts that do.</p>
+        <p>Keep your sign-in details to yourself and don&apos;t misuse the service - including automated scraping of CJ AI or attempts to break the site. We may suspend accounts that do.</p>
         <h2>Our content</h2>
         <p>
           The writing, design, code and route maps on Code Journey belong to Code Journey. You&apos;re welcome to link to any page and quote short passages with credit. Please

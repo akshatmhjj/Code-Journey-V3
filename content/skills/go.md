@@ -3,14 +3,14 @@ title: Go
 domain: cloud-devops
 level: intermediate
 hours: 40–60
-brief: Go is a simple, fast, compiled language built at Google. It's the language of much cloud infrastructure — Docker, Kubernetes and Terraform are all written in Go.
+brief: Go is a simple, fast, compiled language built at Google. It's the language of much cloud infrastructure - Docker, Kubernetes and Terraform are all written in Go.
 prereqs:
   - git
 learn:
   - topic: Syntax and types
     detail: Variables, functions, structs, slices and maps.
   - topic: Errors as values
-    detail: if err != nil — explicit error handling instead of exceptions.
+    detail: if err != nil - explicit error handling instead of exceptions.
   - topic: Interfaces
     detail: Small, implicit interfaces that make code easy to test.
   - topic: Packages and modules
@@ -18,7 +18,7 @@ learn:
   - topic: Concurrency
     detail: Goroutines, channels, select and sync primitives.
   - topic: Standard library
-    detail: net/http, encoding/json, context and testing — often enough on their own.
+    detail: net/http, encoding/json, context and testing - often enough on their own.
   - topic: Testing
     detail: go test, table-driven tests and benchmarks.
   - topic: Building CLIs and services

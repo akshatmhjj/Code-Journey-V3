@@ -3,7 +3,7 @@ title: System Design
 domain: foundations
 level: advanced
 hours: 60–120
-brief: How to design software that serves many users reliably — splitting work across services, databases, caches and queues, and choosing trade-offs you can defend.
+brief: How to design software that serves many users reliably - splitting work across services, databases, caches and queues, and choosing trade-offs you can defend.
 prereqs:
   - rest-apis
   - sql
@@ -51,7 +51,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-Building something that works for 10 users is mostly coding. Making it work for 10 million — without falling over, losing data or costing a fortune — is system design. It's about knowing the building blocks (databases, caches, queues, load balancers) and the trade-offs between them.
+Building something that works for 10 users is mostly coding. Making it work for 10 million - without falling over, losing data or costing a fortune - is system design. It's about knowing the building blocks (databases, caches, queues, load balancers) and the trade-offs between them.
 
 ## Why it matters
 

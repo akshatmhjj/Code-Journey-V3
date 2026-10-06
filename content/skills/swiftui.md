@@ -3,7 +3,7 @@ title: SwiftUI
 domain: mobile
 level: intermediate
 hours: 40–60
-brief: SwiftUI is Apple's modern framework for building interfaces on iPhone, iPad, Mac and Watch — declarative views that update automatically when your data changes.
+brief: SwiftUI is Apple's modern framework for building interfaces on iPhone, iPad, Mac and Watch - declarative views that update automatically when your data changes.
 prereqs:
   - swift
 learn:

@@ -3,7 +3,7 @@ title: LLM APIs
 domain: ai
 level: beginner
 hours: 15–25
-brief: Calling large language models from code — sending messages, controlling output, handling streaming, tools and errors — through provider APIs like Gemini, OpenAI and Anthropic.
+brief: Calling large language models from code - sending messages, controlling output, handling streaming, tools and errors - through provider APIs like Gemini, OpenAI and Anthropic.
 prereqs:
   - python
   - rest-apis
@@ -11,7 +11,7 @@ learn:
   - topic: Messages and roles
     detail: System instructions, user and assistant turns, and conversation history.
   - topic: Parameters
-    detail: Model choice, max tokens and temperature — and what they change.
+    detail: Model choice, max tokens and temperature - and what they change.
   - topic: Structured output
     detail: Ask for JSON that matches a schema, and validate it.
   - topic: Streaming
@@ -53,7 +53,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-An LLM API is a web service: you send text (and sometimes images or files), and it sends back generated text. Everything in AI engineering — chatbots, retrieval, agents — is built on calling these APIs well.
+An LLM API is a web service: you send text (and sometimes images or files), and it sends back generated text. Everything in AI engineering - chatbots, retrieval, agents - is built on calling these APIs well.
 
 ## A first look
 

@@ -3,7 +3,7 @@ title: Working with AI Coding Tools
 domain: foundations
 level: beginner
 hours: 10–20
-brief: Using AI assistants — chat, autocomplete and coding agents — to write, explain and review code faster, while checking their output like you'd check a junior colleague's.
+brief: Using AI assistants - chat, autocomplete and coding agents - to write, explain and review code faster, while checking their output like you'd check a junior colleague's.
 prereqs:
   - git
 learn:
@@ -18,7 +18,7 @@ learn:
   - topic: Tests as guardrails
     detail: Have tests that tell you when generated code breaks something.
   - topic: Learning with AI
-    detail: Ask it to explain code and concepts — then verify against official docs.
+    detail: Ask it to explain code and concepts - then verify against official docs.
   - topic: Privacy and secrets
     detail: Know what your tool sends where, and never paste keys or customer data.
 resources:
@@ -54,7 +54,7 @@ AI coding tools are fast, tireless pair programmers that are sometimes confident
 
 ## Why it matters
 
-Most teams now use these tools daily, and interviewers increasingly ask how you use them. The skill that sets you apart isn't generating code — it's knowing whether the code is right.
+Most teams now use these tools daily, and interviewers increasingly ask how you use them. The skill that sets you apart isn't generating code - it's knowing whether the code is right.
 
 ## A good habit
 

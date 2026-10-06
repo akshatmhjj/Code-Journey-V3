@@ -25,7 +25,7 @@ export default function About() {
               which skills it takes, in what order, and where the best free material for each one lives.
             </p>
             <p>
-              Code Journey draws that picture for every role in tech — {net.roles.length} of them across {net.domains.length} fields — as a transit map. Pick a destination, follow the
+              Code Journey draws that picture for every role in tech - {net.roles.length} of them across {net.domains.length} fields - as a transit map. Pick a destination, follow the
               stations, and leave for the official docs and best resources at each stop.
             </p>
             <p className="font-display text-2xl font-semibold">We curate and point. The people who build the tools do the teaching.</p>

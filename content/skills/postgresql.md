@@ -50,4 +50,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-SQL is the language; PostgreSQL is a database that speaks it very well. Knowing Postgres properly — designing tables, adding the right index, using transactions — is what keeps apps correct and fast as data grows.
+SQL is the language; PostgreSQL is a database that speaks it very well. Knowing Postgres properly - designing tables, adding the right index, using transactions - is what keeps apps correct and fast as data grows.

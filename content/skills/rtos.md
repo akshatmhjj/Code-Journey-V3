@@ -3,7 +3,7 @@ title: Real-Time Operating Systems
 domain: specialist
 level: advanced
 hours: 30–50
-brief: Real-time operating systems such as FreeRTOS and Zephyr let embedded devices run several tasks with predictable timing — essential when a deadline missed is a failure.
+brief: Real-time operating systems such as FreeRTOS and Zephyr let embedded devices run several tasks with predictable timing - essential when a deadline missed is a failure.
 prereqs:
   - microcontrollers
 learn:
@@ -50,4 +50,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-A simple device runs one loop forever. A complex one — say, a drone — must read sensors, adjust motors and talk over radio at the same time, each on a strict schedule. An RTOS splits the work into tasks and guarantees the most urgent ones always run on time.
+A simple device runs one loop forever. A complex one - say, a drone - must read sensors, adjust motors and talk over radio at the same time, each on a strict schedule. An RTOS splits the work into tasks and guarantees the most urgent ones always run on time.

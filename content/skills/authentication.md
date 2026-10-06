@@ -14,9 +14,9 @@ learn:
   - topic: Sessions and cookies
     detail: Server-side sessions with secure, HttpOnly, SameSite cookies.
   - topic: Tokens and JWTs
-    detail: Stateless tokens — what's inside, how they're signed, and their pitfalls.
+    detail: Stateless tokens - what's inside, how they're signed, and their pitfalls.
   - topic: OAuth 2.0 and OpenID Connect
-    detail: "'Sign in with Google' — delegated login without handling passwords."
+    detail: "'Sign in with Google' - delegated login without handling passwords."
   - topic: Roles and permissions
     detail: Role-based access control, and checking permissions on the server every time.
   - topic: Auth providers
@@ -55,4 +55,4 @@ Logging in is a promise: "this request really comes from Priya." Authentication 
 
 ## A rule worth remembering
 
-Never trust the client. Hide buttons in the UI for convenience, but always check permissions on the server — and use a well-tested auth provider unless you have a strong reason not to.
+Never trust the client. Hide buttons in the UI for convenience, but always check permissions on the server - and use a well-tested auth provider unless you have a strong reason not to.

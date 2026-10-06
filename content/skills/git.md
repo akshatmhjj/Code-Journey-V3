@@ -7,21 +7,21 @@ brief: Git records every change to your code so you can undo mistakes, work on i
 prereqs: []
 learn:
   - topic: Repositories and commits
-    detail: git init, git add, git commit — save snapshots of your project with clear messages.
+    detail: git init, git add, git commit - save snapshots of your project with clear messages.
   - topic: History and undo
-    detail: git log, git diff, git restore and git revert — see what changed and safely go back.
+    detail: git log, git diff, git restore and git revert - see what changed and safely go back.
   - topic: Branches
-    detail: git switch -c feature — work on something new without touching the main code.
+    detail: git switch -c feature - work on something new without touching the main code.
   - topic: Merging and conflicts
     detail: Combine branches, and resolve conflicts calmly when two changes touch the same lines.
   - topic: Remotes
-    detail: git clone, git push, git pull — sync your work with GitHub.
+    detail: git clone, git push, git pull - sync your work with GitHub.
   - topic: Pull requests
-    detail: Propose changes, get reviews, and merge — the way almost every team works.
+    detail: Propose changes, get reviews, and merge - the way almost every team works.
   - topic: .gitignore and secrets
     detail: Keep node_modules, build output and .env files out of the repo. Never commit keys.
   - topic: Rebase basics
-    detail: Tidy a branch before merging — and know when not to rewrite shared history.
+    detail: Tidy a branch before merging - and know when not to rewrite shared history.
 resources:
   - title: Pro Git (free book)
     url: https://git-scm.com/book/en/v2

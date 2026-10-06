@@ -3,7 +3,7 @@ title: Infrastructure as Code (Terraform)
 domain: cloud-devops
 level: intermediate
 hours: 25–40
-brief: Describing servers, networks and databases in code instead of clicking in a console — so infrastructure is reviewable, repeatable and recoverable. Terraform (and OpenTofu) is the most widely used tool.
+brief: Describing servers, networks and databases in code instead of clicking in a console - so infrastructure is reviewable, repeatable and recoverable. Terraform (and OpenTofu) is the most widely used tool.
 prereqs:
   - aws
 learn:
@@ -50,4 +50,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-Clicking through a cloud console works once. Six months later, nobody remembers which boxes were ticked. Infrastructure as code writes it all down in files you can review, version and re-run — rebuilding an entire environment becomes one command.
+Clicking through a cloud console works once. Six months later, nobody remembers which boxes were ticked. Infrastructure as code writes it all down in files you can review, version and re-run - rebuilding an entire environment becomes one command.

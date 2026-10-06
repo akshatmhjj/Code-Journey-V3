@@ -3,7 +3,7 @@ title: Node.js
 domain: web
 level: intermediate
 hours: 60–90
-brief: JavaScript on the server — APIs, databases, authentication.
+brief: JavaScript on the server - APIs, databases, authentication.
 prereqs:
   - javascript
 learn:
@@ -16,7 +16,7 @@ learn:
   - topic: PostgreSQL + Prisma
     detail: Prisma ORM gives you type-safe database access. Define your schema once, get auto-generated, type-checked queries.
   - topic: JWT Authentication
-    detail: JSON Web Tokens — sign a token on login, verify it on every protected request. Never store plain passwords.
+    detail: JSON Web Tokens - sign a token on login, verify it on every protected request. Never store plain passwords.
   - topic: Environment Variables
     detail: .env files keep secrets (DB passwords, API keys) out of your code. Never commit them to git.
   - topic: Error Handling
@@ -50,7 +50,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-Node.js takes JavaScript — which only lived in browsers — and lets it run on a server. Think of a restaurant: the frontend is the dining room (what customers see), and Node.js is the kitchen (where orders are processed, food is prepared, and records are kept). The kitchen handles things the dining room can't: storing data permanently, sending emails, processing payments, keeping secrets hidden from customers.
+Node.js takes JavaScript - which only lived in browsers - and lets it run on a server. Think of a restaurant: the frontend is the dining room (what customers see), and Node.js is the kitchen (where orders are processed, food is prepared, and records are kept). The kitchen handles things the dining room can't: storing data permanently, sending emails, processing payments, keeping secrets hidden from customers.
 
 ## A first look
 

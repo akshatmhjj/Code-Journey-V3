@@ -8,25 +8,25 @@ prereqs:
   - pandas
 learn:
   - topic: plt.subplots()
-    detail: fig, ax = plt.subplots() — creates a figure and axes. fig.savefig('chart.png', dpi=150) to save it.
+    detail: fig, ax = plt.subplots() - creates a figure and axes. fig.savefig('chart.png', dpi=150) to save it.
   - topic: Bar charts
-    detail: ax.bar(categories, values) — compare quantities across categories. Horizontal with barh() for long labels.
+    detail: ax.bar(categories, values) - compare quantities across categories. Horizontal with barh() for long labels.
   - topic: Line charts
-    detail: "ax.plot(x, y, marker='o') — show trends over time. Multiple lines: call plot() again with a different series."
+    detail: "ax.plot(x, y, marker='o') - show trends over time. Multiple lines: call plot() again with a different series."
   - topic: Scatter plots
-    detail: ax.scatter(x, y, c=color_col, alpha=0.6) — show relationships between two numeric variables.
+    detail: ax.scatter(x, y, c=color_col, alpha=0.6) - show relationships between two numeric variables.
   - topic: Histograms
-    detail: ax.hist(data, bins=30, edgecolor='white') — show the distribution of a single numeric variable.
+    detail: ax.hist(data, bins=30, edgecolor='white') - show the distribution of a single numeric variable.
   - topic: Box plots
-    detail: seaborn.boxplot(data=df, x='category', y='value') — show median, IQR, and outliers per group.
+    detail: seaborn.boxplot(data=df, x='category', y='value') - show median, IQR, and outliers per group.
   - topic: Heatmaps
-    detail: sns.heatmap(df.corr(), annot=True, cmap='coolwarm') — show correlations between all numeric columns.
+    detail: sns.heatmap(df.corr(), annot=True, cmap='coolwarm') - show correlations between all numeric columns.
   - topic: FacetGrid
-    detail: sns.FacetGrid(df, col='category').map(sns.histplot, 'value') — the same chart repeated per category.
+    detail: sns.FacetGrid(df, col='category').map(sns.histplot, 'value') - the same chart repeated per category.
   - topic: Styling
     detail: plt.style.use('dark_background'). seaborn.set_theme(style='whitegrid'). Always label axes and add titles.
   - topic: Plotly (interactive)
-    detail: px.bar(df, x='month', y='revenue', color='category') — hover-over data. For dashboards and presentations.
+    detail: px.bar(df, x='month', y='revenue', color='category') - hover-over data. For dashboards and presentations.
 resources:
   - title: Matplotlib Gallery
     url: https://matplotlib.org/stable/gallery/index.html
@@ -56,7 +56,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-A table of 10,000 numbers tells you nothing at a glance. A histogram of those same numbers instantly reveals the distribution — whether it's normal, skewed, bimodal. This is why visualisation is not optional. Matplotlib is the foundation — low-level, full control. Seaborn builds on top with statistical charts that would take 50 lines in Matplotlib but take one line in Seaborn.
+A table of 10,000 numbers tells you nothing at a glance. A histogram of those same numbers instantly reveals the distribution - whether it's normal, skewed, bimodal. This is why visualisation is not optional. Matplotlib is the foundation - low-level, full control. Seaborn builds on top with statistical charts that would take 50 lines in Matplotlib but take one line in Seaborn.
 
 ## A first look
 

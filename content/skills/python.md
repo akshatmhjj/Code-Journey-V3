@@ -3,21 +3,21 @@ title: Python
 domain: data
 level: beginner
 hours: 40–60
-brief: The language of data science — readable, fast to write, faster to run with libraries.
+brief: The language of data science - readable, fast to write, faster to run with libraries.
 prereqs: []
 learn:
   - topic: Variables & Types
-    detail: Python is dynamically typed — no type declarations. int, float, str, bool, None. Use type hints for clarity.
+    detail: Python is dynamically typed - no type declarations. int, float, str, bool, None. Use type hints for clarity.
   - topic: Lists & Dicts
     detail: "[1,2,3] for ordered collections. {'name':'Alex','age':30} for key-value pairs. Both mutable."
   - topic: List Comprehensions
-    detail: "[x*2 for x in data if x>0] — filter and transform in one readable line. Faster than a for loop."
+    detail: "[x*2 for x in data if x>0] - filter and transform in one readable line. Faster than a for loop."
   - topic: Functions & Lambda
     detail: "def clean(text): return text.strip().lower(). Lambda: lambda x: x*2. Lambdas for simple one-line transforms."
   - topic: f-strings
-    detail: name="Alex"; print(f"Hello {name}") — embed expressions in strings. Cleaner than concatenation.
+    detail: name="Alex"; print(f"Hello {name}") - embed expressions in strings. Cleaner than concatenation.
   - topic: Context Managers
-    detail: "with open('data.csv') as f: — automatically closes the file even if an error occurs. Always use with open()."
+    detail: "with open('data.csv') as f: - automatically closes the file even if an error occurs. Always use with open()."
   - topic: Classes (for DS)
     detail: Use sparingly. You'll mostly use library classes (DataFrame, Model). Know how to read class docs though.
   - topic: Virtual Environments
@@ -25,7 +25,7 @@ learn:
   - topic: Jupyter Notebooks
     detail: .ipynb files. Mix code, output, and text. The standard for exploratory analysis and sharing results.
   - topic: Type Hints
-    detail: "def process(df: pd.DataFrame) -> pd.Series: — hints don't enforce types but make code readable and IDE-friendly."
+    detail: "def process(df: pd.DataFrame) -> pd.Series: - hints don't enforce types but make code readable and IDE-friendly."
 resources:
   - title: The Python Tutorial
     url: https://docs.python.org/3/tutorial/
@@ -48,7 +48,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-Python is to data science what Excel is to accountants — except infinitely more powerful, free, and automatable. It reads almost like English, which is why scientists, economists, and biologists who've never coded before can learn it in weeks. 90% of everything you'll do in data science happens in Python: loading data, cleaning it, visualising it, modelling it.
+Python is to data science what Excel is to accountants - except infinitely more powerful, free, and automatable. It reads almost like English, which is why scientists, economists, and biologists who've never coded before can learn it in weeks. 90% of everything you'll do in data science happens in Python: loading data, cleaning it, visualising it, modelling it.
 
 ## A first look
 

@@ -3,7 +3,7 @@ title: Retrieval-Augmented Generation (RAG)
 domain: ai
 level: intermediate
 hours: 25–40
-brief: "RAG lets a language model answer from your own documents: retrieve the most relevant passages, put them in the prompt, and have the model answer — with citations."
+brief: "RAG lets a language model answer from your own documents: retrieve the most relevant passages, put them in the prompt, and have the model answer - with citations."
 prereqs:
   - llm-apis
   - vector-databases
@@ -11,7 +11,7 @@ learn:
   - topic: Why RAG
     detail: Models don't know your private or recent data; retrieval gives it to them at question time.
   - topic: Chunking
-    detail: Split documents into passages that keep their meaning — by heading, not every 500 characters.
+    detail: Split documents into passages that keep their meaning - by heading, not every 500 characters.
   - topic: Embeddings
     detail: Turn text into vectors so similar meanings sit close together.
   - topic: Retrieval

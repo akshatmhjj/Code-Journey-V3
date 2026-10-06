@@ -19,7 +19,7 @@ type Msg = {
 
 const STARTERS = [
   "How do I become a Data Engineer?",
-  "Frontend or full-stack — which should I pick?",
+  "Frontend or full-stack - which should I pick?",
   "What are the best free resources to learn SQL?",
 ];
 
@@ -36,7 +36,7 @@ function inline(text: string, sources: SourceRef[] = []) {
         <Link
           key={i}
           href={s.url}
-          title={`${s.title}${s.heading ? ` — ${s.heading}` : ""}`}
+          title={`${s.title}${s.heading ? ` - ${s.heading}` : ""}`}
           className="mx-px inline-grid h-[1.35em] min-w-[1.35em] place-items-center rounded-full bg-ink px-1 align-[0.12em] font-mono text-[0.7em] font-bold text-canvas no-underline hover:bg-accent hover:text-on-accent"
         >
           {s.n}

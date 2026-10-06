@@ -3,7 +3,7 @@ title: PyTorch
 domain: ai
 level: intermediate
 hours: 30–50
-brief: PyTorch is the most widely used deep learning framework in research and industry — tensors, automatic gradients and building blocks for training neural networks.
+brief: PyTorch is the most widely used deep learning framework in research and industry - tensors, automatic gradients and building blocks for training neural networks.
 prereqs:
   - python
   - deep-learning

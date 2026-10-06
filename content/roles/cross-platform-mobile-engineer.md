@@ -1,13 +1,13 @@
 ---
 title: Cross-platform Mobile Engineer
 aliases: [Mobile Developer, Flutter Developer, React Native Developer, App Developer]
-summary: Cross-platform mobile engineers build one app that runs on both iPhone and Android — usually with Flutter or React Native — and get it through the app stores and onto people's phones.
+summary: Cross-platform mobile engineers build one app that runs on both iPhone and Android - usually with Flutter or React Native - and get it through the app stores and onto people's phones.
 whereTheyWork: Startups and product companies that need both platforms with a small team, agencies building client apps, and fintech, delivery and consumer apps.
 dayInLife:
   - Build a new screen from a Figma design and make it feel right on both iOS and Android.
   - Connect the screen to an API and handle slow networks and offline states.
   - Chase a crash that only happens on one Android model.
-  - Prepare a release — version numbers, screenshots, store notes — and submit it for review.
+  - Prepare a release - version numbers, screenshots, store notes - and submit it for review.
   - Decide whether a feature needs a small piece of native code.
 stages:
   - name: Foundations
@@ -26,7 +26,7 @@ stages:
     summary: Testing, authentication and shipping to both stores.
     skills: [mobile-testing, authentication, app-store-publishing, ci-cd, ai-coding-tools]
     project: Publish an app to Google Play and the App Store (or TestFlight) with sign-in, tests and a CI build.
-    doneWhen: A stranger can install your app from a store link — and it doesn't crash.
+    doneWhen: A stranger can install your app from a store link - and it doesn't crash.
     weeks: 8–12
   - name: Senior
     summary: Performance, native integration and app architecture.
@@ -49,7 +49,7 @@ interview:
     - { title: Tech Interview Handbook, url: "https://www.techinterviewhandbook.org/", provider: Yangshun Tay, type: docs, cost: free }
     - { title: Frontend Mentor (mobile-first designs to build), url: "https://www.frontendmentor.io/", provider: Frontend Mentor, type: practice, cost: freemium }
     - { title: Flutter samples, url: "https://github.com/flutter/samples", provider: Google, type: docs, cost: free, official: true }
-aiImpact: AI assistants are good at generating widgets and boilerplate, so building a basic screen is no longer a differentiator. Mobile engineers stand out by handling what's genuinely hard on phones — performance on cheap devices, offline behaviour, platform quirks, accessibility and getting through store review.
+aiImpact: AI assistants are good at generating widgets and boilerplate, so building a basic screen is no longer a differentiator. Mobile engineers stand out by handling what's genuinely hard on phones - performance on cheap devices, offline behaviour, platform quirks, accessibility and getting through store review.
 market:
   - text: Flutter and React Native are the two dominant cross-platform frameworks; both appear among the most-used frameworks in the Stack Overflow Developer Survey.
     source: { title: Stack Overflow Developer Survey, url: "https://survey.stackoverflow.co/" }
@@ -60,8 +60,8 @@ updated: 2026-10-06
 
 ## Is this role for you?
 
-Mobile suits people who love the feel of an app in their hand — smooth scrolling, the right animation, a button exactly where your thumb lands. You'll deal with two platforms' quirks and app-store rules, which takes patience.
+Mobile suits people who love the feel of an app in their hand - smooth scrolling, the right animation, a button exactly where your thumb lands. You'll deal with two platforms' quirks and app-store rules, which takes patience.
 
 ## Flutter or React Native?
 
-This route uses **Flutter** — one language (Dart), consistent UI on both platforms, and excellent tooling. If you already know React, **React Native** gets you to mobile faster because you reuse what you know. Both are hired for; check job posts near you. Going fully native instead? See [Android](/roles/android-engineer) or [iOS](/roles/ios-engineer).
+This route uses **Flutter** - one language (Dart), consistent UI on both platforms, and excellent tooling. If you already know React, **React Native** gets you to mobile faster because you reuse what you know. Both are hired for; check job posts near you. Going fully native instead? See [Android](/roles/android-engineer) or [iOS](/roles/ios-engineer).

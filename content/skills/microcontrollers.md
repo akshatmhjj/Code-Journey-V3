@@ -3,7 +3,7 @@ title: Microcontrollers (Arduino, ESP32, STM32)
 domain: specialist
 level: intermediate
 hours: 40–70
-brief: Microcontrollers are tiny computers on a single chip. Programming them means working with GPIO pins, timers, interrupts and peripherals — with kilobytes of memory.
+brief: Microcontrollers are tiny computers on a single chip. Programming them means working with GPIO pins, timers, interrupts and peripherals - with kilobytes of memory.
 prereqs:
   - c-programming
   - electronics-basics
@@ -52,7 +52,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-A microcontroller is a whole computer — processor, memory and input/output — on a chip smaller than a fingernail. It's what runs inside a washing machine, a fitness band or a car's window switch. Programming one means talking directly to its pins and hardware blocks.
+A microcontroller is a whole computer - processor, memory and input/output - on a chip smaller than a fingernail. It's what runs inside a washing machine, a fitness band or a car's window switch. Programming one means talking directly to its pins and hardware blocks.
 
 ## Start cheap
 

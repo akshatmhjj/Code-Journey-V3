@@ -3,13 +3,13 @@ title: Kubernetes
 domain: cloud-devops
 level: advanced
 hours: 50–80
-brief: Kubernetes runs and manages containers across many machines — restarting failures, scaling with traffic and rolling out updates without downtime.
+brief: Kubernetes runs and manages containers across many machines - restarting failures, scaling with traffic and rolling out updates without downtime.
 prereqs:
   - docker
   - networking
 learn:
   - topic: Why Kubernetes
-    detail: What it solves — and when a simpler platform is the better choice.
+    detail: What it solves - and when a simpler platform is the better choice.
   - topic: Pods, Deployments and ReplicaSets
     detail: How your containers are run and kept alive.
   - topic: Services and Ingress

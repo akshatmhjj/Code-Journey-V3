@@ -24,7 +24,7 @@ export function SaveResource({ url, title, skillSlug }: { url: string; title: st
       onClick={() => path.toggleSaved({ url, title, skillSlug })}
       aria-pressed={on}
       aria-label={on ? `Remove ${title} from saved` : `Save ${title}`}
-      title={on ? "Saved — click to remove" : "Save for later"}
+      title={on ? "Saved - click to remove" : "Save for later"}
       className={`${cls} ${on ? "border-ink bg-ink text-canvas" : "border-line hover:border-ink"}`}
     >
       {on ? <BookmarkCheck size={16} /> : <Bookmark size={16} />}

@@ -25,9 +25,9 @@ npm run dev
 
 Everything people read lives in `content/`, not in components:
 
-- `catalog.yaml` — the network: domains (lines), roles (destinations), skills (stations). Anything listed shows on the map; it gets a full page once its Markdown file exists.
-- `roles/<slug>.md` — a full route: stages, skills by priority, interviews, market notes.
-- `skills/<slug>.md` — 60-second brief, learning checklist, resources (official first).
+- `catalog.yaml` - the network: domains (lines), roles (destinations), skills (stations). Anything listed shows on the map; it gets a full page once its Markdown file exists.
+- `roles/<slug>.md` - a full route: stages, skills by priority, interviews, market notes.
+- `skills/<slug>.md` - 60-second brief, learning checklist, resources (official first).
 - `blog/`, `glossary.yaml`, `snippets.json`, `faq.yaml`, `changelog.yaml`.
 
 Schemas are in `src/lib/content.ts`; a bad field fails the build with a clear message.

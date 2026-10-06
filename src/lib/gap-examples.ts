@@ -3,7 +3,7 @@
 export const GAP_EXAMPLES = [
   {
     label: "Backend engineer",
-    text: `Backend Engineer — Payments Platform
+    text: `Backend Engineer - Payments Platform
 
 We're a Series C fintech looking for a backend engineer to join the rest of the team building our payments APIs.
 
@@ -24,7 +24,7 @@ You have
   },
   {
     label: "Data analyst",
-    text: `Data Analyst — Growth Team
+    text: `Data Analyst - Growth Team
 
 You'll excel at turning messy data into clear answers for product and marketing.
 

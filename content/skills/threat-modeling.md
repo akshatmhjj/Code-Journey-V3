@@ -3,7 +3,7 @@ title: Threat Modeling
 domain: security
 level: intermediate
 hours: 10–20
-brief: Thinking through how a system could be attacked before it's built — what you're protecting, from whom, and which defences matter most.
+brief: Thinking through how a system could be attacked before it's built - what you're protecting, from whom, and which defences matter most.
 prereqs:
   - web-security
 learn:
@@ -16,7 +16,7 @@ learn:
   - topic: Assets and attackers
     detail: What's valuable, and who realistically wants it.
   - topic: Prioritising risks
-    detail: Likelihood and impact — fix what matters first.
+    detail: Likelihood and impact - fix what matters first.
   - topic: Mitigations
     detail: "Map each threat to a control: auth, validation, encryption, rate limiting, logging."
   - topic: Making it routine
@@ -49,4 +49,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-Before building a house, you'd think about where the doors and windows are and who might try them. Threat modelling does the same for software: draw how data moves, ask what could go wrong at each step, and decide which defences are worth it — while changes are still cheap.
+Before building a house, you'd think about where the doors and windows are and who might try them. Threat modelling does the same for software: draw how data moves, ask what could go wrong at each step, and decide which defences are worth it - while changes are still cheap.

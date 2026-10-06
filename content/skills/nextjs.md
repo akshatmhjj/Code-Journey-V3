@@ -22,7 +22,7 @@ learn:
   - topic: Images and fonts
     detail: next/image and next/font for fast, stable pages.
   - topic: Deploying
-    detail: Vercel or any Node host — and environment variables done safely.
+    detail: Vercel or any Node host - and environment variables done safely.
 resources:
   - title: Learn Next.js
     url: https://nextjs.org/learn

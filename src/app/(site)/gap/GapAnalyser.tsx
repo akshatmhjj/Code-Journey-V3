@@ -108,7 +108,7 @@ export function GapAnalyser({ data }: { data: GapData }) {
           onChange={(e) => setText(e.target.value)}
           maxLength={MAX_CHARS}
           rows={10}
-          placeholder="Paste the full job description here — responsibilities, requirements, nice-to-haves…"
+          placeholder="Paste the full job description here - responsibilities, requirements, nice-to-haves…"
           className="w-full resize-y rounded-[var(--radius-lg)] border-2 border-ink bg-canvas p-4 text-[16px] leading-relaxed outline-none placeholder:text-faint focus:shadow-[4px_4px_0_var(--ink)] md:p-5"
         />
         <div className="flex flex-wrap items-center gap-3">
@@ -187,7 +187,7 @@ export function GapAnalyser({ data }: { data: GapData }) {
                       ))}
                       <div className="col-span-2 text-sm text-muted">
                         {view.hours[1] > 0
-                          ? `About ${formatHours(view.hours)} to close the gap — ${formatWeeks(view.hours)} at 10 hours a week.`
+                          ? `About ${formatHours(view.hours)} to close the gap - ${formatWeeks(view.hours)} at 10 hours a week.`
                           : "You already have everything this post asks for."}
                       </div>
                     </dl>
@@ -248,7 +248,7 @@ export function GapAnalyser({ data }: { data: GapData }) {
 
                 {result.notCovered.length > 0 && (
                   <section className="border-t-2 border-ink pt-6">
-                    <p className="eyebrow">Also mentioned — not on Code Journey yet</p>
+                    <p className="eyebrow">Also mentioned - not on Code Journey yet</p>
                     <ul className="mt-3 flex flex-wrap gap-2">
                       {result.notCovered.map((n) => (
                         <li key={n} className="rounded-full border-2 border-dashed border-line-strong px-3 py-1 text-[15px] text-muted">

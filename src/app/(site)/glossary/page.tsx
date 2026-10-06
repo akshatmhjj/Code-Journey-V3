@@ -5,7 +5,7 @@ import { GlossaryBrowser } from "./GlossaryBrowser";
 
 export const metadata: Metadata = {
   title: "Tech Glossary: Programming Terms in Plain English",
-  description: "API, closure, DOM, Git, promise and more — the words you'll meet learning to code, explained in plain English with examples.",
+  description: "API, closure, DOM, Git, promise and more - the words you'll meet learning to code, explained in plain English with examples.",
   alternates: { canonical: "/glossary" },
 };
 

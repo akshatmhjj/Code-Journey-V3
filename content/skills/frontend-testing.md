@@ -3,7 +3,7 @@ title: Frontend Testing
 domain: web
 level: intermediate
 hours: 20–30
-brief: Testing user interfaces the way people use them — components with Testing Library, and full flows in a real browser with Playwright.
+brief: Testing user interfaces the way people use them - components with Testing Library, and full flows in a real browser with Playwright.
 prereqs:
   - react
   - testing-basics
@@ -11,7 +11,7 @@ learn:
   - topic: What to test
     detail: Behaviour users see, not implementation details.
   - topic: Component tests
-    detail: Render a component, interact with it, check the result — with Testing Library.
+    detail: Render a component, interact with it, check the result - with Testing Library.
   - topic: Queries that mirror users
     detail: getByRole and getByLabelText before test IDs.
   - topic: Mocking network calls

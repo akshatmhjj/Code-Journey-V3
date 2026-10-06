@@ -3,24 +3,24 @@ title: Linux Administration
 domain: cloud-devops
 level: beginner
 hours: 40–60
-brief: Running and looking after Linux servers — users, packages, services, logs and security. Most of the internet runs on Linux, so this is the base of every infrastructure role.
+brief: Running and looking after Linux servers - users, packages, services, logs and security. Most of the internet runs on Linux, so this is the base of every infrastructure role.
 prereqs:
   - command-line
 learn:
   - topic: The file system
-    detail: /etc, /var/log, /home, /usr — where things live and why.
+    detail: /etc, /var/log, /home, /usr - where things live and why.
   - topic: Users, groups and permissions
     detail: Who can do what, sudo, and least privilege.
   - topic: Packages
-    detail: apt or dnf — installing, updating and pinning software.
+    detail: apt or dnf - installing, updating and pinning software.
   - topic: Services with systemd
     detail: systemctl start/enable/status, and reading journalctl logs.
   - topic: Processes and resources
-    detail: top, htop, free, df, du — what's using CPU, memory and disk.
+    detail: top, htop, free, df, du - what's using CPU, memory and disk.
   - topic: SSH
     detail: Key-based login, config files and hardening a server.
   - topic: Networking tools
-    detail: ip, ss, curl, dig — check ports, connections and DNS.
+    detail: ip, ss, curl, dig - check ports, connections and DNS.
   - topic: Firewalls and updates
     detail: ufw or firewalld, and keeping a server patched.
 resources:
@@ -50,7 +50,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-Your laptop has an operating system you click around in. Servers run Linux, usually with no screen at all — you manage them over SSH from a terminal. Linux administration is knowing how to keep one of those machines healthy, secure and doing its job.
+Your laptop has an operating system you click around in. Servers run Linux, usually with no screen at all - you manage them over SSH from a terminal. Linux administration is knowing how to keep one of those machines healthy, secure and doing its job.
 
 ## How to practise
 

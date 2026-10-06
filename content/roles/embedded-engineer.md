@@ -1,7 +1,7 @@
 ---
 title: Embedded / IoT Engineer
 aliases: [Embedded Software Engineer, Firmware Engineer, IoT Developer, Embedded Systems Engineer]
-summary: Embedded engineers write the software that runs on hardware — sensors, wearables, cars, medical devices, appliances — where memory is tiny, timing matters and bugs can be physical.
+summary: Embedded engineers write the software that runs on hardware - sensors, wearables, cars, medical devices, appliances - where memory is tiny, timing matters and bugs can be physical.
 whereTheyWork: Automotive and EV companies, consumer electronics, medical devices, industrial automation, aerospace and defence, telecom, and IoT startups.
 dayInLife:
   - Write a driver for a new temperature sensor over I2C.
@@ -31,7 +31,7 @@ stages:
   - name: Senior
     summary: Security, reliability and system architecture.
     skills: [linux, system-design, technical-writing]
-    project: Design firmware architecture for a connected product — boot, updates, security, power and logging — as a design doc.
+    project: Design firmware architecture for a connected product - boot, updates, security, power and logging - as a design doc.
     doneWhen: You can lead firmware for a product that ships to thousands of customers.
 skills:
   must: [c-programming, microcontrollers, embedded-protocols, electronics-basics, git]
@@ -41,15 +41,15 @@ tools: [C and C++, an ESP32 or STM32 board, Arduino IDE or PlatformIO, STM32Cube
 interview:
   rounds:
     - Recruiter screen
-    - C fundamentals — pointers, memory, bit manipulation, volatile
-    - Embedded concepts — interrupts, timers, protocols, RTOS
-    - Practical — debug or write code for a microcontroller scenario
+    - C fundamentals - pointers, memory, bit manipulation, volatile
+    - Embedded concepts - interrupts, timers, protocols, RTOS
+    - Practical - debug or write code for a microcontroller scenario
     - Project deep dive and behavioural round
   practice:
     - { title: Embedded Systems – Shape the World (free course), url: "https://users.ece.utexas.edu/~valvano/Volume1/E-Book/", provider: Jonathan Valvano & Ramesh Yerraballi, type: course, cost: free }
     - { title: Interrupt blog, url: "https://interrupt.memfault.com/", provider: Memfault, type: article, cost: free }
     - { title: Wokwi (online simulator), url: "https://wokwi.com/", provider: Wokwi, type: interactive, cost: freemium }
-aiImpact: AI assistants help with boilerplate and explaining datasheets, but embedded work depends on details AI often gets wrong — exact register settings, timing, memory limits and hardware quirks. Engineers who can verify against datasheets and debug on real hardware remain essential. "Edge AI" (running small models on devices) is a growing area.
+aiImpact: AI assistants help with boilerplate and explaining datasheets, but embedded work depends on details AI often gets wrong - exact register settings, timing, memory limits and hardware quirks. Engineers who can verify against datasheets and debug on real hardware remain essential. "Edge AI" (running small models on devices) is a growing area.
 market:
   - text: Embedded engineers are in steady demand across automotive, medical, industrial and consumer electronics, with less hiring volatility than many software roles.
   - text: C remains the core language in embedded job posts, with C++ and Rust increasingly common.
@@ -59,7 +59,7 @@ updated: 2026-10-06
 
 ## Is this role for you?
 
-Embedded suits people who want their code to make something physical happen — and who enjoy the low-level puzzle of making it fit in kilobytes and respond in microseconds. You'll need patience: hardware bugs are tricky.
+Embedded suits people who want their code to make something physical happen - and who enjoy the low-level puzzle of making it fit in kilobytes and respond in microseconds. You'll need patience: hardware bugs are tricky.
 
 ## How to start cheaply
 

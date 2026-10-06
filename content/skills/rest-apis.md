@@ -3,7 +3,7 @@ title: REST APIs
 domain: web
 level: beginner
 hours: 20–30
-brief: REST APIs let apps talk to servers over HTTP using URLs, methods and JSON. Almost every app — web, mobile or AI — is built on top of them.
+brief: REST APIs let apps talk to servers over HTTP using URLs, methods and JSON. Almost every app - web, mobile or AI - is built on top of them.
 prereqs:
   - how-the-internet-works
 learn:
@@ -18,7 +18,7 @@ learn:
   - topic: Validation and errors
     detail: Reject bad input early with clear error messages.
   - topic: Pagination, filtering, sorting
-    detail: ?page=2&limit=20&sort=-created — keep responses small and predictable.
+    detail: ?page=2&limit=20&sort=-created - keep responses small and predictable.
   - topic: Versioning and docs
     detail: Change APIs without breaking clients; describe them with OpenAPI.
   - topic: Calling APIs
@@ -51,7 +51,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-An API is a menu a server offers: "ask me for /products and I'll send a list; send me a new order to /orders and I'll save it." REST is the most common style — plain URLs, standard HTTP methods and JSON.
+An API is a menu a server offers: "ask me for /products and I'll send a list; send me a new order to /orders and I'll save it." REST is the most common style - plain URLs, standard HTTP methods and JSON.
 
 ## A first look
 

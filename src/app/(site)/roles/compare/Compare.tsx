@@ -118,7 +118,7 @@ export function Compare({ roles, skillTitles }: { roles: CompareRole[]; skillTit
             </div>
             <p className="max-w-[44ch] text-[15px] text-muted">
               {overlap >= 50
-                ? "These routes overlap a lot — starting one gets you well along the other."
+                ? "These routes overlap a lot - starting one gets you well along the other."
                 : overlap >= 25
                   ? "A solid shared core, then they split. Learn the shared skills first."
                   : "Quite different routes. The shared skills are mostly foundations."}
@@ -191,8 +191,8 @@ export function Compare({ roles, skillTitles }: { roles: CompareRole[]; skillTit
         <Row label="Where they work" a={<p>{a.whereTheyWork}</p>} b={<p>{b.whereTheyWork}</p>} />
         <Row
           label="Interviews"
-          a={<ul className="grid gap-1 text-[15px]">{a.rounds.map((r) => <li key={r}>— {r}</li>)}</ul>}
-          b={<ul className="grid gap-1 text-[15px]">{b.rounds.map((r) => <li key={r}>— {r}</li>)}</ul>}
+          a={<ul className="grid gap-1 text-[15px]">{a.rounds.map((r) => <li key={r}>- {r}</li>)}</ul>}
+          b={<ul className="grid gap-1 text-[15px]">{b.rounds.map((r) => <li key={r}>- {r}</li>)}</ul>}
         />
         <Row label="How AI is changing it" a={<p className="text-[15px]">{a.aiImpact}</p>} b={<p className="text-[15px]">{b.aiImpact}</p>} />
         <Row

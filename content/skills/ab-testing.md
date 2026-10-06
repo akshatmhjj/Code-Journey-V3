@@ -3,7 +3,7 @@ title: A/B Testing & Experiments
 domain: data
 level: intermediate
 hours: 20–30
-brief: Running controlled experiments — showing two versions to random groups of users — to find out whether a change actually caused an improvement.
+brief: Running controlled experiments - showing two versions to random groups of users - to find out whether a change actually caused an improvement.
 prereqs:
   - statistics
 learn:
@@ -42,4 +42,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-Sales went up after you changed the button colour — but did the colour cause it, or was it payday? An A/B test answers that by showing the old and new versions to random halves of your users at the same time and comparing.
+Sales went up after you changed the button colour - but did the colour cause it, or was it payday? An A/B test answers that by showing the old and new versions to random halves of your users at the same time and comparing.

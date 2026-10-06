@@ -3,21 +3,21 @@ title: Swift
 domain: mobile
 level: intermediate
 hours: 60–100
-brief: Apple's language — the only way to deeply build for iPhone.
+brief: Apple's language - the only way to deeply build for iPhone.
 prereqs: []
 learn:
   - topic: let / var
     detail: let = constant (can't change). var = variable. Swift's type inference means you rarely need to write the type explicitly.
   - topic: Optionals
-    detail: "var name: String? = nil — the ? marks a value as possibly absent. Unwrap with if let name { } or name ?? default."
+    detail: "var name: String? = nil - the ? marks a value as possibly absent. Unwrap with if let name { } or name ?? default."
   - topic: Structs vs Classes
-    detail: Structs are value types (copied on assignment) — prefer them. Classes are reference types (shared). Use classes for identity.
+    detail: Structs are value types (copied on assignment) - prefer them. Classes are reference types (shared). Use classes for identity.
   - topic: Protocols
     detail: "Like interfaces. protocol Identifiable { var id: UUID { get } }. A type that 'conforms to' a protocol must implement it."
   - topic: Generics
-    detail: "func first<T>(_ array: [T]) -> T? { return array.first } — write once, works for any type"
+    detail: "func first<T>(_ array: [T]) -> T? { return array.first } - write once, works for any type"
   - topic: Closures
-    detail: "{ (x: Int) -> Int in return x * 2 } — blocks of code you pass around. Shorthand: { $0 * 2 }"
+    detail: "{ (x: Int) -> Int in return x * 2 } - blocks of code you pass around. Shorthand: { $0 * 2 }"
   - topic: SwiftUI
     detail: Declarative UI like Flutter. @State drives re-renders. VStack, HStack, ZStack for layout. Previews in Xcode.
   - topic: async/await
@@ -54,7 +54,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-Swift is to iOS what Kotlin is to Android. If you want to build something that feels deeply, distinctly native on an iPhone — a camera app with custom filters, an Apple Watch face, a widget on the iOS home screen — Swift is the only way. Apple designed Swift to be safer, faster, and more readable than Objective-C. It compiles directly to machine code, making it genuinely fast.
+Swift is to iOS what Kotlin is to Android. If you want to build something that feels deeply, distinctly native on an iPhone - a camera app with custom filters, an Apple Watch face, a widget on the iOS home screen - Swift is the only way. Apple designed Swift to be safer, faster, and more readable than Objective-C. It compiles directly to machine code, making it genuinely fast.
 
 ## A first look
 

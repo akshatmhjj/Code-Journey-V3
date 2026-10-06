@@ -3,7 +3,7 @@ title: Electronics Basics
 domain: specialist
 level: beginner
 hours: 20–40
-brief: The electronics an embedded engineer needs — voltage, current, resistance, reading schematics, using a multimeter and connecting sensors safely.
+brief: The electronics an embedded engineer needs - voltage, current, resistance, reading schematics, using a multimeter and connecting sensors safely.
 prereqs: []
 learn:
   - topic: Voltage, current and resistance

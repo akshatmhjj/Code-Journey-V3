@@ -70,7 +70,7 @@ export function entitySource(kind: "role" | "skill", slug: string): Source | nul
       heading: "The full route",
       content: [
         r.summary,
-        ...r.stages.map((s, i) => `Stage ${i + 1} — ${s.name}${s.weeks ? ` (${s.weeks} weeks at ~10 h/week)` : ""}: ${s.summary} Skills: ${s.skills.map(title).join(", ")}. Project: ${s.project}`),
+        ...r.stages.map((s, i) => `Stage ${i + 1} - ${s.name}${s.weeks ? ` (${s.weeks} weeks at ~10 h/week)` : ""}: ${s.summary} Skills: ${s.skills.map(title).join(", ")}. Project: ${s.project}`),
         `Must have: ${r.skills.must.map(title).join(", ")}. Should have: ${r.skills.should.map(title).join(", ")}.`,
         `Interview rounds: ${r.interview.rounds.join("; ")}.`,
       ].join("\n"),
@@ -86,7 +86,7 @@ export function entitySource(kind: "role" | "skill", slug: string): Source | nul
     content: [
       `${s.brief} Level: ${s.level}.${s.hours ? ` About ${s.hours} hours.` : ""}${s.prereqs.length ? ` Learn first: ${s.prereqs.map(title).join(", ")}.` : ""}`,
       `What to learn: ${s.learn.map((l) => l.topic).join("; ")}.`,
-      `Best resources: ${s.resources.slice(0, 5).map((r) => `${r.title}${r.official ? " (official)" : ""} — ${r.url}`).join("; ")}.`,
+      `Best resources: ${s.resources.slice(0, 5).map((r) => `${r.title}${r.official ? " (official)" : ""} - ${r.url}`).join("; ")}.`,
     ].join("\n"),
   };
 }

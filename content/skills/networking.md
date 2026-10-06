@@ -3,12 +3,12 @@ title: Networking
 domain: cloud-devops
 level: intermediate
 hours: 30–50
-brief: How computers find and talk to each other — IP addressing, DNS, TCP, HTTP, load balancers and firewalls — and how to debug it when they can't.
+brief: How computers find and talk to each other - IP addressing, DNS, TCP, HTTP, load balancers and firewalls - and how to debug it when they can't.
 prereqs:
   - how-the-internet-works
 learn:
   - topic: The layers
-    detail: A practical view of the OSI/TCP-IP model — what lives where.
+    detail: A practical view of the OSI/TCP-IP model - what lives where.
   - topic: IP addressing and subnets
     detail: IPv4, CIDR notation (10.0.0.0/16) and private vs public addresses.
   - topic: DNS in depth

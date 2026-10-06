@@ -1,7 +1,7 @@
 ---
 title: Solutions Engineer
 aliases: [Sales Engineer, Pre-sales Engineer, Solutions Architect, Technical Account Manager]
-summary: Solutions engineers show customers how a technical product solves their problem — running demos, designing integrations, answering hard technical questions, and helping customers succeed after they buy.
+summary: Solutions engineers show customers how a technical product solves their problem - running demos, designing integrations, answering hard technical questions, and helping customers succeed after they buy.
 whereTheyWork: SaaS and developer-tool companies, cloud providers, data and AI platforms, cybersecurity vendors, and enterprise software companies.
 dayInLife:
   - Run a tailored demo for a prospect's engineering team.
@@ -11,9 +11,9 @@ dayInLife:
   - Bring customer feedback to the product team.
 stages:
   - name: Foundations
-    summary: Broad technical literacy — APIs, data and one language.
+    summary: Broad technical literacy - APIs, data and one language.
     skills: [how-the-internet-works, rest-apis, sql, python, git]
-    project: Build a script that pulls data from a public API, transforms it, and loads it into a database — then explain it to a non-technical friend.
+    project: Build a script that pulls data from a public API, transforms it, and loads it into a database - then explain it to a non-technical friend.
     doneWhen: You can explain APIs, databases and authentication clearly to both engineers and executives.
     weeks: 8–12
   - name: Core
@@ -31,7 +31,7 @@ stages:
   - name: Senior
     summary: Complex deals and strategic accounts.
     skills: [cloud-security, data-modeling]
-    project: Write a solution architecture for an enterprise customer — integration, security, data flow and rollout plan.
+    project: Write a solution architecture for an enterprise customer - integration, security, data flow and rollout plan.
     doneWhen: You lead the technical side of large deals and shape what the product builds next.
 skills:
   must: [working-with-customers, rest-apis, sql, authentication, technical-writing]
@@ -41,15 +41,15 @@ tools: [Your company's product and APIs, Postman or Bruno, Python or JavaScript,
 interview:
   rounds:
     - Recruiter screen
-    - Technical discussion — APIs, integrations and architecture
+    - Technical discussion - APIs, integrations and architecture
     - Mock demo or presentation to a panel playing the customer
-    - Case study — design a solution for a customer scenario
+    - Case study - design a solution for a customer scenario
     - Behavioural round on communication and handling objections
   practice:
     - { title: The Mom Test (book), url: "https://www.momtestbook.com/", provider: Rob Fitzpatrick, type: book, cost: paid }
     - { title: Google Technical Writing courses, url: "https://developers.google.com/tech-writing", provider: Google, type: course, cost: free }
     - { title: System Design Primer, url: "https://github.com/donnemartin/system-design-primer", provider: Donne Martin, type: docs, cost: free }
-aiImpact: AI helps solutions engineers prepare faster — researching customers, drafting answers and building quick prototypes. The human parts — understanding a customer's real situation, building trust and judging what will actually work — matter more as products (especially AI products) get more complex.
+aiImpact: AI helps solutions engineers prepare faster - researching customers, drafting answers and building quick prototypes. The human parts - understanding a customer's real situation, building trust and judging what will actually work - matter more as products (especially AI products) get more complex.
 market:
   - text: Solutions and sales engineering is a well-paid route for engineers who enjoy people, often with a mix of salary and commission.
   - text: AI and data platforms in particular hire solutions engineers who can build quick proofs of concept on customer data.

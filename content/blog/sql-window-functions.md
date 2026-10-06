@@ -12,7 +12,7 @@ Window functions let you calculate values across rows without collapsing them. T
 
 ## Why they matter
 
-Most real analysis involves comparisons — previous values, rankings, trends. Window functions make those patterns easy to express in a single query.
+Most real analysis involves comparisons - previous values, rankings, trends. Window functions make those patterns easy to express in a single query.
 
 ## How to learn
 

@@ -5,7 +5,7 @@ import { Compare, type CompareRole } from "./Compare";
 
 export const metadata: Metadata = {
   title: "Compare Tech Roles Side by Side",
-  description: "Frontend or full-stack? Data analyst or data scientist? Compare any two tech roles — skills in common, time to job-ready, interviews and how AI is changing each.",
+  description: "Frontend or full-stack? Data analyst or data scientist? Compare any two tech roles - skills in common, time to job-ready, interviews and how AI is changing each.",
   alternates: { canonical: "/roles/compare" },
 };
 

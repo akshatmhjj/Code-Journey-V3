@@ -3,12 +3,12 @@ title: Performance Testing
 domain: quality
 level: intermediate
 hours: 15–25
-brief: Load and stress testing — simulating many users to find how much traffic a system handles, where it slows down and how it fails.
+brief: Load and stress testing - simulating many users to find how much traffic a system handles, where it slows down and how it fails.
 prereqs:
   - api-testing
 learn:
   - topic: Types of tests
-    detail: Load, stress, spike and soak tests — and what each answers.
+    detail: Load, stress, spike and soak tests - and what each answers.
   - topic: Realistic scenarios
     detail: Model real user journeys and traffic patterns.
   - topic: Metrics
@@ -45,4 +45,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-An app that's fast for one tester might collapse when 10,000 people arrive after a marketing email. Performance testing finds that breaking point — in a test environment, before your customers do.
+An app that's fast for one tester might collapse when 10,000 people arrive after a marketing email. Performance testing finds that breaking point - in a test environment, before your customers do.

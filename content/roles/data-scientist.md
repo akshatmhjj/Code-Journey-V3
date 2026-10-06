@@ -1,7 +1,7 @@
 ---
 title: Data Scientist
 aliases: [Applied Scientist, Product Data Scientist, Decision Scientist, Quantitative Analyst]
-summary: Data scientists use statistics, experiments and machine learning to explain what drives outcomes and predict what happens next — then turn that into decisions a business can act on.
+summary: Data scientists use statistics, experiments and machine learning to explain what drives outcomes and predict what happens next - then turn that into decisions a business can act on.
 whereTheyWork: Tech and product companies, banks and insurers, e-commerce, healthcare and pharma, consulting, and research labs.
 dayInLife:
   - Design an A/B test and work out how long it must run to be trustworthy.
@@ -13,13 +13,13 @@ stages:
   - name: Foundations
     summary: Python, SQL and the statistics everything else rests on.
     skills: [python, sql, statistics, git]
-    project: Analyse a public dataset in a notebook — clean it, describe it, and test one clear hypothesis.
+    project: Analyse a public dataset in a notebook - clean it, describe it, and test one clear hypothesis.
     doneWhen: You can explain p-values, confidence intervals and correlation vs causation without notes.
     weeks: 12–16
   - name: Core
     summary: Working with data at speed and showing what it says.
     skills: [pandas, data-visualization, ab-testing, math-for-ml]
-    project: Analyse a (real or simulated) A/B test end to end — sample size, results, uncertainty and a recommendation.
+    project: Analyse a (real or simulated) A/B test end to end - sample size, results, uncertainty and a recommendation.
     doneWhen: You can take a vague business question and turn it into an analysis plan.
     weeks: 10–14
   - name: Job-ready
@@ -43,16 +43,16 @@ interview:
     - Recruiter screen
     - SQL and Python coding
     - Statistics and probability questions
-    - Product or case round — design a metric or an experiment
+    - Product or case round - design a metric or an experiment
     - Machine learning concepts and a take-home project for many roles
   practice:
     - { title: DataLemur, url: "https://datalemur.com/", provider: DataLemur, type: practice, cost: freemium }
     - { title: Machine Learning Interviews (free book), url: "https://huyenchip.com/ml-interviews-book/", provider: Chip Huyen, type: book, cost: free }
     - { title: Kaggle competitions, url: "https://www.kaggle.com/competitions", provider: Kaggle, type: practice, cost: free }
     - { title: StrataScratch, url: "https://www.stratascratch.com/", provider: StrataScratch, type: practice, cost: freemium }
-aiImpact: LLMs now handle a lot of routine coding and first-pass analysis, and some classic modelling problems are solved by calling a foundation model. What remains hard — and valued — is experimental design, causal reasoning, knowing when a result is noise, and translating findings into decisions. Many data scientists now also evaluate and improve LLM-based features.
+aiImpact: LLMs now handle a lot of routine coding and first-pass analysis, and some classic modelling problems are solved by calling a foundation model. What remains hard - and valued - is experimental design, causal reasoning, knowing when a result is noise, and translating findings into decisions. Many data scientists now also evaluate and improve LLM-based features.
 market:
-  - text: Job titles have split — "product data scientist" roles lean on SQL, statistics and experiments, while "ML-focused" roles overlap with ML Engineer.
+  - text: Job titles have split - "product data scientist" roles lean on SQL, statistics and experiments, while "ML-focused" roles overlap with ML Engineer.
   - text: Most postings ask for Python, SQL and statistics first; deep learning is usually a plus rather than a requirement.
 adjacent: [data-analyst, ml-engineer, ai-engineer, data-engineer]
 updated: 2026-10-06
@@ -60,7 +60,7 @@ updated: 2026-10-06
 
 ## Is this role for you?
 
-Data science suits people who enjoy statistics and uncertainty — who want to know not just *what* happened but whether it's real and *why*. Expect more data cleaning and communication than model building.
+Data science suits people who enjoy statistics and uncertainty - who want to know not just *what* happened but whether it's real and *why*. Expect more data cleaning and communication than model building.
 
 ## Data Scientist or ML Engineer?
 

@@ -3,7 +3,7 @@ title: Security Testing (SAST, DAST, Pentesting)
 domain: security
 level: intermediate
 hours: 30–50
-brief: Finding vulnerabilities before attackers do — with automated scanners in the pipeline and hands-on testing of running applications.
+brief: Finding vulnerabilities before attackers do - with automated scanners in the pipeline and hands-on testing of running applications.
 prereqs:
   - web-security
 learn:
@@ -56,7 +56,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-Automated scanners catch common mistakes on every commit; human testers catch the clever ones — a checkout that lets you set your own price, an API that shows other people's orders. Good security testing combines both.
+Automated scanners catch common mistakes on every commit; human testers catch the clever ones - a checkout that lets you set your own price, an API that shows other people's orders. Good security testing combines both.
 
 ## Stay legal
 

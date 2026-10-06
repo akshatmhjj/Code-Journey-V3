@@ -16,7 +16,7 @@ const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), "utf8");
 const md = (dir: string) => fs.readdirSync(path.join(ROOT, dir)).filter((f) => f.endsWith(".md")).sort();
 const hash = (s: string) => crypto.createHash("sha256").update(s).digest("hex").slice(0, 16);
 const list = (xs: string[]) => xs.map((x) => `- ${x}`).join("\n");
-const resLine = (r: Res) => `${r.title}${r.provider ? ` (${r.provider})` : ""} — ${r.official ? "official, " : ""}${r.type}, ${r.cost ?? "free"}${r.url ? ` — ${r.url}` : ""}`;
+const resLine = (r: Res) => `${r.title}${r.provider ? ` (${r.provider})` : ""} - ${r.official ? "official, " : ""}${r.type}, ${r.cost ?? "free"}${r.url ? ` - ${r.url}` : ""}`;
 
 /** Split Markdown body into sections by "## " headings. */
 function sections(body: string) {
@@ -48,7 +48,7 @@ export function buildChunks(): Chunk[] {
 
   const chunks: Omit<Chunk, "content_hash">[] = [];
   const add = (c: Omit<Chunk, "content_hash" | "content"> & { body: string }) =>
-    chunks.push({ key: c.key, source_type: c.source_type, url: c.url, title: c.title, heading: c.heading, content: `${c.title}${c.heading ? ` — ${c.heading}` : ""}\n\n${c.body.trim()}` });
+    chunks.push({ key: c.key, source_type: c.source_type, url: c.url, title: c.title, heading: c.heading, content: `${c.title}${c.heading ? ` - ${c.heading}` : ""}\n\n${c.body.trim()}` });
 
   /* Roles */
   for (const f of md("roles")) {
@@ -102,7 +102,7 @@ export function buildChunks(): Chunk[] {
     for (const sec of sections(content)) add({ key: `skill:${slug}#${slugify(sec.heading)}`, source_type: "skill", url, title, heading: sec.heading, body: sec.text });
   }
 
-  /* Which roles use each skill — answers "which jobs need SQL?" */
+  /* Which roles use each skill - answers "which jobs need SQL?" */
   const usage = new Map<string, string[]>();
   for (const f of md("roles")) {
     const { data: r } = matter(read(`roles/${f}`));
@@ -120,7 +120,7 @@ export function buildChunks(): Chunk[] {
     const skills = cat.skills.filter((s) => s.domain === d.slug);
     add({
       key: `domain:${d.slug}`, source_type: "domain", url: `/domains/${d.slug}`, title: `${d.name} (field of tech)`, heading: "Roles and skills in this field",
-      body: `${d.tagline}\n${roles.length ? `Roles: ${roles.map((r) => `${r.title} — ${r.oneLiner}`).join(" ")}\n` : ""}Skills: ${skills.map((s) => s.title).join(", ")}.`,
+      body: `${d.tagline}\n${roles.length ? `Roles: ${roles.map((r) => `${r.title} - ${r.oneLiner}`).join(" ")}\n` : ""}Skills: ${skills.map((s) => s.title).join(", ")}.`,
     });
   }
 
@@ -147,8 +147,8 @@ export function buildChunks(): Chunk[] {
     body: [
       "Code Journey is a free map of tech careers. It does not teach courses or sell anything; it shows each role's route and links to the best official docs and free resources.",
       `All ${cat.roles.length} career routes are at /roles. Each route has stages, skills by priority, interviews, and how AI is changing the role.`,
-      "Not sure which role fits? The Compass quiz at /compass asks eight questions and suggests three roles with reasons. Compare any two roles side by side — shared skills, time to job-ready, interviews — at /roles/compare.",
-      "To see what a specific job needs, paste the job post into the gap checker at /gap. It lists the skills the post asks for, which you already have, the foundations you need first, and the best resource for each — all in your browser; the post is never uploaded.",
+      "Not sure which role fits? The Compass quiz at /compass asks eight questions and suggests three roles with reasons. Compare any two roles side by side - shared skills, time to job-ready, interviews - at /roles/compare.",
+      "To see what a specific job needs, paste the job post into the gap checker at /gap. It lists the skills the post asks for, which you already have, the foundations you need first, and the best resource for each - all in your browser; the post is never uploaded.",
       `All ${cat.skills.length} skills are at /skills, each with a 60-second brief, a learning checklist and checked resources.`,
       "Fields of tech (web, mobile, data, AI, cloud & DevOps, quality, security, customer-facing, specialist, foundations) are at /domains.",
       "The resource library with filters is at /resources. Plain-English definitions are at /glossary. Articles are at /blog.",

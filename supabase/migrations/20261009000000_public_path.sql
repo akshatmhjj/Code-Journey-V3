@@ -1,5 +1,5 @@
 -- Public path pages at /u/<handle>. Off by default: a person picks a handle and a display name,
--- then turns sharing on. The page shows their destination and skill progress — never their email.
+-- then turns sharing on. The page shows their destination and skill progress - never their email.
 alter table public.profiles
   add column if not exists handle text,
   add column if not exists public_name text,

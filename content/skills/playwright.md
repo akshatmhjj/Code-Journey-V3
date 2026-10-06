@@ -3,7 +3,7 @@ title: Playwright
 domain: quality
 level: intermediate
 hours: 15–25
-brief: Playwright automates real browsers — Chromium, Firefox and WebKit — for reliable end-to-end tests, with auto-waiting, tracing and parallel runs built in.
+brief: Playwright automates real browsers - Chromium, Firefox and WebKit - for reliable end-to-end tests, with auto-waiting, tracing and parallel runs built in.
 prereqs:
   - javascript
   - testing-basics
@@ -11,7 +11,7 @@ learn:
   - topic: Setup and first test
     detail: npm init playwright, then a test that visits a page and checks it.
   - topic: Locators
-    detail: getByRole, getByLabel and getByText — resilient, user-facing selectors.
+    detail: getByRole, getByLabel and getByText - resilient, user-facing selectors.
   - topic: Auto-waiting and assertions
     detail: expect(...).toBeVisible() instead of sleeps.
   - topic: Fixtures and setup

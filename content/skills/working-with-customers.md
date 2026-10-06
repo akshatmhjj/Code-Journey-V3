@@ -3,7 +3,7 @@ title: Working with Customers
 domain: customer
 level: beginner
 hours: 15–30
-brief: The skills that make engineers effective in front of customers — discovering the real problem, scoping what to build, communicating trade-offs and building trust.
+brief: The skills that make engineers effective in front of customers - discovering the real problem, scoping what to build, communicating trade-offs and building trust.
 prereqs: []
 learn:
   - topic: Discovery questions

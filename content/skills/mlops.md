@@ -3,7 +3,7 @@ title: MLOps
 domain: ai
 level: advanced
 hours: 40–60
-brief: The practices and tools for getting ML models into production and keeping them healthy — reproducible training, deployment, monitoring and retraining.
+brief: The practices and tools for getting ML models into production and keeping them healthy - reproducible training, deployment, monitoring and retraining.
 prereqs:
   - machine-learning
   - docker

@@ -1,8 +1,8 @@
 ---
 title: Data Analyst
 aliases: [Business Analyst, Product Analyst, BI Analyst, Reporting Analyst]
-summary: Data analysts answer business questions with data — pulling it with SQL, cleaning it, finding what changed and why, and explaining it in charts and dashboards people actually use.
-whereTheyWork: Almost every industry — e-commerce, banking, consulting, healthcare, SaaS, logistics — usually within product, marketing, finance or operations teams.
+summary: Data analysts answer business questions with data - pulling it with SQL, cleaning it, finding what changed and why, and explaining it in charts and dashboards people actually use.
+whereTheyWork: Almost every industry - e-commerce, banking, consulting, healthcare, SaaS, logistics - usually within product, marketing, finance or operations teams.
 dayInLife:
   - Answer "why did sign-ups drop last week?" with a SQL query and a chart.
   - Clean a messy export from a CRM before anyone can trust the numbers.
@@ -25,7 +25,7 @@ stages:
   - name: Job-ready
     summary: Python for analysis, experiments and version control.
     skills: [python, pandas, ab-testing, git, ai-coding-tools]
-    project: An analysis notebook that cleans a messy dataset, tests a hypothesis, and ends in a clear recommendation — published on GitHub.
+    project: An analysis notebook that cleans a messy dataset, tests a hypothesis, and ends in a clear recommendation - published on GitHub.
     doneWhen: You have three portfolio projects, each with a question, method, result and recommendation.
     weeks: 8–12
   - name: Senior
@@ -41,8 +41,8 @@ tools: [Excel or Google Sheets, a SQL editor (DBeaver, BigQuery console), Power 
 interview:
   rounds:
     - Recruiter screen
-    - SQL test — joins, aggregations, window functions
-    - Case study — interpret a dataset or dashboard and make a recommendation
+    - SQL test - joins, aggregations, window functions
+    - Case study - interpret a dataset or dashboard and make a recommendation
     - Spreadsheet or BI exercise
     - Behavioural round on communicating findings to non-technical people
   practice:
@@ -60,7 +60,7 @@ updated: 2026-10-06
 
 ## Is this role for you?
 
-Analytics suits curious people who like puzzles and explaining things. Most of the job is asking good questions, cleaning data and communicating clearly — not advanced maths or machine learning.
+Analytics suits curious people who like puzzles and explaining things. Most of the job is asking good questions, cleaning data and communicating clearly - not advanced maths or machine learning.
 
 It's also one of the best routes into tech from another field: your domain knowledge (finance, marketing, healthcare) is a real advantage.
 

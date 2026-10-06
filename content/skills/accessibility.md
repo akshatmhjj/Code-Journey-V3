@@ -3,19 +3,19 @@ title: Web Accessibility
 domain: web
 level: intermediate
 hours: 20–30
-brief: Building interfaces everyone can use — including people using screen readers, keyboards, zoom or voice control. It's a legal requirement in many places and simply good engineering.
+brief: Building interfaces everyone can use - including people using screen readers, keyboards, zoom or voice control. It's a legal requirement in many places and simply good engineering.
 prereqs:
   - html
   - css
 learn:
   - topic: Semantic HTML
-    detail: Use button, nav, main, label and headings properly — most accessibility comes free.
+    detail: Use button, nav, main, label and headings properly - most accessibility comes free.
   - topic: Keyboard access
     detail: Everything works with Tab, Enter, Space and Escape, with a visible focus ring.
   - topic: Screen readers
     detail: Accessible names, alt text, and announcing changes with live regions.
   - topic: Colour and contrast
-    detail: WCAG contrast ratios — 4.5:1 for body text — and never colour alone.
+    detail: WCAG contrast ratios - 4.5:1 for body text - and never colour alone.
   - topic: ARIA, sparingly
     detail: Use ARIA only when HTML can't express it; wrong ARIA is worse than none.
   - topic: Forms

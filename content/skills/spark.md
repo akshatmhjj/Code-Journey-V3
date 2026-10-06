@@ -43,4 +43,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-pandas works on one computer's memory. When you have a billion rows, Spark splits the data across many machines, runs the same operations on each piece, and combines the results — while you write code that looks a lot like pandas or SQL.
+pandas works on one computer's memory. When you have a billion rows, Spark splits the data across many machines, runs the same operations on each piece, and combines the results - while you write code that looks a lot like pandas or SQL.

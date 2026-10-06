@@ -3,17 +3,17 @@ title: AI Agents & Tool Use
 domain: ai
 level: intermediate
 hours: 25–40
-brief: Agents are LLM systems that take actions — calling tools and APIs in a loop to complete a task. Building them well means knowing when to use them, and keeping them safe and testable.
+brief: Agents are LLM systems that take actions - calling tools and APIs in a loop to complete a task. Building them well means knowing when to use them, and keeping them safe and testable.
 prereqs:
   - llm-apis
   - prompt-engineering
 learn:
   - topic: Workflows vs agents
-    detail: Fixed steps you control, or a model deciding the next step — start with the simplest that works.
+    detail: Fixed steps you control, or a model deciding the next step - start with the simplest that works.
   - topic: Tool calling
     detail: Define tools with clear names, descriptions and input schemas.
   - topic: The agent loop
-    detail: Think, act, observe, repeat — and how to stop.
+    detail: Think, act, observe, repeat - and how to stop.
   - topic: Model Context Protocol
     detail: A standard way to connect models to tools and data sources.
   - topic: Memory and state
@@ -50,4 +50,4 @@ checked: 2026-10-06
 
 ## In plain English
 
-A chatbot answers. An agent *does*: it can search, read a file, call an API, look at the result and decide what to do next. That power is why agents need careful design — clear tools, limits and a way to check their work.
+A chatbot answers. An agent *does*: it can search, read a file, call an API, look at the result and decide what to do next. That power is why agents need careful design - clear tools, limits and a way to check their work.

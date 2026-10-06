@@ -3,14 +3,14 @@ title: Web Security Basics
 domain: web
 level: intermediate
 hours: 20–30
-brief: The common ways web apps get attacked — injection, cross-site scripting, broken access control and more — and the habits that prevent them.
+brief: The common ways web apps get attacked - injection, cross-site scripting, broken access control and more - and the habits that prevent them.
 prereqs:
   - rest-apis
 learn:
   - topic: The OWASP Top 10
     detail: The industry's list of the most critical web application risks.
   - topic: Injection
-    detail: SQL and command injection — always use parameterised queries.
+    detail: SQL and command injection - always use parameterised queries.
   - topic: Cross-site scripting (XSS)
     detail: Escape output and use a Content Security Policy.
   - topic: Broken access control
@@ -52,7 +52,7 @@ checked: 2026-10-06
 
 ## In plain English
 
-Attackers look for places where your app trusts input it shouldn't — a search box that runs SQL, a comment that runs JavaScript, an API that forgets to check who's asking. Web security is the habit of treating every input as hostile and every secret as precious.
+Attackers look for places where your app trusts input it shouldn't - a search box that runs SQL, a comment that runs JavaScript, an API that forgets to check who's asking. Web security is the habit of treating every input as hostile and every secret as precious.
 
 ## Why it matters
 

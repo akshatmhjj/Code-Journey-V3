@@ -7,7 +7,7 @@ import type { LineStyle } from "@/lib/content";
 
 const STEPS = [
   { t: "Create a free account", d: "Takes under a minute. No card, no catch." },
-  { t: "Pick a destination", d: "Any role on the map — switch whenever you like." },
+  { t: "Pick a destination", d: "Any role on the map - switch whenever you like." },
   { t: "Tick off each station", d: "See what's done and what's next on your route." },
   { t: "Ask CJ AI along the way", d: "Questions about roles, skills and where to start." },
 ];
@@ -44,7 +44,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           </div>
 
           <p className="relative z-10 text-sm text-muted">
-            Reading is always free — no account needed.{" "}
+            Reading is always free - no account needed.{" "}
             <Link href="/roles" className="font-semibold text-ink underline decoration-accent decoration-2 underline-offset-4">
               Keep browsing
             </Link>

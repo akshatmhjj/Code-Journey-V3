@@ -8,9 +8,9 @@ prereqs:
   - python
 learn:
   - topic: Big-O
-    detail: Describe how time and memory grow with input size — O(1), O(n), O(n log n), O(n²).
+    detail: Describe how time and memory grow with input size - O(1), O(n), O(n log n), O(n²).
   - topic: Arrays and strings
-    detail: Two pointers, sliding window and prefix sums — the most common interview patterns.
+    detail: Two pointers, sliding window and prefix sums - the most common interview patterns.
   - topic: Hash maps and sets
     detail: Constant-time lookups; the answer to a surprising number of problems.
   - topic: Stacks and queues
@@ -60,7 +60,7 @@ Data structures are containers with different strengths: a hash map finds things
 
 ## Why it matters
 
-Most software interviews — especially at larger companies — include one or two DSA problems. Beyond interviews, it trains you to notice when code will fall over as data grows.
+Most software interviews - especially at larger companies - include one or two DSA problems. Beyond interviews, it trains you to notice when code will fall over as data grows.
 
 ## How to practise
 

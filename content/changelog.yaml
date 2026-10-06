@@ -1,4 +1,12 @@
 - date: 2026-10-07
+  version: "2.0.0-beta.6"
+  title: Tangerine by default, and themes that follow you
+  changes:
+    - type: changed
+      text: Tangerine is now the theme new visitors see first.
+    - type: added
+      text: Signed-in visitors can save their palette and light/dark choice to their account, so it loads automatically on any device.
+- date: 2026-10-07
   version: "2.0.0-beta.5"
   title: CJ AI answers from Code Journey
   changes:

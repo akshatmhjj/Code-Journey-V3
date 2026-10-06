@@ -9,6 +9,16 @@
 */
 
 :root,
+[data-cj="tangerine"] {
+  --canvas: #faf3e1;
+  --ink: #222222;
+  --support: #f5e7c6;
+  --accent: #ff6d1f;
+  --on-accent: #222222;
+  --hl: #222222;
+  --surface: var(--support);
+  color-scheme: light;
+}
 [data-cj="harbor"] {
   --canvas: #f9f9f9;
   --ink: #092634;
@@ -27,16 +37,6 @@
   --on-accent: #efe9d7;
   --hl: #7d2826;
   --surface: color-mix(in oklab, var(--support) 16%, var(--canvas));
-  color-scheme: light;
-}
-[data-cj="tangerine"] {
-  --canvas: #faf3e1;
-  --ink: #222222;
-  --support: #f5e7c6;
-  --accent: #ff6d1f;
-  --on-accent: #222222;
-  --hl: #222222;
-  --surface: var(--support);
   color-scheme: light;
 }
 [data-cj="orchard"] {
@@ -76,6 +76,7 @@
     --canvas: #343723; --ink: #efe9d7; --support: #898861; --accent: #7d2826; --on-accent: #efe9d7; --hl: #efe9d7;
     --surface: color-mix(in oklab, var(--support) 18%, var(--canvas)); color-scheme: dark;
   }
+  :root:not([data-cj]):not([data-mode]),
   [data-cj="tangerine"]:not([data-mode]) {
     --canvas: #222222; --ink: #faf3e1; --support: #f5e7c6; --accent: #ff6d1f; --on-accent: #222222; --hl: #ff6d1f;
     --surface: color-mix(in oklab, var(--support) 7%, var(--canvas)); color-scheme: dark;

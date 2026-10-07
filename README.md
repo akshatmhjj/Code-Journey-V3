@@ -1,105 +1,78 @@
+<div align="center">
+
 # Code Journey
 
-The map of tech careers: every role, the skills it takes in order, and the best official docs and free resources for each. Live at [codejourney.space](https://www.codejourney.space).
+**The map of tech careers.**
 
-## Stack
+Pick a role. See every skill it takes, in the order you need them, with the best official docs and free resources for each one.
 
-Next.js 16 (App Router, TypeScript), Tailwind CSS 4, Supabase (auth + Postgres), Gemini for CJ AI, deployed on Vercel. Almost every page is pre-rendered as static HTML.
+[**codejourney.space**](https://www.codejourney.space)
 
-## Run it
-
-```bash
-npm install
-npm run dev
-```
-
-`.env` needs `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` (the old `VITE_` names also work) and `GEMINI_API_KEY` (server only, never `NEXT_PUBLIC_`).
-
-| Command | What it does |
-| --- | --- |
-| `npm run build` | Checks content links, then builds |
-| `npm run lint` / `npm run typecheck` | ESLint / TypeScript |
-| `npm run content:check` | Cross-checks roles, skills and catalog references |
-
-## Content
-
-Everything people read lives in `content/`, not in components:
-
-- `catalog.yaml` - the network: domains (lines), roles (destinations), skills (stations). Anything listed shows on the map; it gets a full page once its Markdown file exists.
-- `roles/<slug>.md` - a full route: stages, skills by priority, interviews, market notes.
-- `skills/<slug>.md` - 60-second brief, learning checklist, resources (official first).
-- `blog/`, `glossary.yaml`, `snippets.json`, `faq.yaml`, `changelog.yaml`.
-
-Schemas are in `src/lib/content.ts`; a bad field fails the build with a clear message.
-
-## Themes
-
-Four palettes (Harbor, Juniper, Tangerine, Orchard) of four colours each, light and dark, defined as CSS variables in `src/app/globals.css`. Accent colours are fills only on light canvases; use `--hl` for accent-coloured text.
-
-## Database
-
-Schema changes go in `supabase/migrations` and are applied with `supabase db push`.
+</div>
 
 ---
 
-### Commit Conventions
+## What it is
 
-**`feat:`** - A new feature or page added to the platform.
+Most people trying to get into tech don't fail for lack of courses. They fail because they don't know **what to learn next, or why**. Code Journey answers one question for every tech role:
 
-> `feat: add Exercises page with in-browser JS/Python/SQL test runner and XP tracking`
+> *"To become a ___, what do I learn, in what order, and where do I learn each thing?"*
 
----
+The site is drawn like a **metro map**. Fields of tech are **lines**, roles are **destinations**, and skills are the **stations** along the way. Each route is split into stages (Foundations, Core, Job-ready, Senior), with a project and a clear "you're done when…" for each.
 
-**`bug:`** - A bug fix. Describe what was broken and what the fix does.
+**We don't sell courses or teach.** We curate. Every skill points to the official documentation first, then the best free material on the web.
 
-> `bug: fix header overlap on sticky TOC rails - changed top value from 70px to 88px across all track pages`
+## What's inside
 
----
+**Explore**
+- **26 career routes** - web, mobile, data, AI, cloud and DevOps, quality, security, customer-facing and specialist roles
+- **99 skill pages** - a 60-second brief, a learning checklist and hand-picked resources
+- **360+ resources**, a **glossary** in plain English, and **roadmap guides**
 
-**`ui:`** - A visual or layout change that isn't a new feature and isn't a bug fix. Redesigns, spacing corrections, colour tweaks, responsive fixes.
+**Decide**
+- **Compass** - an 8-question quiz that suggests roles that suit you
+- **Compare** - any two roles side by side: shared skills, time to job-ready, pay and interviews
+- **Pay by role** - salaries in India and the US for every role, each figure linked to its source
+- **Job post checker** - paste a job ad to see which skills it asks for, which you already have, and what to learn next
 
-> `ui: redesign Footer mobile layout - hide giant wordmark, show compact brand row, collapse link grid to single column`
+**Learn and track**
+- **My Path** - choose a destination and tick off stations as you go, with stages, milestones and a weekly streak
+- **Saved resources**, helpful votes and resource suggestions
+- **Weekly progress email** (opt-in) and a shareable **public path page**
 
----
+**Ask**
+- **CJ AI** - a chatbot that answers only from Code Journey's own pages, with sources for every answer
 
-**`refactor:`** - Code reorganised or cleaned up without changing how anything looks or behaves for the user.
+**Everywhere**
+- Four colour themes (Tangerine, Harbor, Juniper, Orchard), each in light and dark
+- Built for phones and desktops, and **installable as an app** that keeps working offline
 
-> `refactor: extract CJModal shell and ModalHead into shared components used by all 15 modal types`
+## Principles
 
----
+- **Free to read.** No account is needed to use the map.
+- **Official docs first**, then the best free material.
+- **Every number has a source.** No invented salaries or statistics.
+- **Privacy by default.** No selling data, opt-in emails, and nothing personal saved on shared devices.
 
-**`content:`** - Changes to written content - text, analogies, code examples, resource links, glossary terms.
+## Built with
 
-> `content: expand JavaScript section in WebDev with closure explanation and real debounce code example`
+| | |
+|---|---|
+| **App** | Next.js (App Router), TypeScript, Tailwind CSS |
+| **Data and accounts** | Supabase: Postgres, Auth, row-level security, pgvector |
+| **CJ AI** | Gemini, with retrieval over the site's own content |
+| **Hosting** | Vercel, with scheduled jobs for the weekly email |
 
----
+All the written content (roles, skills, guides, glossary, pay data) lives in plain YAML and Markdown in `content/`, separate from the code, and is checked on every build.
 
-**`perf:`** - A change made specifically to improve speed, reduce layout thrashing, or cut unnecessary re-renders.
+## Commit conventions
 
-> `perf: memoize Search results with useMemo so filtering only runs when query changes, not on every render`
+| Prefix | Use it for | Example |
+|---|---|---|
+| `feat:` | A new feature or page | `feat: Compass role-finder quiz and side-by-side role comparison` |
+| `fix:` | A bug fix: what was broken and what changed | `fix: CJ AI crashed the page after sending a question in newer Chrome` |
+| `ui:` | A visual or layout change that isn't a feature or a fix | `ui: network overlay slides up when it opens and back down when it closes` |
+| `content:` | Written content: routes, skills, resources, guides, glossary | `content: four roadmap guides, pay passages for CJ AI, changelog` |
+| `refactor:` | Code reorganised without changing what people see | `refactor: move compare data into the content layer` |
 
----
-
-**`chore:`** - Housekeeping. Dependency updates, config changes, file renames, removing dead code. Nothing the user sees.
-
-> `chore: remove MUI Dialog dependency from Profile - replaced with CJModal shell using Framer Motion`
-
----
-
-**`auth:`** - Anything specifically related to authentication, session management, or access control.
-
-> `auth: wire Supabase signOut to Profile logout button and redirect to home on success`
-
----
-
-**`dx:`** - Developer experience improvements - comments, documentation, layout-fix.css, README updates.
-
-> `dx: add layout-fix.css with complete overlap fix guide and per-file top value change table`
-
----
-
-## Licence
-
-This project is not open source. All design, code, and content in this repository is proprietary to Code Journey. Do not reproduce or redistribute without permission.
-
----
+Keep the subject short and in plain words, describing what changed for the person using the site.

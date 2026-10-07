@@ -10,6 +10,7 @@ import { CHAT_DAILY_LIMIT, SITE } from "@/lib/site";
 import { ThemePicker } from "@/components/shell/ThemeSettings";
 import { usePath } from "@/components/path/PathProvider";
 import { SkillProgress } from "@/components/path/SkillProgress";
+import { StreakMilestones } from "@/components/path/StreakMilestones";
 
 const longDate = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric" });
 
@@ -393,6 +394,8 @@ function RouteProgress({ index, roleSlug }: { index: PathIndex; roleSlug: string
           </p>
         </div>
       </div>
+
+      <StreakMilestones index={index} roleSlug={roleSlug} />
 
       <div className="grid gap-3">
         <p className="eyebrow">Stages</p>

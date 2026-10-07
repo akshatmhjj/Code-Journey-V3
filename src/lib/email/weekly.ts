@@ -7,6 +7,8 @@ export type WeeklyInput = {
   roleSlug: string;
   statuses: Statuses;
   doneThisWeek: string[];
+  /** Consecutive weeks with a station ticked off. */
+  streak?: number;
   siteUrl: string;
   unsubscribeUrl: string;
 };
@@ -41,6 +43,8 @@ export function buildWeeklyEmail(index: PathIndex, input: WeeklyInput) {
       : `No new stations this week - that's fine, weeks like that happen. Here's where you are, so it's easy to pick up again.`;
 
   const nextLines = p.next.slice(0, 3);
+  const streak = input.streak ?? 0;
+  const streakLine = streak >= 2 ? `${streak}-week streak${thisWeek.length ? "" : " - tick off a station by Sunday to keep it going"}.` : "";
 
   /* ── Plain text ── */
   const text = [
@@ -51,6 +55,7 @@ export function buildWeeklyEmail(index: PathIndex, input: WeeklyInput) {
     `${p.role.title}: ${p.percent}% (${p.done} of ${p.total} stations)`,
     stage && !finished ? `Current stage: ${stage.name} (${stage.done}/${stage.total})` : "",
     p.hoursLeft[1] > 0 ? `About ${formatHours(p.hoursLeft)} left.` : "",
+    streakLine,
     "",
     thisWeek.length ? `This week: ${thisWeek.map(title).join(", ")}` : "",
     nextLines.length ? `Next stations:\n${nextLines.map((s) => `- ${title(s)}: ${skillUrl(s)}`).join("\n")}` : "",
@@ -107,6 +112,7 @@ export function buildWeeklyEmail(index: PathIndex, input: WeeklyInput) {
       <span style="font-size:14px;opacity:0.8">&nbsp; ${p.done} of ${p.total} stations${p.learning ? ` &middot; ${p.learning} in progress` : ""}</span></p>
     ${bar(p.percent, C.accent)}
     ${p.hoursLeft[1] > 0 ? `<p style="margin:12px 0 0;font-size:14px;opacity:0.8">About ${esc(formatHours(p.hoursLeft))} left.</p>` : ""}
+    ${streakLine ? `<p style="margin:10px 0 0;font-size:14px;font-weight:700;color:${C.accent}">&#128293; ${esc(streakLine)}</p>` : ""}
   </td></tr>
   ${
     thisWeek.length

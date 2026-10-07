@@ -3,6 +3,11 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { supabase, useUser } from "@/lib/supabase";
 import type { SkillStatus, Statuses } from "@/lib/path";
+import { celebrationFor, type Celebration } from "@/lib/milestones";
+import { CelebrationToast } from "./CelebrationToast";
+
+/** Just enough of each route to spot a finished stage, passed down from the site layout. */
+export type RouteOutline = { slug: string; title: string; stages: { name: string; skills: string[] }[] };
 
 type PathState = {
   /** undefined while the session is still loading. */
@@ -15,14 +20,18 @@ type PathState = {
   /** Bookmarked resources, newest first. */
   saved: SavedResource[];
   toggleSaved: (resource: { url: string; title: string; skillSlug?: string }) => Promise<void>;
+  /** Set when ticking a station finishes a stage or the whole route. */
+  celebration: Celebration | null;
+  dismissCelebration: () => void;
 };
 
 export type SavedResource = { url: string; title: string; skillSlug: string | null; savedAt: string };
 
 const Ctx = createContext<PathState | null>(null);
 
-export function PathProvider({ children }: { children: React.ReactNode }) {
+export function PathProvider({ children, routes = [] }: { children: React.ReactNode; routes?: RouteOutline[] }) {
   const user = useUser();
+  const [celebration, setCelebration] = useState<Celebration | null>(null);
   const [data, setData] = useState<{ userId: string; roleSlug: string | null; statuses: Statuses; saved: SavedResource[] } | null>(null);
 
   useEffect(() => {
@@ -63,6 +72,12 @@ export function PathProvider({ children }: { children: React.ReactNode }) {
     async (skillSlug: string, status: SkillStatus | null) => {
       if (!user) return;
       const previous = data;
+      const route = routes.find((r) => r.slug === data?.roleSlug);
+      if (route && status === "done") {
+        const before = data?.statuses ?? {};
+        const won = celebrationFor(route, before, { ...before, [skillSlug]: "done" }, skillSlug);
+        if (won) setCelebration(won);
+      }
       setData((d) => {
         const statuses = { ...(d?.statuses ?? {}) };
         if (status) statuses[skillSlug] = status;
@@ -75,9 +90,12 @@ export function PathProvider({ children }: { children: React.ReactNode }) {
             .from("user_skill_status")
             .upsert({ user_id: user.id, skill_slug: skillSlug, status, updated_at: new Date().toISOString() }, { onConflict: "user_id,skill_slug" })
         : await db.from("user_skill_status").delete().eq("user_id", user.id).eq("skill_slug", skillSlug);
-      if (error) setData(previous);
+      if (error) {
+        setData(previous);
+        setCelebration(null);
+      }
     },
-    [user, data],
+    [user, data, routes],
   );
 
   const toggleSaved = useCallback(
@@ -112,11 +130,18 @@ export function PathProvider({ children }: { children: React.ReactNode }) {
       setStatus,
       saved: mine?.saved ?? [],
       toggleSaved,
+      celebration,
+      dismissCelebration: () => setCelebration(null),
     }),
-    [user, mine, setRole, setStatus, toggleSaved],
+    [user, mine, setRole, setStatus, toggleSaved, celebration],
   );
 
-  return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
+  return (
+    <Ctx.Provider value={value}>
+      {children}
+      <CelebrationToast />
+    </Ctx.Provider>
+  );
 }
 
 /** Returns null outside a PathProvider, so components work on pages that don't have one. */

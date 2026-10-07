@@ -21,6 +21,7 @@ export default function Privacy() {
           <li><strong>Questions to CJ AI</strong> - the messages you send are passed to Google&apos;s Gemini API to generate an answer. We don&apos;t store your conversation on our servers.</li>
           <li><strong>Usage analytics</strong> - Google Analytics records which pages are visited, from what kind of device and roughly where. Advertising features are switched off. Visitors in the EU, UK and Switzerland are asked before analytics is enabled.</li>
           <li><strong>Settings on your device</strong> - your theme, mode and cookie choice are kept in your browser&apos;s local storage, and a sign-in session if you have an account.</li>
+          <li><strong>Pages saved for offline reading</strong> - public pages you've opened are kept in your browser so they work without a connection. Personal pages (My Path, sign-in) are never saved. Clearing your browser data removes them.</li>
         </ul>
         <h2>Who processes it</h2>
         <ul>

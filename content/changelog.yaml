@@ -1,4 +1,14 @@
 - date: 2026-10-08
+  version: "2.0.0-beta.17"
+  title: Install Code Journey as an app
+  changes:
+    - type: added
+      text: Install Code Journey on your phone or computer - it opens full-screen with its own icon. "Install the app" (or Add to Home Screen steps on iPhone) is in the footer.
+    - type: added
+      text: Pages you've opened now work offline. Pages you haven't opened show a friendly offline screen listing the ones you can read.
+    - type: added
+      text: Long-press the app icon for shortcuts to My Path, Compass, the gap checker and all roles.
+- date: 2026-10-08
   version: "2.0.0-beta.16"
   title: Contact form and admin dashboard
   changes:

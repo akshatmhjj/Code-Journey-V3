@@ -1,4 +1,10 @@
 - date: 2026-10-07
+  version: "2.0.0-beta.14"
+  title: Weekly progress email
+  changes:
+    - type: added
+      text: Switch on a weekly email from My Path - your progress along your route, what you ticked off that week, and your next three stations. Off unless you turn it on, and one click to unsubscribe.
+- date: 2026-10-07
   version: "2.0.0-beta.13"
   title: Market notes, comparison pages and roadmap guides
   changes:

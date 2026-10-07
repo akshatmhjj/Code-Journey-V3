@@ -6,6 +6,11 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.VITE_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? process.env.VITE_SUPABASE_ANON_KEY,
   },
+  // Runtime routes read content/ (roles, skills, market) from disk.
+  outputFileTracingIncludes: {
+    "/api/chat": ["./content/**/*"],
+    "/api/cron/weekly-email": ["./content/**/*"],
+  },
   poweredByHeader: false,
   devIndicators: false,
   async redirects() {

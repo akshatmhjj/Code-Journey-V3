@@ -25,6 +25,7 @@ export default function Privacy() {
         <h2>Who processes it</h2>
         <ul>
           <li><strong>Supabase</strong> stores accounts and progress (servers in Mumbai, India).</li>
+          <li><strong>Resend</strong> sends the weekly progress email, only if you switch it on in My Path. It receives your email address and the progress shown in the email.</li>
           <li><strong>Google or GitHub</strong>, only if you choose to sign in with them. They tell us your name, email address and profile picture; we never see your password or anything else in those accounts.</li>
           <li><strong>Vercel</strong> hosts the site and keeps short-lived request logs.</li>
           <li><strong>Google</strong> provides Analytics and the Gemini API for CJ AI.</li>

@@ -94,7 +94,8 @@ export function Header({ roleTitles }: { roleTitles: string[] }) {
   useEffect(() => setMac(/Mac|iPhone|iPad/.test(navigator.platform)), []);
 
   return (
-    <header className="sticky top-0 z-40 h-[var(--header-h)] px-2 pt-2 sm:px-3">
+    // Desktop and tablet only; phones get PhoneHeader.
+    <header className="sticky top-0 z-40 hidden h-[var(--header-h)] px-2 pt-2 sm:px-3 md:block">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-ink focus:px-3 focus:py-2 focus:text-canvas">
         Skip to content
       </a>

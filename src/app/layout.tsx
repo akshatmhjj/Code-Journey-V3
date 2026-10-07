@@ -6,6 +6,7 @@ import { CommandPalette } from "@/components/shell/CommandPalette";
 import { ThemeSettings } from "@/components/shell/ThemeSettings";
 import { ConsentBanner, ANALYTICS_SCRIPT } from "@/components/shell/Consent";
 import { JsonLd } from "@/components/ui/JsonLd";
+import { ServiceWorker } from "@/components/shell/ServiceWorker";
 import "./globals.css";
 
 const display = Familjen_Grotesk({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-display", display: "swap" });
@@ -22,6 +23,8 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
   formatDetection: { telephone: false },
+  // iPhone and iPad: full-screen when opened from the home screen, with this name under the icon.
+  appleWebApp: { capable: true, title: "Code Journey", statusBarStyle: "default" },
 };
 
 export const viewport: Viewport = {
@@ -56,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CommandPalette />
           <ThemeSettings />
           <ConsentBanner />
+          <ServiceWorker />
         </UIProvider>
       </body>
     </html>

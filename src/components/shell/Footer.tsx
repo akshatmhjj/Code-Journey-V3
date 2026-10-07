@@ -4,6 +4,7 @@ import { getLibraryStatus, getNetwork } from "@/lib/content";
 import { SITE } from "@/lib/site";
 import { DepartureBoard, type Departure } from "./DepartureBoard";
 import { ThemeButton } from "./ThemeButton";
+import { InstallApp } from "./InstallApp";
 import { Ticket } from "./Ticket";
 
 const LINKS = [
@@ -116,6 +117,7 @@ export function Footer() {
                 <span className="text-muted">Library last verified</span> {fmt.format(status.checked)} · {status.resources} resources
               </p>
               <ThemeButton />
+              <InstallApp className="mt-2" />
             </div>
           </div>
         </div>

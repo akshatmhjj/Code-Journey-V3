@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ArrowRight, ArrowUpRight, Bookmark, Compass, Copy, Eye, EyeOff, LogOut, MessageCircle, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Bookmark, Compass, Copy, Eye, EyeOff, LogOut, Mail, MessageCircle, X } from "lucide-react";
 import { supabase, useUser } from "@/lib/supabase";
 import { computeProgress, formatHours, formatWeeks, type PathIndex } from "@/lib/path";
 import { CHAT_DAILY_LIMIT, SITE } from "@/lib/site";
@@ -82,6 +82,74 @@ function SavedResources({ index }: { index: PathIndex }) {
         </button>
       )}
     </>
+  );
+}
+
+/** Opt in or out of the weekly progress email. Off by default. */
+function WeeklyEmail({ userId, email, hasRole }: { userId: string; email: string | undefined; hasRole: boolean }) {
+  const [on, setOn] = useState<boolean | null>(null);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    supabase()
+      .from("profiles")
+      .select("weekly_email")
+      .eq("id", userId)
+      .maybeSingle()
+      .then(({ data }) => !cancelled && setOn(!!data?.weekly_email));
+    return () => {
+      cancelled = true;
+    };
+  }, [userId]);
+
+  const toggle = async (next: boolean) => {
+    setSaving(true);
+    setError(false);
+    setOn(next);
+    const { error: err } = await supabase().from("profiles").upsert({ id: userId, weekly_email: next }, { onConflict: "id" });
+    if (err) {
+      setOn(!next);
+      setError(true);
+    }
+    setSaving(false);
+  };
+
+  return (
+    <div className="grid gap-4">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div className="flex max-w-[56ch] gap-3">
+          <Mail size={22} className="mt-0.5 shrink-0" />
+          <p className="text-muted">
+            One short email a week: how far along your route you are, what you ticked off, and your next three stations. Sent to{" "}
+            <span className="font-semibold text-ink">{email}</span>. Unsubscribe from any email in one click.
+          </p>
+        </div>
+        <label className={`flex items-center gap-3 font-semibold ${on === null ? "opacity-50" : "cursor-pointer"}`}>
+          <span>{on ? "On" : "Off"}</span>
+          <input
+            type="checkbox"
+            role="switch"
+            checked={!!on}
+            disabled={on === null || saving}
+            onChange={(e) => toggle(e.target.checked)}
+            className="peer sr-only"
+          />
+          <span
+            aria-hidden="true"
+            className="relative h-7 w-12 rounded-full border-2 border-ink bg-surface transition-colors peer-checked:bg-accent peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 after:absolute after:top-0.5 after:left-0.5 after:size-5 after:rounded-full after:bg-ink after:transition-transform peer-checked:after:translate-x-5"
+          />
+          <span className="sr-only">Weekly progress email</span>
+        </label>
+      </div>
+      {on && !hasRole && <p className="text-sm text-muted">Choose a destination above - the email only goes out once you have a route to report on.</p>}
+      {error && (
+        <p role="alert" className="text-sm font-semibold">
+          Couldn&apos;t save that. Please try again.
+        </p>
+      )}
+    </div>
   );
 }
 
@@ -457,6 +525,10 @@ export function MeView({ index }: { index: PathIndex }) {
         </Card>
 
         <YourSuggestions index={index} userId={user.id} />
+
+        <Card title="Weekly email">
+          <WeeklyEmail userId={user.id} email={user.email} hasRole={!!role} />
+        </Card>
 
         <Card title="Share your path">
           <SharePath userId={user.id} defaultName={name ?? ""} hasRole={!!role} />

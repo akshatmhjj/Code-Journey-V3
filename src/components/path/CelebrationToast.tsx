@@ -37,7 +37,7 @@ export function CelebrationToast() {
     <div
       role="status"
       aria-live="polite"
-      className="cj-celebrate fixed inset-x-3 bottom-[92px] z-40 mx-auto max-w-[460px] rounded-[var(--radius-lg)] border-2 border-ink bg-canvas p-5 shadow-[6px_6px_0_var(--ink)] md:bottom-6"
+      className="cj-celebrate fixed inset-x-3 bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 mx-auto max-w-[460px] rounded-[var(--radius-lg)] border-2 border-ink bg-canvas p-5 shadow-[6px_6px_0_var(--ink)] md:bottom-6"
     >
       <div aria-hidden="true" className="pointer-events-none absolute top-8 left-10">
         {BURST.map((i) => (

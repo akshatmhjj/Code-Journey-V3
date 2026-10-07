@@ -8,7 +8,7 @@ export type Stop = { label: string; href?: string };
 export function Trail({ stops }: { stops: Stop[] }) {
   return (
     <>
-      <nav aria-label="Breadcrumb" className="sticky top-[var(--header-h)] z-30 border-b border-line bg-[color-mix(in_oklab,var(--canvas)_94%,transparent)] backdrop-blur-md">
+      <nav aria-label="Breadcrumb" className="sticky top-[var(--header-h)] z-30 transition-[top] duration-300 border-b border-line bg-[color-mix(in_oklab,var(--canvas)_94%,transparent)] backdrop-blur-md">
         <ol className="wrap flex h-11 items-center overflow-x-auto font-mono text-[12.5px] whitespace-nowrap [scrollbar-width:none]">
           {stops.map((s, i) => {
             const last = i === stops.length - 1;

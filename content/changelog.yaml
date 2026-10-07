@@ -1,3 +1,25 @@
+- date: 2026-10-08
+  version: "2.0.0-beta.16"
+  title: Contact form and admin dashboard
+  changes:
+    - type: added
+      text: A "Still have a question?" contact form at the bottom of the FAQ. Messages go to the admin inbox.
+    - type: added
+      text: A password-protected admin dashboard at /admin - users, inbox, reported links, suggestions, saved and helpful resources, CJ AI usage and ratings, learning activity and this changelog.
+    - type: removed
+      text: The public changelog page. It now lives in the admin dashboard; /changelog redirects to the home page.
+- date: 2026-10-08
+  version: "2.0.0-beta.15"
+  title: Streaks and milestones
+  changes:
+    - type: added
+      text: A weekly streak on My Path - every week you tick off at least one station keeps it going. A busy day never breaks it.
+    - type: added
+      text: Milestones along your route - first station, each stage complete, halfway and the whole route - with a small celebration and a Share button when you finish a stage.
+    - type: added
+      text: Public path pages show your streak and milestones, and links to them now preview as a progress card when shared.
+    - type: changed
+      text: The weekly email mentions your streak.
 - date: 2026-10-07
   version: "2.0.0-beta.14"
   title: Weekly progress email

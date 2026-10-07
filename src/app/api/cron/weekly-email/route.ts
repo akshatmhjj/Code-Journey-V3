@@ -15,7 +15,16 @@ export const maxDuration = 60;
 const DAILY_CAP = Number(process.env.WEEKLY_EMAIL_DAILY_CAP ?? 100);
 const RESEND_BATCH = 100;
 
-type Row = { user_id: string; email: string; name: string | null; email_token: string; role_slug: string; statuses: Statuses; done_this_week: string[] };
+type Row = {
+  user_id: string;
+  email: string;
+  name: string | null;
+  email_token: string;
+  role_slug: string;
+  statuses: Statuses;
+  done_this_week: string[];
+  streak: number | null;
+};
 
 export async function GET(req: Request) {
   const secret = process.env.CRON_SECRET;
@@ -50,6 +59,7 @@ export async function GET(req: Request) {
       roleSlug: r.role_slug,
       statuses: r.statuses ?? {},
       doneThisWeek: r.done_this_week ?? [],
+      streak: r.streak ?? 0,
       siteUrl: site,
       unsubscribeUrl,
     });

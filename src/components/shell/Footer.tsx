@@ -25,7 +25,6 @@ const LINKS = [
     links: [
       ["/about", "About"],
       ["/blog", "Blog"],
-      ["/changelog", "Changelog"],
       ["/faq", "FAQ"],
     ],
   },

@@ -47,7 +47,7 @@ export default function About() {
             <p>Spotted a broken link, a better resource, or a role we&apos;re missing? Tell us.</p>
             <CopyEmail email={SITE.email} />
             <p className="text-muted">
-              Or read the <Link href="/faq" className="link">FAQ</Link> and the <Link href="/changelog" className="link">changelog</Link>.
+              Or read the <Link href="/faq" className="link">FAQ</Link>, or send us a message from the <Link href="/faq#contact" className="link">contact form</Link>.
             </p>
           </div>
         </section>

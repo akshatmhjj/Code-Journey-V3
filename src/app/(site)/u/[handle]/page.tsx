@@ -1,35 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { cache } from "react";
-import { ArrowRight, Check, CircleDot } from "lucide-react";
+import { ArrowRight, Check, CircleDot, Flame } from "lucide-react";
 import { getPathIndex } from "@/lib/content";
-import { computeProgress, formatHours, type Statuses } from "@/lib/path";
+import { computeProgress, formatHours } from "@/lib/path";
+import { milestones } from "@/lib/milestones";
+import { getPublicPath } from "@/lib/public-path";
 
 // Public path pages are personal and change whenever someone ticks a skill, so render on request.
 export const dynamic = "force-dynamic";
 
-type PublicPath = { handle: string; name: string; role: string | null; started_at: string | null; statuses: Statuses; updated_at: string | null };
-
-const HANDLE = /^[a-z0-9][a-z0-9_-]{2,29}$/;
 const longDate = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric" });
-
-const getPublicPath = cache(async (handle: string): Promise<PublicPath | null> => {
-  const h = handle.toLowerCase();
-  if (!HANDLE.test(h)) return null;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/rpc/get_public_path`, {
-    method: "POST",
-    headers: {
-      apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ p_handle: h }),
-    cache: "no-store",
-  });
-  if (!res.ok) return null;
-  return (await res.json()) as PublicPath | null;
-});
 
 export async function generateMetadata({ params }: { params: Promise<{ handle: string }> }): Promise<Metadata> {
   const { handle } = await params;
@@ -86,6 +67,21 @@ export default async function PublicPathPage({ params }: { params: Promise<{ han
                 </p>
               </div>
             </div>
+          </section>
+
+          <section aria-label="Streak and milestones" className="flex flex-wrap items-center gap-2">
+            {(p.streak ?? 0) > 0 && (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-[14px] font-bold text-on-accent">
+                <Flame size={15} /> {p.streak}-week streak
+              </span>
+            )}
+            {milestones(progress)
+              .filter((m) => m.reached)
+              .map((m) => (
+                <span key={m.id} className="inline-flex items-center gap-1.5 rounded-full border-2 border-ink px-3 py-1 text-[14px] font-semibold">
+                  <Check size={14} strokeWidth={3} /> {m.label}
+                </span>
+              ))}
           </section>
 
           <section aria-labelledby="stages-title" className="grid gap-6">

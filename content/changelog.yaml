@@ -1,4 +1,14 @@
 - date: 2026-10-08
+  version: "2.0.0-beta.16"
+  title: Contact form and admin dashboard
+  changes:
+    - type: added
+      text: A "Still have a question?" contact form at the bottom of the FAQ. Messages go to the admin inbox.
+    - type: added
+      text: A password-protected admin dashboard at /admin - users, inbox, reported links, suggestions, saved and helpful resources, CJ AI usage and ratings, learning activity and this changelog.
+    - type: removed
+      text: The public changelog page. It now lives in the admin dashboard; /changelog redirects to the home page.
+- date: 2026-10-08
   version: "2.0.0-beta.15"
   title: Streaks and milestones
   changes:

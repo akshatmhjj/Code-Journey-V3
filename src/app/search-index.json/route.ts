@@ -41,7 +41,6 @@ export function GET() {
       ["Job post gap checker - what am I missing?", "/gap"],
       ["About Code Journey", "/about"],
       ["FAQ", "/faq"],
-      ["Changelog", "/changelog"],
       ["Privacy", "/privacy"],
       ["Terms", "/terms"],
     ].map(([title, href]) => ({ type: "page" as const, title, sub: "Page", href })),

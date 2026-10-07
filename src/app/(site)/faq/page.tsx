@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ContactForm } from "./ContactForm";
 import { getFaq } from "@/lib/content";
 import { PageHead } from "@/components/ui/bits";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -40,6 +41,18 @@ export default function Faq() {
             </div>
           </section>
         ))}
+
+        <section id="contact" aria-labelledby="contact-title" className="mb-20 grid gap-6 border-t-2 border-ink pt-8 md:grid-cols-[260px_1fr]">
+          <div>
+            <h2 id="contact-title" className="text-2xl font-bold">
+              Still have a question?
+            </h2>
+            <p className="mt-3 text-muted">Feel free to reach out - questions, ideas, a broken link, or a role you&apos;d like us to map.</p>
+          </div>
+          <div className="max-w-[640px]">
+            <ContactForm />
+          </div>
+        </section>
       </div>
     </>
   );

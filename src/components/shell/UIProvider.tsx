@@ -14,6 +14,8 @@ type UI = {
   chatDraft: string;
   openChat: (draft?: string) => void;
   closeChat: () => void;
+  /** Shows the chat in full for `ms`, then docks it on the right. Any open/close by the user cancels it. */
+  introChat: (ms: number) => void;
   theme: ThemeId;
   mode: Mode;
   setTheme: (t: ThemeId) => void;
@@ -53,6 +55,37 @@ export function UIProvider({ children }: { children: React.ReactNode }) {
   const [saved, setSaved] = useState<{ userId: string; theme: ThemeId; mode: Mode } | null>(null);
   const [saving, setSaving] = useState<UI["saving"]>("idle");
   const savedTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const introTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const cancelIntro = useCallback(() => {
+    if (introTimer.current) clearTimeout(introTimer.current);
+    introTimer.current = null;
+  }, []);
+  useEffect(() => cancelIntro, [cancelIntro]);
+
+  const openChat = useCallback(
+    (draft = "") => {
+      cancelIntro();
+      setChatDraft(draft);
+      setChatOpen(true);
+      setPanel(null);
+    },
+    [cancelIntro],
+  );
+  const closeChat = useCallback(() => {
+    cancelIntro();
+    setChatOpen(false);
+  }, [cancelIntro]);
+  const introChat = useCallback(
+    (ms: number) => {
+      openChat();
+      introTimer.current = setTimeout(() => {
+        introTimer.current = null;
+        setChatOpen(false);
+      }, ms);
+    },
+    [openChat],
+  );
 
   useEffect(() => {
     const d = document.documentElement;
@@ -151,12 +184,9 @@ export function UIProvider({ children }: { children: React.ReactNode }) {
       close: () => setPanel(null),
       chatOpen,
       chatDraft,
-      openChat: (draft = "") => {
-        setChatDraft(draft);
-        setChatOpen(true);
-        setPanel(null);
-      },
-      closeChat: () => setChatOpen(false),
+      openChat,
+      closeChat,
+      introChat,
       theme,
       mode,
       setTheme,
@@ -166,7 +196,7 @@ export function UIProvider({ children }: { children: React.ReactNode }) {
       saving,
       saveLook,
     }),
-    [panel, chatOpen, chatDraft, theme, mode, setTheme, setMode, user, saved, saving, saveLook],
+    [panel, chatOpen, chatDraft, openChat, closeChat, introChat, theme, mode, setTheme, setMode, user, saved, saving, saveLook],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

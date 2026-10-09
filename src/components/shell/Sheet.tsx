@@ -6,7 +6,7 @@ import { X } from "lucide-react";
 /**
  * Modal built on <dialog>: focus trap, Escape and backdrop come from the browser.
  * variant "center" = command palette, "full" = full-screen overlay, "side" = right-hand panel.
- * The full-screen overlay slides up on open and back down on close (see .sheet-full in globals.css).
+ * "full" slides up and "side" slides in from the right, and both slide back out on close (see .sheet-full and .sheet-side in globals.css).
  */
 export function Sheet({
   open,
@@ -48,7 +48,7 @@ export function Sheet({
       document.documentElement.style.overflow = "";
       setMounted(false);
     };
-    const animated = variant === "full" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const animated = (variant === "full" || variant === "side") && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!animated) {
       finish();
       return;
@@ -72,7 +72,7 @@ export function Sheet({
     center:
       "mx-auto mt-[10vh] w-[min(680px,calc(100vw-1.5rem))] max-h-[78vh] rounded-[var(--radius-lg)] border-2 border-ink",
     full: "sheet-full m-0 h-[100dvh] max-h-none w-screen max-w-none",
-    side: "ml-auto mr-0 my-0 h-[100dvh] max-h-none w-[min(440px,100vw)] border-l-2 border-ink",
+    side: "sheet-side ml-auto mr-0 my-0 h-[100dvh] max-h-none w-[min(440px,100vw)] border-l-2 border-ink",
   }[variant];
 
   return (

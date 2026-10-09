@@ -3,7 +3,6 @@ import { LinePath } from "@/components/map/Line";
 import { getLibraryStatus, getNetwork } from "@/lib/content";
 import { SITE } from "@/lib/site";
 import { DepartureBoard, type Departure } from "./DepartureBoard";
-import { ThemeButton } from "./ThemeButton";
 import { InstallApp } from "./InstallApp";
 import { Ticket } from "./Ticket";
 
@@ -113,10 +112,6 @@ export function Footer() {
               ))}
             </div>
             <div className="grid gap-1 border-t border-line pt-6 text-[14px]">
-              <p>
-                <span className="text-muted">Library last verified</span> {fmt.format(status.checked)} · {status.resources} resources
-              </p>
-              <ThemeButton />
               <InstallApp className="mt-2" />
             </div>
           </div>
@@ -140,9 +135,14 @@ export function Footer() {
         </div>
 
         <div className="wrap flex flex-wrap items-center justify-between gap-3 border-t border-line py-6 font-mono text-[12px] text-muted">
-          <span>
-            © {new Date().getUTCFullYear()} {SITE.name} · We curate; we don&apos;t sell courses.
-          </span>
+          <div className="grid gap-1">
+            <span className="text-[11px]">
+              Library last verified {fmt.format(status.checked)} · {status.resources} resources
+            </span>
+            <span>
+              © {new Date().getUTCFullYear()} {SITE.name} · We curate; we don&apos;t sell courses.
+            </span>
+          </div>
           <span>codejourney.space</span>
         </div>
       </div>

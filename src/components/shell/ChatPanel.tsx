@@ -81,7 +81,7 @@ function Answer({ text, sources }: { text: string; sources?: SourceRef[] }) {
       const code: string[] = [];
       while (++i < lines.length && !lines[i].startsWith("```")) code.push(lines[i]);
       blocks.push(
-        <pre key={i} className="overflow-x-auto rounded-[var(--radius-md)] border border-line bg-surface p-3 font-mono text-[13px] leading-relaxed">
+        <pre key={i} className="rounded-[var(--radius-md)] border border-line bg-surface p-3 font-mono text-[13px] leading-relaxed whitespace-pre-wrap [overflow-wrap:anywhere]">
           {code.join("\n")}
         </pre>,
       );
@@ -108,7 +108,7 @@ function Answer({ text, sources }: { text: string; sources?: SourceRef[] }) {
       blocks.push(<p key={i}>{inline(line, sources)}</p>);
     }
   }
-  return <div className="grid gap-2.5">{blocks}</div>;
+  return <div className="grid min-w-0 gap-2.5 [overflow-wrap:anywhere]">{blocks}</div>;
 }
 
 /** Reads server-sent events from the chat route. */
@@ -140,6 +140,12 @@ export function ChatPanel() {
   const endRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
+
+  // Desktop: show the chat in full for 5 seconds on load, then dock it on the right edge as a tab.
+  const { introChat } = ui;
+  useEffect(() => {
+    if (window.matchMedia("(min-width: 768px)").matches) introChat(5000);
+  }, [introChat]);
 
   useEffect(() => {
     if (ui.chatOpen) {
@@ -203,20 +209,26 @@ export function ChatPanel() {
 
   return (
     <>
-      {!ui.chatOpen && (
-        <button
-          onClick={() => ui.openChat()}
-          className="group fixed right-5 bottom-5 z-30 hidden items-center gap-2.5 rounded-full border-2 border-ink bg-canvas py-2 pr-4 pl-2 font-display font-semibold shadow-[4px_4px_0_var(--ink)] transition-transform hover:-translate-y-0.5 md:flex"
-        >
-          <Mark size={30} /> Ask CJ AI
-        </button>
-      )}
-      {ui.chatOpen && (
-        <section
-          role="dialog"
-          aria-label="CJ AI chat"
-          className="fixed inset-0 z-50 flex flex-col bg-canvas md:inset-auto md:right-5 md:bottom-5 md:h-[min(680px,calc(100dvh-110px))] md:w-[440px] md:rounded-[var(--radius-lg)] md:border-2 md:border-ink md:shadow-[6px_6px_0_var(--ink)]"
-        >
+      {/* Docked tab: when the chat is tucked away, this pulls it back out. */}
+      <button
+        onClick={() => ui.openChat()}
+        aria-label="Open CJ AI"
+        aria-expanded={ui.chatOpen}
+        className={`fixed right-0 bottom-24 z-30 flex flex-col items-center gap-2.5 rounded-l-[var(--radius-md)] border-2 border-r-0 border-ink bg-canvas px-2.5 py-4 font-display font-semibold shadow-[-3px_3px_0_var(--ink)] transition-[transform,opacity] duration-300 hover:-translate-x-1 ${
+          ui.chatOpen ? "pointer-events-none translate-x-full opacity-0" : "translate-x-0 opacity-100"
+        }`}
+      >
+        <Mark size={24} />
+        <span className="text-[13px] tracking-wide [writing-mode:vertical-rl] rotate-180">Ask CJ AI</span>
+      </button>
+      <section
+        role="dialog"
+        aria-label="CJ AI chat"
+        inert={!ui.chatOpen}
+        className={`fixed inset-0 z-50 flex flex-col overflow-hidden bg-canvas transition-transform duration-300 ease-out md:inset-auto md:right-5 md:bottom-5 md:h-[min(680px,calc(100dvh-110px))] md:w-[440px] md:rounded-[var(--radius-lg)] md:border-2 md:border-ink md:shadow-[6px_6px_0_var(--ink)] ${
+          ui.chatOpen ? "translate-y-0 md:translate-x-0" : "translate-y-full md:translate-x-[calc(100%+2rem)]"
+        }`}
+      >
           <header className="flex items-center gap-3 border-b-2 border-ink px-4 py-3 pt-[max(0.75rem,env(safe-area-inset-top))]">
             <Mark size={30} />
             <div className="min-w-0 flex-1">
@@ -233,7 +245,7 @@ export function ChatPanel() {
             </button>
           </header>
 
-          <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4" aria-live="polite">
+          <div className="min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto px-4 py-4 [scrollbar-width:none]" aria-live="polite">
             {user === null ? (
               <div className="grid h-full place-content-center gap-4 text-center">
                 <MessageCircle size={36} className="mx-auto" />
@@ -253,15 +265,15 @@ export function ChatPanel() {
                 ))}
               </div>
             ) : (
-              <div className="grid gap-5">
+              <div className="grid min-w-0 gap-5">
                 {msgs.map((m, i) =>
                   m.role === "user" ? (
-                    <p key={i} className="ml-8 justify-self-end rounded-[var(--radius-md)] bg-ink px-3.5 py-2.5 text-canvas">
+                    <p key={i} className="ml-8 min-w-0 max-w-full justify-self-end [overflow-wrap:anywhere] rounded-[var(--radius-md)] bg-ink px-3.5 py-2.5 text-canvas">
                       {m.content}
                     </p>
                   ) : (
-                    <div key={i} className="mr-2 grid gap-3">
-                      <div className={`text-[15px] leading-relaxed ${m.error ? "rounded-[var(--radius-md)] border-2 border-accent px-3 py-2" : ""}`}>
+                    <div key={i} className="mr-2 grid min-w-0 gap-3">
+                      <div className={`min-w-0 text-[15px] leading-relaxed ${m.error ? "rounded-[var(--radius-md)] border-2 border-accent px-3 py-2" : ""}`}>
                         {m.content ? (
                           <Answer text={m.content} sources={m.sources} />
                         ) : (
@@ -273,11 +285,11 @@ export function ChatPanel() {
                         )}
                       </div>
                       {!m.error && m.sources && m.sources.length > 0 && !m.streaming && (
-                        <div className="rounded-[var(--radius-md)] border border-line p-3">
+                        <div className="min-w-0 rounded-[var(--radius-md)] border border-line p-3">
                           <p className="eyebrow mb-2">Sources</p>
-                          <ol className="grid gap-1.5 text-[13.5px]">
+                          <ol className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-1.5 text-[13.5px]">
                             {m.sources.map((s) => (
-                              <li key={s.n} className="flex gap-2">
+                              <li key={s.n} className="flex min-w-0 gap-2">
                                 <span className="font-mono text-faint">{s.n}</span>
                                 <Link href={s.url} className="min-w-0 truncate hover:underline">
                                   {s.title.replace(/ \((career route|skill|glossary|blog|field of tech|site guide)\)$/, "")}
@@ -351,8 +363,7 @@ export function ChatPanel() {
               )}
             </form>
           )}
-        </section>
-      )}
+      </section>
     </>
   );
 }

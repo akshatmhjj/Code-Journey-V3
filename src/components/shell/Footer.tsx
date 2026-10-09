@@ -4,6 +4,7 @@ import { getLibraryStatus, getNetwork } from "@/lib/content";
 import { SITE } from "@/lib/site";
 import { DepartureBoard, type Departure } from "./DepartureBoard";
 import { InstallApp } from "./InstallApp";
+import { ThemeButton } from "./ThemeButton";
 import { Ticket } from "./Ticket";
 
 const LINKS = [
@@ -143,7 +144,10 @@ export function Footer() {
               © {new Date().getUTCFullYear()} {SITE.name} · We curate; we don&apos;t sell courses.
             </span>
           </div>
-          <span>codejourney.space</span>
+          <div className="grid justify-items-end gap-2">
+            <ThemeButton compact />
+            <span>codejourney.space</span>
+          </div>
         </div>
       </div>
     </footer>

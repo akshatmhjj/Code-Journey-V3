@@ -7,7 +7,7 @@
 //   private pages, APIs   never cached, so nobody's data stays on a shared device
 //
 // Bump VERSION to throw away every old cache on the next visit.
-const VERSION = "v2";
+const VERSION = "v3";
 const PAGES = `cj-pages-${VERSION}`;
 const STATIC = `cj-static-${VERSION}`;
 const ASSETS = `cj-assets-${VERSION}`;

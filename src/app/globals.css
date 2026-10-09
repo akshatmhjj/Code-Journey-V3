@@ -122,6 +122,11 @@
   html {
     -webkit-text-size-adjust: 100%;
     scroll-padding-top: calc(var(--header-h) + 24px);
+    /* Hide the scrollbar. The page still scrolls with the wheel, trackpad and touch. */
+    scrollbar-width: none;
+  }
+  ::-webkit-scrollbar {
+    display: none;
   }
   body {
     background: var(--canvas);

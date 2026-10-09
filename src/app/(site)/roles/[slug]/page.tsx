@@ -12,6 +12,7 @@ import { AskBand } from "@/components/shell/AskBand";
 import { SaveRoute } from "@/components/path/SaveRoute";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Mapping } from "@/components/ui/Mapping";
+import { RoleToc } from "@/components/ui/RoleToc";
 import { PayBlock } from "@/components/market/PayBlock";
 
 export function generateStaticParams() {
@@ -56,7 +57,7 @@ const TOC = [
   ["interviews", "Interviews"],
   ["market", "Pay and market"],
   ["more", "Is it for you?"],
-];
+] as const;
 
 export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
   const { slug } = await params;
@@ -262,22 +263,9 @@ export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
         </div>
 
         <aside className="hidden lg:block">
-          <nav aria-label="On this page" className="sticky top-[calc(var(--header-h)+68px)]">
-            <p className="eyebrow mb-4">On this page</p>
-            <ol className="grid gap-3 border-l-[3px] border-ink pl-4">
-              {TOC.map(([id, label]) => (
-                <li key={id} className="relative">
-                  <span aria-hidden="true" className="absolute top-[0.45em] -left-[24px] size-3 rounded-full border-[3px] border-ink bg-canvas" />
-                  <a href={`#${id}`} className="text-muted hover:text-ink hover:underline">
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ol>
-            <div className="mt-8">
-              <SaveRoute index={pathIndex} roleSlug={slug} roleTitle={role.title} />
-            </div>
-          </nav>
+          <RoleToc items={TOC}>
+            <SaveRoute index={pathIndex} roleSlug={slug} roleTitle={role.title} />
+          </RoleToc>
         </aside>
       </div>
 

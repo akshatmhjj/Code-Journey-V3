@@ -50,7 +50,7 @@ export default async function PublicPathPage({ params }: { params: Promise<{ han
         {p.updated_at && `last progress ${longDate.format(new Date(p.updated_at))}`}
       </p>
       <div className="mt-6">
-        <ProfileLinks github={p.github_url} linkedin={p.linkedin_url} />
+        <ProfileLinks github={p.github_url} linkedin={p.linkedin_url} leetcode={p.leetcode_url} />
       </div>
 
       {progress ? (

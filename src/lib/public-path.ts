@@ -10,6 +10,8 @@ export type PublicPath = {
   statuses: Statuses;
   updated_at: string | null;
   streak?: number;
+  github_url?: string | null;
+  linkedin_url?: string | null;
 };
 
 const HANDLE = /^[a-z0-9][a-z0-9_-]{2,29}$/;

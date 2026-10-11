@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUpRight, Bookmark, Compass, Copy, Eye, EyeOff, LogOut, Mail, MessageCircle, X } from "lucide-react";
 import { supabase, useUser } from "@/lib/supabase";
 import { computeProgress, formatHours, formatWeeks, type PathIndex } from "@/lib/path";
+import { GITHUB_URL, LINKEDIN_URL, normalizeLink } from "@/lib/profile-links";
 import { CHAT_DAILY_LIMIT, SITE } from "@/lib/site";
 import { ThemePicker } from "@/components/shell/ThemeSettings";
 import { usePath } from "@/components/path/PathProvider";
@@ -158,10 +159,12 @@ const HANDLE = /^[a-z0-9][a-z0-9_-]{2,29}$/;
 
 /** Choose a handle and turn the public /u/<handle> page on or off. */
 function SharePath({ userId, defaultName, hasRole }: { userId: string; defaultName: string; hasRole: boolean }) {
-  const [saved, setSaved] = useState<{ handle: string; name: string; isPublic: boolean } | null>(null);
+  const [saved, setSaved] = useState<{ handle: string; name: string; isPublic: boolean; github: string; linkedin: string } | null>(null);
   const [handle, setHandle] = useState("");
   const [name, setName] = useState("");
   const [isPublic, setIsPublic] = useState(false);
+  const [github, setGithub] = useState("");
+  const [linkedin, setLinkedin] = useState("");
   const [state, setState] = useState<"idle" | "saving" | "saved">("idle");
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
@@ -170,16 +173,24 @@ function SharePath({ userId, defaultName, hasRole }: { userId: string; defaultNa
     let cancelled = false;
     supabase()
       .from("profiles")
-      .select("handle, public_name, path_public")
+      .select("handle, public_name, path_public, github_url, linkedin_url")
       .eq("id", userId)
       .maybeSingle()
       .then(({ data }) => {
         if (cancelled) return;
-        const row = { handle: data?.handle ?? "", name: data?.public_name ?? defaultName, isPublic: !!data?.path_public };
+        const row = {
+          handle: data?.handle ?? "",
+          name: data?.public_name ?? defaultName,
+          isPublic: !!data?.path_public,
+          github: data?.github_url ?? "",
+          linkedin: data?.linkedin_url ?? "",
+        };
         setSaved(row);
         setHandle(row.handle);
         setName(row.name);
         setIsPublic(row.isPublic);
+        setGithub(row.github);
+        setLinkedin(row.linkedin);
       });
     return () => {
       cancelled = true;
@@ -188,7 +199,7 @@ function SharePath({ userId, defaultName, hasRole }: { userId: string; defaultNa
 
   if (!saved) return <div className="h-40 animate-pulse rounded-[var(--radius-md)] bg-surface" />;
 
-  const dirty = handle !== saved.handle || name !== saved.name || isPublic !== saved.isPublic;
+  const dirty = handle !== saved.handle || name !== saved.name || isPublic !== saved.isPublic || github !== saved.github || linkedin !== saved.linkedin;
   const link = `${SITE.url.replace(/^https?:\/\//, "")}/u/${saved.handle}`;
 
   const save = async (e: React.FormEvent) => {
@@ -196,9 +207,13 @@ function SharePath({ userId, defaultName, hasRole }: { userId: string; defaultNa
     setError(null);
     const h = handle.trim().toLowerCase();
     const n = name.trim();
+    const g = normalizeLink(github);
+    const l = normalizeLink(linkedin);
     if (h && !HANDLE.test(h)) return setError("Handles are 3–30 characters: lowercase letters, numbers, - and _, starting with a letter or number.");
     if (isPublic && !h) return setError("Pick a handle first - it becomes your link.");
     if (isPublic && !n) return setError("Add the name you'd like people to see.");
+    if (g && !GITHUB_URL.test(g)) return setError("Your GitHub link should look like github.com/your-name.");
+    if (l && !LINKEDIN_URL.test(l)) return setError("Your LinkedIn link should look like linkedin.com/in/your-name.");
     setState("saving");
     const db = supabase();
     if (h && h !== saved.handle) {
@@ -210,16 +225,27 @@ function SharePath({ userId, defaultName, hasRole }: { userId: string; defaultNa
     }
     const { error: err } = await db
       .from("profiles")
-      .upsert({ id: userId, handle: h || null, public_name: n || null, path_public: isPublic }, { onConflict: "id" });
+      .upsert(
+        { id: userId, handle: h || null, public_name: n || null, path_public: isPublic, github_url: g || null, linkedin_url: l || null },
+        { onConflict: "id" },
+      );
     if (err) {
       setState("idle");
       return setError(
-        err.code === "23505" ? `@${h} is taken. Try another.` : err.message.includes("reserved") ? `@${h} is reserved. Try another.` : "Couldn't save that. Please try again.",
+        err.code === "23505"
+          ? `@${h} is taken. Try another.`
+          : err.message.includes("reserved")
+            ? `@${h} is reserved. Try another.`
+            : err.message.includes("_url_format")
+              ? "One of your links isn't in the right format."
+              : "Couldn't save that. Please try again.",
       );
     }
-    setSaved({ handle: h, name: n, isPublic });
+    setSaved({ handle: h, name: n, isPublic, github: g, linkedin: l });
     setHandle(h);
     setName(n);
+    setGithub(g);
+    setLinkedin(l);
     setState("saved");
     setTimeout(() => setState("idle"), 2500);
   };
@@ -229,7 +255,7 @@ function SharePath({ userId, defaultName, hasRole }: { userId: string; defaultNa
     <form onSubmit={save} className="grid gap-5">
       <p className="max-w-[60ch] text-muted">
         Get a page you can put on your CV, LinkedIn or GitHub showing where you&apos;re heading and how far you&apos;ve got. It shows your chosen name, route and
-        ticked skills - never your email. Off until you turn it on, and it stays out of search engines.
+        ticked skills, plus your GitHub and LinkedIn if you add them - never your email. Off until you turn it on, and it stays out of search engines.
       </p>
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-1.5 text-sm">
@@ -250,6 +276,36 @@ function SharePath({ userId, defaultName, hasRole }: { userId: string; defaultNa
         <label className="grid gap-1.5 text-sm">
           <span className="font-semibold">Name shown on the page</span>
           <input value={name} onChange={(e) => setName(e.target.value)} maxLength={60} className={field} />
+        </label>
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="grid gap-1.5 text-sm">
+          <span className="font-semibold">
+            GitHub <span className="font-normal text-muted">(optional)</span>
+          </span>
+          <input
+            value={github}
+            onChange={(e) => setGithub(e.target.value)}
+            maxLength={120}
+            autoCapitalize="none"
+            spellCheck={false}
+            placeholder="github.com/your-name"
+            className={field}
+          />
+        </label>
+        <label className="grid gap-1.5 text-sm">
+          <span className="font-semibold">
+            LinkedIn <span className="font-normal text-muted">(optional)</span>
+          </span>
+          <input
+            value={linkedin}
+            onChange={(e) => setLinkedin(e.target.value)}
+            maxLength={120}
+            autoCapitalize="none"
+            spellCheck={false}
+            placeholder="linkedin.com/in/your-name"
+            className={field}
+          />
         </label>
       </div>
       <label className="flex cursor-pointer items-center gap-3">

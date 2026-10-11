@@ -6,6 +6,7 @@ import { getPathIndex } from "@/lib/content";
 import { computeProgress, formatHours } from "@/lib/path";
 import { milestones } from "@/lib/milestones";
 import { getPublicPath } from "@/lib/public-path";
+import { ProfileLinks } from "@/components/path/ProfileLinks";
 
 // Public path pages are personal and change whenever someone ticks a skill, so render on request.
 export const dynamic = "force-dynamic";
@@ -48,6 +49,9 @@ export default async function PublicPathPage({ params }: { params: Promise<{ han
         {p.started_at && p.updated_at && " · "}
         {p.updated_at && `last progress ${longDate.format(new Date(p.updated_at))}`}
       </p>
+      <div className="mt-6">
+        <ProfileLinks github={p.github_url} linkedin={p.linkedin_url} />
+      </div>
 
       {progress ? (
         <div className="mt-12 grid gap-10">

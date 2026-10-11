@@ -12,6 +12,7 @@ export type PublicPath = {
   streak?: number;
   github_url?: string | null;
   linkedin_url?: string | null;
+  leetcode_url?: string | null;
 };
 
 const HANDLE = /^[a-z0-9][a-z0-9_-]{2,29}$/;

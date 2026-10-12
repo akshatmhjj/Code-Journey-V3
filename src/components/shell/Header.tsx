@@ -15,6 +15,9 @@ const NAV = [
   { href: "/glossary", label: "Glossary" },
 ];
 
+/** Underline for a nav item. The look and the hover rule live in globals.css (`.nav-underline`). */
+const NAV_UNDERLINE = "nav-underline";
+
 /** Cycles role names in the search box: "I want to become a Data Analyst". */
 function useRotating(items: string[], ms = 2800) {
   const [i, setI] = useState(0);
@@ -134,9 +137,10 @@ export function Header({ roleTitles }: { roleTitles: string[] }) {
             onMouseEnter={(e) => moveTo(e.currentTarget)}
             onFocus={(e) => moveTo(e.currentTarget)}
             onClick={() => ui.open("network")}
-            className="relative flex h-10 items-center gap-2 rounded-full px-3.5 font-display font-semibold"
+            className="group relative flex h-10 items-center gap-2 rounded-full px-3.5 font-display font-semibold"
           >
             <Map size={17} /> Network
+            <span aria-hidden="true" className={NAV_UNDERLINE} />
           </button>
           {NAV.map((n) => {
             const active = path === n.href || path.startsWith(n.href + "/");
@@ -147,9 +151,10 @@ export function Header({ roleTitles }: { roleTitles: string[] }) {
                 aria-current={active ? "page" : undefined}
                 onMouseEnter={(e) => moveTo(e.currentTarget)}
                 onFocus={(e) => moveTo(e.currentTarget)}
-                className="relative flex h-10 items-center rounded-full px-3.5 font-display font-semibold"
+                className="group relative flex h-10 items-center rounded-full px-3.5 font-display font-semibold"
               >
                 {n.label}
+                <span aria-hidden="true" className={NAV_UNDERLINE} />
                 {active && <span aria-hidden="true" className="absolute -bottom-1 left-1/2 size-[7px] -translate-x-1/2 rounded-full border-2 border-ink bg-accent" />}
               </Link>
             );

@@ -227,6 +227,111 @@
   .btn-line { border: 2px solid var(--ink); }
   .btn-line:hover { background: var(--raise); }
 
+  /* My Path: the route drawn as a metro line. Horizontal from 640px up, vertical on phones. */
+  .metro-wrap { position: relative; }
+  .metro,
+  .metro-track,
+  .metro-fill {
+    --line-left: 14px;
+  }
+  .metro-track,
+  .metro-fill {
+    position: absolute;
+    left: var(--line-left);
+    right: var(--line-left);
+    top: 10px;
+    height: 8px;
+    border-radius: 999px;
+    pointer-events: none;
+  }
+  .metro-track { background: var(--line-strong); }
+  .metro-fill {
+    right: auto;
+    width: calc((100% - 2 * var(--line-left)) * var(--p, 0));
+    background: var(--ink);
+    transition: width 0.5s ease;
+  }
+  .metro {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .metro-stop {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+  .metro-dot {
+    flex: none;
+    box-sizing: border-box;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    border: 3px solid var(--ink);
+    background: var(--canvas);
+    position: relative;
+    z-index: 1;
+  }
+  .metro-dot[data-state="done"] { background: var(--ink); }
+  .metro-dot[data-state="here"] { background: var(--accent); }
+  /* "You are here": a soft ring that breathes out from the dot, forever, until reduced motion is requested. */
+  .metro-dot[data-state="here"]::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 999px;
+    border: 2px solid var(--accent);
+    animation: metro-pulse 2.4s ease-out infinite;
+    pointer-events: none;
+  }
+  .metro-dot[data-state="here"]::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 999px;
+    background: var(--accent);
+    animation: metro-glow 2.4s ease-in-out infinite;
+    z-index: -1;
+  }
+  @keyframes metro-pulse {
+    0% { transform: scale(0.55); opacity: 0.95; }
+    70%, 100% { transform: scale(1.7); opacity: 0; }
+  }
+  @keyframes metro-glow {
+    0%, 100% { opacity: 0.25; transform: scale(1); }
+    50% { opacity: 0.55; transform: scale(1.25); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .metro-dot[data-state="here"]::before { animation: none; opacity: 0.35; transform: scale(1.2); }
+    .metro-dot[data-state="here"]::after { animation: none; opacity: 0.3; }
+    .metro-fill { transition: none; }
+  }
+  .metro-label { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .metro-label b { font-family: var(--font-display); font-size: 1rem; font-weight: 600; overflow-wrap: anywhere; }
+  .metro-label small { color: var(--muted); font-size: 0.8125rem; line-height: 1.35; }
+  @media (max-width: 639px) {
+    .metro { flex-direction: column; gap: 1.25rem; padding-left: 4px; }
+    .metro-track,
+    .metro-fill {
+      --line-left: 0px;
+      left: 17px;
+      right: auto;
+      top: 8px;
+      bottom: 8px;
+      width: 8px;
+      height: auto;
+    }
+    .metro-fill { height: calc((100% - 16px) * var(--p, 0)); width: 8px; }
+    .metro-stop { flex-direction: row; align-items: center; gap: 0.9rem; }
+  }
+
   /* Long-form content rendered from Markdown */
   .prose {
     max-width: 68ch;

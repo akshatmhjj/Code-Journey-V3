@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { Mark } from "@/components/brand/Logo";
 import { GITHUB_URL, LEETCODE_URL, LINKEDIN_URL, safeLink } from "@/lib/profile-links";
 
 // Brand marks, inlined so this app needs no icon package. GitHub and LinkedIn are Font Awesome glyphs; LeetCode is Simple Icons (CC0).
@@ -29,16 +27,14 @@ function LeetCodeIcon() {
 
 const pill = "btn btn-line text-[15px]";
 
-/** Pills linking to Code Journey and, when the person added them, their GitHub, LinkedIn and LeetCode profiles. */
+/** Pills for the person's GitHub, LinkedIn and LeetCode profiles. Each shows only when the person has added that link. */
 export function ProfileLinks({ github, linkedin, leetcode }: { github?: string | null; linkedin?: string | null; leetcode?: string | null }) {
   const gh = safeLink(github, GITHUB_URL);
   const li = safeLink(linkedin, LINKEDIN_URL);
   const lc = safeLink(leetcode, LEETCODE_URL);
+  if (!gh && !li && !lc) return null;
   return (
     <nav aria-label="Links" className="flex flex-wrap items-center gap-3">
-      <Link href="/" className={pill}>
-        <Mark size={18} /> Code Journey
-      </Link>
       {gh && (
         <a href={gh} target="_blank" rel="noopener noreferrer me" className={pill}>
           <GitHubIcon /> GitHub

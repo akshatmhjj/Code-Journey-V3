@@ -1,4 +1,4 @@
-"use client";
+ƒ"use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -686,7 +686,7 @@ export function WeeklyEmailSection({ userId, email, hasRole }: { userId: string;
   };
 
   return (
-    <Section id="email-title" num="06" eyebrow="Every Monday" title="Weekly email">
+    <Section id="email-title" num="06" eyebrow="Every Weekday" title="Weekly email">
       <div className="grid gap-6">
         <p className="text-lg text-muted">
           One short email a week: how far along your route you are, what you ticked off, and your next three stations. Sent to{" "}

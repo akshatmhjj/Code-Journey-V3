@@ -13,7 +13,7 @@ const MODES: { id: Mode; label: string; Icon: typeof Sun }[] = [
 ];
 
 /** Save to the account, so the same look loads next time on any device. */
-function SaveLook() {
+export function SaveLook() {
   const ui = useUI();
   if (ui.signedIn === undefined) return null;
 

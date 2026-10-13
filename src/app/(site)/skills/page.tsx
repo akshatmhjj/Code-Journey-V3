@@ -13,13 +13,13 @@ export default function SkillsIndex() {
   const net = getNetwork();
   const written = new Map(getSkills().map((s) => [s.slug, s]));
   const live = net.skills.filter((s) => s.live).length;
+  const lede =
+    live === net.skills.length
+      ? `${net.skills.length} skills across ${net.domains.length} lines. Every one has a brief, a checklist and checked resources.`
+      : `${net.skills.length} skills across ${net.domains.length} lines. ${live} have full pages today - a brief, a checklist and checked resources. The rest are being written.`;
   return (
     <>
-      <PageHead
-        eyebrow="Stations"
-        title="Every skill on the map."
-        lede={`${net.skills.length} skills across ${net.domains.length} lines. ${live} have full pages today - a brief, a checklist and checked resources. The rest are being written.`}
-      />
+      <PageHead eyebrow="Stations" title="Every skill on the map." lede={lede} />
       <div className="wrap grid gap-14">
         {net.domains.map((d) => {
           const skills = net.skills.filter((s) => s.domain === d.slug);

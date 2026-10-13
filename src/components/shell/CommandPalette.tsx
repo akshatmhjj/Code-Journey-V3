@@ -46,6 +46,7 @@ export function CommandPalette() {
   const [items, setItems] = useState<SearchItem[]>(cached ?? []);
   const [q, setQ] = useState("");
   const [active, setActive] = useState(0);
+  const [failed, setFailed] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const open = ui.panel === "search";
 
@@ -57,7 +58,7 @@ export function CommandPalette() {
         cached = d;
         setItems(d);
       })
-      .catch(() => {});
+      .catch(() => setFailed(true));
   }, [open]);
 
   const results = useMemo(() => {
@@ -128,6 +129,11 @@ export function CommandPalette() {
           Esc
         </button>
       </div>
+      {!items.length && (
+        <p role="status" className="px-5 py-6 text-[15px] text-muted">
+          {failed ? "Search isn't available right now. The map and roles pages still work." : "Loading the map…"}
+        </p>
+      )}
       <div ref={listRef} id="search-results" role="listbox" aria-label="Results" className="min-h-0 flex-1 overflow-y-auto p-2">
         {!q.trim() && <p className="px-3 pt-2 pb-1 eyebrow">Popular destinations</p>}
         {ORDER.map((type) => {

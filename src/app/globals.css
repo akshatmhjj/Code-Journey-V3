@@ -227,6 +227,34 @@
   .btn-line { border: 2px solid var(--ink); }
   .btn-line:hover { background: var(--raise); }
 
+  /* Collapsible sections (native <details class="cj-collapse">). CSS only: the height and fade run on the
+     compositor-friendly properties, and the closed content is skipped by the renderer (content-visibility).
+     Browsers without ::details-content still open and close, just without the animation. */
+  @supports selector(details::details-content) {
+    :root { interpolate-size: allow-keywords; }
+    .cj-collapse::details-content {
+      block-size: 0;
+      opacity: 0;
+      overflow: clip;
+      content-visibility: hidden;
+      transition:
+        block-size 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+        opacity 0.3s ease,
+        content-visibility 0.4s allow-discrete;
+    }
+    .cj-collapse[open]::details-content {
+      block-size: auto;
+      opacity: 1;
+      content-visibility: visible;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cj-collapse::details-content,
+      .cj-collapse[open]::details-content {
+        transition: none;
+      }
+    }
+  }
+
   /* Header nav: the line that draws under the item the cursor (or keyboard focus) is on. Each item is a `group`. */
   .nav-underline {
     position: absolute;

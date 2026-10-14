@@ -227,31 +227,35 @@
   .btn-line { border: 2px solid var(--ink); }
   .btn-line:hover { background: var(--raise); }
 
-  /* Collapsible sections (native <details class="cj-collapse">). CSS only: the height and fade run on the
-     compositor-friendly properties, and the closed content is skipped by the renderer (content-visibility).
-     Browsers without ::details-content still open and close, just without the animation. */
-  @supports selector(details::details-content) {
-    :root { interpolate-size: allow-keywords; }
-    .cj-collapse::details-content {
-      block-size: 0;
-      opacity: 0;
-      overflow: clip;
-      content-visibility: hidden;
-      transition:
-        block-size 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-        opacity 0.3s ease,
-        content-visibility 0.4s allow-discrete;
-    }
-    .cj-collapse[open]::details-content {
-      block-size: auto;
-      opacity: 1;
-      content-visibility: visible;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .cj-collapse::details-content,
-      .cj-collapse[open]::details-content {
-        transition: none;
-      }
+  /* Collapsible sections (components/ui/Disclosure). The height animates with a grid-rows transition and the
+     panel fades. A closed panel is hidden from view and from keyboard focus once its fade has finished. */
+  .cj-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      grid-template-rows 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 0.3s ease,
+      visibility 0s linear 0.4s;
+  }
+  .cj-panel[data-open="true"] {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    visibility: visible;
+    transition:
+      grid-template-rows 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 0.3s ease,
+      visibility 0s;
+  }
+  .cj-panel-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cj-panel,
+    .cj-panel[data-open="true"] {
+      transition: none;
     }
   }
 

@@ -8,6 +8,7 @@ import { GAP_EXAMPLES } from "@/lib/gap-examples";
 import { formatHours, formatWeeks, parseHours, type SkillStatus } from "@/lib/path";
 import { usePath } from "@/components/path/PathProvider";
 import { SkillProgress } from "@/components/path/SkillProgress";
+import { Disclosure } from "@/components/ui/Disclosure";
 
 const MAX_CHARS = 20_000;
 
@@ -112,11 +113,15 @@ export function GapAnalyser({ data }: { data: GapData }) {
           <p className="flex items-center gap-2">
             <Lock size={14} aria-hidden="true" /> Runs entirely in your browser. The job post is never uploaded or stored.
           </p>
-          <details className="cj-collapse group">
-            <summary className="inline-flex cursor-pointer list-none items-center gap-2 font-semibold text-ink underline decoration-accent decoration-2 underline-offset-4 [&::-webkit-details-marker]:hidden">
-              <Info size={14} aria-hidden="true" /> This is automated and approximate - read the details
-            </summary>
-            <div className="mt-3 grid max-w-[70ch] gap-2 text-[15px]">
+          <Disclosure
+            variant="inline"
+            title={
+              <>
+                <Info size={14} aria-hidden="true" /> This is automated and approximate - read the details
+              </>
+            }
+          >
+            <div className="grid max-w-[70ch] gap-2 text-[15px]">
               <p>
                 It looks for skill names and common synonyms from Code Journey&apos;s own list, so it can miss skills written in unusual ways, misread a word used in another sense, or give
                 weight to a &ldquo;nice to have&rdquo; as if it were required.
@@ -126,7 +131,7 @@ export function GapAnalyser({ data }: { data: GapData }) {
                 full post yourself, and treat this as a starting point for what to learn next.
               </p>
             </div>
-          </details>
+          </Disclosure>
         </div>
       </div>
 
@@ -202,20 +207,14 @@ export function GapAnalyser({ data }: { data: GapData }) {
 
                 {/* Foundations first */}
                 {view.foundations.length > 0 && (
-                  <details id="gap-foundations" className="cj-collapse group border-t-2 border-ink pt-4">
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-2 [&::-webkit-details-marker]:hidden">
-                      <span className="min-w-0">
-                        <span className="block text-2xl font-bold">Foundations you&apos;ll need first</span>
-                        <span className="mt-1 block text-sm text-muted">{view.foundations.length} skills the post doesn&apos;t mention, but the rest build on</span>
-                      </span>
-                      <span className="shrink-0 rounded-full border-2 border-ink px-4 py-1.5 text-sm font-semibold group-open:hidden">Show</span>
-                      <span className="hidden shrink-0 rounded-full border-2 border-ink px-4 py-1.5 text-sm font-semibold group-open:inline-block">Hide</span>
-                    </summary>
-                    <div className="mt-4">
-                      <p className="mb-4 max-w-[62ch] text-muted">Employers assume you have these, so check them first.</p>
-                      <SkillRows slugs={view.foundations} data={data} local={local} setLocal={setLocal} />
-                    </div>
-                  </details>
+                  <Disclosure
+                    id="gap-foundations"
+                    title="Foundations you'll need first"
+                    hint={`${view.foundations.length} skills the post doesn't mention, but the rest build on`}
+                  >
+                    <p className="mb-4 max-w-[62ch] text-muted">Employers assume you have these, so check them first.</p>
+                    <SkillRows slugs={view.foundations} data={data} local={local} setLocal={setLocal} />
+                  </Disclosure>
                 )}
 
                 {/* To learn */}

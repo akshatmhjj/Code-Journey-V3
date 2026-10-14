@@ -14,6 +14,7 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { Mapping } from "@/components/ui/Mapping";
 import { RoleToc } from "@/components/ui/RoleToc";
 import { PayBlock } from "@/components/market/PayBlock";
+import { Disclosure as Collapse } from "@/components/ui/Disclosure";
 
 export function generateStaticParams() {
   return getNetwork().roles.map((r) => ({ slug: r.slug }));
@@ -57,23 +58,6 @@ const TOC = [
   ["market", "Pay and market"],
   ["more", "Is it for you?"],
 ] as const;
-
-/** A section that starts closed. Native <details>, so it works without JavaScript and is keyboard friendly. */
-function Collapse({ id, title, hint, children }: { id: string; title: string; hint?: string; children: React.ReactNode }) {
-  return (
-    <details id={id} className="cj-collapse group mt-12 border-t-2 border-ink pt-6 md:mt-16">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-2 [&::-webkit-details-marker]:hidden">
-        <span className="min-w-0">
-          <span className="block font-display text-2xl font-bold md:text-3xl">{title}</span>
-          {hint && <span className="mt-1 block text-sm text-muted">{hint}</span>}
-        </span>
-        <span className="shrink-0 rounded-full border-2 border-ink px-4 py-1.5 text-sm font-semibold group-open:hidden">Show</span>
-        <span className="hidden shrink-0 rounded-full border-2 border-ink px-4 py-1.5 text-sm font-semibold group-open:inline-block">Hide</span>
-      </summary>
-      <div className="mt-6">{children}</div>
-    </details>
-  );
-}
 
 export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
   const { slug } = await params;
@@ -164,6 +148,11 @@ export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
               {[...allSkills].some((x) => !skillOf(x).live) && " Dashed stations are still being written."}
             </p>
             <RouteStages stages={role.stages} skillOf={skillOf} />
+            <div className="mt-10">
+              <Link href={`/checklist/${slug}`} className="btn btn-line w-full sm:w-fit">
+                Printable checklist (save as PDF)
+              </Link>
+            </div>
           </section>
 
           <section id="market" className="mt-20 border-t-2 border-ink pt-10" aria-labelledby="market-title">

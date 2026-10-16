@@ -14,6 +14,7 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { Mapping } from "@/components/ui/Mapping";
 import { RoleToc } from "@/components/ui/RoleToc";
 import { PayBlock } from "@/components/market/PayBlock";
+import { Disclosure as Collapse } from "@/components/ui/Disclosure";
 
 export function generateStaticParams() {
   return getNetwork().roles.map((r) => ({ slug: r.slug }));
@@ -50,11 +51,10 @@ function totalWeeks(weeks: (string | undefined)[]) {
   return hi ? `${Math.round(lo / 4.3)}–${Math.round(hi / 4.3)} months` : null;
 }
 
+// Only the sections that stay open. The rest are behind a "Show" toggle, so the page reads top to bottom without a wall of text.
 const TOC = [
   ["day", "The job"],
   ["route", "The route"],
-  ["skills", "Skills by priority"],
-  ["interviews", "Interviews"],
   ["market", "Pay and market"],
   ["more", "Is it for you?"],
 ] as const;
@@ -120,7 +120,7 @@ export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
             </div>
           ))}
         </dl>
-        {jobReady && <p className="mt-3 text-sm text-muted">Time is a rough range at about 10 hours a week, through the first three stages.</p>}
+        {jobReady && <p className="mt-3 text-sm text-muted">A rough range at about 10 hours a week, for the first three stages.</p>}
       </header>
 
       <div className="wrap grid gap-12 lg:grid-cols-[1fr_250px] lg:gap-16">
@@ -148,10 +148,37 @@ export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
               {[...allSkills].some((x) => !skillOf(x).live) && " Dashed stations are still being written."}
             </p>
             <RouteStages stages={role.stages} skillOf={skillOf} />
+            <div className="mt-10">
+              <Link href={`/checklist/${slug}`} className="btn btn-line w-full sm:w-fit">
+                Printable checklist (save as PDF)
+              </Link>
+            </div>
           </section>
 
-          <section id="skills" className="mt-20 border-t-2 border-ink pt-10" aria-labelledby="skills-title">
-            <SectionTitle eyebrow="Priorities" title="Skills, by how much they matter" id="skills-title" />
+          <section id="market" className="mt-20 border-t-2 border-ink pt-10" aria-labelledby="market-title">
+            <SectionTitle eyebrow={`The market · ${role.updated.getUTCFullYear()}`} title="Pay and what's changing" id="market-title">
+              <Link href="/market" className="text-sm font-semibold hover:underline">
+                Compare pay across all roles
+              </Link>
+            </SectionTitle>
+            <div className="mb-6">
+              <PayBlock market={getMarket().roles[slug] ?? {}} />
+            </div>
+            <ul className="grid gap-4">
+              {role.market.map((m) => (
+                <li key={m.text} className="border-l-4 border-ink pl-4">
+                  <p>{m.text}</p>
+                  {m.source && (
+                    <a href={m.source.url} target="_blank" rel="noopener noreferrer" className="mt-1 inline-flex items-center gap-1.5 text-sm text-muted hover:text-ink hover:underline">
+                      Source: {m.source.title} <ExternalLink size={13} />
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <Collapse id="skills" title="Skills by priority" hint={`${role.skills.must.length} must have · ${role.skills.should.length} should have · ${role.skills.nice.length} nice to have`}>
             <div className="grid gap-8 md:grid-cols-3">
               {(
                 [
@@ -181,10 +208,9 @@ export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
                 </li>
               ))}
             </ul>
-          </section>
+          </Collapse>
 
-          <section id="interviews" className="mt-20 border-t-2 border-ink pt-10" aria-labelledby="int-title">
-            <SectionTitle eyebrow="Getting hired" title="What the interviews look like" id="int-title" />
+          <Collapse id="interviews" title="What the interviews look like" hint={`${role.interview.rounds.length} rounds, and where to practise`}>
             <ol className="grid gap-3">
               {role.interview.rounds.map((r, i) => (
                 <li key={r} className="grid grid-cols-[36px_1fr] items-baseline gap-3">
@@ -195,46 +221,25 @@ export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
             </ol>
             <h3 className="mt-10 mb-2 text-xl font-bold">Where to practise</h3>
             <ResourceList resources={role.interview.practice} />
-          </section>
+          </Collapse>
 
-          <section id="market" className="mt-20 border-t-2 border-ink pt-10" aria-labelledby="market-title">
-            <SectionTitle eyebrow={`The market · ${role.updated.getUTCFullYear()}`} title="Pay and what's changing" id="market-title">
-              <Link href="/market" className="text-sm font-semibold hover:underline">
-                Compare pay across all roles
-              </Link>
-            </SectionTitle>
-            <div className="mb-6">
-              <PayBlock market={getMarket().roles[slug] ?? {}} />
-            </div>
-            <div className="band-ink overflow-hidden rounded-[var(--radius-lg)]">
-              <div className="p-6 md:p-8">
-                <p className="flex items-center gap-2 font-display text-lg font-bold">
-                  <Bot size={20} /> How AI is changing this role
-                </p>
-                <p className="mt-3 max-w-[65ch] text-[17px] leading-relaxed">{role.aiImpact}</p>
-              </div>
-            </div>
-            <ul className="mt-6 grid gap-4">
-              {role.market.map((m) => (
-                <li key={m.text} className="border-l-4 border-ink pl-4">
-                  <p>{m.text}</p>
-                  {m.source && (
-                    <a href={m.source.url} target="_blank" rel="noopener noreferrer" className="mt-1 inline-flex items-center gap-1.5 text-sm text-muted hover:text-ink hover:underline">
-                      Source: {m.source.title} <ExternalLink size={13} />
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </section>
+          <Collapse id="ai" title="How AI is changing this role" hint="What assistants now do, and what stays valuable">
+            <p className="max-w-[65ch] text-[17px] leading-relaxed">{role.aiImpact}</p>
+          </Collapse>
 
-          <section id="more" className="mt-20 border-t-2 border-ink pt-10">
+          <Collapse id="more" title="Is it for you?" hint="Who the role suits, and how it differs from nearby roles">
             <div className="prose" dangerouslySetInnerHTML={{ __html: body }} />
-          </section>
+          </Collapse>
 
           {adjacent.length > 0 && (
             <section className="mt-20 border-t-2 border-ink pt-10" aria-labelledby="adj-title">
-              <SectionTitle eyebrow="Nearby stations" title="Related roles" id="adj-title" />
+              <SectionTitle eyebrow="Nearby stations" title="Related roles" id="adj-title">
+                {adjacent[0].live && (
+                  <Link href={`/roles/compare/${slug}-vs-${adjacent[0].slug}`} className="text-sm font-semibold hover:underline">
+                    Compare with {adjacent[0].title}
+                  </Link>
+                )}
+              </SectionTitle>
               <div className="grid gap-4 sm:grid-cols-2">
                 {adjacent.map((a) => (
                   <Link key={a.slug} href={`/roles/${a.slug}`} className="group rounded-[var(--radius-lg)] border-2 border-ink p-5 hover:shadow-[4px_4px_0_var(--ink)]">
@@ -246,18 +251,6 @@ export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
                   </Link>
                 ))}
               </div>
-              <p className="mt-6 flex flex-wrap items-center gap-2 text-[15px]">
-                <span className="text-muted">Compare {role.title} with:</span>
-                {adjacent.map((a) => (
-                  <Link
-                    key={a.slug}
-                    href={`/roles/compare/${slug}-vs-${a.slug}`}
-                    className="rounded-full border-2 border-ink px-3 py-1 font-semibold hover:bg-ink hover:text-canvas"
-                  >
-                    {a.title}
-                  </Link>
-                ))}
-              </p>
             </section>
           )}
         </div>

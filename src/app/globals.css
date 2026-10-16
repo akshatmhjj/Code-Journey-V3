@@ -227,6 +227,38 @@
   .btn-line { border: 2px solid var(--ink); }
   .btn-line:hover { background: var(--raise); }
 
+  /* Collapsible sections (components/ui/Disclosure). The height animates with a grid-rows transition and the
+     panel fades. A closed panel is hidden from view and from keyboard focus once its fade has finished. */
+  .cj-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      grid-template-rows 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 0.3s ease,
+      visibility 0s linear 0.4s;
+  }
+  .cj-panel[data-open="true"] {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    visibility: visible;
+    transition:
+      grid-template-rows 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 0.3s ease,
+      visibility 0s;
+  }
+  .cj-panel-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cj-panel,
+    .cj-panel[data-open="true"] {
+      transition: none;
+    }
+  }
+
   /* Header nav: the line that draws under the item the cursor (or keyboard focus) is on. Each item is a `group`. */
   .nav-underline {
     position: absolute;

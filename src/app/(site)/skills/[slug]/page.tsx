@@ -12,6 +12,7 @@ import { Mapping } from "@/components/ui/Mapping";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { AskBand } from "@/components/shell/AskBand";
 import { SkillProgress } from "@/components/path/SkillProgress";
+import { Disclosure } from "@/components/ui/Disclosure";
 
 export function generateStaticParams() {
   return getNetwork().skills.map((s) => ({ slug: s.slug }));
@@ -139,8 +140,12 @@ export default async function SkillPage({ params }: PageProps<"/skills/[slug]">)
         </section>
 
         {snippets.length > 0 && (
-          <section aria-labelledby="snip-title" className="border-t-2 border-ink pt-10">
-            <SectionTitle eyebrow="Copy and adapt" title="Snippets" id="snip-title" />
+          <Disclosure
+            id="snippets"
+            eyebrow="Copy and adapt"
+            title="Snippets"
+            hint={`${snippets.length} short ${snippets.length === 1 ? "example" : "examples"} to copy and adapt`}
+          >
             <div className="grid gap-6 lg:grid-cols-2">
               {snippets.map((s) => (
                 <figure key={s.id} className="min-w-0">
@@ -152,7 +157,7 @@ export default async function SkillPage({ params }: PageProps<"/skills/[slug]">)
                 </figure>
               ))}
             </div>
-          </section>
+          </Disclosure>
         )}
 
         {(roles.length > 0 || next.length > 0) && (

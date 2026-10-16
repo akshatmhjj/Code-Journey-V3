@@ -8,6 +8,7 @@ import { GAP_EXAMPLES } from "@/lib/gap-examples";
 import { formatHours, formatWeeks, parseHours, type SkillStatus } from "@/lib/path";
 import { usePath } from "@/components/path/PathProvider";
 import { SkillProgress } from "@/components/path/SkillProgress";
+import { Disclosure } from "@/components/ui/Disclosure";
 
 const MAX_CHARS = 20_000;
 
@@ -77,28 +78,7 @@ export function GapAnalyser({ data }: { data: GapData }) {
         We&apos;ll pick out the skills it asks for, check them against your route, and point you to the best place to learn each one you don&apos;t have yet.
       </p>
 
-      <aside
-        role="note"
-        aria-labelledby="gap-note-title"
-        className="mt-8 grid max-w-[78ch] grid-cols-[auto_1fr] gap-x-3 gap-y-1 rounded-[var(--radius-md)] border-2 border-ink p-4 md:p-5"
-      >
-        <Info size={20} className="mt-0.5" aria-hidden="true" />
-        <p id="gap-note-title" className="font-display font-bold">
-          Before you paste: a quick note
-        </p>
-        <div className="col-start-2 grid gap-1.5 text-[15px] text-muted">
-          <p>
-            This is an automated check that runs on our side only, so the results may not be fully accurate. It looks for skill names and common synonyms from Code Journey&apos;s own list, so it can miss
-            skills written in unusual ways, misread a word used in another sense, or give weight to a &ldquo;nice to have&rdquo; as if it were required.
-          </p>
-          <p>
-            It isn&apos;t a judgement of whether you&apos;re right for the job, and it doesn&apos;t know what the employer will actually ask. Time estimates are rough
-            averages. Always read the full post yourself, and treat this as a starting point for what to learn next.
-          </p>
-        </div>
-      </aside>
-
-      <div className="mt-6 grid gap-4">
+      <div className="mt-10 grid gap-4">
         <label htmlFor="gap-text" className="sr-only">
           Job post
         </label>
@@ -129,9 +109,30 @@ export function GapAnalyser({ data }: { data: GapData }) {
             </button>
           ))}
         </div>
-        <p className="flex items-center gap-2 text-sm text-muted">
-          <Lock size={14} /> Runs entirely in your browser. The job post is never uploaded or stored.
-        </p>
+        <div className="grid gap-2 text-sm text-muted">
+          <p className="flex items-center gap-2">
+            <Lock size={14} aria-hidden="true" /> Runs entirely in your browser. The job post is never uploaded or stored.
+          </p>
+          <Disclosure
+            variant="inline"
+            title={
+              <>
+                <Info size={14} aria-hidden="true" /> This is automated and approximate - read the details
+              </>
+            }
+          >
+            <div className="grid max-w-[70ch] gap-2 text-[15px]">
+              <p>
+                It looks for skill names and common synonyms from Code Journey&apos;s own list, so it can miss skills written in unusual ways, misread a word used in another sense, or give
+                weight to a &ldquo;nice to have&rdquo; as if it were required.
+              </p>
+              <p>
+                It isn&apos;t a judgement of whether you&apos;re right for the job, and it doesn&apos;t know what the employer will actually ask. Time estimates are rough averages. Always read the
+                full post yourself, and treat this as a starting point for what to learn next.
+              </p>
+            </div>
+          </Disclosure>
+        </div>
       </div>
 
       <div ref={resultsRef} className="scroll-mt-28">
@@ -206,15 +207,14 @@ export function GapAnalyser({ data }: { data: GapData }) {
 
                 {/* Foundations first */}
                 {view.foundations.length > 0 && (
-                  <section aria-labelledby="gap-foundations">
-                    <h2 id="gap-foundations" className="text-2xl font-bold">
-                      Foundations you&apos;ll need first
-                    </h2>
-                    <p className="mt-1 mb-4 max-w-[62ch] text-muted">
-                      The post doesn&apos;t mention these, but the skills it asks for build on them. Employers assume you have them.
-                    </p>
+                  <Disclosure
+                    id="gap-foundations"
+                    title="Foundations you'll need first"
+                    hint={`${view.foundations.length} skills the post doesn't mention, but the rest build on`}
+                  >
+                    <p className="mb-4 max-w-[62ch] text-muted">Employers assume you have these, so check them first.</p>
                     <SkillRows slugs={view.foundations} data={data} local={local} setLocal={setLocal} />
-                  </section>
+                  </Disclosure>
                 )}
 
                 {/* To learn */}

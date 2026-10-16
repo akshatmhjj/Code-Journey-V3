@@ -141,12 +141,6 @@ export function ChatPanel() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
 
-  // Desktop: show the chat in full for 5 seconds on load, then dock it on the right edge as a tab.
-  const { introChat } = ui;
-  useEffect(() => {
-    if (window.matchMedia("(min-width: 768px)").matches) introChat(5000);
-  }, [introChat]);
-
   useEffect(() => {
     if (ui.chatOpen) {
       if (ui.chatDraft) setInput(ui.chatDraft);

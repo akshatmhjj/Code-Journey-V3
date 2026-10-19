@@ -13,6 +13,7 @@ import {
   CjAiSection,
   NoRouteCard,
   PageHeader,
+  ProjectsSection,
   RouteHero,
   SavedSection,
   ShareSection,
@@ -97,6 +98,7 @@ export function MeView({ index }: { index: PathIndex }) {
 
       <div className="wrap grid gap-20 py-16 md:gap-28 md:py-24">
         <SavedSection index={index} />
+        {role && <ProjectsSection userId={user.id} roleSlug={role.slug} stages={role.stages.map((s) => s.name)} />}
         {progress && <StreakSection streak={streak} list={list} />}
         <YourSuggestions index={index} userId={user.id} />
         <ShareSection userId={user.id} defaultName={name ?? ""} roleTitle={role?.title ?? null} />

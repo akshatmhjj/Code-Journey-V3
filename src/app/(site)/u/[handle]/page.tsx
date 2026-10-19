@@ -133,6 +133,24 @@ export default async function PublicPathPage({ params }: { params: Promise<{ han
         <p className="mt-10 text-lg text-muted">{doneCount > 0 ? `${doneCount} skills done so far.` : "Nothing ticked off yet."}</p>
       )}
 
+      {p.projects && p.projects.length > 0 && (
+        <section aria-labelledby="projects-title" className="mt-16 grid gap-6">
+          <h2 id="projects-title" className="text-2xl font-bold">
+            Projects built along the route
+          </h2>
+          <ul className="grid gap-4">
+            {p.projects.map((pr) => (
+              <li key={pr.stage} className="grid gap-1 border-t border-line pt-4 md:grid-cols-[220px_1fr] md:gap-8">
+                <p className="font-mono text-[12px] tracking-wide text-muted uppercase">{pr.stage}</p>
+                <a href={pr.url} target="_blank" rel="noopener noreferrer" className="font-display text-lg font-semibold break-all hover:underline">
+                  {pr.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       <aside className="mt-16 flex flex-wrap items-center justify-between gap-4 rounded-[var(--radius-lg)] border-2 border-ink p-6 md:p-8">
         <div>
           <p className="font-display text-xl font-bold">Map your own route into tech.</p>

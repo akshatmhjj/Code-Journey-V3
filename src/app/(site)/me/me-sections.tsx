@@ -357,11 +357,164 @@ export function SavedSection({ index }: { index: PathIndex }) {
   );
 }
 
-/* ── 03 Streak ────────────────────────────────────────────────── */
+/* ── 03 Projects ──────────────────────────────────────────────── */
+
+type Project = { id: string; stage_name: string; title: string; url: string };
+
+/** One route stage: the project built for it, or a form to add one. */
+function StageProject({
+  stage,
+  project,
+  onSave,
+  onRemove,
+}: {
+  stage: string;
+  project: Project | undefined;
+  onSave: (stage: string, title: string, url: string) => Promise<string | null>;
+  onRemove: (stage: string) => void;
+}) {
+  const [editing, setEditing] = useState(!project);
+  const [title, setTitle] = useState(project?.title ?? "");
+  const [url, setUrl] = useState(project?.url ?? "");
+  const [error, setError] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
+    const problem = await onSave(stage, title, url);
+    setSaving(false);
+    setError(problem);
+    if (!problem) setEditing(false);
+  };
+
+  return (
+    <li className={`${ROW} grid gap-4 py-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-8`}>
+      <div className="min-w-0">
+        <p className="font-display text-lg font-bold">{stage}</p>
+        <p className="text-sm text-muted">{project ? "Built" : "Not added yet"}</p>
+      </div>
+      {project && !editing ? (
+        <div className="flex min-w-0 flex-wrap items-center justify-between gap-x-6 gap-y-3">
+          <a href={project.url} target="_blank" rel="noopener noreferrer" className="min-w-0 font-semibold break-words hover:underline">
+            {project.title} <ArrowUpRight size={15} aria-hidden="true" className="inline align-[-2px]" />
+          </a>
+          <div className="flex gap-5 text-sm font-semibold">
+            <button type="button" onClick={() => setEditing(true)} className="min-h-11 hover:underline">
+              Change
+            </button>
+            <button type="button" onClick={() => onRemove(stage)} className="min-h-11 text-muted hover:text-ink hover:underline">
+              Remove
+            </button>
+          </div>
+        </div>
+      ) : (
+        <form onSubmit={submit} className="grid min-w-0 gap-4">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <label className="grid gap-1 text-sm">
+              <span className="font-semibold">Project name</span>
+              <input value={title} onChange={(e) => setTitle(e.target.value)} maxLength={120} placeholder="My portfolio site" className={FIELD} />
+            </label>
+            <label className="grid gap-1 text-sm">
+              <span className="font-semibold">Link</span>
+              <input value={url} onChange={(e) => setUrl(e.target.value)} maxLength={400} inputMode="url" autoCapitalize="none" spellCheck={false} placeholder="https://" className={FIELD} />
+            </label>
+          </div>
+          {error && (
+            <p role="alert" className="text-sm font-semibold">
+              {error}
+            </p>
+          )}
+          <div className="flex flex-wrap items-center gap-5">
+            <button type="submit" disabled={saving} className="btn btn-accent disabled:opacity-40">
+              {saving ? "Saving…" : "Save project"}
+            </button>
+            {project && (
+              <button
+                type="button"
+                onClick={() => {
+                  setEditing(false);
+                  setError(null);
+                  setTitle(project.title);
+                  setUrl(project.url);
+                }}
+                className="link text-sm font-semibold"
+              >
+                Cancel
+              </button>
+            )}
+          </div>
+        </form>
+      )}
+    </li>
+  );
+}
+
+/** A link to what you built for each stage. Shows on your public path page when that page is on. */
+export function ProjectsSection({ userId, roleSlug, stages }: { userId: string; roleSlug: string; stages: string[] }) {
+  const [rows, setRows] = useState<Project[] | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    supabase()
+      .from("user_projects")
+      .select("id, stage_name, title, url")
+      .eq("user_id", userId)
+      .eq("role_slug", roleSlug)
+      .then(({ data }) => !cancelled && setRows((data as Project[] | null) ?? []));
+    return () => {
+      cancelled = true;
+    };
+  }, [userId, roleSlug]);
+
+  const onSave = async (stage: string, rawTitle: string, rawUrl: string): Promise<string | null> => {
+    const title = rawTitle.trim();
+    const url = rawUrl.trim();
+    if (!title) return "Give the project a name.";
+    if (!/^https:\/\//i.test(url) || url.length > 400) return "Paste a full link that starts with https://";
+    try {
+      new URL(url);
+    } catch {
+      return "That link doesn't look right. Check it and try again.";
+    }
+    const { data, error } = await supabase()
+      .from("user_projects")
+      .upsert({ user_id: userId, role_slug: roleSlug, stage_name: stage, title: title.slice(0, 120), url }, { onConflict: "user_id,role_slug,stage_name" })
+      .select("id, stage_name, title, url")
+      .single();
+    if (error || !data) return "Couldn't save that. Please try again.";
+    setRows((prev) => [...(prev ?? []).filter((p) => p.stage_name !== stage), data as Project]);
+    return null;
+  };
+
+  const onRemove = async (stage: string) => {
+    const row = rows?.find((p) => p.stage_name === stage);
+    if (!row) return;
+    const { error } = await supabase().from("user_projects").delete().eq("id", row.id);
+    if (!error) setRows((prev) => (prev ?? []).filter((p) => p.id !== row.id));
+  };
+
+  return (
+    <Section id="projects-title" num="03" eyebrow="Proof of work" title="Your projects">
+      <p className="max-w-[60ch] text-lg text-muted">Link the project you built for each stage. When your public path page is on, these show there.</p>
+      {rows === null ? (
+        <div className="h-40 animate-pulse rounded-[var(--radius-md)] bg-surface" />
+      ) : (
+        <ul className={ROWS}>
+          {stages.map((stage) => (
+            <StageProject key={stage} stage={stage} project={rows.find((p) => p.stage_name === stage)} onSave={onSave} onRemove={onRemove} />
+          ))}
+        </ul>
+      )}
+    </Section>
+  );
+}
+
+/* ── 04 Streak ────────────────────────────────────────────────── */
 
 export function StreakSection({ streak, list }: { streak: Streak | null; list: Milestone[] }) {
   return (
-    <Section id="streak-title" num="03" eyebrow="Keep it going" title="Your streak">
+    <Section id="streak-title" num="04" eyebrow="Keep it going" title="Your streak">
       <StreakMilestones streak={streak} list={list} />
     </Section>
   );
@@ -390,7 +543,7 @@ export function YourSuggestions({ index, userId }: { index: PathIndex; userId: s
   }, [userId]);
   if (!rows?.length) return null;
   return (
-    <Section id="suggestions-title" num="04" eyebrow="In review" title="Your suggestions">
+    <Section id="suggestions-title" num="05" eyebrow="In review" title="Your suggestions">
       <ul className={ROWS}>
         {rows.map((r) => (
           <li key={r.id} className={`${ROW} grid gap-2 py-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-baseline sm:gap-6`}>
@@ -468,7 +621,7 @@ export function ShareSection({ userId, defaultName, roleTitle }: { userId: strin
   }, [userId, defaultName]);
 
   const head = (
-    <Section id="share-title" num="05" eyebrow="Public page" title="Share your path">
+    <Section id="share-title" num="06" eyebrow="Public page" title="Share your path">
       <div className="h-64 animate-pulse rounded-[var(--radius-md)] bg-surface" />
     </Section>
   );
@@ -537,7 +690,7 @@ export function ShareSection({ userId, defaultName, roleTitle }: { userId: strin
   };
 
   return (
-    <Section id="share-title" num="05" eyebrow="Public page" title="Share your path">
+    <Section id="share-title" num="06" eyebrow="Public page" title="Share your path">
       <div className="grid gap-12 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:gap-16">
         <form onSubmit={save} className="grid gap-7">
           <p className="max-w-[60ch] text-lg text-muted">
@@ -686,7 +839,7 @@ export function WeeklyEmailSection({ userId, email, hasRole }: { userId: string;
   };
 
   return (
-    <Section id="email-title" num="06" eyebrow="Every Weekday" title="Weekly email">
+    <Section id="email-title" num="07" eyebrow="Every Weekday" title="Weekly email">
       <div className="grid gap-6">
         <p className="text-lg text-muted">
           One short email a week: how far along your route you are, what you ticked off, and your next three stations. Sent to{" "}
@@ -716,7 +869,7 @@ export function WeeklyEmailSection({ userId, email, hasRole }: { userId: string;
 export function CjAiSection({ asked, limit }: { asked: number | null; limit: number }) {
   const pct = asked === null ? 0 : Math.min(100, Math.round((asked / limit) * 100));
   return (
-    <Section id="cjai-title" num="07" eyebrow="Ask" title="CJ AI">
+    <Section id="cjai-title" num="08" eyebrow="Ask" title="CJ AI">
       <div className="grid gap-6">
         <p className="font-display text-[clamp(4rem,9vw,6rem)] leading-none font-bold tabular-nums">
           {asked === null ? "-" : asked}
@@ -746,7 +899,7 @@ const MODE_OPTIONS: { id: Mode; label: string; Icon: typeof Sun }[] = [
 export function ThemeSection() {
   const ui = useUI();
   return (
-    <Section id="look-title" num="08" eyebrow="Appearance" title="Look and feel">
+    <Section id="look-title" num="09" eyebrow="Appearance" title="Look and feel">
       <div className="grid gap-12">
         <fieldset className="grid gap-6">
           <legend className="eyebrow mb-6">Palette</legend>
@@ -811,7 +964,7 @@ export function ThemeSection() {
 
 export function AccountSection({ email, memberSince, onSignOut }: { email: string | undefined; memberSince: string; onSignOut: () => void }) {
   return (
-    <Section id="account-title" num="09" eyebrow="Your details" title="Account">
+    <Section id="account-title" num="10" eyebrow="Your details" title="Account">
       <div className="grid gap-12 md:grid-cols-2 md:gap-16">
         <dl className="grid">
           <div className={`${ROW} grid gap-1 py-5`}>

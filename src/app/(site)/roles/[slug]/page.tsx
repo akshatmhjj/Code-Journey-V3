@@ -148,11 +148,6 @@ export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
               {[...allSkills].some((x) => !skillOf(x).live) && " Dashed stations are still being written."}
             </p>
             <RouteStages stages={role.stages} skillOf={skillOf} />
-            <div className="mt-10">
-              <Link href={`/checklist/${slug}`} className="btn btn-line w-full sm:w-fit">
-                Printable checklist (save as PDF)
-              </Link>
-            </div>
           </section>
 
           <section id="market" className="mt-20 border-t-2 border-ink pt-10" aria-labelledby="market-title">

@@ -54,7 +54,7 @@ market:
   - text: The games industry is competitive and hiring is cyclical; a portfolio of finished, playable games matters more than credentials.
   - text: Unity (C#) dominates mobile and indie games; Unreal (C++) dominates high-end console and PC titles.
 adjacent: [embedded-engineer, frontend-engineer, cross-platform-mobile-engineer]
-updated: 2026-10-06
+updated: 2026-10-20
 ---
 
 ## Is this role for you?

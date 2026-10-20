@@ -55,7 +55,7 @@ market:
   - text: Job titles have split - "product data scientist" roles lean on SQL, statistics and experiments, while "ML-focused" roles overlap with ML Engineer.
   - text: Most postings ask for Python, SQL and statistics first; deep learning is usually a plus rather than a requirement.
 adjacent: [data-analyst, ml-engineer, ai-engineer, data-engineer]
-updated: 2026-10-06
+updated: 2026-10-20
 ---
 
 ## Is this role for you?

@@ -54,7 +54,7 @@ market:
   - text: MLOps roles overlap with platform and ML engineering; postings most often ask for Kubernetes, a cloud ML platform and Python.
   - text: Serving and evaluating large language models has become a growing part of MLOps work since 2024.
 adjacent: [ml-engineer, platform-engineer, devops-engineer, ai-engineer]
-updated: 2026-10-06
+updated: 2026-10-20
 ---
 
 ## Is this role for you?

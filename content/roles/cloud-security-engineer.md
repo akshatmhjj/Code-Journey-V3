@@ -54,7 +54,7 @@ market:
   - text: Cloud misconfiguration remains one of the most common causes of breaches, keeping cloud security in steady demand.
   - text: Postings often ask for a cloud certification plus a security certification, alongside hands-on Terraform and Kubernetes experience.
 adjacent: [cloud-engineer, application-security-engineer, devops-engineer, site-reliability-engineer]
-updated: 2026-10-06
+updated: 2026-10-20
 ---
 
 ## Is this role for you?

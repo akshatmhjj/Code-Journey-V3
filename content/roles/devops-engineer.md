@@ -55,7 +55,7 @@ market:
   - text: Many organisations run containers in production; the CNCF's annual survey tracks cloud-native adoption.
     source: { title: CNCF reports, url: "https://www.cncf.io/reports/" }
 adjacent: [site-reliability-engineer, cloud-engineer, platform-engineer, backend-engineer]
-updated: 2026-10-06
+updated: 2026-10-20
 ---
 
 ## Is this role for you?

@@ -31,8 +31,8 @@ resources:
     cost: free
     official: true
   - title: Linux Journey
-    url: https://linuxjourney.com/
-    provider: Linux Journey
+    url: https://labex.io/linuxjourney
+    provider: LabEx (Linux Journey)
     type: course
     cost: free
   - title: The Linux Command Line (free book)
@@ -45,7 +45,7 @@ resources:
     provider: OverTheWire
     type: practice
     cost: free
-checked: 2026-10-06
+checked: 2026-10-20
 ---
 
 ## In plain English

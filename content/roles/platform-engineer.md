@@ -54,7 +54,7 @@ market:
   - text: Platform engineering grew out of DevOps as companies scaled; many DevOps roles have been renamed or reorganised into platform teams.
   - text: Kubernetes, Terraform, a CI/CD system and a programming language (often Go or Python) are the most common requirements.
 adjacent: [devops-engineer, site-reliability-engineer, cloud-engineer, backend-engineer]
-updated: 2026-10-06
+updated: 2026-10-20
 ---
 
 ## Is this role for you?

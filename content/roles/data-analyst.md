@@ -55,7 +55,7 @@ market:
   - text: SQL appears in the large majority of data analyst job posts, usually alongside Excel and one BI tool (Power BI or Tableau).
   - text: Data analyst is one of the most common entry points into tech for career changers, especially from finance, operations and research.
 adjacent: [data-scientist, analytics-engineer, data-engineer]
-updated: 2026-10-06
+updated: 2026-10-20
 ---
 
 ## Is this role for you?

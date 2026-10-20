@@ -54,7 +54,7 @@ market:
   - text: The analytics engineer title grew with the "modern data stack" - cloud warehouses plus dbt - and is now common at data-mature companies.
   - text: Postings almost always ask for strong SQL and dbt; Python and a BI tool are common extras.
 adjacent: [data-analyst, data-engineer, data-scientist]
-updated: 2026-10-06
+updated: 2026-10-20
 ---
 
 ## Is this role for you?

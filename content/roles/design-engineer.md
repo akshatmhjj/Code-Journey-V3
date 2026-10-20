@@ -54,7 +54,7 @@ market:
   - text: Design engineer has become a recognised title at product-focused companies, especially developer-tool and design-tool companies.
   - text: Postings usually ask for strong React and CSS plus a portfolio showing interaction work; formal design training is a plus, not a requirement.
 adjacent: [frontend-engineer, full-stack-engineer, developer-advocate]
-updated: 2026-10-06
+updated: 2026-10-20
 ---
 
 ## Is this role for you?

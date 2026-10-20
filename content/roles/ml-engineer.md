@@ -55,7 +55,7 @@ market:
   - text: ML engineer postings increasingly overlap with AI engineering - fine-tuning, serving and evaluating large models alongside classical ML.
   - text: Most roles expect solid software engineering; strong coding often matters as much as maths in interviews.
 adjacent: [ai-engineer, data-scientist, mlops-engineer, backend-engineer]
-updated: 2026-10-06
+updated: 2026-10-20
 ---
 
 ## Is this role for you?

@@ -56,7 +56,7 @@ market:
     source: { title: Google SRE books, url: "https://sre.google/books/" }
   - text: Most SRE roles expect strong Linux, Kubernetes and a programming language, with on-call experience valued highly.
 adjacent: [devops-engineer, cloud-engineer, platform-engineer, backend-engineer]
-updated: 2026-10-06
+updated: 2026-10-20
 ---
 
 ## Is this role for you?

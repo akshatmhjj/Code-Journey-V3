@@ -55,7 +55,7 @@ market:
   - text: SQL, Python, a cloud warehouse and an orchestrator (usually Airflow) appear in most data engineering job posts; Spark and dbt are close behind.
   - text: Demand for data engineers has grown alongside AI, because model quality depends on data quality.
 adjacent: [data-analyst, analytics-engineer, backend-engineer, ml-engineer]
-updated: 2026-10-06
+updated: 2026-10-20
 ---
 
 ## Is this role for you?

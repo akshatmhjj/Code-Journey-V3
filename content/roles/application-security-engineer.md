@@ -55,7 +55,7 @@ market:
   - text: Application security is one of the most consistently hired specialisms in cybersecurity, especially at companies building their own software.
   - text: Postings usually want development experience plus web security knowledge; certifications help less than demonstrable skills (labs, write-ups, bug bounty findings).
 adjacent: [cloud-security-engineer, backend-engineer, devops-engineer, qa-sdet]
-updated: 2026-10-06
+updated: 2026-10-20
 ---
 
 ## Is this role for you?

@@ -55,7 +55,7 @@ market:
   - text: AWS, Azure and Google Cloud together host most cloud workloads; AWS appears most often in job posts, with Azure strong in large enterprises.
   - text: Cloud certifications (such as AWS Solutions Architect Associate) are widely requested for these roles and help career changers get interviews.
 adjacent: [devops-engineer, site-reliability-engineer, cloud-security-engineer, platform-engineer]
-updated: 2026-10-06
+updated: 2026-10-20
 ---
 
 ## Is this role for you?

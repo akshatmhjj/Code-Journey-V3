@@ -54,7 +54,7 @@ market:
   - text: The role was popularised by Palantir and has spread quickly to AI labs and enterprise AI companies since 2024.
   - text: Postings typically ask for strong software engineering plus communication and travel; many roles involve working on-site with customers.
 adjacent: [ai-engineer, full-stack-engineer, solutions-engineer, backend-engineer]
-updated: 2026-10-06
+updated: 2026-10-20
 ---
 
 ## Is this role for you?

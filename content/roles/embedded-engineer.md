@@ -54,7 +54,7 @@ market:
   - text: Embedded engineers are in steady demand across automotive, medical, industrial and consumer electronics, with less hiring volatility than many software roles.
   - text: C remains the core language in embedded job posts, with C++ and Rust increasingly common.
 adjacent: [game-developer, backend-engineer, cloud-engineer]
-updated: 2026-10-06
+updated: 2026-10-20
 ---
 
 ## Is this role for you?

@@ -35,7 +35,7 @@ resources:
     provider: Dave Gray
     type: video
     cost: free
-checked: 2026-10-06
+checked: 2026-10-20
 ---
 
 ## In plain English

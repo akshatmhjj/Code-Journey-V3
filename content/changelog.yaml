@@ -1,3 +1,11 @@
+- date: 2026-10-20
+  version: "2.0.0-beta.18"
+  title: Links and pay rechecked
+  changes:
+    - type: changed
+      text: Every resource link was checked again. The Linux Journey course has moved to a new address, and the link now points there.
+    - type: changed
+      text: Pay figures for front-end and software developer roles were re-read from PayScale and the US Bureau of Labor Statistics, and match the sources.
 - date: 2026-10-08
   version: "2.0.0-beta.17"
   title: Install Code Journey as an app

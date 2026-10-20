@@ -174,7 +174,7 @@ export default function Home() {
               {[
                 { Icon: BadgeCheck, t: "Official docs first", d: "The people who build a tool explain it best. Their docs sit at the top of every list." },
                 { Icon: Sparkles, t: "Free before paid", d: "Most of tech can be learned for free. Paid picks appear only when they add something, and they're labelled." },
-                { Icon: LinkIcon, t: "Every link checked", d: `Each resource shows when it was last verified. The whole library was checked on ${fmt.format(new Date("2026-10-06"))}.` },
+                { Icon: LinkIcon, t: "Every link checked", d: `Each resource shows when it was last verified. The whole library was checked on ${fmt.format(new Date("2026-10-20"))}.` },
                 { Icon: Compass, t: "No courses, no affiliates", d: "We don't sell anything and don't earn from clicks, so the only goal is the right recommendation." },
               ].map(({ Icon, t, d }) => (
                 <div key={t} className="border-t-2 border-ink pt-5">

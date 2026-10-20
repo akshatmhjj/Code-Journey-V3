@@ -7,7 +7,10 @@
 #        For comparison, all US jobs are projected to grow 3.5% over 2025–35 (https://www.bls.gov/news.release/ecopro.nr0.htm).
 #
 # Roles are mapped to the closest title each source publishes. `exact: false` marks a nearest match, shown as "closest title".
-checked: 2026-10-09
+#
+# Checked 20 Oct 2026: the front-end (India) and software developer (US) rows were re-read from their sources and match.
+# Every other row keeps the "updated" date shown on that row.
+checked: 2026-10-20
 
 india:
   front-end: { title: Front End Developer / Engineer, avg: 6.65, p10: 2.92, p90: 20, entry: 3.58, profiles: 872, updated: 2026-07-07, url: "https://www.payscale.com/research/IN/Job=Front_End_Developer_%2F_Engineer/Salary" }

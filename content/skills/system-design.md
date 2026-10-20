@@ -46,7 +46,7 @@ resources:
     provider: Alex Xu
     type: course
     cost: freemium
-checked: 2026-10-06
+checked: 2026-10-20
 ---
 
 ## In plain English

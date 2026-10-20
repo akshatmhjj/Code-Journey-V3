@@ -40,7 +40,7 @@ resources:
     provider: Daniel Bourke
     type: course
     cost: free
-checked: 2026-10-06
+checked: 2026-10-20
 ---
 
 ## A first look

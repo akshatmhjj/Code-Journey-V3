@@ -416,7 +416,7 @@
   --shiki-background: var(--surface);
   --shiki-token-constant: var(--hl);
   --shiki-token-string: var(--muted);
-  --shiki-token-comment: var(--faint);
+  --shiki-token-comment: var(--muted);
   --shiki-token-keyword: var(--hl);
   --shiki-token-parameter: var(--ink);
   --shiki-token-function: var(--ink);

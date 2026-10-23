@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ExternalLink, LogOut } from "lucide-react";
 import { adminConfigured, adminDb, isAdmin } from "@/lib/admin";
+import { CJ_DAILY_LIMIT } from "@/lib/cj-limits";
 import { getChangelog, getNetwork } from "@/lib/content";
 import { SITE } from "@/lib/site";
 import { logout, setMessageStatus, setSuggestionStatus } from "./actions";
@@ -85,7 +86,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
   const skillTitle = (s: string) => net.skills.find((r) => r.slug === s)?.title ?? s;
   const db = adminDb();
   const needsStats = tab === "overview" || tab === "resources" || tab === "ai";
-  const { data: statsData, error: statsError } = needsStats ? await db.rpc("admin_stats") : { data: null, error: null };
+  const { data: statsData, error: statsError } = needsStats ? await db.rpc("admin_stats", { p_daily_limit: CJ_DAILY_LIMIT }) : { data: null, error: null };
   const stats = statsData as Stats | null;
   const newMessages = stats?.contact.new ?? (await db.from("contact_messages").select("id", { count: "exact", head: true }).eq("status", "new")).count ?? 0;
 

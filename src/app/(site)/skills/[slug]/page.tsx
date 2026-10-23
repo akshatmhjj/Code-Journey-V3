@@ -106,10 +106,10 @@ export default async function SkillPage({ params }: PageProps<"/skills/[slug]">)
                 {skill.prereqs.length ? skill.prereqs.map((p) => <SkillStation key={p} skill={entry(p)} />) : <span>None. A good first station.</span>}
               </dd>
             </div>
-            <div className="pt-1">
-              <SkillProgress slug={slug} />
-            </div>
           </dl>
+          <div className="pt-1">
+            <SkillProgress slug={slug} />
+          </div>
         </div>
       </header>
 

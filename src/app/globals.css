@@ -44,7 +44,7 @@
   --ink: #3f422e;
   --support: #9f886f;
   --accent: #d78b30;
-  --on-accent: #3f422e;
+  --on-accent: #1f2115;
   --hl: #3f422e;
   --surface: color-mix(in oklab, var(--support) 16%, var(--canvas));
   color-scheme: light;
@@ -64,7 +64,7 @@
   --surface: color-mix(in oklab, var(--support) 7%, var(--canvas)); color-scheme: dark;
 }
 [data-cj="orchard"][data-mode="dark"] {
-  --canvas: #3f422e; --ink: #f5e6c5; --support: #9f886f; --accent: #d78b30; --on-accent: #3f422e; --hl: #f5e6c5;
+  --canvas: #3f422e; --ink: #f5e6c5; --support: #9f886f; --accent: #d78b30; --on-accent: #1f2115; --hl: #f5e6c5;
   --surface: color-mix(in oklab, var(--support) 18%, var(--canvas)); color-scheme: dark;
 }
 @media (prefers-color-scheme: dark) {
@@ -82,14 +82,15 @@
     --surface: color-mix(in oklab, var(--support) 7%, var(--canvas)); color-scheme: dark;
   }
   [data-cj="orchard"]:not([data-mode]) {
-    --canvas: #3f422e; --ink: #f5e6c5; --support: #9f886f; --accent: #d78b30; --on-accent: #3f422e; --hl: #f5e6c5;
+    --canvas: #3f422e; --ink: #f5e6c5; --support: #9f886f; --accent: #d78b30; --on-accent: #1f2115; --hl: #f5e6c5;
     --surface: color-mix(in oklab, var(--support) 18%, var(--canvas)); color-scheme: dark;
   }
 }
 
 :root {
-  --muted: color-mix(in oklab, var(--ink) 74%, var(--canvas));
-  --faint: color-mix(in oklab, var(--ink) 52%, var(--canvas));
+  /* Text tones. Chosen so small text passes WCAG AA (4.5:1) on the canvas and the card surface in every theme and mode. */
+  --muted: color-mix(in oklab, var(--ink) 84%, var(--canvas));
+  --faint: color-mix(in oklab, var(--ink) 82%, var(--canvas));
   --line: color-mix(in oklab, var(--ink) 13%, var(--canvas));
   --line-strong: color-mix(in oklab, var(--ink) 30%, var(--canvas));
   --raise: color-mix(in oklab, var(--ink) 4%, var(--canvas));
@@ -167,8 +168,8 @@
     --canvas: var(--swap-canvas);
     --ink: var(--swap-ink);
     --hl: var(--swap-ink);
-    --muted: color-mix(in oklab, var(--ink) 74%, var(--canvas));
-    --faint: color-mix(in oklab, var(--ink) 52%, var(--canvas));
+    --muted: color-mix(in oklab, var(--ink) 84%, var(--canvas));
+    --faint: color-mix(in oklab, var(--ink) 82%, var(--canvas));
     --line: color-mix(in oklab, var(--ink) 18%, var(--canvas));
     --line-strong: color-mix(in oklab, var(--ink) 34%, var(--canvas));
     --raise: color-mix(in oklab, var(--ink) 8%, var(--canvas));

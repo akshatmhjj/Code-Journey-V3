@@ -1,14 +1,16 @@
 // CJ AI: answers only from Code Journey's own content, with citations, streamed as server-sent events.
 // Events: `sources` (JSON list), `delta` (JSON string), `done`, `error` (JSON {message}).
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { embedQuery, generate, streamAnswer, type Turn } from "@/lib/gemini";
+import { CJ_DAILY_LIMIT as DAILY_LIMIT } from "@/lib/cj-limits";
+import { alert } from "@/lib/alert";
+import { citationFilter } from "@/lib/citations";
 import { entitySource, findEntities, formatSources, SYSTEM_PROMPT, type Source } from "@/lib/rag";
 
 export const maxDuration = 30;
 
 const MAX_TURNS = 12;
 const MAX_CHARS = 2000;
-const DAILY_LIMIT = Number(process.env.CJ_DAILY_LIMIT ?? 40);
 const MIN_SIMILARITY = Number(process.env.CJ_MIN_SIMILARITY ?? 0.55);
 const MAX_SOURCES = 7;
 
@@ -17,6 +19,12 @@ const ANON = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 function json(status: number, body: object) {
   return Response.json(body, { status });
+}
+
+/** Gives back the question counted in step 3 when CJ AI could not answer it. */
+async function refundQuota(db: SupabaseClient) {
+  const { error } = await db.rpc("refund_chat_message");
+  if (error) console.error("CJ AI quota refund failed", error);
 }
 
 /** Turns a follow-up like "what about interviews?" into a standalone search query. */
@@ -102,6 +110,8 @@ export async function POST(req: Request) {
     }
   } catch (e) {
     console.error("CJ AI retrieval failed", e);
+    await alert("CJ AI retrieval failed", String((e as { message?: string }).message ?? e));
+    await refundQuota(db);
     return json(503, { error: "CJ AI is unavailable right now. Try again shortly." });
   }
 
@@ -114,6 +124,8 @@ export async function POST(req: Request) {
   const stream = new ReadableStream({
     async start(controller) {
       send(controller, "sources", shown.map((s, i) => ({ n: i + 1, title: s.title, heading: s.heading, url: s.url })));
+      // Refund only if the learner got no answer text at all. A half-written answer has already been used.
+      let answered = false;
       try {
         if (!confident) {
           send(
@@ -125,14 +137,23 @@ export async function POST(req: Request) {
         } else {
           const prompt = `Sources:\n\n${formatSources(sources)}\n\nQuestion: ${question}`;
           const history = turns.slice(0, -1);
+          const citations = citationFilter(sources.length);
           for await (const delta of streamAnswer(SYSTEM_PROMPT, [...history, { role: "user", content: prompt }], req.signal)) {
-            send(controller, "delta", delta);
+            answered = true;
+            const safe = citations.push(delta);
+            if (safe) send(controller, "delta", safe);
           }
+          const rest = citations.flush();
+          if (rest) send(controller, "delta", rest);
+          if (citations.dropped) console.warn(`CJ AI dropped ${citations.dropped} citation(s) that pointed at no source`);
         }
         send(controller, "done", {});
       } catch (e) {
         const status = (e as { status?: number }).status;
         console.error("CJ AI generation failed", e);
+        // A 429 from the model is a quota limit, not a fault, so it doesn't page anyone.
+        if (status !== 429) await alert("CJ AI generation failed", String((e as { message?: string }).message ?? e));
+        if (!answered) await refundQuota(db);
         send(controller, "error", { message: status === 429 ? "CJ AI is busy. Try again in a minute." : "CJ AI couldn't finish that answer. Try again." });
       } finally {
         controller.close();

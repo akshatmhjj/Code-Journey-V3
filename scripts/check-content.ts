@@ -68,6 +68,17 @@ for (const f of md("roles")) {
   for (const k of Object.keys(al.skills ?? {})) if (!skills.has(k)) errors.push(`skill-aliases.yaml: unknown skill "${k}"`);
 }
 
+// Analogies: every skill has one, with no unknown keys, and no em or en dashes in the copy.
+{
+  const an = YAML.parse(fs.readFileSync(path.join(ROOT, "analogies.yaml"), "utf8")) as Record<string, { analogy?: string; not?: string }>;
+  for (const s of skills) if (!an[s]) errors.push(`analogies.yaml: missing skill "${s}"`);
+  for (const [slug, v] of Object.entries(an ?? {})) {
+    if (!skills.has(slug)) errors.push(`analogies.yaml: unknown skill "${slug}"`);
+    if (!v?.analogy || !v?.not) errors.push(`analogies.yaml (${slug}): needs both "analogy" and "not"`);
+    if (/[\u2013\u2014]/.test(`${v?.analogy ?? ""} ${v?.not ?? ""}`)) errors.push(`analogies.yaml (${slug}): use a spaced hyphen, not an en or em dash`);
+  }
+}
+
 // Switch: every starting point must point at real skills, and each job needs a unique slug.
 {
   const sw = YAML.parse(fs.readFileSync(path.join(ROOT, "switch.yaml"), "utf8")) as { jobs: { slug: string; skills: string[] }[] };

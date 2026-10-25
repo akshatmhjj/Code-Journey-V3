@@ -258,6 +258,11 @@ export const getGapData = cache((): GapData =>
   }),
 );
 
+/* ── Analogies: one everyday comparison per skill (content/analogies.yaml) ── */
+
+const Analogy = z.object({ analogy: z.string().min(1), not: z.string().min(1) });
+export const getAnalogies = cache(() => parse(z.record(z.string(), Analogy), YAML.parse(read("analogies.yaml")), "analogies.yaml"));
+
 /* ── Switch: starting points for people changing career (content/switch.yaml) ── */
 
 const SwitchJobData = z.object({

@@ -68,6 +68,17 @@ for (const f of md("roles")) {
   for (const k of Object.keys(al.skills ?? {})) if (!skills.has(k)) errors.push(`skill-aliases.yaml: unknown skill "${k}"`);
 }
 
+// Switch: every starting point must point at real skills, and each job needs a unique slug.
+{
+  const sw = YAML.parse(fs.readFileSync(path.join(ROOT, "switch.yaml"), "utf8")) as { jobs: { slug: string; skills: string[] }[] };
+  const seen = new Set<string>();
+  for (const j of sw.jobs ?? []) {
+    if (seen.has(j.slug)) errors.push(`switch.yaml: duplicate job "${j.slug}"`);
+    seen.add(j.slug);
+    for (const s of j.skills) if (!skills.has(s)) errors.push(`switch.yaml (${j.slug}): unknown skill "${s}"`);
+  }
+}
+
 // Market data: every role is listed, and every pointer resolves.
 {
   const m = YAML.parse(fs.readFileSync(path.join(ROOT, "market.yaml"), "utf8")) as {

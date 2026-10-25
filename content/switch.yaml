@@ -1,0 +1,85 @@
+# Switch: starting points for people who already work in something else.
+# Each job lists the strengths it often carries over, and the catalog skills it often gives you a head start on.
+# Every skill slug must exist in content/catalog.yaml (checked by scripts/check-content.ts).
+# These are general patterns, not promises. Write them as "often", never as a guarantee.
+jobs:
+  - slug: teacher
+    title: Teacher or trainer
+    summary: You already explain hard ideas to people who are new to them, and plan a course one step at a time.
+    strengths:
+      - Explaining a hard idea in simple steps
+      - Planning learning in order
+      - Handling questions from a room of people
+    skills: [technical-writing, data-storytelling, interviewing]
+  - slug: accountant
+    title: Accountant or finance analyst
+    summary: You already work with numbers, spreadsheets and checking that totals reconcile.
+    strengths:
+      - Careful checking of numbers
+      - Spreadsheets under pressure
+      - Explaining a result to someone who needs a decision
+    skills: [spreadsheets, statistics, data-visualization]
+  - slug: customer-support
+    title: Customer support or success
+    summary: You already solve problems for real people and write clear answers to them.
+    strengths:
+      - Calm problem-solving with a worried person
+      - Writing clear, step-by-step answers
+      - Noticing patterns in repeated problems
+    skills: [working-with-customers, technical-writing, incident-response]
+  - slug: nurse
+    title: Nurse or healthcare worker
+    summary: You already follow careful procedures, record what happened, and stay calm when things go wrong.
+    strengths:
+      - Following a procedure exactly
+      - Keeping precise records
+      - Staying calm during an incident
+    skills: [incident-response, working-with-customers]
+  - slug: designer
+    title: Graphic or print designer
+    summary: You already think about layout, colour and how a page reads.
+    strengths:
+      - Layout and visual hierarchy
+      - Colour and typography choices
+      - Taking feedback and iterating on a design
+    skills: [ui-design, accessibility, css]
+  - slug: marketer
+    title: Marketer or content writer
+    summary: You already test messages, measure results, and write for a specific audience.
+    strengths:
+      - Writing for a specific reader
+      - Comparing two versions to see which works
+      - Turning numbers into a story
+    skills: [ab-testing, data-visualization, data-storytelling]
+  - slug: sales
+    title: Sales or account manager
+    summary: You already understand what customers need and how a product solves it.
+    strengths:
+      - Understanding what a customer really needs
+      - Explaining a product clearly
+      - Following up and keeping track of many relationships
+    skills: [working-with-customers, data-storytelling]
+  - slug: researcher
+    title: Researcher or scientist
+    summary: You already design experiments, analyse data and write up what you found.
+    strengths:
+      - Designing a fair test
+      - Reading and analysing data
+      - Writing up findings clearly
+    skills: [statistics, python, data-visualization]
+  - slug: engineer-other
+    title: Engineer in another field (mechanical or electrical)
+    summary: You already know how physical systems behave and how to debug a circuit or machine.
+    strengths:
+      - Debugging a system step by step
+      - Understanding how hardware behaves
+      - Reading technical specifications
+    skills: [electronics-basics, microcontrollers]
+  - slug: office-admin
+    title: Office or operations administrator
+    summary: You already keep processes running, manage schedules and keep records in order.
+    strengths:
+      - Keeping records accurate
+      - Making a process repeatable
+      - Coordinating people and deadlines
+    skills: [spreadsheets, technical-writing]

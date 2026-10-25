@@ -8,6 +8,7 @@ import { z } from "zod";
 import type { PathIndex } from "./path";
 import type { CompassQuestion } from "./compass";
 import { buildGapData, type GapData } from "./gap";
+import type { RouteRole, SwitchJob } from "./switch";
 
 const ROOT = path.join(process.cwd(), "content");
 
@@ -256,6 +257,23 @@ export const getGapData = cache((): GapData =>
     })),
   }),
 );
+
+/* ── Switch: starting points for people changing career (content/switch.yaml) ── */
+
+const SwitchJobData = z.object({
+  slug: z.string().regex(/^[a-z0-9-]+$/),
+  title: z.string().min(1),
+  summary: z.string().min(1),
+  strengths: z.array(z.string().min(1)).min(2).max(5),
+  skills: z.array(z.string().min(1)).min(1),
+});
+const SwitchFile = z.object({ jobs: z.array(SwitchJobData).min(1) });
+
+export const getSwitchData = cache(() => ({
+  jobs: parse(SwitchFile, YAML.parse(read("switch.yaml")), "switch.yaml").jobs as SwitchJob[],
+  roles: getRoles().map((r) => ({ slug: r.slug, title: r.title, stages: r.stages.map((st) => ({ name: st.name, skills: st.skills })) })) as RouteRole[],
+  skillTitles: Object.fromEntries(getCatalog().skills.map((s) => [s.slug, s.title])) as Record<string, string>,
+}));
 
 /* ── Market: pay and demand (content/market.yaml) ─────────── */
 

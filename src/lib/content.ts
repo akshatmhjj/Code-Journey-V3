@@ -258,6 +258,11 @@ export const getGapData = cache((): GapData =>
   }),
 );
 
+/* ── Taste tests: a 60-minute try-before-you-commit task per role (content/taste-tests.yaml) ── */
+
+const TasteTest = z.object({ task: z.string().min(1), doneWhen: z.string().min(1), forYouIf: z.string().min(1), notForYouIf: z.string().min(1) });
+export const getTasteTests = cache(() => parse(z.record(z.string(), TasteTest), YAML.parse(read("taste-tests.yaml")), "taste-tests.yaml"));
+
 /* ── Analogies: one everyday comparison per skill (content/analogies.yaml) ── */
 
 const Analogy = z.object({ analogy: z.string().min(1), not: z.string().min(1) });

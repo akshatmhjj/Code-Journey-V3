@@ -79,6 +79,17 @@ for (const f of md("roles")) {
   }
 }
 
+// Taste tests: every role has a 60-minute taste, with no unknown roles and no em or en dashes.
+{
+  const tt = YAML.parse(fs.readFileSync(path.join(ROOT, "taste-tests.yaml"), "utf8")) as Record<string, Record<string, string>>;
+  for (const r of roles) if (!tt[r]) errors.push(`taste-tests.yaml: missing role "${r}"`);
+  for (const [slug, v] of Object.entries(tt ?? {})) {
+    if (!roles.has(slug)) errors.push(`taste-tests.yaml: unknown role "${slug}"`);
+    for (const k of ["task", "doneWhen", "forYouIf", "notForYouIf"]) if (!v?.[k]) errors.push(`taste-tests.yaml (${slug}): missing "${k}"`);
+    if (/[\u2013\u2014]/.test(JSON.stringify(v ?? {}))) errors.push(`taste-tests.yaml (${slug}): use a spaced hyphen, not an en or em dash`);
+  }
+}
+
 // Switch: every starting point must point at real skills, and each job needs a unique slug.
 {
   const sw = YAML.parse(fs.readFileSync(path.join(ROOT, "switch.yaml"), "utf8")) as { jobs: { slug: string; skills: string[] }[] };

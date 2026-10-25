@@ -1,0 +1,136 @@
+# One 60-minute taste per role: a small, real task you can try before committing to a route.
+# task: what to do in about an hour, using free tools only.
+# doneWhen: how you know the hour was well spent (a check you can see for yourself).
+# forYouIf / notForYouIf: honest signs, written as "if you..." so people can judge themselves.
+# Plain English. Hyphens with spaces only, never dashes. Every role in content/catalog.yaml needs an entry.
+
+frontend-engineer:
+  task: "Build one web page with a heading, a short list and a button that changes the page when clicked, using only a text editor and a browser."
+  doneWhen: "The button changes something on the screen, and you can explain in one sentence what the browser did when you clicked it."
+  forYouIf: "You enjoy seeing what you build appear on screen straight away, and you notice when spacing or text looks off."
+  notForYouIf: "You would rather work on what happens on a server or in a database, out of sight."
+backend-engineer:
+  task: "Write a tiny program that answers web requests, for example one route that returns today's date as JSON, and call it from your browser."
+  doneWhen: "Your address returns the data, and you can say what happens between your request and the reply."
+  forYouIf: "You like logic and data, and you are happy when things work without a screen to look at."
+  notForYouIf: "You want most of your work to be visible on a screen you can show to people."
+full-stack-engineer:
+  task: "Make a small page that saves one piece of text (for example a note) and shows it again after you reload the page."
+  doneWhen: "The note survives a reload, and you can point to where it is stored and how the page gets it back."
+  forYouIf: "You like building both the screen and the part that stores the data, and you do not mind switching between them."
+  notForYouIf: "You want to go deep on one area, such as only the visuals or only the servers."
+design-engineer:
+  task: "Take one screen you use often and rebuild its layout in plain HTML and CSS, changing spacing, colour and type until it reads clearly."
+  doneWhen: "You can explain one change you made and why it makes the page easier to use."
+  forYouIf: "You notice spacing, colour and motion, and you care whether a screen feels right."
+  notForYouIf: "You find design feedback frustrating or prefer tasks with a single right answer."
+cross-platform-mobile-engineer:
+  task: "Sketch a three-screen phone app on paper or in a free design tool, then list which parts would look the same on iPhone and Android."
+  doneWhen: "You have a clear list of shared parts and a short note on the platform differences you would need to handle."
+  forYouIf: "You want to build phone apps without learning two separate languages from the start."
+  notForYouIf: "You have no interest in phones or want to avoid the store and review rules that come with them."
+android-engineer:
+  task: "Follow an official beginner guide to make a single Android screen that shows a title and a button, and read through what the code does line by line."
+  doneWhen: "The app runs on an emulator or a phone, and you can name the file that holds the screen layout."
+  forYouIf: "You enjoy a clear, step-by-step build and like seeing an app run on a real or virtual phone."
+  notForYouIf: "You do not want to install large developer tools, or you dislike long setup steps."
+ios-engineer:
+  task: "Follow an official beginner tutorial to build a small iPhone screen with one list and one button, and change the colour of the button."
+  doneWhen: "The app runs in the simulator, and you can explain what the button does when tapped."
+  forYouIf: "You like polished, visual apps and you want to build for iPhone specifically."
+  notForYouIf: "You do not own a Mac or do not want to work inside Apple's tools."
+data-analyst:
+  task: "Download a free public dataset (for example a city's bike trips) and answer three questions about it using a spreadsheet, then write two sentences summarising the answer."
+  doneWhen: "Each of your three answers has a number and a sentence that someone who did not do the work can follow."
+  forYouIf: "You like finding the answer hidden in a pile of numbers and explaining it simply to someone else."
+  notForYouIf: "You want to build systems or products, rather than answer questions about data others produced."
+data-scientist:
+  task: "Take a small dataset, ask one question you can test, and run one simple comparison (such as two group averages), noting how confident you are in the result."
+  doneWhen: "You can state the question, the comparison, the result, and one reason the result might be wrong."
+  forYouIf: "You enjoy maths and asking \"is this difference real or just noise?\"."
+  notForYouIf: "You find statistics tiring, or you want to focus on software rather than analysis."
+data-engineer:
+  task: "Write a short script that reads a CSV file, removes duplicate rows, and saves a cleaned copy."
+  doneWhen: "The cleaned file has fewer rows than the original, and you can say which rows were removed and why."
+  forYouIf: "You like building the pipes that move data, and you care that the data arrives correct and on time."
+  notForYouIf: "You want to spend most of your time looking at charts or presenting results."
+analytics-engineer:
+  task: "Write three SQL queries that build one clean summary table from a small set of raw rows, then describe in two sentences what each query is for."
+  doneWhen: "The summary table gives the same answer when you run it twice, and each query has a sentence explaining its purpose."
+  forYouIf: "You like SQL and want to define what a business metric means so others can trust it."
+  notForYouIf: "You want to build models or systems from scratch, rather than shape data for others to use."
+ai-engineer:
+  task: "Use a free AI model's API or web chat to build a small question-answer tool over three short documents you write yourself, and test five questions."
+  doneWhen: "The tool answers the five questions, and you can name one question it got wrong and say why."
+  forYouIf: "You want to build useful products with AI, and you are curious how models are used in real apps."
+  notForYouIf: "You want to train models yourself or work on the maths inside them."
+ml-engineer:
+  task: "Train a simple model on a small public dataset using a notebook, then measure how well it predicts on data it has not seen."
+  doneWhen: "You have one accuracy number on held-out data, and you can say whether it is good enough for the job."
+  forYouIf: "You like building models and checking whether they really work on new data."
+  notForYouIf: "You want to focus on the product or on talking with customers, rather than on training models."
+mlops-engineer:
+  task: "Take a small model script and put it under version control, with a README that lets someone else run it and get the same result."
+  doneWhen: "A second person (or a fresh folder) can run the script and get the same output."
+  forYouIf: "You care about making systems repeatable, and you find it satisfying when others can run your work without help."
+  notForYouIf: "You want to invent new models rather than keep existing ones running reliably."
+devops-engineer:
+  task: "Put a small web page into a container (a Docker image) and run it on your machine, then write down the three commands you used."
+  doneWhen: "The page loads at a local address, and anyone with your three commands can do the same."
+  forYouIf: "You like automating repetitive work and getting software to ship reliably."
+  notForYouIf: "You prefer to design features and screens rather than the systems that run them."
+cloud-engineer:
+  task: "Create a free cloud account and launch one small server or storage bucket, then delete it, noting every step and the cost (zero)."
+  doneWhen: "You have launched and removed one resource, with notes on each step in plain words."
+  forYouIf: "You like learning how computers are rented, connected and organised across the internet."
+  notForYouIf: "You get anxious about configuration screens or prefer hands-off products."
+site-reliability-engineer:
+  task: "Make a small web app and write a one-page note of what you would check if it started failing at night: what you would measure, and who you would tell."
+  doneWhen: "Your note lists at least three things to check and a clear order to check them in."
+  forYouIf: "You stay calm in a crisis, and you enjoy finding what is actually broken."
+  notForYouIf: "You do not want to be on call, or you prefer work with no pressure to keep things running."
+platform-engineer:
+  task: "Write a short guide that lets a teammate deploy a small app to a test environment without asking you, with one command and clear steps."
+  doneWhen: "A friend follows your guide, deploys the app, and does not need to ask you anything."
+  forYouIf: "You like making other engineers faster, and you enjoy writing tools and paths that others use."
+  notForYouIf: "You want to build customer-facing features rather than the tools behind them."
+qa-sdet:
+  task: "Write five automated tests for a simple web form, including two that try to break it with bad input, and run them."
+  doneWhen: "All five tests run, and at least one of them catches a real problem you could describe."
+  forYouIf: "You enjoy finding what is broken, and you are good at thinking of the case nobody planned for."
+  notForYouIf: "You find repeating checks boring, or you want to build the product rather than test it."
+application-security-engineer:
+  task: "Read through a simple login form you have built or been given, list three ways it could be attacked, and suggest one fix for each."
+  doneWhen: "Each attack has a plain description and a specific, realistic fix."
+  forYouIf: "You think like someone trying to break things, and you like working out how systems fail safely."
+  notForYouIf: "You prefer building features to reviewing how they could be misused."
+cloud-security-engineer:
+  task: "In a free cloud account, check who has access to what, remove one unnecessary permission, and write down why it was unnecessary."
+  doneWhen: "You have made one real change, and you can explain the risk it removes in one sentence."
+  forYouIf: "You like careful, detailed checking, and you enjoy locking down systems so only the right people get in."
+  notForYouIf: "You want to build the apps themselves rather than secure how they are set up."
+forward-deployed-engineer:
+  task: "Pick one real problem a friend or family member has with a computer task, and solve it with a small script or spreadsheet, watching them try it."
+  doneWhen: "The person can use your solution without you, and you have noted one thing that confused them."
+  forYouIf: "You enjoy working directly with people and you like solving their exact problem, not an imagined one."
+  notForYouIf: "You want to spend your days at a desk away from customers."
+solutions-engineer:
+  task: "Take one product (a free tool you use) and write a one-page explanation of how it would solve a specific problem for a small business."
+  doneWhen: "The explanation names the problem, the steps to solve it, and one limit of the product."
+  forYouIf: "You like explaining technology to people who are not technical, and you enjoy helping someone choose the right tool."
+  notForYouIf: "You prefer deep technical work over conversations with people."
+developer-advocate:
+  task: "Write a short tutorial that teaches one small concept (for example, what an API is) with a working example, then ask one person to read it and tell you where they got stuck."
+  doneWhen: "The tutorial has a working example, and you have written down the place where your reader got confused."
+  forYouIf: "You like teaching, writing and speaking, and you enjoy helping developers get started."
+  notForYouIf: "You want to spend most of your time writing production code rather than explaining it."
+game-developer:
+  task: "Make a tiny game in a free engine or in the browser where one object moves when you press an arrow key and stops at the edge of the screen."
+  doneWhen: "The object moves, stops at the edge, and you can name the part of the code that handles the key press."
+  forYouIf: "You love games and enjoy seeing a small world react to what you do."
+  notForYouIf: "You find long games and creative iteration tiring, or you dislike repeated testing."
+embedded-engineer:
+  task: "Wire a light to a small microcontroller board (or simulate one online) and write a program that blinks it at a steady rate you choose."
+  doneWhen: "The light blinks at your chosen rate, and you can say what controls the timing."
+  forYouIf: "You like physical things that respond to code, and you enjoy understanding how hardware behaves."
+  notForYouIf: "You want to work only on software with no hardware, or you do not want to deal with wires and parts."

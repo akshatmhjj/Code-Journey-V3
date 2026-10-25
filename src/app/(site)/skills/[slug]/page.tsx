@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Clock, Gauge } from "lucide-react";
-import { getDomain, getNetwork, getSkill, getSkillEntry, getSkills, getSnippets, rolesUsingSkill, type SkillEntry } from "@/lib/content";
+import { getAnalogies, getDomain, getNetwork, getSkill, getSkillEntry, getSkills, getSnippets, rolesUsingSkill, type SkillEntry } from "@/lib/content";
 import { highlight, renderMarkdown } from "@/lib/markdown";
 import { SITE } from "@/lib/site";
 import { Trail } from "@/components/ui/Trail";
@@ -55,6 +55,7 @@ export default async function SkillPage({ params }: PageProps<"/skills/[slug]">)
       .filter((s) => s.skill === slug)
       .map(async (s) => ({ ...s, html: await highlight(s.code, CODE_LANG[slug] ?? slug) })),
   );
+  const analogy = getAnalogies()[slug];
   const roles = rolesUsingSkill(slug);
   const next = getSkills().filter((s) => s.prereqs.includes(slug));
   const fmt = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
@@ -81,6 +82,16 @@ export default async function SkillPage({ params }: PageProps<"/skills/[slug]">)
           <div className="rounded-[var(--radius-lg)] border-2 border-ink p-6 md:p-7">
             <p className="eyebrow">The 60-second brief</p>
             <p className="mt-3 font-display text-[clamp(1.35rem,2.4vw,1.75rem)] leading-snug font-semibold">{skill.brief}</p>
+            {analogy && (
+              <div className="mt-5 grid gap-2 border-t-2 border-line pt-4 text-[15px]">
+                <p>
+                  <span className="font-semibold">Think of it like this:</span> {analogy.analogy}
+                </p>
+                <p className="text-muted">
+                  <span className="font-semibold text-ink">Not to be confused with:</span> {analogy.not}
+                </p>
+              </div>
+            )}
             <p className="mt-4 text-muted">
               Below: what to learn, in order, then the best places to learn it. Official docs are always first.
             </p>

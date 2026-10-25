@@ -68,6 +68,39 @@ for (const f of md("roles")) {
   for (const k of Object.keys(al.skills ?? {})) if (!skills.has(k)) errors.push(`skill-aliases.yaml: unknown skill "${k}"`);
 }
 
+// Analogies: every skill has one, with no unknown keys, and no em or en dashes in the copy.
+{
+  const an = YAML.parse(fs.readFileSync(path.join(ROOT, "analogies.yaml"), "utf8")) as Record<string, { analogy?: string; not?: string }>;
+  for (const s of skills) if (!an[s]) errors.push(`analogies.yaml: missing skill "${s}"`);
+  for (const [slug, v] of Object.entries(an ?? {})) {
+    if (!skills.has(slug)) errors.push(`analogies.yaml: unknown skill "${slug}"`);
+    if (!v?.analogy || !v?.not) errors.push(`analogies.yaml (${slug}): needs both "analogy" and "not"`);
+    if (/[\u2013\u2014]/.test(`${v?.analogy ?? ""} ${v?.not ?? ""}`)) errors.push(`analogies.yaml (${slug}): use a spaced hyphen, not an en or em dash`);
+  }
+}
+
+// Taste tests: every role has a 60-minute taste, with no unknown roles and no em or en dashes.
+{
+  const tt = YAML.parse(fs.readFileSync(path.join(ROOT, "taste-tests.yaml"), "utf8")) as Record<string, Record<string, string>>;
+  for (const r of roles) if (!tt[r]) errors.push(`taste-tests.yaml: missing role "${r}"`);
+  for (const [slug, v] of Object.entries(tt ?? {})) {
+    if (!roles.has(slug)) errors.push(`taste-tests.yaml: unknown role "${slug}"`);
+    for (const k of ["task", "doneWhen", "forYouIf", "notForYouIf"]) if (!v?.[k]) errors.push(`taste-tests.yaml (${slug}): missing "${k}"`);
+    if (/[\u2013\u2014]/.test(JSON.stringify(v ?? {}))) errors.push(`taste-tests.yaml (${slug}): use a spaced hyphen, not an en or em dash`);
+  }
+}
+
+// Switch: every starting point must point at real skills, and each job needs a unique slug.
+{
+  const sw = YAML.parse(fs.readFileSync(path.join(ROOT, "switch.yaml"), "utf8")) as { jobs: { slug: string; skills: string[] }[] };
+  const seen = new Set<string>();
+  for (const j of sw.jobs ?? []) {
+    if (seen.has(j.slug)) errors.push(`switch.yaml: duplicate job "${j.slug}"`);
+    seen.add(j.slug);
+    for (const s of j.skills) if (!skills.has(s)) errors.push(`switch.yaml (${j.slug}): unknown skill "${s}"`);
+  }
+}
+
 // Market data: every role is listed, and every pointer resolves.
 {
   const m = YAML.parse(fs.readFileSync(path.join(ROOT, "market.yaml"), "utf8")) as {

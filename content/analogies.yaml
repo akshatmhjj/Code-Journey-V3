@@ -1,0 +1,303 @@
+# One everyday comparison per skill, shown under "The 60-second brief".
+# analogy: a plain comparison from daily life (food, travel, the home, a shop, school). One or two sentences.
+# not: what the skill is NOT, to clear up the most common confusion. One sentence.
+# Keep copy in plain English. Hyphens with spaces only, never dashes (see memory: no em dashes).
+# Every skill in content/catalog.yaml needs an entry. scripts/check-content.ts fails the build if one is missing.
+
+how-the-internet-works:
+  analogy: "The internet is like the postal service. A web address is the address on the envelope, DNS is the directory that finds the right building, and the page is what comes back in the reply."
+  not: "It is not one big computer somewhere. It is many machines passing messages to each other."
+command-line:
+  analogy: "The command line is a kitchen where you call out exact instructions to the cook. The mouse is a menu with pictures, quick for a few dishes but slow when you need to repeat the same meal a hundred times."
+  not: "It is not a hacker tool. It is the most direct way to tell a computer what to do."
+git:
+  analogy: "Git is like a notebook where every page is dated and you can tear out a bad page or copy it to try a different idea, without losing the rest."
+  not: "It is not a backup folder. It is a record of every change, with who made it and why."
+data-structures-algorithms:
+  analogy: "Data structures are the shelves and boxes in a warehouse. Choosing well means you find things fast. Algorithms are the routines a worker follows to sort and find things."
+  not: "It is not memorising puzzles. It is choosing a sensible way to store and search data."
+system-design:
+  analogy: "System design is planning a restaurant before it opens: how many tables, how many cooks, where the storage goes, and what happens on the busiest Friday night."
+  not: "It is not drawing boxes for an interview. It is deciding how a system behaves under real load and failure."
+testing-basics:
+  analogy: "Tests are the checklist a pilot runs before take-off. Each check is quick, and together they catch the problem before the plane is in the air."
+  not: "It is not proof that code is perfect. It shows the cases you thought of still work."
+ai-coding-tools:
+  analogy: "An AI coding tool is like a very fast junior developer who drafts code for you. You still read the draft, test it and decide whether it is right."
+  not: "It is not a replacement for understanding the code. The tool can be confidently wrong."
+technical-writing:
+  analogy: "Technical writing is like giving directions to a friend who is new to the city. You name the landmarks in order and skip the things they do not need to know yet."
+  not: "It is not writing a long essay. It is writing so the next person can act on it without asking you."
+interviewing:
+  analogy: "A tech interview is like a driving test. Knowing how to drive matters, but so does showing the examiner you can do the manoeuvres they ask for, under time pressure."
+  not: "It is not a trick quiz. It tests how you think out loud as much as the answer."
+math-for-ml:
+  analogy: "This maths is the toolbox behind a machine learning model. You do not need to build every tool yourself, but you should know what each one is for and when it breaks."
+  not: "It is not a pure maths degree. It is the maths you use to read and tune models."
+html:
+  analogy: "HTML is the skeleton of a page. It decides where the head, the arms and the text go, before any clothes or colour are added."
+  not: "It is not the design. Colour and layout come from CSS."
+css:
+  analogy: "CSS is the interior design of a room. It decides the paint, the furniture's position and the lighting, but the walls (the HTML) must already be there."
+  not: "It is not a set of tricks to memorise. It is a system of rules that cascade from general to specific."
+javascript:
+  analogy: "JavaScript is the staff of a restaurant. HTML is the menu on the wall and CSS is the decor. JavaScript takes the orders, reacts when someone taps a button and updates what the guest sees."
+  not: "It is not the same as Java. The names are close, but the languages are different."
+typescript:
+  analogy: "TypeScript is like a spell-checker that runs before you send the email. It warns you about a mistake before the reader sees it."
+  not: "It is not a different browser language. It compiles down to plain JavaScript."
+react:
+  analogy: "React is like building with LEGO. You make small pieces, each with its own job, and snap them together into a whole screen. When one piece changes, only that piece is rebuilt."
+  not: "It is not a full framework for everything. It handles the interface, and other tools handle routing and data."
+nextjs:
+  analogy: "Next.js is a ready-made kitchen for React. Someone has already set up the stoves, the storage and the delivery, so you can focus on the dishes."
+  not: "It is not a separate language. It is React with routing, server rendering and data built in."
+tailwind-css:
+  analogy: "Tailwind is like a set of spice jars. You add small ready-made flavours directly to the dish, instead of writing a new recipe for every seasoning."
+  not: "It is not a component library. It is a set of small style classes you apply yourself."
+accessibility:
+  analogy: "Accessibility is like building a shop with a ramp as well as stairs. The ramp is for wheelchairs, but also for the pram and the suitcase, so everyone gets in."
+  not: "It is not an extra for a few users. It makes the site better for almost everyone."
+web-performance:
+  analogy: "Web performance is like keeping a shop's queue short. The customer should be served quickly on a slow connection, not only on a fast one."
+  not: "It is not just making images smaller. It covers how the page loads, how it responds and how it moves."
+frontend-testing:
+  analogy: "Frontend tests check the interface the way a customer uses it. It is like a mystery shopper who walks in, orders, and checks the bill is right."
+  not: "It is not checking the code line by line. It checks what the user sees and can do."
+state-management:
+  analogy: "State is the memory of an app. It is like the order slip on the kitchen rail: everyone needs to read the same slip, and changing it in one place must update every station."
+  not: "It is not something to put everywhere. Keep state close to where it is used, and share only what must be shared."
+design-systems:
+  analogy: "A design system is a shared set of building parts and rules, like the standard bricks and window sizes an architect uses on every building in a city."
+  not: "It is not a style guide PDF. It is working code and components that teams reuse."
+ui-design:
+  analogy: "UI design is like arranging a shop window. You decide what catches the eye first, what sits together, and what the passer-by should do next."
+  not: "It is not decoration. It is about making the next action clear."
+web-animation:
+  analogy: "Good motion is like a door that swings shut slowly instead of slamming. It tells the person what just happened, without shouting for attention."
+  not: "It is not animation for its own sake. Motion should explain a change, not distract."
+nodejs:
+  analogy: "Node.js lets JavaScript work in the back kitchen as well as at the counter. The same staff can take orders, check the stock and send the bill."
+  not: "It is not a separate framework. It is a runtime that runs JavaScript on a server."
+rest-apis:
+  analogy: "A REST API is a well-organised counter at a shop. You ask for a thing by its name (a URL), say what you want to do (GET, POST), and get a receipt back in a standard format (JSON)."
+  not: "It is not a single fixed product. It is a style of building web services that many systems share."
+graphql:
+  analogy: "GraphQL is like ordering from a menu where you choose exactly which parts of each dish you want, in one order, instead of asking for the whole dish each time."
+  not: "It is not a replacement for every API. It trades simplicity for flexibility."
+authentication:
+  analogy: "Authentication is showing your ID at the door to prove who you are. Authorisation is what the bouncer lets you do once you are inside, such as VIP areas or staff rooms."
+  not: "It is not the same as permissions. Knowing who someone is does not tell you what they may do."
+web-security:
+  analogy: "Web security is like locking doors, checking the ID of every delivery and not leaving the spare key under the mat. Most break-ins happen through the easy mistakes."
+  not: "It is not one tool you install. It is a set of habits applied everywhere."
+caching:
+  analogy: "A cache is the sandwich you prepared yesterday and kept in the fridge. It is quick to hand over, but you must throw it out when the ingredients change."
+  not: "It is not a copy you can trust forever. The hard part is knowing when to refresh it."
+message-queues:
+  analogy: "A message queue is like a takeaway order ticket rail. The counter writes a ticket and moves on, and the kitchen works through the tickets at its own pace."
+  not: "It is not a direct phone call. The sender does not wait for the reply."
+dart:
+  analogy: "Dart is like a clean, well-labelled toolbox for Flutter. It is designed to be easy to pick up and to keep tidy as a project grows."
+  not: "It is not only for Flutter, but Flutter is where most people meet it."
+flutter:
+  analogy: "Flutter is like a painter's canvas where every screen is drawn from the same set of brushes. The same drawing looks the same on Android and iPhone."
+  not: "It is not a web framework. It builds apps for phones, desktop and the web from one codebase."
+react-native:
+  analogy: "React Native is like a translator who lets you speak React to a phone. Your components become real phone screens, so the React skills carry over."
+  not: "It is not a web view wrapped in an app. It uses the phone's own buttons and lists."
+kotlin:
+  analogy: "Kotlin is a modern, tidy version of the language Android was built on. It has the same bones, with fewer ways to trip over yourself."
+  not: "It is not a separate platform. It runs on Android and the Java virtual machine."
+jetpack-compose:
+  analogy: "Jetpack Compose is like describing a screen as a recipe. You say what the screen should look like for a given state, and the phone builds it."
+  not: "It is not the old XML layout style. It is the modern way to write Android screens."
+swift:
+  analogy: "Swift is the language of the Apple kitchen. It is designed for the iPhone, Mac and iPad, with the tools already laid out for you."
+  not: "It is not Objective-C with a new name. It is a separate, modern language."
+swiftui:
+  analogy: "SwiftUI is like describing a screen with simple building blocks. You say what should show, and Apple's system keeps it up to date when the data changes."
+  not: "It is not a drag-and-drop tool. You write the screen in code."
+app-store-publishing:
+  analogy: "Publishing an app is like getting a product onto a shop shelf. You need the right packaging, a signed label, a description and a check that it meets the shop's rules."
+  not: "It is not just uploading a file. Each store has its own review and privacy rules."
+mobile-testing:
+  analogy: "Mobile testing is like test-driving a car on real roads, in the rain and on bad fuel. A test in a simulator is useful, but real phones find problems the simulator misses."
+  not: "It is not running the app once on your own phone. Phones differ in size, speed and OS version."
+python:
+  analogy: "Python is like a clear recipe book written in plain language. It is easy to read, so the cook can focus on the food."
+  not: "It is not slow for everything. Heavy number work is done by libraries written in faster languages."
+sql:
+  analogy: "SQL is how you ask a librarian for exactly the books you want: by author, by year, grouped by genre. The librarian finds them without you walking the shelves."
+  not: "It is not a spreadsheet formula. It runs against whole databases of tables."
+pandas:
+  analogy: "Pandas is a spreadsheet inside Python. You can sort, filter and join whole tables with one line of code instead of clicking through thousands of rows."
+  not: "It is not a database. It works on data that is already loaded into memory."
+data-visualization:
+  analogy: "A good chart is like a road sign. It tells the driver what matters in a glance, and a bad one is like a sign with too many words that nobody reads."
+  not: "It is not making things look pretty. It is choosing the chart that answers the question."
+statistics:
+  analogy: "Statistics is like a taste test. One spoonful is not enough to judge a whole pot, so you need to know how many spoonfuls, and how much they vary, before you trust the verdict."
+  not: "It is not just averages. It is how sure you can be about what the numbers show."
+spreadsheets:
+  analogy: "A spreadsheet is a ledger with a calculator built in. It is the first tool most people use to check a total, sort a list or make a quick chart."
+  not: "It is not a database. Once data grows, it becomes hard to trust in a spreadsheet alone."
+bi-tools:
+  analogy: "A BI dashboard is like the instrument panel of a car. The numbers update as you drive, so everyone can see the speed and the fuel without asking the mechanic."
+  not: "It is not a report you print once. It is a live view that people check every day."
+data-modeling:
+  analogy: "Data modelling is designing the filing cabinet before you fill it. Each drawer holds one kind of thing, and labels link the drawers so you can find related papers."
+  not: "It is not drawing diagrams for their own sake. A good model makes questions easy to answer."
+postgresql:
+  analogy: "PostgreSQL is a sturdy filing cabinet with strict rules about what can go in each drawer. It can also hold shapes of data the cheaper cabinets cannot."
+  not: "It is not just a place to store text. It enforces rules about the data it holds."
+spark:
+  analogy: "Spark is like a large kitchen with many cooks. A huge order is split into parts, each cook handles a part, and the results are combined into one meal."
+  not: "It is not needed for small data. A single laptop is faster for a file that fits in memory."
+airflow:
+  analogy: "Airflow is the kitchen timer and the head chef's plan. It knows which step must finish before the next, and it tries again when a step burns."
+  not: "It is not the data itself. It schedules and watches the steps that move the data."
+dbt:
+  analogy: "dbt is like writing recipes for your data in SQL, with tests and version history. Each recipe is a step that turns raw ingredients into a clean table."
+  not: "It is not a database or a warehouse. It transforms data inside one."
+data-warehouses:
+  analogy: "A data warehouse is a giant organised storeroom for the whole company's records. Analysts can ask big questions across years of sales without touching the day-to-day shop."
+  not: "It is not the system that runs the app. It is where analysis happens, away from live traffic."
+r:
+  analogy: "R is a specialist toolbox that statisticians built for their own work. It has a tool for almost every kind of test and chart they might need."
+  not: "It is not only for academics. Many analysts use it in industry too."
+data-storytelling:
+  analogy: "Data storytelling is like a good guide on a tour. The guide picks which sights matter, in what order, and explains why each one is worth the walk."
+  not: "It is not dumping every chart you made. It is choosing the one point that should change a decision."
+ab-testing:
+  analogy: "An A/B test is a fair taste test in a restaurant. Half the diners get the old recipe and half get the new one, so any difference in what they order comes from the recipe."
+  not: "It is not a quick comparison of two weeks. It needs enough people and a fixed plan to be trusted."
+machine-learning:
+  analogy: "Machine learning is like teaching a child to spot dogs by showing many photos and correcting mistakes, rather than writing a rule for every breed."
+  not: "It is not magic or thinking like a person. It finds patterns in examples."
+deep-learning:
+  analogy: "Deep learning is like a factory line with many stations. Each station turns the raw input a little further, until the last one produces the answer."
+  not: "It is not a different kind of intelligence. It is machine learning with many layers."
+pytorch:
+  analogy: "PyTorch is a workbench for building and testing neural networks. You can open the parts, change one and see what happens, which suits researchers well."
+  not: "It is not a model you download. It is the framework you write models with."
+llm-apis:
+  analogy: "Calling an LLM API is like placing an order with a very capable assistant by phone. You send the request in a fixed format and get a reply back, and you handle the case where the line drops."
+  not: "It is not running the model yourself. The provider hosts it and bills per use."
+prompt-engineering:
+  analogy: "Writing a prompt is like briefing a new contractor. The clearer the goal, the context and an example of good work, the less time you spend fixing the result."
+  not: "It is not a secret phrase that unlocks the model. It is clear instructions."
+rag:
+  analogy: "RAG is like an open-book exam. Before answering, the model looks up the right pages from your notes and answers from them, rather than from memory."
+  not: "It is not training the model on your documents. The documents are looked up at question time."
+ai-agents:
+  analogy: "An agent is like a capable assistant with a phone and a to-do list. It tries a step, checks the result, and chooses the next step until the task is done or it gets stuck."
+  not: "It is not a model that acts on its own forever. It needs limits, checks and a way to stop."
+llm-evals:
+  analogy: "Evaluating an LLM feature is like tasting a dish before it leaves the kitchen, every time the recipe changes. You need a fixed set of test dishes, not one lucky taste."
+  not: "It is not checking one good answer. It is measuring many answers against the same tests."
+vector-databases:
+  analogy: "A vector database is like a library where books are shelved by meaning, not by title. You can ask for \"books like this one\" and get the close matches quickly."
+  not: "It is not a normal database with a faster search. It finds the nearest meanings."
+mlops:
+  analogy: "MLOps is the kitchen operations behind a restaurant. Recipes are versioned, dishes are repeatable, and someone watches the fridge temperature so the food stays safe after it leaves the kitchen."
+  not: "It is not just training a model once. It keeps a model working in production."
+linux:
+  analogy: "Linux is the engine room of most servers on the internet. Running it well is like keeping a ship's engine running: regular checks, clear logs and a plan for when something fails."
+  not: "It is not just a desktop. Most of its use is on servers, where it runs quietly."
+networking:
+  analogy: "Networking is the road system between houses. Addresses tell you where each house is, the roads carry the traffic, and traffic lights and gates control who can pass."
+  not: "It is not only Wi-Fi. It covers how any two machines find and reach each other."
+docker:
+  analogy: "Docker is a shipping container for software. The app and everything it needs are packed inside, so it arrives and runs the same way on any ship or lorry."
+  not: "It is not a virtual machine. A container shares the host's operating system."
+kubernetes:
+  analogy: "Kubernetes is the harbour master for containers. It decides which ship goes where, replaces a sinking one, and adds more ships when the port gets busy."
+  not: "It is not something a small app needs. It pays off when many containers run across many machines."
+ci-cd:
+  analogy: "CI/CD is an assembly line with quality checks. Every change is built, tested and packaged automatically, so a good change reaches the shelf without anyone carrying it by hand."
+  not: "It is not one tool. It is a pipeline that runs your checks on every change."
+terraform:
+  analogy: "Terraform is a written blueprint for a building. Instead of building by hand and forgetting what was done, you describe the result and the tool builds it the same way every time."
+  not: "It is not a script that runs once. It keeps the real setup matching the description."
+aws:
+  analogy: "AWS is a huge warehouse-and-utilities company for computing. You rent the storage, power and delivery you need, and pay for what you use instead of building your own depot."
+  not: "It is not a single service. It is hundreds of services, and you start with a handful."
+observability:
+  analogy: "Observability is the dashboard and warning lights of a car. Logs, metrics and traces tell you the speed, the temperature and the engine noise, so you notice a fault before the car stops."
+  not: "It is not just logging. Logs are one of three signals."
+deployment:
+  analogy: "Deploying an app is like opening a shop. You pick the building, connect the power and water, put up the sign with the right address, and open the doors."
+  not: "It is not only uploading files. It includes domains, settings and a way to roll back."
+shell-scripting:
+  analogy: "A shell script is a recipe card for the terminal. You write the steps once, and the computer repeats them exactly, instead of you typing the same commands every morning."
+  not: "It is not a full programming language for large projects. It is best for gluing tools together."
+go:
+  analogy: "Go is like a well-run delivery service: simple rules, fast handovers, and many workers moving at once. It was made so large teams can build and run big systems without confusion."
+  not: "It is not a scripting language. It compiles to fast programs."
+internal-developer-platforms:
+  analogy: "An internal developer platform is a self-service vending machine for engineers. They press a button for a new service, and the platform sets up the database, the pipeline and the dashboards."
+  not: "It is not a single product you buy. It is the set of paved paths your company builds for its engineers."
+incident-response:
+  analogy: "Incident response is like a fire drill for a building. Everyone knows who calls the fire service, who guides people out, and who checks the cause afterwards."
+  not: "It is not finding someone to blame. It is restoring service and learning from what happened."
+test-automation:
+  analogy: "Test automation is a robot that repeats the same checklist after every change, so a human only looks at the surprises."
+  not: "It is not a replacement for thinking about tests. Automation runs the checks you designed."
+playwright:
+  analogy: "Playwright is a robot shopper that uses a real browser. It clicks, types and checks what appears, the way a customer would, and waits for the page to be ready before each step."
+  not: "It is not a browser extension. It drives real browsers from code."
+api-testing:
+  analogy: "Testing an API is like checking a vending machine from the outside. You press a code and check the item, the change and the error message when the code is wrong."
+  not: "It is not testing the screen. It checks the service that the screen talks to."
+performance-testing:
+  analogy: "Performance testing is like filling a bus with passengers to see how many it can carry before it slows down or breaks."
+  not: "It is not a test of one fast user. It checks what happens under many users at once."
+test-design:
+  analogy: "Test design is choosing which doors to check in a building. You pick the ones most likely to be left unlocked, not every window in the place."
+  not: "It is not writing as many tests as possible. It is writing the ones that matter most."
+owasp-top-10:
+  analogy: "The OWASP Top 10 is the shared list of the most common ways a house gets broken into. Every builder should know it, like the basic locks everyone checks."
+  not: "It is not a complete list of every risk. It is the most common ones to check first."
+threat-modeling:
+  analogy: "Threat modelling is walking around your house before you move in and asking where a burglar would try first, and which valuables matter most."
+  not: "It is not a one-off form. It is a way of thinking you repeat as the system changes."
+cloud-security:
+  analogy: "Cloud security is like keys, badges and cameras for a building you rent. Each person gets only the keys they need, and every door is logged."
+  not: "It is not the cloud provider's job alone. You configure who can access what."
+security-testing:
+  analogy: "Security testing is hiring a friendly burglar to try the doors and windows, along with automatic scanners that check the locks every day."
+  not: "It is not a single scan. It combines automated checks with hands-on testing."
+working-with-customers:
+  analogy: "It is like a good waiter who asks what the guest actually wants before bringing the dish. Engineers who do this build the right thing faster."
+  not: "It is not only for sales. It is how engineers learn what problem to solve."
+developer-content:
+  analogy: "Developer content is like a guided walk through a museum. A good guide picks the highlights, explains them simply and tells you where to look next."
+  not: "It is not a list of links. It teaches one clear idea at a time."
+csharp:
+  analogy: "C# is a well-organised toolbox from Microsoft. It has tools for games, web services and desktop apps, all with the same labels and handles."
+  not: "It is not only for Windows. It runs on other systems too."
+cpp:
+  analogy: "C++ is like a professional kitchen knife set. It is sharp and gives you exact control, but you must know how to hold each blade or you get cut."
+  not: "It is not just C with classes. It has its own large set of features and rules."
+unity:
+  analogy: "Unity is a stage crew for games. It handles the lights, the physics and the sound, so the game designer can focus on what happens in the scene."
+  not: "It is not a game on its own. It is the engine you build games in."
+game-math:
+  analogy: "Game maths is the geometry that tells a character how to turn, how far to jump and whether the ball hit the wall. It is the map behind every move on screen."
+  not: "It is not advanced physics. It is mostly vectors and angles."
+c-programming:
+  analogy: "C is like working directly with the building's wiring and plumbing. You control every pipe, so you must check every joint yourself."
+  not: "It is not an old language nobody uses. It runs operating systems and devices."
+electronics-basics:
+  analogy: "Electronics basics are like learning the plumbing of a house before fixing a tap. Voltage is the pressure, current is the flow, and resistance is the narrow pipe that slows it."
+  not: "It is not a full electronics degree. It is the part you need to read a circuit and use a multimeter."
+microcontrollers:
+  analogy: "A microcontroller is a tiny computer on a single chip, like the brain inside a washing machine. It reads its sensors, runs a fixed program and switches its outputs."
+  not: "It is not a laptop in a small box. It has very limited memory and power."
+rtos:
+  analogy: "An RTOS is like a train timetable. Each task gets its slot on time, so the important jobs always run when they must, even when many things are happening."
+  not: "It is not a fast operating system for desktops. It is built for predictable timing."
+embedded-protocols:
+  analogy: "Embedded protocols are the agreed sign language between chips and sensors. Each protocol sets how many wires there are, who speaks first and how messages are checked."
+  not: "It is not the internet protocol stack. These run inside one device on short wires."

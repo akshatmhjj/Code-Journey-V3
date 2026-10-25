@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Bot, Clock, ExternalLink, Layers, ListChecks } from "lucide-react";
-import { getDomain, getMarket, getNetwork, getPathIndex, getRole, getRoleEntry, getSkillEntry, type SkillEntry } from "@/lib/content";
+import { getDomain, getMarket, getNetwork, getPathIndex, getRole, getRoleEntry, getSkillEntry, getTasteTests, type SkillEntry } from "@/lib/content";
 import { renderMarkdown } from "@/lib/markdown";
 import { SITE } from "@/lib/site";
 import { Trail } from "@/components/ui/Trail";
@@ -54,6 +54,7 @@ function totalWeeks(weeks: (string | undefined)[]) {
 // Only the sections that stay open. The rest are behind a "Show" toggle, so the page reads top to bottom without a wall of text.
 const TOC = [
   ["day", "The job"],
+  ["try", "Try it first"],
   ["route", "The route"],
   ["market", "Pay and market"],
   ["more", "Is it for you?"],
@@ -63,6 +64,7 @@ export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
   const { slug } = await params;
   const entry = getRoleEntry(slug);
   if (!entry) notFound();
+  const taste = getTasteTests()[slug];
   const domain = getDomain(entry.domain)!;
   const role = getRole(slug);
   const trail = [{ label: "Network", href: "/roles" }, { label: domain.name, href: `/domains/${domain.slug}` }, { label: entry.title }];
@@ -140,6 +142,29 @@ export default async function RolePage({ params }: PageProps<"/roles/[slug]">) {
               {role.whereTheyWork}
             </p>
           </section>
+
+          {taste && (
+            <section id="try" className="mt-20 border-t-2 border-ink pt-10" aria-labelledby="try-title">
+              <SectionTitle eyebrow="Try it first" title="A 60-minute taste" id="try-title" />
+              <div className="grid gap-4 rounded-[var(--radius-lg)] border-2 border-ink p-6 md:p-7">
+                <p className="text-lg">{taste.task}</p>
+                <p className="text-muted">
+                  <span className="font-semibold text-ink">You are done when: </span>
+                  {taste.doneWhen}
+                </p>
+              </div>
+              <div className="mt-6 grid gap-4 md:grid-cols-2">
+                <div className="rounded-[var(--radius-md)] bg-surface p-5">
+                  <p className="font-semibold">A good sign</p>
+                  <p className="mt-2 text-muted">{taste.forYouIf}</p>
+                </div>
+                <div className="rounded-[var(--radius-md)] bg-surface p-5">
+                  <p className="font-semibold">Maybe not for you</p>
+                  <p className="mt-2 text-muted">{taste.notForYouIf}</p>
+                </div>
+              </div>
+            </section>
+          )}
 
           <section id="route" className="mt-20 border-t-2 border-ink pt-10" aria-labelledby="route-title">
             <SectionTitle eyebrow="The route" title={`Your route to ${role.title}`} id="route-title" />

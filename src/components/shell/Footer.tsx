@@ -16,6 +16,7 @@ const LINKS = [
       ["/roles/compare", "Compare roles"],
       ["/market", "Pay by role"],
       ["/gap", "Job post checker"],
+      ["/switch", "Switch careers"],
       ["/skills", "All skills"],
       ["/resources", "Resource library"],
       ["/glossary", "Glossary"],

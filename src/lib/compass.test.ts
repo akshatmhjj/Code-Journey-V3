@@ -42,7 +42,8 @@ describe("scoreCompass", () => {
 
   it("lists reasons for the strongest answers first, at most three", () => {
     const frontend = scoreCompass(questions, [0, 0]).find((r) => r.slug === "frontend");
-    expect(frontend?.reasons).toEqual(["likes screens", "likes design"]);
+    // "likes design" points only at frontend (share 1), "likes screens" is shared with another role (share 0.75).
+    expect(frontend?.reasons).toEqual(["likes design", "likes screens"]);
   });
 
   it("ignores an answer that does not match any option", () => {

@@ -20,7 +20,7 @@ export function SkillProgress({ slug, label = "Where are you with this?", compac
     if (compact) return null;
     return (
       <p className="text-sm text-muted">
-        <Link href="/login" className="link font-semibold text-ink">
+        <Link href="/login?reason=progress" className="link font-semibold text-ink">
           Sign in
         </Link>{" "}
         to track this skill on your route.

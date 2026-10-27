@@ -2,10 +2,11 @@
 // Events: `sources` (JSON list), `delta` (JSON string), `done`, `error` (JSON {message}).
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { embedQuery, generate, streamAnswer, type Turn } from "@/lib/gemini";
-import { CJ_DAILY_LIMIT as DAILY_LIMIT } from "@/lib/cj-limits";
+import { CJ_DAILY_LIMIT as DAILY_LIMIT, CJ_VISITOR_DAILY_LIMIT as VISITOR_LIMIT } from "@/lib/cj-limits";
 import { alert } from "@/lib/alert";
 import { citationFilter } from "@/lib/citations";
 import { entitySource, findEntities, formatSources, SYSTEM_PROMPT, type Source } from "@/lib/rag";
+import { visitorKey } from "@/lib/visitor";
 
 export const maxDuration = 30;
 
@@ -21,10 +22,44 @@ function json(status: number, body: object) {
   return Response.json(body, { status });
 }
 
-/** Gives back the question counted in step 3 when CJ AI could not answer it. */
-async function refundQuota(db: SupabaseClient) {
-  const { error } = await db.rpc("refund_chat_message");
-  if (error) console.error("CJ AI quota refund failed", error);
+/**
+ * Where a question is counted. Signed-in people use their own daily count. Visitors use a count per hashed IP,
+ * written by the server with the service role, so a visitor's browser cannot reset or inflate it.
+ */
+type Quota = {
+  /** true = allowed, false = over the limit, null = the count could not be checked. */
+  consume: () => Promise<boolean | null>;
+  refund: () => Promise<void>;
+  limitMessage: string;
+};
+
+function signedInQuota(db: SupabaseClient): Quota {
+  return {
+    async consume() {
+      const { data, error } = await db.rpc("consume_chat_message", { daily_limit: DAILY_LIMIT });
+      return error ? null : Boolean(data);
+    },
+    async refund() {
+      const { error } = await db.rpc("refund_chat_message");
+      if (error) console.error("CJ AI quota refund failed", error);
+    },
+    limitMessage: `You've asked ${DAILY_LIMIT} questions today - that's the daily limit. It resets at midnight UTC.`,
+  };
+}
+
+function visitorQuota(req: Request, admin: SupabaseClient, salt: string): Quota {
+  const key = visitorKey(req.headers, salt);
+  return {
+    async consume() {
+      const { data, error } = await admin.rpc("consume_visitor_chat_message", { p_ip_hash: key, daily_limit: VISITOR_LIMIT });
+      return error ? null : Boolean(data);
+    },
+    async refund() {
+      const { error } = await admin.rpc("refund_visitor_chat_message", { p_ip_hash: key });
+      if (error) console.error("CJ AI visitor quota refund failed", error);
+    },
+    limitMessage: `You've used your ${VISITOR_LIMIT} free questions for today. Sign up for free to ask ${DAILY_LIMIT} a day. It resets at midnight UTC.`,
+  };
 }
 
 /** Turns a follow-up like "what about interviews?" into a standalone search query. */
@@ -50,15 +85,25 @@ async function standalone(turns: Turn[]) {
 export async function POST(req: Request) {
   if (!process.env.GEMINI_API_KEY) return json(500, { error: "CJ AI is not configured." });
 
-  // 1. Who's asking? A signed-in user is required.
+  // 1. Signed in, or a visitor? Anyone can ask a few questions. Signing in gives more, and keeps the history.
   const token = (req.headers.get("authorization") ?? "").replace(/^Bearer\s+/i, "");
-  if (!token) return json(401, { error: "Sign in to use CJ AI." });
-  const db = createClient(SUPABASE_URL, ANON, {
-    global: { headers: { Authorization: `Bearer ${token}` } },
-    auth: { persistSession: false },
-  });
-  const { data: auth } = await db.auth.getUser(token);
-  if (!auth.user) return json(401, { error: "Sign in to use CJ AI." });
+  let db: SupabaseClient;
+  let quota: Quota;
+  if (token) {
+    db = createClient(SUPABASE_URL, ANON, {
+      global: { headers: { Authorization: `Bearer ${token}` } },
+      auth: { persistSession: false },
+    });
+    const { data: auth } = await db.auth.getUser(token);
+    if (!auth.user) return json(401, { error: "Your sign-in has expired. Sign in again to keep asking." });
+    quota = signedInQuota(db);
+  } else {
+    const salt = process.env.CJ_IP_SALT ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!salt || !process.env.SUPABASE_SERVICE_ROLE_KEY) return json(503, { error: "CJ AI is unavailable right now. Try again shortly." });
+    db = createClient(SUPABASE_URL, ANON, { auth: { persistSession: false } });
+    const admin = createClient(SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } });
+    quota = visitorQuota(req, admin, salt);
+  }
 
   // 2. Validate input.
   let body: { messages?: { role?: string; content?: unknown }[] };
@@ -74,9 +119,9 @@ export async function POST(req: Request) {
   if (!turns.length || turns[turns.length - 1].role !== "user") return json(400, { error: "Ask a question first." });
 
   // 3. Daily limit.
-  const { data: allowed, error: limitError } = await db.rpc("consume_chat_message", { daily_limit: DAILY_LIMIT });
-  if (limitError) return json(503, { error: "CJ AI is unavailable right now. Try again shortly." });
-  if (!allowed) return json(429, { error: `You've asked ${DAILY_LIMIT} questions today - that's the daily limit. It resets at midnight UTC.` });
+  const allowed = await quota.consume();
+  if (allowed === null) return json(503, { error: "CJ AI is unavailable right now. Try again shortly." });
+  if (!allowed) return json(429, { error: quota.limitMessage });
 
   // 4. Retrieve: exact role/skill pages first, then hybrid search.
   const question = turns[turns.length - 1].content;
@@ -111,7 +156,7 @@ export async function POST(req: Request) {
   } catch (e) {
     console.error("CJ AI retrieval failed", e);
     await alert("CJ AI retrieval failed", String((e as { message?: string }).message ?? e));
-    await refundQuota(db);
+    await quota.refund();
     return json(503, { error: "CJ AI is unavailable right now. Try again shortly." });
   }
 
@@ -153,7 +198,7 @@ export async function POST(req: Request) {
         console.error("CJ AI generation failed", e);
         // A 429 from the model is a quota limit, not a fault, so it doesn't page anyone.
         if (status !== 429) await alert("CJ AI generation failed", String((e as { message?: string }).message ?? e));
-        if (!answered) await refundQuota(db);
+        if (!answered) await quota.refund();
         send(controller, "error", { message: status === 429 ? "CJ AI is busy. Try again in a minute." : "CJ AI couldn't finish that answer. Try again." });
       } finally {
         controller.close();

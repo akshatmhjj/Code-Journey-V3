@@ -34,6 +34,15 @@ function Results({ questions, answers, roles, onRestart }: { questions: CompassQ
   // so a lower percentage never sits above a higher one.
   const byMatch = (a: { match: number }, b: { match: number }) => b.match - a.match;
   const [top, more] = [ranked.slice(0, 3).sort(byMatch), ranked.slice(3, 6).sort(byMatch)];
+  // A reason already shown on a higher card is left off the cards below it, so each card says something different.
+  // If that would leave a card with nothing, it keeps its reasons.
+  const used = new Set<string>();
+  const reasonsByRole: Record<string, string[]> = {};
+  for (const r of top) {
+    const fresh = r.reasons.filter((why) => !used.has(why));
+    reasonsByRole[r.slug] = fresh.length ? fresh : r.reasons;
+    reasonsByRole[r.slug].forEach((why) => used.add(why));
+  }
 
   return (
     <div className="grid gap-10">
@@ -43,7 +52,7 @@ function Results({ questions, answers, roles, onRestart }: { questions: CompassQ
           Three routes worth a look.
         </h1>
         <p className="mt-4 max-w-[58ch] text-lg text-muted">
-          Based on your answers. Read each route&apos;s &ldquo;week in the life&rdquo; - that&apos;s the best test of whether it really fits.
+          Ranked by how many of your answers point towards each route. Each &ldquo;Because you&hellip;&rdquo; line is one of your answers. Read each route&apos;s &ldquo;week in the life&rdquo; - that&apos;s the best test of whether it really fits.
         </p>
       </div>
 
@@ -57,19 +66,16 @@ function Results({ questions, answers, roles, onRestart }: { questions: CompassQ
             >
               <div className="flex items-center justify-between gap-3">
                 <span className="font-mono text-[12px] tracking-wider text-muted uppercase">
-                  {i === 0 ? "Best match" : `Match ${i + 1}`} · {role.domain}
-                </span>
-                <span className={`rounded-full px-2.5 py-0.5 font-mono text-[12px] font-bold ${i === 0 ? "bg-accent text-on-accent" : "border-2 border-ink"}`}>
-                  {r.match}%
+                  {["Best match", "Close second", "Also a fit"][i]} · {role.domain}
                 </span>
               </div>
               <h2 className="mt-4 text-[1.75rem] leading-tight font-bold">{role.title}</h2>
               <p className="mt-2 text-muted">{role.oneLiner}</p>
-              {r.reasons.length > 0 && (
+              {reasonsByRole[r.slug]?.length > 0 && (
                 <div className="mt-5 flex-1">
                   <p className="text-sm font-semibold">Because you…</p>
                   <ul className="mt-2 grid gap-1.5 text-[15px]">
-                    {r.reasons.map((why) => (
+                    {reasonsByRole[r.slug].map((why) => (
                       <li key={why} className="flex gap-2">
                         <span aria-hidden="true" className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-ink" />
                         {why}
@@ -105,7 +111,7 @@ function Results({ questions, answers, roles, onRestart }: { questions: CompassQ
             {more.map((r) => (
               <li key={r.slug}>
                 <Link href={`/roles/${r.slug}`} className="inline-flex items-center gap-2 rounded-full border-2 border-ink px-3 py-1.5 font-semibold hover:bg-ink hover:text-canvas">
-                  {roles[r.slug].title} <span className="font-mono text-[12px] opacity-70">{r.match}%</span>
+                  {roles[r.slug].title}
                 </Link>
               </li>
             ))}

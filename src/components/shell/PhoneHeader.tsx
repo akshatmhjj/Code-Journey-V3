@@ -160,7 +160,7 @@ export function PhoneHeader() {
                 </button>
               ))}
             </div>
-            <Link href={user ? "/me" : "/login"} className={`btn w-full ${user ? "btn-ink" : "btn-accent"}`}>
+            <Link href={user ? "/me" : "/login?mode=signin"} className={`btn w-full ${user ? "btn-ink" : "btn-accent"}`}>
               {user ? (
                 <>
                   <UserRound size={17} /> My Path

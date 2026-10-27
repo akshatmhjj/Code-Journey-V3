@@ -222,7 +222,7 @@ function StatusPills({ slug }: { slug: string }) {
   if (!path || path.signedIn === undefined) return null;
   if (!path.signedIn) {
     return (
-      <Link href="/login" className="link text-sm font-semibold">
+      <Link href="/login?reason=progress" className="link text-sm font-semibold">
         Sign in to track
       </Link>
     );

@@ -19,6 +19,7 @@ export default function Privacy() {
           <li><strong>Account details</strong> - your name and email address when you sign up, and the date you joined.</li>
           <li><strong>Your progress</strong> - the role you&apos;re working towards, which skills you&apos;ve marked as learning or done, and your chosen theme.</li>
           <li><strong>Questions to CJ AI</strong> - the messages you send are passed to Google&apos;s Gemini API to generate an answer. We don&apos;t store your conversation on our servers.</li>
+          <li><strong>Free questions without an account</strong> - we count how many questions each visitor has asked that day, using a salted hash of their IP address. The address itself is not stored, and the count resets at midnight UTC.</li>
           <li><strong>Usage analytics</strong> - Google Analytics records which pages are visited, from what kind of device and roughly where. Advertising features are switched off. Visitors in the EU, UK and Switzerland are asked before analytics is enabled.</li>
           <li><strong>Settings on your device</strong> - your theme, mode and cookie choice are kept in your browser&apos;s local storage, and a sign-in session if you have an account.</li>
           <li><strong>Pages saved for offline reading</strong> - public pages you&apos;ve opened are kept in your browser so they work without a connection. Personal pages (My Path, sign-in) are never saved. Clearing your browser data removes them.</li>

@@ -16,6 +16,21 @@ const COPY: Record<Mode, { title: string; sub: string; button: string }> = {
   callback: { title: "Signing you in…", sub: "One moment while we finish up.", button: "" },
 };
 
+/** Why someone was sent here. Each sign-in link says so, so the form explains itself. */
+const REASONS: Record<string, { mode?: Mode; sub: string }> = {
+  save: { sub: "Save this to your route. It takes a minute, and it's free." },
+  progress: { sub: "Tick off stations as you learn, and pick up where you left off." },
+  vote: { sub: "Rate resources and help other learners find what works. It's free." },
+  suggest: { sub: "Suggest a better resource. Sign up so we can follow up on it." },
+  ask: { sub: "Ask CJ AI more questions every day. It's free." },
+  me: { mode: "signin", sub: "Sign in to open your route where you left it." },
+};
+
+/** Only same-site paths. Anything else (full URLs, protocol-relative paths) falls back to My Path. */
+function safeNext(value: string | null) {
+  return value && value.startsWith("/") && !value.startsWith("//") && !value.includes("\\") ? value : "/me";
+}
+
 const PROVIDERS: { id: Provider; label: string; icon: React.ReactNode }[] = [
   {
     id: "google",
@@ -65,8 +80,11 @@ function Field({ id, label, ...rest }: { id: string; label: string } & React.Inp
 export function AuthForm() {
   const params = useSearchParams();
   const router = useRouter();
-  const initial = (params.get("mode") as Mode) ?? "signin";
-  const [mode, setMode] = useState<Mode>(COPY[initial] ? initial : "signin");
+  const reason = REASONS[params.get("reason") ?? ""];
+  const next = safeNext(params.get("next"));
+  // New visitors land on "Create your account". Returning users come from "Sign in" links, which set mode=signin.
+  const initial = (params.get("mode") as Mode) ?? reason?.mode ?? "signup";
+  const [mode, setMode] = useState<Mode>(COPY[initial] ? initial : "signup");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
@@ -100,7 +118,7 @@ export function AuthForm() {
     const go = () => {
       if (done) return;
       done = true;
-      router.replace("/me");
+      router.replace(next);
     };
     const { data: sub } = sb.auth.onAuthStateChange((_e, session) => session && go());
     (async () => {
@@ -117,12 +135,15 @@ export function AuthForm() {
       else setTimeout(() => !done && setCallbackError("We couldn't finish signing you in. Please try again."), 4000);
     })();
     return () => sub.subscription.unsubscribe();
-  }, [mode, router]);
+  }, [mode, router, next]);
 
   async function social(provider: Provider) {
     setError("");
     setBusy(true);
-    const { error } = await supabase().auth.signInWithOAuth({ provider, options: { redirectTo: `${location.origin}/login?mode=callback` } });
+    const { error } = await supabase().auth.signInWithOAuth({
+      provider,
+      options: { redirectTo: `${location.origin}/login?mode=callback&next=${encodeURIComponent(next)}` },
+    });
     if (error) {
       setBusy(false);
       setError(error.message);
@@ -176,15 +197,15 @@ export function AuthForm() {
       if (mode === "signin") {
         const { error } = await sb.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        router.push("/me");
+        router.push(next);
       } else if (mode === "signup") {
         const { data, error } = await sb.auth.signUp({
           email,
           password,
-          options: { data: { full_name: String(f.get("name") ?? "").trim() }, emailRedirectTo: `${location.origin}/me` },
+          options: { data: { full_name: String(f.get("name") ?? "").trim() }, emailRedirectTo: `${location.origin}${next}` },
         });
         if (error) throw error;
-        if (data.session) router.push("/me");
+        if (data.session) router.push(next);
         else setNotice(`Check ${email} for a link to confirm your account.`);
       } else if (mode === "reset") {
         const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: `${location.origin}/login?mode=update` });
@@ -193,7 +214,7 @@ export function AuthForm() {
       } else {
         const { error } = await sb.auth.updateUser({ password });
         if (error) throw error;
-        router.push("/me");
+        router.push(next);
       }
     } catch (err) {
       const code = (err as { code?: string }).code ?? "";
@@ -225,13 +246,13 @@ export function AuthForm() {
         </div>
       )}
       <h1 className="text-[clamp(2rem,4vw,2.75rem)] leading-[1.02] font-bold tracking-[-0.03em]">{COPY[mode].title}</h1>
-      <p className="mt-2 text-muted">{COPY[mode].sub}</p>
+      <p className="mt-2 text-muted">{(mode === "signin" || mode === "signup") && reason ? reason.sub : COPY[mode].sub}</p>
       {mode === "callback" ? (
         <div className="mt-8 grid gap-4" role="status">
           {callbackError ? (
             <>
               <p>{callbackError}</p>
-              <button onClick={() => { setMode("signin"); setCallbackError(""); router.replace("/login"); }} className="btn btn-accent w-full">
+              <button onClick={() => { setMode("signin"); setCallbackError(""); router.replace("/login?mode=signin"); }} className="btn btn-accent w-full">
                 Back to sign in
               </button>
             </>

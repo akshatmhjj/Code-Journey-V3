@@ -103,7 +103,7 @@ export function HelpfulVote({ url, title, skillSlug }: { url: string; title: str
   if (!v.signedIn) {
     return (
       <span className="relative z-10 inline-flex items-center gap-2 text-[12.5px] text-muted">
-        <Link href="/login" aria-label={`Sign in to rate ${title}`} className={`${btn} border-line hover:border-ink hover:text-ink`}>
+        <Link href="/login?reason=vote" aria-label={`Sign in to rate ${title}`} className={`${btn} border-line hover:border-ink hover:text-ink`}>
           <ThumbsUp size={13} /> {count > 0 ? count : "Helpful?"}
         </Link>
       </span>

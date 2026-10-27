@@ -28,6 +28,7 @@ beforeEach(async () => {
   await db.exec(migration("20261023000100_streak_time_zone.sql"));
   await db.exec(migration("20261023000200_admin_stats_limit.sql"));
   await db.exec(migration("20261023000300_drop_unused_tables.sql"));
+  await db.exec(migration("20261024000000_visitor_chat_quota.sql"));
   // In the app, a signup trigger creates the profile row (20261006000000_profile_on_signup.sql). Do the same here.
   await db.exec(`
     insert into auth.users (id, email) values ('${USER}', 'a@example.com'), ('${OTHER}', 'b@example.com');
@@ -143,5 +144,55 @@ describe("admin_stats uses the daily limit it is given", () => {
     expect(await hits(3)).toBe(2);
     expect(await hits(5)).toBe(1);
     expect(await hits(null)).toBe(0);
+  });
+});
+
+describe("visitor quota: counted per hashed IP, server only", () => {
+  const consume = async (ip: string, limit: number) => {
+    const { rows } = await db.query<{ ok: boolean }>("select public.consume_visitor_chat_message($1, $2) as ok", [ip, limit]);
+    return rows[0].ok;
+  };
+  const count = async (ip: string) => {
+    const { rows } = await db.query<{ messages: number }>("select messages from visitor_chat_usage where ip_hash = $1", [ip]);
+    return rows[0]?.messages ?? 0;
+  };
+
+  it("allows questions up to the limit for one visitor, then refuses", async () => {
+    expect(await consume("hash-a", 2)).toBe(true);
+    expect(await consume("hash-a", 2)).toBe(true);
+    expect(await consume("hash-a", 2)).toBe(false);
+  });
+
+  it("keeps each visitor's count separate", async () => {
+    await consume("hash-a", 1);
+    expect(await consume("hash-b", 1)).toBe(true);
+    expect(await count("hash-a")).toBe(1);
+    expect(await count("hash-b")).toBe(1);
+  });
+
+  it("refunds one question and never goes below zero", async () => {
+    await consume("hash-a", 3);
+    await consume("hash-a", 3);
+    await db.query("select public.refund_visitor_chat_message('hash-a')");
+    expect(await count("hash-a")).toBe(1);
+    await db.query("select public.refund_visitor_chat_message('hash-b')");
+    await db.query("select public.refund_visitor_chat_message('hash-a')");
+    await db.query("select public.refund_visitor_chat_message('hash-a')");
+    expect(await count("hash-a")).toBe(0);
+  });
+
+  it("cannot be called by the public or by signed-in users, only the service role", async () => {
+    const { rows } = await db.query<{ can: boolean }>(
+      "select has_function_privilege('authenticated', 'public.consume_visitor_chat_message(text,int)', 'execute') as can",
+    );
+    expect(rows[0].can).toBe(false);
+    const anon = await db.query<{ can: boolean }>(
+      "select has_function_privilege('anon', 'public.consume_visitor_chat_message(text,int)', 'execute') as can",
+    );
+    expect(anon.rows[0].can).toBe(false);
+    const service = await db.query<{ can: boolean }>(
+      "select has_function_privilege('service_role', 'public.consume_visitor_chat_message(text,int)', 'execute') as can",
+    );
+    expect(service.rows[0].can).toBe(true);
   });
 });

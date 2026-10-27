@@ -3,6 +3,7 @@
 export type CompassOption = { label: string; why: string; weights: Record<string, number> };
 export type CompassQuestion = { id: string; q: string; options: CompassOption[] };
 
+/** `match` is an internal ranking figure. The page shows rank labels instead of percentages. */
 export type CompassResult = { slug: string; score: number; max: number; match: number; reasons: string[] };
 
 /** Highest weight each role can earn per question, summed. */
@@ -24,13 +25,15 @@ export function maxScores(questions: CompassQuestion[]) {
 export function scoreCompass(questions: CompassQuestion[], answers: number[]): CompassResult[] {
   const max = maxScores(questions);
   const score: Record<string, number> = {};
-  const reasons: Record<string, { w: number; why: string }[]> = {};
+  const reasons: Record<string, { share: number; w: number; why: string }[]> = {};
   questions.forEach((q, i) => {
     const o = q.options[answers[i]];
     if (!o) return;
+    const total = Object.values(o.weights).reduce((sum, w) => sum + w, 0);
     for (const [r, w] of Object.entries(o.weights)) {
       score[r] = (score[r] ?? 0) + w;
-      (reasons[r] ??= []).push({ w, why: o.why });
+      // share: how much of this answer's pull goes to this role. An answer that points mostly at one role says more about it.
+      (reasons[r] ??= []).push({ share: total ? w / total : 0, w, why: o.why });
     }
   });
   return Object.keys(max)
@@ -39,7 +42,7 @@ export function scoreCompass(questions: CompassQuestion[], answers: number[]): C
       score: score[slug] ?? 0,
       max: max[slug],
       match: Math.round(((score[slug] ?? 0) / max[slug]) * 100),
-      reasons: (reasons[slug] ?? []).sort((a, b) => b.w - a.w).map((x) => x.why).slice(0, 3),
+      reasons: (reasons[slug] ?? []).sort((a, b) => b.share - a.share || b.w - a.w).map((x) => x.why).slice(0, 3),
     }))
     .sort((a, b) => b.score / Math.sqrt(b.max) - a.score / Math.sqrt(a.max) || b.match - a.match);
 }

@@ -177,7 +177,7 @@ export function Header({ roleTitles }: { roleTitles: string[] }) {
               <UserRound size={17} /> My Path
             </Link>
           ) : (
-            <Link href="/login" className="btn btn-accent hidden sm:inline-flex">
+            <Link href="/login?mode=signin" className="btn btn-accent hidden sm:inline-flex">
               Sign in
             </Link>
           )}

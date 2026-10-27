@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { ArrowUp, MessageCircle, RotateCcw, Square, ThumbsDown, ThumbsUp, X } from "lucide-react";
+import { ArrowUp, RotateCcw, Square, ThumbsDown, ThumbsUp, X } from "lucide-react";
 import { Mark } from "@/components/brand/Logo";
 import { supabase, useUser } from "@/lib/supabase";
 import { useUI } from "./UIProvider";
@@ -134,6 +135,7 @@ async function* readEvents(res: Response) {
 export function ChatPanel() {
   const ui = useUI();
   const user = useUser();
+  const pathname = usePathname();
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
@@ -167,9 +169,10 @@ export function ChatPanel() {
     abortRef.current = abort;
     try {
       const { data } = await supabase().auth.getSession();
+      const token = data.session?.access_token;
       const res = await fetch("/api/chat", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${data.session?.access_token ?? ""}` },
+        headers: { "Content-Type": "application/json", ...(token ? { Authorization: `Bearer ${token}` } : {}) },
         body: JSON.stringify({ messages: next }),
         signal: abort.signal,
       });
@@ -240,18 +243,10 @@ export function ChatPanel() {
           </header>
 
           <div className="min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto px-4 py-4 [scrollbar-width:none]" aria-live="polite">
-            {user === null ? (
-              <div className="grid h-full place-content-center gap-4 text-center">
-                <MessageCircle size={36} className="mx-auto" />
-                <p className="font-display text-xl font-bold">Sign in to ask CJ AI</p>
-                <p className="mx-auto max-w-[30ch] text-muted">It&apos;s free. Signing in keeps the assistant from being misused.</p>
-                <Link href="/login" onClick={ui.closeChat} className="btn btn-accent mx-auto">
-                  Sign in
-                </Link>
-              </div>
-            ) : msgs.length === 0 ? (
+            {msgs.length === 0 ? (
               <div className="grid gap-3">
                 <p className="text-muted">Ask about a role, a skill, or where to start. Every answer links to the pages it came from.</p>
+                {!user && <p className="text-sm text-muted">Try a few questions free. Sign in to ask more every day and keep your history.</p>}
                 {STARTERS.map((s) => (
                   <button key={s} onClick={() => send(s)} className="rounded-[var(--radius-md)] border-2 border-line px-3 py-2.5 text-left hover:border-ink">
                     {s}
@@ -277,6 +272,11 @@ export function ChatPanel() {
                             </p>
                           )
                         )}
+                        {m.error && !user && (
+                          <Link href={`/login?reason=ask&next=${encodeURIComponent(pathname)}`} onClick={ui.closeChat} className="link mt-2 inline-block font-semibold">
+                            Sign up free to keep asking
+                          </Link>
+                        )}
                       </div>
                       {!m.error && m.sources && m.sources.length > 0 && !m.streaming && (
                         <div className="min-w-0 rounded-[var(--radius-md)] border border-line p-3">
@@ -294,7 +294,7 @@ export function ChatPanel() {
                           </ol>
                         </div>
                       )}
-                      {!m.error && !m.streaming && m.content && (
+                      {user && !m.error && !m.streaming && m.content && (
                         <div className="flex items-center gap-1 text-muted">
                           <span className="mr-1 text-[12.5px]">{m.rated ? "Thanks for the feedback" : "Was this helpful?"}</span>
                           {([1, -1] as const).map((r) => (
@@ -319,8 +319,7 @@ export function ChatPanel() {
             <div ref={endRef} />
           </div>
 
-          {user && (
-            <form
+          <form
               onSubmit={(e) => {
                 e.preventDefault();
                 send(input);
@@ -356,7 +355,6 @@ export function ChatPanel() {
                 </button>
               )}
             </form>
-          )}
       </section>
     </>
   );

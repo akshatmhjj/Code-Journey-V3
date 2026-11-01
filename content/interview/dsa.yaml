@@ -1,0 +1,95 @@
+title: Data Structures and Algorithms
+slug: dsa
+brief: Big-O analysis, the core data structures and their trade-offs, sorting and searching, and the problem patterns (two pointers, sliding window, BFS and DFS, heaps, dynamic programming) that interview questions keep reusing.
+say: Start by stating the time and space complexity of each option, because that is what the interviewer is testing. Arrays give fast indexing, hash tables give fast lookup, trees and heaps keep things ordered, and graphs model relationships. Most problems reduce to a known pattern, so name the pattern, state the complexity, and then code it cleanly.
+concepts:
+  - term: Big-O
+    def: How running time or memory grows with input size n, ignoring constants and lower-order terms. O(1) is constant, O(log n) halves the problem each step, O(n) looks at each item once, O(n log n) is the best general sorting cost, and O(n squared) comes from nested loops. Worst case is the default unless stated otherwise.
+    hook: "Fastest to slowest: O(1), O(log n), O(n), O(n log n), O(n²), O(2ⁿ)."
+    visual: big-o-chart
+  - term: Amortised cost
+    def: The average cost per operation across a sequence. Adding to a dynamic array is O(1) amortised, because occasional resizes are spread across many cheap pushes.
+  - term: Array
+    def: Items stored in one contiguous block. Access by index is O(1), but inserting or removing in the middle is O(n), because later items shift.
+  - term: Linked list
+    def: Nodes that point to the next node. Insert or remove given a reference is O(1), but finding an item is O(n), and nodes are not stored together in memory.
+  - term: Stack and queue
+    def: A stack is last in, first out, used for undo, function calls and parsing brackets. A queue is first in, first out, used for task queues and breadth-first search. Both are O(1) for their main operations.
+  - term: Hash table
+    def: Maps keys to values through a hash function. Average lookup, insert and delete are O(1), but a bad hash or many collisions makes them O(n). Collisions are handled by chaining (a list per bucket) or open addressing (probing for the next free slot). The table resizes when the load factor gets too high.
+    hook: O(1) on average, O(n) in the worst case when keys collide. Say both.
+  - term: Binary search tree
+    def: Each node's left subtree holds smaller values and its right subtree holds larger ones. Search, insert and delete are O(log n) when the tree is balanced, and O(n) when it degenerates into a line.
+  - term: Balanced trees
+    def: AVL and red-black trees rebalance themselves after changes, so they stay O(log n). Databases use B-trees, which are wide balanced trees, for the same reason.
+  - term: Tree traversals
+    def: In-order (left, node, right) gives sorted output for a BST. Pre-order visits the node first, which is useful for copying a tree. Post-order visits children first, which is useful for deleting a tree. Level-order uses a queue and visits by depth.
+  - term: Heap
+    def: A complete binary tree where each parent is smaller than its children (a min-heap) or larger (a max-heap). Insert and remove-top are O(log n), and peek is O(1). It backs priority queues and is used for top-K problems.
+    hook: The top is the smallest (min-heap) or largest (max-heap). Use it for top-K questions.
+  - term: Graph
+    def: Vertices joined by edges. Store it as an adjacency list for sparse graphs, or an adjacency matrix for dense ones. Edges can be directed or weighted.
+  - term: BFS and DFS
+    def: Breadth-first search explores level by level with a queue, and it finds the shortest path in an unweighted graph. Depth-first search goes as deep as possible with a stack or recursion, and it suits cycle detection, topological ordering and exploring all paths.
+    hook: BFS uses a queue and ripples out (shortest path). DFS uses a stack and dives deep (cycles, ordering).
+    visual: graph-traversal
+  - term: Dijkstra's algorithm
+    def: Finds the shortest paths from one source in a graph with non-negative edge weights, using a priority queue. It runs in O((V + E) log V). It does not work with negative weights, where Bellman-Ford is used instead.
+    hook: Expand the nearest unvisited node with a priority queue. Non-negative weights only.
+  - term: Topological sort
+    def: An ordering of a directed acyclic graph where every edge goes from earlier to later. Use it for build order, course prerequisites and task scheduling. It fails if the graph has a cycle.
+  - term: Sorting
+    def: Quick sort is O(n log n) on average and O(n squared) in the worst case, and it sorts in place. Merge sort is O(n log n) in every case and stable, but it needs O(n) extra space. Heap sort is O(n log n) with O(1) extra space. Comparison sorts cannot beat O(n log n) in the worst case.
+  - term: Binary search
+    def: On a sorted array, check the middle, then discard the half that cannot contain the target. It is O(log n). The same idea works on any monotonic answer space, such as finding the smallest speed that finishes in time.
+    hook: Halve the range each step. A billion sorted items need about 30 steps.
+    visual: binary-search
+  - term: Two pointers
+    def: Two indices move through a sorted array or string, often from opposite ends, to find pairs or remove duplicates in O(n) instead of O(n squared).
+  - term: Sliding window
+    def: Keep a window over a sequence and grow or shrink it as you go, for example to find the longest substring without repeated characters. It turns many nested loops into one pass.
+  - term: Dynamic programming
+    def: Solve a problem by breaking it into overlapping subproblems and reusing their answers. It needs optimal substructure (the best answer is built from best sub-answers) and overlapping subproblems. Top-down uses memoisation, and bottom-up fills a table.
+  - term: Greedy and backtracking
+    def: Greedy takes the locally best choice each step, which is only correct when the problem has the greedy-choice property. Backtracking tries choices, undoes them on failure, and explores the rest, which is the pattern for permutations and sudoku.
+  - term: Union-Find
+    def: Tracks which items belong to the same group, with near-constant-time union and find. It is used for connected components and cycle detection in undirected graphs.
+  - term: Trie
+    def: A tree where each path spells out a string. It answers prefix queries, such as autocomplete, in time proportional to the length of the word.
+questions:
+  - q: What is Big-O notation? Compare O(log n) and O(n).
+    a: Big-O describes how the work grows as input grows, ignoring constants. O(log n) grows very slowly, since doubling the input adds one step, as in binary search. O(n) grows in step with the input, as in scanning a list once. For a million items, O(log n) takes about 20 steps and O(n) takes a million.
+  - q: What are the trade-offs between an array and a linked list?
+    a: An array gives O(1) access by index and good cache locality, but inserts in the middle cost O(n). A linked list gives O(1) insert and remove when you already have the node, but finding an item costs O(n), and each node has pointer overhead. Arrays are the default choice unless you insert often at known positions.
+  - q: How does a hash table work, and what happens when two keys collide?
+    a: The hash function maps the key to a bucket index. Lookup checks that bucket, so the average cost is O(1). When two keys land in the same bucket, a collision occurs, and chaining stores both in a list while open addressing probes for another slot. Resizing keeps the load factor low so collisions stay rare.
+  - q: When would you use a hash table instead of a balanced BST?
+    a: Use a hash table when you need the fastest average lookup and do not need items in order. Use a balanced BST when you need sorted order, range queries, or predictable worst-case O(log n) time with no hashing risk.
+  - q: What is the difference between BFS and DFS? When do you use each?
+    a: BFS explores level by level with a queue. It finds the shortest path in an unweighted graph. DFS goes deep first with a stack or recursion. It suits cycle detection, topological order, connected components and exhaustive search. Both are O(V + E).
+  - q: How does Dijkstra's algorithm work and what are its limits?
+    a: It repeatedly picks the unvisited node with the smallest known distance from a priority queue and relaxes its edges. It is correct only when all edge weights are non-negative. With negative weights, use Bellman-Ford, and for all pairs, use Floyd-Warshall.
+  - q: Compare quick sort and merge sort.
+    a: Both are O(n log n) on average. Quick sort partitions around a pivot, sorts in place and is usually fast in practice, but it can degrade to O(n squared) with bad pivots. Merge sort splits, sorts and merges, is stable and always O(n log n), but needs O(n) extra memory. Use merge sort for linked lists and when stability matters.
+  - q: Why can no comparison sort beat O(n log n)?
+    a: Each comparison splits the remaining possibilities in two, and there are n! possible orders, so you need at least log2(n!) comparisons, which is about n log n. Non-comparison sorts such as counting sort can do better when the keys are small integers.
+  - q: Write binary search and explain how to find the first occurrence of a value.
+    a: Keep low and high bounds, check the middle, and move one bound. For the first occurrence, when the middle equals the target, record it and keep searching left, instead of stopping. This keeps the search O(log n) and returns the earliest index.
+  - q: When would you use dynamic programming?
+    a: When the problem has overlapping subproblems and optimal substructure, such as the longest common subsequence, coin change, or the number of ways to climb stairs. Define the state, write the recurrence, handle the base cases, then pick memoisation or a table.
+  - q: What is the sliding window pattern? Give an example.
+    a: Maintain a window over an array or string with two indices, expanding the right end and shrinking the left when a condition breaks. For the longest substring without repeats, keep a set of characters in the window. Each index moves forward only once, so the cost is O(n).
+  - q: How do you detect a cycle in a linked list?
+    a: Floyd's algorithm uses a slow pointer that moves one step and a fast pointer that moves two. If there is a cycle, they meet inside it. If the fast pointer reaches null, there is no cycle. This uses O(1) extra space.
+  - q: How would you find the top K largest numbers in a stream?
+    a: Keep a min-heap of size K. For each number, push it, and if the heap has more than K items, pop the smallest. At the end, the heap holds the K largest. The cost is O(n log K), which is better than sorting when K is small.
+  - q: What is topological sort used for?
+    a: It orders the nodes of a directed acyclic graph so every dependency comes first. It is used for build systems, package install order and course prerequisites. Kahn's algorithm uses in-degree counts and a queue, and it reports a cycle if not all nodes are output.
+  - q: What is amortised complexity? Give an example.
+    a: It is the average cost per operation over a sequence, which can be lower than the worst single operation. A dynamic array doubles its capacity when full, so one push may cost O(n) to copy, but over many pushes the average is O(1).
+traps:
+  - Giving an answer without the complexity. State time and space every time.
+  - Saying a hash table is always O(1). It is O(1) on average and O(n) in the worst case.
+  - Forgetting that Dijkstra needs non-negative weights.
+  - Coding before clarifying the input, constraints and edge cases. Ask first, then code.
+checked: 2026-11-01

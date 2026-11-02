@@ -54,7 +54,7 @@ market:
   - text: Developer relations teams are concentrated at developer-tool, API, cloud and AI companies.
   - text: Hiring weighs a public portfolio - tutorials, talks, open-source work - at least as much as interviews.
 adjacent: [solutions-engineer, full-stack-engineer, design-engineer]
-updated: 2026-10-20
+updated: 2026-11-02
 ---
 
 ## Is this role for you?

@@ -55,7 +55,7 @@ market:
     source: { title: Stack Overflow Developer Survey, url: "https://survey.stackoverflow.co/" }
   - text: Many companies hire one cross-platform team instead of separate iOS and Android teams, especially at startup size.
 adjacent: [frontend-engineer, android-engineer, ios-engineer, full-stack-engineer]
-updated: 2026-10-20
+updated: 2026-11-02
 ---
 
 ## Is this role for you?

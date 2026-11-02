@@ -55,7 +55,7 @@ market:
   - text: Android has the majority of smartphone users worldwide, which keeps native Android skills in steady demand - especially in markets across Asia, Africa and Latin America.
   - text: Kotlin and Jetpack Compose are now Google's recommended way to build Android apps; most new job posts ask for both.
 adjacent: [cross-platform-mobile-engineer, ios-engineer, backend-engineer]
-updated: 2026-10-06
+updated: 2026-11-02
 ---
 
 ## Is this role for you?

@@ -14,7 +14,8 @@
     "links:check": "node scripts/check-links.ts",
     "rag:ingest": "node --env-file-if-exists=.env scripts/rag/ingest.ts",
     "rag:eval": "node --env-file-if-exists=.env scripts/rag/eval.ts",
-    "rag:ask": "node --env-file-if-exists=.env scripts/rag/ask.ts"
+    "rag:ask": "node --env-file-if-exists=.env scripts/rag/ask.ts",
+    "test": "vitest run"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.2",
@@ -30,6 +31,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.3.16",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^26.6.4",
     "@types/react": "^19.3.0",
@@ -37,6 +39,7 @@
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.3.8",
     "tailwindcss": "^4.3.3",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^3.2.7"
   }
 }

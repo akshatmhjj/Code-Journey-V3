@@ -60,7 +60,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       </aside>
 
       <div className="flex min-w-0 flex-col">
-        <div className="flex items-center justify-between gap-3 px-4 pt-[max(1rem,env(safe-area-inset-top))] sm:px-8 lg:px-12 lg:pt-8">
+        <header className="flex items-center justify-between gap-3 px-4 pt-[max(1rem,env(safe-area-inset-top))] sm:px-8 lg:px-12 lg:pt-8">
           <Link href="/" className="inline-flex items-center gap-2 font-display font-semibold hover:underline">
             <span className="lg:hidden">
               <Mark size={30} />
@@ -69,7 +69,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             <span>Back to the map</span>
           </Link>
           <ThemeIconButton />
-        </div>
+        </header>
         <main id="main" className="flex flex-1 items-center justify-center px-4 py-10 sm:px-8">
           {children}
         </main>

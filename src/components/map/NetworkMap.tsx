@@ -36,7 +36,7 @@ export function NetworkMap({ domains, roles, title = "Code Journey network map" 
   });
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-labelledby="netmap-title" className="h-auto w-full">
+    <svg viewBox={`0 0 ${W} ${H}`} role="group" aria-labelledby="netmap-title" className="h-auto w-full">
       <title id="netmap-title">{title}</title>
       {paths.map(({ d, path }) => (
         <LinePath key={d.slug} d={path} style={d.line} />

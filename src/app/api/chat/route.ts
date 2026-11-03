@@ -1,14 +1,17 @@
 // CJ AI: answers only from Code Journey's own content, with citations, streamed as server-sent events.
 // Events: `sources` (JSON list), `delta` (JSON string), `done`, `error` (JSON {message}).
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { embedQuery, generate, streamAnswer, type Turn } from "@/lib/gemini";
+import { CJ_DAILY_LIMIT as DAILY_LIMIT, CJ_VISITOR_DAILY_LIMIT as VISITOR_LIMIT } from "@/lib/cj-limits";
+import { alert } from "@/lib/alert";
+import { citationFilter } from "@/lib/citations";
 import { entitySource, findEntities, formatSources, SYSTEM_PROMPT, type Source } from "@/lib/rag";
+import { visitorKey } from "@/lib/visitor";
 
 export const maxDuration = 30;
 
 const MAX_TURNS = 12;
 const MAX_CHARS = 2000;
-const DAILY_LIMIT = Number(process.env.CJ_DAILY_LIMIT ?? 40);
 const MIN_SIMILARITY = Number(process.env.CJ_MIN_SIMILARITY ?? 0.55);
 const MAX_SOURCES = 7;
 
@@ -17,6 +20,46 @@ const ANON = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 function json(status: number, body: object) {
   return Response.json(body, { status });
+}
+
+/**
+ * Where a question is counted. Signed-in people use their own daily count. Visitors use a count per hashed IP,
+ * written by the server with the service role, so a visitor's browser cannot reset or inflate it.
+ */
+type Quota = {
+  /** true = allowed, false = over the limit, null = the count could not be checked. */
+  consume: () => Promise<boolean | null>;
+  refund: () => Promise<void>;
+  limitMessage: string;
+};
+
+function signedInQuota(db: SupabaseClient): Quota {
+  return {
+    async consume() {
+      const { data, error } = await db.rpc("consume_chat_message", { daily_limit: DAILY_LIMIT });
+      return error ? null : Boolean(data);
+    },
+    async refund() {
+      const { error } = await db.rpc("refund_chat_message");
+      if (error) console.error("CJ AI quota refund failed", error);
+    },
+    limitMessage: `You've asked ${DAILY_LIMIT} questions today - that's the daily limit. It resets at midnight UTC.`,
+  };
+}
+
+function visitorQuota(req: Request, admin: SupabaseClient, salt: string): Quota {
+  const key = visitorKey(req.headers, salt);
+  return {
+    async consume() {
+      const { data, error } = await admin.rpc("consume_visitor_chat_message", { p_ip_hash: key, daily_limit: VISITOR_LIMIT });
+      return error ? null : Boolean(data);
+    },
+    async refund() {
+      const { error } = await admin.rpc("refund_visitor_chat_message", { p_ip_hash: key });
+      if (error) console.error("CJ AI visitor quota refund failed", error);
+    },
+    limitMessage: `You've used your ${VISITOR_LIMIT} free questions for today. Sign up for free to ask ${DAILY_LIMIT} a day. It resets at midnight UTC.`,
+  };
 }
 
 /** Turns a follow-up like "what about interviews?" into a standalone search query. */
@@ -42,15 +85,25 @@ async function standalone(turns: Turn[]) {
 export async function POST(req: Request) {
   if (!process.env.GEMINI_API_KEY) return json(500, { error: "CJ AI is not configured." });
 
-  // 1. Who's asking? A signed-in user is required.
+  // 1. Signed in, or a visitor? Anyone can ask a few questions. Signing in gives more, and keeps the history.
   const token = (req.headers.get("authorization") ?? "").replace(/^Bearer\s+/i, "");
-  if (!token) return json(401, { error: "Sign in to use CJ AI." });
-  const db = createClient(SUPABASE_URL, ANON, {
-    global: { headers: { Authorization: `Bearer ${token}` } },
-    auth: { persistSession: false },
-  });
-  const { data: auth } = await db.auth.getUser(token);
-  if (!auth.user) return json(401, { error: "Sign in to use CJ AI." });
+  let db: SupabaseClient;
+  let quota: Quota;
+  if (token) {
+    db = createClient(SUPABASE_URL, ANON, {
+      global: { headers: { Authorization: `Bearer ${token}` } },
+      auth: { persistSession: false },
+    });
+    const { data: auth } = await db.auth.getUser(token);
+    if (!auth.user) return json(401, { error: "Your sign-in has expired. Sign in again to keep asking." });
+    quota = signedInQuota(db);
+  } else {
+    const salt = process.env.CJ_IP_SALT ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!salt || !process.env.SUPABASE_SERVICE_ROLE_KEY) return json(503, { error: "CJ AI is unavailable right now. Try again shortly." });
+    db = createClient(SUPABASE_URL, ANON, { auth: { persistSession: false } });
+    const admin = createClient(SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } });
+    quota = visitorQuota(req, admin, salt);
+  }
 
   // 2. Validate input.
   let body: { messages?: { role?: string; content?: unknown }[] };
@@ -66,9 +119,9 @@ export async function POST(req: Request) {
   if (!turns.length || turns[turns.length - 1].role !== "user") return json(400, { error: "Ask a question first." });
 
   // 3. Daily limit.
-  const { data: allowed, error: limitError } = await db.rpc("consume_chat_message", { daily_limit: DAILY_LIMIT });
-  if (limitError) return json(503, { error: "CJ AI is unavailable right now. Try again shortly." });
-  if (!allowed) return json(429, { error: `You've asked ${DAILY_LIMIT} questions today - that's the daily limit. It resets at midnight UTC.` });
+  const allowed = await quota.consume();
+  if (allowed === null) return json(503, { error: "CJ AI is unavailable right now. Try again shortly." });
+  if (!allowed) return json(429, { error: quota.limitMessage });
 
   // 4. Retrieve: exact role/skill pages first, then hybrid search.
   const question = turns[turns.length - 1].content;
@@ -102,6 +155,8 @@ export async function POST(req: Request) {
     }
   } catch (e) {
     console.error("CJ AI retrieval failed", e);
+    await alert("CJ AI retrieval failed", String((e as { message?: string }).message ?? e));
+    await quota.refund();
     return json(503, { error: "CJ AI is unavailable right now. Try again shortly." });
   }
 
@@ -114,6 +169,8 @@ export async function POST(req: Request) {
   const stream = new ReadableStream({
     async start(controller) {
       send(controller, "sources", shown.map((s, i) => ({ n: i + 1, title: s.title, heading: s.heading, url: s.url })));
+      // Refund only if the learner got no answer text at all. A half-written answer has already been used.
+      let answered = false;
       try {
         if (!confident) {
           send(
@@ -125,14 +182,23 @@ export async function POST(req: Request) {
         } else {
           const prompt = `Sources:\n\n${formatSources(sources)}\n\nQuestion: ${question}`;
           const history = turns.slice(0, -1);
+          const citations = citationFilter(sources.length);
           for await (const delta of streamAnswer(SYSTEM_PROMPT, [...history, { role: "user", content: prompt }], req.signal)) {
-            send(controller, "delta", delta);
+            answered = true;
+            const safe = citations.push(delta);
+            if (safe) send(controller, "delta", safe);
           }
+          const rest = citations.flush();
+          if (rest) send(controller, "delta", rest);
+          if (citations.dropped) console.warn(`CJ AI dropped ${citations.dropped} citation(s) that pointed at no source`);
         }
         send(controller, "done", {});
       } catch (e) {
         const status = (e as { status?: number }).status;
         console.error("CJ AI generation failed", e);
+        // A 429 from the model is a quota limit, not a fault, so it doesn't page anyone.
+        if (status !== 429) await alert("CJ AI generation failed", String((e as { message?: string }).message ?? e));
+        if (!answered) await quota.refund();
         send(controller, "error", { message: status === 429 ? "CJ AI is busy. Try again in a minute." : "CJ AI couldn't finish that answer. Try again." });
       } finally {
         controller.close();

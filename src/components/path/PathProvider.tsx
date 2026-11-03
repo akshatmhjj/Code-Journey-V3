@@ -38,6 +38,8 @@ export function PathProvider({ children, routes = [] }: { children: React.ReactN
     if (!user) return;
     let cancelled = false;
     const db = supabase();
+    // Streak weeks are counted in the learner's own time zone. Quietly send it; the server ignores anything unknown.
+    void db.rpc("set_my_time_zone", { p_tz: Intl.DateTimeFormat().resolvedOptions().timeZone });
     Promise.all([
       db.from("user_paths").select("role_slug").eq("user_id", user.id).maybeSingle(),
       db.from("user_skill_status").select("skill_slug, status").eq("user_id", user.id),
@@ -57,13 +59,14 @@ export function PathProvider({ children, routes = [] }: { children: React.ReactN
   const setRole = useCallback(
     async (slug: string | null) => {
       if (!user) return;
-      const previous = data;
+      const previousRole = data?.roleSlug ?? null;
       setData((d) => ({ userId: user.id, roleSlug: slug, statuses: d?.statuses ?? {}, saved: d?.saved ?? [] }));
       const db = supabase();
       const { error } = slug
         ? await db.from("user_paths").upsert({ user_id: user.id, role_slug: slug, updated_at: new Date().toISOString() }, { onConflict: "user_id" })
         : await db.from("user_paths").delete().eq("user_id", user.id);
-      if (error) setData(previous);
+      // Undo only this change. Restoring a whole snapshot would also wipe out other changes made meanwhile.
+      if (error) setData((d) => (d ? { ...d, roleSlug: previousRole } : d));
     },
     [user, data],
   );
@@ -71,7 +74,7 @@ export function PathProvider({ children, routes = [] }: { children: React.ReactN
   const setStatus = useCallback(
     async (skillSlug: string, status: SkillStatus | null) => {
       if (!user) return;
-      const previous = data;
+      const previousStatus = data?.statuses[skillSlug];
       const route = routes.find((r) => r.slug === data?.roleSlug);
       if (route && status === "done") {
         const before = data?.statuses ?? {};
@@ -91,7 +94,14 @@ export function PathProvider({ children, routes = [] }: { children: React.ReactN
             .upsert({ user_id: user.id, skill_slug: skillSlug, status, updated_at: new Date().toISOString() }, { onConflict: "user_id,skill_slug" })
         : await db.from("user_skill_status").delete().eq("user_id", user.id).eq("skill_slug", skillSlug);
       if (error) {
-        setData(previous);
+        // Put back just this skill's previous status. Other ticks made while this write was in flight keep their place.
+        setData((d) => {
+          if (!d) return d;
+          const statuses = { ...d.statuses };
+          if (previousStatus) statuses[skillSlug] = previousStatus;
+          else delete statuses[skillSlug];
+          return { ...d, statuses };
+        });
         setCelebration(null);
       }
     },
@@ -101,8 +111,8 @@ export function PathProvider({ children, routes = [] }: { children: React.ReactN
   const toggleSaved = useCallback(
     async ({ url, title, skillSlug }: { url: string; title: string; skillSlug?: string }) => {
       if (!user) return;
-      const previous = data;
-      const isSaved = !!data?.saved.some((r) => r.url === url);
+      const previousEntry = data?.saved.find((r) => r.url === url);
+      const isSaved = !!previousEntry;
       setData((d) => {
         const rest = (d?.saved ?? []).filter((r) => r.url !== url);
         const saved = isSaved ? rest : [{ url, title, skillSlug: skillSlug ?? null, savedAt: new Date().toISOString() }, ...rest];
@@ -114,7 +124,13 @@ export function PathProvider({ children, routes = [] }: { children: React.ReactN
         : await db
             .from("user_saved_resources")
             .upsert({ user_id: user.id, url, title: title.slice(0, 300), skill_slug: skillSlug ?? null }, { onConflict: "user_id,url" });
-      if (error) setData(previous);
+      if (error) {
+        setData((d) => {
+          if (!d) return d;
+          const rest = d.saved.filter((r) => r.url !== url);
+          return { ...d, saved: previousEntry ? [previousEntry, ...rest] : rest };
+        });
+      }
     },
     [user, data],
   );

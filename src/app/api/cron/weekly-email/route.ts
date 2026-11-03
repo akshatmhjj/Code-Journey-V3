@@ -3,6 +3,7 @@
 // Needs: CRON_SECRET, RESEND_API_KEY, EMAIL_FROM, SUPABASE_SERVICE_ROLE_KEY.
 // Manual run: GET with `Authorization: Bearer $CRON_SECRET`, optional ?group=0-6 and ?dry=1 (builds, sends nothing).
 import { createClient } from "@supabase/supabase-js";
+import { alert } from "@/lib/alert";
 import { getPathIndex } from "@/lib/content";
 import { buildWeeklyEmail } from "@/lib/email/weekly";
 import type { Statuses } from "@/lib/path";
@@ -46,7 +47,7 @@ export async function GET(req: Request) {
   const db = createClient(supabaseUrl, serviceKey, { auth: { persistSession: false } });
   const { data, error } = await db.rpc("weekly_email_batch", { p_group: group, p_limit: DAILY_CAP });
   if (error) {
-    console.error("weekly email: batch query failed", error);
+    await alert("Weekly email: batch query failed", error.message);
     return Response.json({ error: "Query failed" }, { status: 500 });
   }
 
@@ -104,6 +105,6 @@ export async function GET(req: Request) {
     sent += chunk.length;
   }
 
-  if (failures.length) console.error("weekly email: failures", failures);
+  if (failures.length) await alert(`Weekly email: ${failures.length} batch(es) failed for group ${group}`, failures.join("\n"));
   return Response.json({ group, sent, failed: failures.length }, { status: failures.length && !sent ? 502 : 200 });
 }

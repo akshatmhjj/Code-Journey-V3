@@ -18,10 +18,19 @@ export const metadata: Metadata = {
   title: { default: `${SITE.name} - ${SITE.tagline}`, template: `%s · ${SITE.name}` },
   description: SITE.description,
   applicationName: SITE.name,
-  alternates: { canonical: "/" },
-  openGraph: { type: "website", siteName: SITE.name, locale: "en", url: "/" },
+  keywords: ["tech careers", "career roadmap", "learn to code", "tech roles", "skills roadmap", "free learning resources", "developer roadmap"],
+  authors: [{ name: SITE.name, url: SITE.url }],
+  creator: SITE.name,
+  publisher: SITE.name,
+  // Each page sets its own canonical and og:url. A site-wide "/" here would point every page at the homepage.
+  openGraph: { type: "website", siteName: SITE.name, locale: "en_US" },
   twitter: { card: "summary_large_image" },
-  robots: { index: true, follow: true },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
+  // Search Console and Bing Webmaster verification. Set these in the environment once the sites are added.
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+    other: process.env.BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION } : undefined,
+  },
   formatDetection: { telephone: false },
   // iPhone and iPad: full-screen when opened from the home screen, with this name under the icon.
   appleWebApp: { capable: true, title: "Code Journey", statusBarStyle: "default" },
@@ -47,8 +56,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           data={{
             "@context": "https://schema.org",
             "@graph": [
-              { "@type": "WebSite", "@id": `${SITE.url}/#website`, url: SITE.url, name: SITE.name, description: SITE.description },
-              { "@type": "Organization", "@id": `${SITE.url}/#org`, url: SITE.url, name: SITE.name, logo: `${SITE.url}/icon.svg` },
+              { "@type": "WebSite", "@id": `${SITE.url}/#website`, url: SITE.url, name: SITE.name, description: SITE.description, inLanguage: "en", publisher: { "@id": `${SITE.url}/#org` } },
+              // Google needs a raster logo (PNG or JPG) for rich results, so this points at the 512px app icon.
+              { "@type": "Organization", "@id": `${SITE.url}/#org`, url: SITE.url, name: SITE.name, description: SITE.description, email: SITE.email, logo: { "@type": "ImageObject", url: `${SITE.url}/icons/icon-512.png`, width: 512, height: 512 } },
             ],
           }}
         />

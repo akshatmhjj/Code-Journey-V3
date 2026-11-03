@@ -5,6 +5,7 @@ import { ArrowRight, Clock, Gauge } from "lucide-react";
 import { getAnalogies, getDomain, getNetwork, getSkill, getSkillEntry, getSkills, getSnippets, rolesUsingSkill, type SkillEntry } from "@/lib/content";
 import { highlight, renderMarkdown } from "@/lib/markdown";
 import { SITE } from "@/lib/site";
+import { snippet } from "@/lib/seo";
 import { Trail } from "@/components/ui/Trail";
 import { SuggestResource } from "@/components/path/SuggestResource";
 import { DomainBadge, ResourceList, SectionTitle, SkillStation } from "@/components/ui/bits";
@@ -25,10 +26,13 @@ export async function generateMetadata({ params }: PageProps<"/skills/[slug]">):
   if (!entry) return {};
   const skill = getSkill(slug);
   if (!skill) return { title: entry.title, robots: { index: false } };
+  const title = `Learn ${skill.title}: Guide & Free Resources`;
+  const description = snippet(`${skill.brief} What to learn, in order, plus the official docs and best free resources for ${skill.title}.`);
   return {
-    title: `Learn ${skill.title}: What to Know and the Best Free Resources`,
-    description: `${skill.brief} What to learn, in order, plus the official docs and best free resources for ${skill.title}.`,
+    title,
+    description,
     alternates: { canonical: `/skills/${slug}` },
+    openGraph: { title, description, url: `/skills/${slug}` },
   };
 }
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getGlossary } from "@/lib/content";
 import { SITE } from "@/lib/site";
+import { snippet } from "@/lib/seo";
 import { Trail } from "@/components/ui/Trail";
 import { JsonLd } from "@/components/ui/JsonLd";
 
@@ -15,10 +16,13 @@ export async function generateMetadata({ params }: PageProps<"/glossary/[slug]">
   const { slug } = await params;
   const t = getGlossary().find((x) => x.slug === slug);
   if (!t) return {};
+  const title = `What is ${t.term}? Plain-English Definition`;
+  const description = snippet(t.definition);
   return {
-    title: `What is ${t.term}? Explained in Plain English`,
-    description: t.definition.slice(0, 155),
+    title,
+    description,
     alternates: { canonical: `/glossary/${slug}` },
+    openGraph: { title, description, url: `/glossary/${slug}` },
   };
 }
 

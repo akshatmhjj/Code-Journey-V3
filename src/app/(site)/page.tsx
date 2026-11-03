@@ -1,6 +1,8 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ArrowRight, BadgeCheck, Compass, Gauge, LinkIcon, Repeat2, Sparkles } from "lucide-react";
 import { getNetwork, getPosts, getRole, getAllResources, getGlossary } from "@/lib/content";
+import { SITE } from "@/lib/site";
 import { NetworkMap } from "@/components/map/NetworkMap";
 import { NetworkList } from "@/components/map/NetworkList";
 import { HeroSearch } from "@/components/shell/HeroSearch";
@@ -8,6 +10,14 @@ import { AskBand } from "@/components/shell/AskBand";
 import { SectionTitle } from "@/components/ui/bits";
 
 const fmt = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+
+// The homepage title is written out in full (absolute) so it leads with the search terms people use.
+export const metadata: Metadata = {
+  title: { absolute: "Code Journey: Tech Career Roadmaps, Skills and Free Resources" },
+  description: SITE.description,
+  alternates: { canonical: "/" },
+  openGraph: { title: "Code Journey: Tech Career Roadmaps, Skills and Free Resources", description: SITE.description, url: "/" },
+};
 
 export default function Home() {
   const net = getNetwork();

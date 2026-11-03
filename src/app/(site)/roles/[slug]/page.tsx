@@ -5,6 +5,7 @@ import { ArrowRight, Bot, Clock, ExternalLink, Layers, ListChecks } from "lucide
 import { getDomain, getMarket, getNetwork, getPathIndex, getRole, getRoleEntry, getSkillEntry, getTasteTests, type SkillEntry } from "@/lib/content";
 import { renderMarkdown } from "@/lib/markdown";
 import { SITE } from "@/lib/site";
+import { snippet } from "@/lib/seo";
 import { Trail } from "@/components/ui/Trail";
 import { DomainBadge, ResourceList, SectionTitle, SkillStation } from "@/components/ui/bits";
 import { RouteStages } from "@/components/map/RouteStages";
@@ -27,10 +28,14 @@ export async function generateMetadata({ params }: PageProps<"/roles/[slug]">): 
   const entry = getRoleEntry(slug);
   if (!entry) return {};
   if (!role) return { title: `${entry.title} roadmap`, description: entry.oneLiner, robots: { index: false } };
+  const title = `${role.title} Roadmap ${role.updated.getUTCFullYear()}: Skills & Resources`;
+  // Keyword first, then the role's own summary. snippet() keeps it under the length search engines show.
+  const description = snippet(`${role.title} roadmap: the skills, in order, with official docs and free resources. ${role.summary}`);
   return {
-    title: `${role.title} Roadmap ${role.updated.getUTCFullYear()}: Skills, Order and Resources`,
-    description: `${role.summary.split(". ")[0]}. See every skill a ${role.title} needs, in order, with the best official docs and free resources.`,
+    title,
+    description,
     alternates: { canonical: `/roles/${slug}` },
+    openGraph: { title, description, url: `/roles/${slug}` },
   };
 }
 

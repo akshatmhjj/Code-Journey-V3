@@ -55,7 +55,7 @@ market:
   - text: Startups and small teams hire full-stack engineers heavily because one person can own a whole feature.
   - text: React with TypeScript on the frontend and Node.js or Python on the backend is the most common pairing in full-stack job posts.
 adjacent: [frontend-engineer, backend-engineer, devops-engineer, ai-engineer]
-updated: 2026-10-06
+updated: 2026-11-02
 ---
 
 ## Is this role for you?

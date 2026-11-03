@@ -54,7 +54,7 @@ market:
   - text: Solutions and sales engineering is a well-paid route for engineers who enjoy people, often with a mix of salary and commission.
   - text: AI and data platforms in particular hire solutions engineers who can build quick proofs of concept on customer data.
 adjacent: [forward-deployed-engineer, developer-advocate, backend-engineer, cloud-engineer]
-updated: 2026-10-20
+updated: 2026-11-02
 ---
 
 ## Is this role for you?

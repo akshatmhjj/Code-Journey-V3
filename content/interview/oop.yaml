@@ -1,0 +1,73 @@
+title: Object-Oriented Programming
+slug: oop
+brief: The four pillars, how inheritance differs from interfaces, SOLID, and the design patterns interviewers actually ask about. Interviewers test design judgement here, so explain why you would choose something, not only what it is.
+say: Object-oriented programming models a system as objects that hold state and behaviour. The four pillars are encapsulation, abstraction, inheritance and polymorphism. In practice, good design favours small interfaces, composition over inheritance, and the SOLID principles, so each part can change without breaking the others.
+concepts:
+  - term: Class and object
+    def: A class is the blueprint, and an object is an instance with its own state. Methods are functions that belong to the class and act on that state.
+  - term: Encapsulation
+    def: Keep an object's data private and change it only through methods that protect its rules. A BankAccount that refuses to go below zero keeps its balance valid. Encapsulation makes the rules easy to find and change in one place.
+  - term: Abstraction
+    def: Expose what an object does and hide how it does it. A caller uses a PaymentProcessor's charge method and does not need to know which card network sits behind it.
+  - term: Inheritance
+    def: A subclass takes the fields and methods of a parent class and can override them. It models an is-a relationship. It reuses code, but a change in the parent can break every subclass, which is called the fragile base class problem.
+  - term: Polymorphism
+    def: One call behaves differently depending on the object. Compile-time polymorphism is overloading, where the same name takes different parameters. Runtime polymorphism is overriding, where the call is resolved at run time through dynamic dispatch, often a vtable of method pointers.
+    hook: "Overloading: same name, different parameters, picked at compile time. Overriding: same signature, picked at run time."
+  - term: Interface and abstract class
+    def: An interface is a contract of methods a class must provide, and a class can implement many. An abstract class can hold shared code and state, and a class can extend only one. Use an interface to describe a capability, and an abstract class to share implementation among close relatives.
+    hook: An interface is a promise of methods. An abstract class shares code, and you can extend only one.
+  - term: Composition over inheritance
+    def: Build behaviour by holding other objects instead of extending a parent. A Car has an Engine rather than being an Engine. Composition is easier to change at run time and avoids deep hierarchies.
+    hook: A car HAS an engine. A dog IS an animal. Use IS only when it stays true forever.
+    visual: inheritance-composition
+  - term: Coupling and cohesion
+    def: Cohesion is how closely the parts of one class belong together. Coupling is how much one class depends on another's internals. High cohesion and low coupling make code easier to change and test.
+  - term: SOLID
+    def: S - single responsibility, a class has one reason to change. O - open for extension, closed for modification. L - Liskov substitution, a subclass must work anywhere its parent works. I - interface segregation, prefer small interfaces. D - dependency inversion, depend on abstractions and inject concrete classes.
+    hook: Single responsibility, Open-closed, Liskov substitution, Interface segregation, Dependency inversion.
+    visual: solid-cards
+  - term: Dependency injection
+    def: Pass a class its dependencies from outside, through the constructor, instead of creating them inside. This lets tests substitute fakes and lets you swap implementations without editing the class.
+  - term: Strategy pattern
+    def: Put interchangeable algorithms behind one interface, and choose one at run time. Sorting by price or by rating, or applying different tax rules per country, are typical examples.
+  - term: Observer pattern
+    def: One subject keeps a list of observers and notifies them when its state changes. Event listeners and pub-sub systems are the same idea.
+  - term: Factory pattern
+    def: A method or class that creates objects, so callers ask for a product without knowing the exact class. It keeps creation logic in one place.
+  - term: Singleton pattern
+    def: A class that allows only one instance, reached through a global access point. It is simple, but it hides dependencies and makes testing harder, so use it sparingly.
+    hook: One global instance. Easy to reach, but it hides dependencies and makes tests share state.
+  - term: Decorator and adapter
+    def: A decorator wraps an object to add behaviour, such as adding logging or caching around a repository, while keeping the same interface. An adapter converts one interface into the one a caller expects, such as wrapping a third-party SDK.
+questions:
+  - q: Explain the four pillars of OOP with an example.
+    a: Encapsulation hides data behind methods that enforce rules, so a balance can never go negative. Abstraction exposes a simple interface and hides the details. Inheritance lets a SavingsAccount reuse Account's code. Polymorphism lets a list of accounts each calculate interest in its own way through one method call.
+  - q: What is the difference between an abstract class and an interface?
+    a: An interface declares a set of methods that a class promises to provide, and a class can implement several. An abstract class can have state, constructors and shared implementation, but a class can extend only one. Use an interface for a capability such as Serializable, and an abstract class when related classes share real code.
+  - q: What is the difference between method overloading and overriding?
+    a: Overloading is several methods with the same name and different parameters in one class, and the compiler picks one. Overriding is a subclass providing its own version of a parent method with the same signature, and the runtime picks the version for the actual object type.
+  - q: Why does composition often beat inheritance?
+    a: Inheritance creates a fixed is-a link, so a change in the parent affects every child, and a class cannot inherit from two parents in most languages. Composition lets you combine behaviours by holding objects, and swap them at run time. Use inheritance only when the subtype really is a specialisation and it passes the Liskov test.
+  - q: Explain the Liskov substitution principle with an example.
+    a: A subclass must be usable anywhere its parent is used without breaking the program. The classic counterexample is Square extending Rectangle, where setting width also changes height. Code that expects a rectangle to keep its width when height changes will break. The fix is to model the shapes separately, with a shared interface.
+  - q: Walk me through the SOLID principles.
+    a: Single responsibility means a class has one reason to change. Open-closed means you add behaviour by adding code, not editing working code. Liskov means subtypes keep the parent's promises. Interface segregation means clients should not depend on methods they do not use. Dependency inversion means high-level code depends on abstractions, not concrete classes.
+  - q: What is dependency injection and why does it help testing?
+    a: The class receives its dependencies through its constructor instead of creating them. In tests you pass a fake database or a stub clock, so the test runs without the network or the real database, and each part can be checked on its own.
+  - q: Describe the strategy pattern with an example.
+    a: Define an interface such as ShippingStrategy with a cost method, and write classes for standard, express and international shipping. A checkout object holds one strategy and calls it. To add a new option you write a new class, and the checkout code does not change.
+  - q: Describe the observer pattern.
+    a: A subject keeps a list of observers and notifies each one when its state changes. A stock price feed might notify a chart, an alert and a log, and none of them needs to know about the others. Event listeners in a UI use the same idea.
+  - q: What is dynamic dispatch?
+    a: When a method is called on an object through a parent type, the runtime looks up the correct implementation for the actual object. Most languages do this with a vtable, a table of method pointers stored per class. It is the mechanism behind runtime polymorphism.
+  - q: What is the main drawback of the singleton pattern?
+    a: It creates a global object, which hides dependencies, makes code harder to test because state persists between tests, and can become a bottleneck. Passing a shared instance through dependency injection gives the same result with fewer problems.
+  - q: What is the difference between tight and loose coupling?
+    a: Tight coupling means a class depends directly on another's concrete implementation, so changing it forces changes elsewhere. Loose coupling means classes depend on small interfaces, so either side can change or be replaced independently.
+traps:
+  - Listing the four pillars without an example. Interviewers want to see the idea used in code.
+  - Saying inheritance is always wrong. It is the right tool when the is-a relationship is real and stable.
+  - Confusing overloading with overriding. Overloading is decided at compile time, overriding at run time.
+  - Reciting SOLID names without saying what each one prevents.
+checked: 2026-11-01

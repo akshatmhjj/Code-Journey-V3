@@ -43,7 +43,7 @@ resources:
     provider: DeepLearning.AI
     type: course
     cost: paid
-checked: 2026-10-20
+checked: 2026-11-02
 ---
 
 ## In plain English

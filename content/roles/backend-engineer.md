@@ -56,7 +56,7 @@ market:
     source: { title: Stack Overflow Developer Survey, url: "https://survey.stackoverflow.co/" }
   - text: Backend job posts commonly ask for one main language (Python, Java, Go, C# or Node.js), SQL, Docker and experience with a cloud provider.
 adjacent: [full-stack-engineer, devops-engineer, data-engineer, ai-engineer]
-updated: 2026-10-06
+updated: 2026-11-02
 ---
 
 ## Is this role for you?

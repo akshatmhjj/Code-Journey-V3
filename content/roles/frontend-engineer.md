@@ -56,7 +56,7 @@ market:
     source: { title: Stack Overflow Developer Survey, url: "https://survey.stackoverflow.co/" }
   - text: Most frontend postings now ask for TypeScript and at least one meta-framework such as Next.js, alongside React.
 adjacent: [full-stack-engineer, design-engineer, cross-platform-mobile-engineer, qa-sdet]
-updated: 2026-10-06
+updated: 2026-11-02
 ---
 
 ## Is this role for you?

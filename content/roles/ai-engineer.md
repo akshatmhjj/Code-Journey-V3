@@ -54,7 +54,7 @@ market:
   - text: AI engineer has become one of the fastest-growing job titles since 2023, at both startups and established companies adding AI features.
   - text: Postings typically want strong Python and software engineering first, then LLM experience - retrieval, agents and evaluation - shown through projects.
 adjacent: [ml-engineer, backend-engineer, full-stack-engineer, forward-deployed-engineer]
-updated: 2026-10-20
+updated: 2026-11-02
 ---
 
 ## Is this role for you?

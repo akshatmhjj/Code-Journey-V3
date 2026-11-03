@@ -37,7 +37,7 @@ resources:
     provider: Kohavi, Tang & Xu
     type: book
     cost: paid
-checked: 2026-10-20
+checked: 2026-11-02
 ---
 
 ## In plain English

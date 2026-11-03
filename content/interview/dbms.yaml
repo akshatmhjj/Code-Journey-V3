@@ -1,0 +1,86 @@
+title: Databases (DBMS)
+slug: dbms
+brief: How databases keep data correct and fast - keys, normalisation, ACID transactions, isolation levels, indexes and query plans. Expect these in backend, data and full-stack interviews, and expect follow-ups about your own Postgres or Mongo work.
+say: A database stores data in tables with keys and relationships, and normalisation removes duplication so updates stay consistent. Transactions give ACID guarantees, so a group of changes either all happen or none do, and isolation levels control what concurrent transactions can see. Indexes, usually B-trees, make lookups fast at the cost of slower writes and extra storage.
+concepts:
+  - term: Keys
+    def: A primary key uniquely identifies each row and cannot be null. A foreign key references the primary key of another table and enforces that the reference exists. A candidate key could be a primary key. A composite key uses several columns together. A unique constraint forbids duplicates without making the column the primary key.
+  - term: Relationships
+    def: One-to-one, one-to-many and many-to-many. Many-to-many needs a junction table with two foreign keys, for example students and courses linked through enrolments.
+  - term: Normalisation
+    def: Organising tables to remove redundancy. First normal form (1NF) means every column holds atomic values. Second normal form (2NF) means no column depends on part of a composite key. Third normal form (3NF) means no column depends on another non-key column. BCNF is a stricter version of 3NF.
+    hook: "1NF: one value per cell. 2NF: depends on the whole key. 3NF: depends on nothing but the key."
+  - term: Denormalisation
+    def: Deliberately storing duplicate data to make reads faster, for example keeping a total on an order row. It trades write complexity and risk of inconsistency for read speed. Use it when measured query performance requires it.
+  - term: ACID
+    def: Atomicity - a transaction is all or nothing. Consistency - it moves the database from one valid state to another, respecting constraints. Isolation - concurrent transactions do not see each other's partial work. Durability - once committed, data survives a crash, usually through a write-ahead log.
+    hook: "Atomic: all or nothing. Consistent: rules hold. Isolated: no peeking at half-done work. Durable: survives a crash."
+  - term: Isolation levels
+    def: Read uncommitted allows dirty reads. Read committed only sees committed data, but a row can change between two reads in one transaction. Repeatable read keeps the rows you read stable. Serializable makes transactions behave as if they ran one after another.
+    hook: "Read uncommitted, Read committed, Repeatable read, Serializable: each step up closes one more door."
+    visual: isolation-matrix
+  - term: Concurrency anomalies
+    def: Dirty read (reading uncommitted data), non-repeatable read (a row changes between reads), phantom read (new rows appear between reads), lost update (two writes overwrite each other), and write skew (two transactions each check a rule, then both write and break it).
+  - term: MVCC
+    def: Multi-version concurrency control keeps several versions of each row, so readers see a consistent snapshot and do not block writers. PostgreSQL and MySQL InnoDB use it. Old versions are cleaned up by vacuum or purge.
+  - term: Locks
+    def: Shared locks allow many readers, and exclusive locks allow one writer. Locks can apply to rows, pages or whole tables. Two transactions waiting on each other's locks cause a deadlock, and the database detects it and aborts one.
+  - term: Index
+    def: An extra data structure that lets the database find rows without scanning the whole table. The default in most relational databases is a B-tree, which keeps keys sorted, supports equality and range queries, and finds a row in O(log n).
+    hook: A sorted, wide tree with few levels, so any row takes a handful of steps. Faster reads, slower writes.
+    visual: btree-lookup
+  - term: Clustered and non-clustered indexes
+    def: A clustered index stores the table's rows in index order, and a table can have only one. A non-clustered index is a separate structure that points to the rows. A covering index contains every column a query needs, so the table itself is not read.
+  - term: Composite index
+    def: An index on several columns. It is used for queries that filter on a leftmost prefix of those columns. An index on (country, city) helps a query on country, but not one on city alone.
+  - term: When indexes hurt
+    def: Each index makes writes slower and takes storage. Queries that wrap an indexed column in a function, use a leading wildcard in LIKE, or match a large share of the table can skip the index.
+  - term: Query plan
+    def: The steps the database chooses to answer a query, such as a sequential scan, index scan, nested loop join, hash join or merge join. EXPLAIN shows the plan, and EXPLAIN ANALYZE shows real timings.
+  - term: Joins
+    def: An inner join keeps rows that match on both sides. A left join keeps every row from the left table and fills the right side with nulls when there is no match. A right join is the mirror of a left join. A full outer join keeps all rows from both sides. A cross join makes every combination.
+    hook: "Inner: keep rows where both sides match. Left: keep every left row, with blanks where nothing matches."
+  - term: WHERE and HAVING
+    def: WHERE filters individual rows before grouping. HAVING filters groups after GROUP BY, so it can use aggregates such as COUNT(*) > 5.
+    hook: WHERE filters rows before grouping. HAVING filters the groups after.
+  - term: SQL and NoSQL
+    def: Relational databases use fixed schemas, joins and ACID transactions, and scale up well and out with effort. Document stores such as MongoDB keep flexible JSON-like documents that suit data read together. Key-value stores such as Redis are very fast for simple lookups. Choose by access pattern, consistency needs and scale, not by fashion.
+  - term: N+1 query problem
+    def: Loading a list of N items and then running one extra query per item, so N+1 queries run in total. It is often caused by ORM lazy loading. The fix is a join or a batched query that fetches the related data up front.
+  - term: Connection pooling
+    def: Opening a database connection is expensive, so applications keep a pool of open connections and reuse them. Too many connections overload the database, so the pool size is kept deliberately small.
+questions:
+  - q: Explain ACID with an example.
+    a: Transferring 100 from account A to B takes two updates. Atomicity means both happen or neither does. Consistency means the total money stays the same and constraints hold. Isolation means another transaction cannot see the money half-moved. Durability means once the transfer is committed, it survives a crash, because the database wrote it to a log first.
+  - q: What are the four isolation levels and which anomalies does each allow?
+    a: Read uncommitted allows dirty reads. Read committed prevents dirty reads, but allows non-repeatable reads. Repeatable read prevents non-repeatable reads, and in some databases phantoms too. Serializable prevents all of them, including write skew, and is the strongest and slowest.
+  - q: Explain 1NF, 2NF and 3NF with an example.
+    a: Take an order table with a column of several product names in one cell. That breaks 1NF, because each value must be atomic. If the key is (order_id, product_id) and the product name depends only on product_id, that breaks 2NF. If the table also stores the customer's city, which depends on the customer rather than the order, that breaks 3NF. Splitting the tables fixes each problem.
+  - q: What is the difference between a primary key, a foreign key and a unique key?
+    a: A primary key uniquely identifies each row and cannot be null. A foreign key links a column to the primary key of another table and enforces that the referenced row exists. A unique key forbids duplicate values in a column, and it can allow nulls, depending on the database.
+  - q: How does an index work and when does the database not use it?
+    a: An index is a sorted B-tree over one or more columns, which lets the database find matching rows in logarithmic time instead of scanning the whole table. It is skipped when a query returns a large share of rows, when a function hides the column, when a leading wildcard is used, or when the statistics say a scan is cheaper.
+  - q: What is the difference between a clustered and a non-clustered index?
+    a: A clustered index sorts the table's rows physically by the key, so there is only one. A non-clustered index is a separate sorted structure with pointers to the rows, and a table can have many. Reading through a clustered index is fast for range queries.
+  - q: What is the difference between an inner join and a left join?
+    a: An inner join returns only rows where the join condition matches in both tables. A left join returns every row from the left table, and fills columns from the right table with nulls where nothing matches. Left joins are used to find things that have no match, such as users with no orders.
+  - q: What is the difference between WHERE and HAVING?
+    a: WHERE filters individual rows before any grouping happens. HAVING filters groups after GROUP BY, so it can compare aggregates. For example, WHERE filters orders by date, and HAVING keeps only customers whose total exceeds 1000.
+  - q: When would you choose a SQL database over a NoSQL database?
+    a: Choose SQL when the data has clear relationships, you need strong consistency and multi-row transactions, and the queries are not known in advance. Choose a document or key-value store when the access pattern is simple and known, the schema changes often, or the scale needs horizontal partitioning. Many real systems use both.
+  - q: What is MVCC?
+    a: Multi-version concurrency control keeps several versions of a row, so a reader sees the version that was committed when its transaction started, and writers create new versions. Readers never block writers, which gives good concurrency. Old versions are cleaned up later.
+  - q: What is a deadlock in a database and how is it handled?
+    a: Two transactions each hold a lock the other needs. The database detects the cycle in its lock graph and aborts one transaction, which the application can retry. Keeping transactions short and locking rows in a consistent order reduces how often this happens.
+  - q: What is the N+1 query problem?
+    a: It happens when code loads a list of N records and then runs a separate query for each record's related data, giving N+1 queries. It is hidden in ORMs with lazy loading. The fix is to load the related data in one join or one batched query with an IN clause.
+  - q: What is a write-ahead log?
+    a: Before the database changes data pages, it writes the change to a sequential log on disk. After a crash, it replays committed changes from the log. This provides durability and lets pages be written lazily, which keeps writes fast.
+  - q: What does EXPLAIN tell you?
+    a: It shows the query plan the database chose, including scan types, join methods and estimated row counts. EXPLAIN ANALYZE runs the query and adds real timings and row counts. Use it to find sequential scans on large tables and estimates that are far from reality.
+traps:
+  - Saying an index always makes a query faster. It speeds reads and slows writes, and the planner may skip it.
+  - Mixing up the isolation level names and anomalies. Learn the anomaly each level prevents.
+  - Saying NoSQL has no transactions. Many document stores now support multi-document transactions.
+  - Forgetting that normalisation trades storage for consistency, and denormalising is a valid choice for read-heavy paths.
+checked: 2026-11-01

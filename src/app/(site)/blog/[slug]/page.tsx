@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getPosts } from "@/lib/content";
 import { renderMarkdown } from "@/lib/markdown";
 import { SITE } from "@/lib/site";
+import { snippet } from "@/lib/seo";
 import { Trail } from "@/components/ui/Trail";
 import { JsonLd } from "@/components/ui/JsonLd";
 
@@ -18,9 +19,9 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): P
   if (!p) return {};
   return {
     title: p.title,
-    description: p.excerpt,
+    description: snippet(p.excerpt),
     alternates: { canonical: `/blog/${slug}` },
-    openGraph: { type: "article", publishedTime: p.date.toISOString() },
+    openGraph: { type: "article", title: p.title, description: snippet(p.excerpt), url: `/blog/${slug}`, publishedTime: p.date.toISOString(), authors: [SITE.url] },
   };
 }
 
@@ -43,9 +44,13 @@ export default async function Post({ params }: PageProps<"/blog/[slug]">) {
           headline: p.title,
           description: p.excerpt,
           datePublished: p.date.toISOString(),
+          dateModified: p.date.toISOString(),
+          inLanguage: "en",
           author: { "@type": "Organization", name: SITE.name, url: SITE.url },
           publisher: { "@id": `${SITE.url}/#org` },
+          image: `${SITE.url}/opengraph-image`,
           mainEntityOfPage: `${SITE.url}/blog/${slug}`,
+          url: `${SITE.url}/blog/${slug}`,
         }}
       />
       <article className="wrap py-12 md:py-20">

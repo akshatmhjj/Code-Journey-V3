@@ -1,13 +1,15 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import { Check, ChevronDown } from "lucide-react";
+import { Check } from "lucide-react";
 import { useReady } from "@/lib/prep-progress";
 
 type Concept = { term: string; def: string; hook?: string; visual?: ReactNode };
 type Question = { q: string; a: string; visual?: ReactNode };
-type Tab = "concepts" | "questions" | "traps"
-/** One topic, in three tabs: concepts, questions and traps. Only one tab is on screen at a time. */
+type Tab = "concepts" | "questions" | "traps";
+type Item = { title: string; body?: string; hook?: string; visual?: ReactNode };
+
+/** One topic in three tabs. Each tab is a list on the left and the full answer on the right. */
 export function StudyTabs({ slug, concepts, questions, traps }: { slug: string; concepts: Concept[]; questions: Question[]; traps: string[] }) {
   const [tab, setTab] = useState<Tab>("concepts");
   const tabs: { id: Tab; label: string; count: number }[] = [
@@ -15,6 +17,11 @@ export function StudyTabs({ slug, concepts, questions, traps }: { slug: string; 
     { id: "questions", label: "Questions", count: questions.length },
     { id: "traps", label: "Traps", count: traps.length },
   ];
+  const items: Record<Tab, Item[]> = {
+    concepts: concepts.map((c) => ({ title: c.term, body: c.def, hook: c.hook, visual: c.visual })),
+    questions: questions.map((q) => ({ title: q.q, body: q.a, visual: q.visual })),
+    traps: traps.map((t) => ({ title: t })),
+  };
 
   return (
     <div>
@@ -35,129 +42,72 @@ export function StudyTabs({ slug, concepts, questions, traps }: { slug: string; 
         ))}
       </div>
       <div id="study-panel" role="tabpanel" aria-labelledby={`tab-${tab}`} className="pt-6">
-        {tab === "concepts" && <ConceptRows concepts={concepts} />}
-        {tab === "questions" && <QuestionRows slug={slug} questions={questions} />}
-        {tab === "traps" && <TrapRows traps={traps} />}
+        <SplitPane key={tab} slug={slug} tab={tab} items={items[tab]} />
       </div>
     </div>
   );
 }
 
-/** Each concept is one row: the term and its memory hook. Open it for the definition and the picture. */
-function ConceptRows({ concepts }: { concepts: Concept[] }) {
-  const [open, setOpen] = useState<Set<number>>(new Set());
-  const allOpen = open.size === concepts.length;
-  const toggle = (i: number) =>
-    setOpen((prev) => {
-      const next = new Set(prev);
-      if (next.has(i)) next.delete(i);
-      else next.add(i);
-      return next;
-    });
-
-  return (
-    <div>
-      <div className="mb-2 flex justify-end">
-        <button type="button" onClick={() => setOpen(allOpen ? new Set() : new Set(concepts.map((_, i) => i)))} className="text-sm font-semibold text-muted underline underline-offset-4 hover:text-ink">
-          {allOpen ? "Collapse all" : "Expand all"}
-        </button>
-      </div>
-      <ul className="divide-y divide-line border-y border-line pr-12 md:pr-0">
-        {concepts.map((c, i) => {
-          const isOpen = open.has(i);
-          return (
-            <li key={c.term}>
-              <button type="button" aria-expanded={isOpen} onClick={() => toggle(i)} className="flex w-full items-center gap-4 py-4 text-left">
-                <span className="min-w-0 flex-1">
-                  <span className="block font-display text-xl font-bold">{c.term}</span>
-                  {c.hook && !isOpen && <span className="mt-1 block truncate text-sm text-muted">{c.hook}</span>}
-                </span>
-                <ChevronDown className={`size-5 shrink-0 text-muted transition-transform ${isOpen ? "rotate-180" : ""}`} aria-hidden />
-              </button>
-              {isOpen && (
-                <div className="grid gap-5 pb-6">
-                  <p className="max-w-[66ch] leading-relaxed">{c.def}</p>
-                  {c.hook && <p className="max-w-[66ch] text-sm font-semibold">Remember: {c.hook}</p>}
-                  {c.visual && <div className="max-w-lg">{c.visual}</div>}
-                </div>
-              )}
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
-}
-
-/** Questions open one at a time. Tick a question once you can answer it out loud. */
-function QuestionRows({ slug, questions }: { slug: string; questions: Question[] }) {
+/** The list picks an item and the panel beside it shows it in full. Questions can be ticked once you can answer them out loud. */
+function SplitPane({ slug, tab, items }: { slug: string; tab: Tab; items: Item[] }) {
   const { ready, loaded, toggle, reset } = useReady();
-  const [open, setOpen] = useState<Set<number>>(new Set());
-  const ids = questions.map((_, i) => `${slug}:${i}`);
+  const [i, setI] = useState(0);
+  const it = items[i];
+  const isQuestions = tab === "questions";
+  const ids = items.map((_, n) => `${slug}:${n}`);
   const done = ids.filter((id) => ready.has(id)).length;
-
-  const flip = (i: number) =>
-    setOpen((prev) => {
-      const next = new Set(prev);
-      if (next.has(i)) next.delete(i);
-      else next.add(i);
-      return next;
-    });
+  const label = tab === "concepts" ? "Concept" : tab === "questions" ? "Question" : "Trap";
 
   return (
     <div>
-      <div className="mb-2 flex flex-wrap items-center justify-between gap-3 text-sm">
-        <p className="font-mono text-muted" aria-live="polite">
-          {loaded ? `${done} of ${questions.length} ready` : `${questions.length} questions`}
-        </p>
-        <button type="button" disabled={done === 0} onClick={() => reset(ids)} className="font-semibold text-muted underline underline-offset-4 hover:text-ink disabled:opacity-40">
-          Reset ticks
-        </button>
-      </div>
-      <ol className="divide-y divide-line border-y border-line pr-12 md:pr-0">
-        {questions.map((item, i) => {
-          const id = ids[i];
-          const isReady = ready.has(id);
-          const isOpen = open.has(i);
-          return (
-            <li key={id} className="py-4">
-              <div className="flex items-start gap-3">
-                <button type="button" aria-expanded={isOpen} onClick={() => flip(i)} className="flex min-w-0 flex-1 items-start gap-3 text-left">
-                  <span className="mt-1 font-mono text-xs text-muted">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="font-display text-lg leading-snug font-bold">{item.q}</span>
-                </button>
-                <button
-                  type="button"
-                  aria-pressed={isReady}
-                  aria-label={isReady ? `Ready: ${item.q}` : `Mark ready: ${item.q}`}
-                  onClick={() => toggle(id)}
-                  className={`grid size-9 shrink-0 place-items-center rounded-full border-2 transition-colors ${isReady ? "border-accent bg-accent text-on-accent" : "border-line hover:border-ink"}`}
-                >
-                  {isReady && <Check className="size-4" aria-hidden />}
-                </button>
-              </div>
-              {isOpen && (
-                <div className="mt-4 grid gap-5 pl-9">
-                  <p className="max-w-[66ch] leading-relaxed">{item.a}</p>
-                  {item.visual && <div className="max-w-lg">{item.visual}</div>}
-                </div>
-              )}
+      {isQuestions && (
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-3 text-sm">
+          <p className="font-mono text-muted" aria-live="polite">
+            {loaded ? `${done} of ${items.length} ready` : `${items.length} questions`}
+          </p>
+          <button type="button" disabled={done === 0} onClick={() => reset(ids)} className="font-semibold text-muted underline underline-offset-4 hover:text-ink disabled:opacity-40">
+            Reset ticks
+          </button>
+        </div>
+      )}
+      <div className="grid gap-4 pr-12 md:grid-cols-[17rem_1fr] md:pr-0">
+        <ul className="max-h-60 overflow-y-auto rounded-xl border border-line md:max-h-[34rem]">
+          {items.map((x, n) => (
+            <li key={x.title} className="border-b border-line last:border-b-0">
+              <button
+                type="button"
+                aria-current={n === i}
+                onClick={() => setI(n)}
+                className={`flex w-full items-start gap-3 border-l-4 px-4 py-3 text-left text-sm transition-colors ${n === i ? "border-accent bg-raise font-semibold" : "border-transparent hover:bg-raise"}`}
+              >
+                <span className="mt-0.5 font-mono text-xs text-muted">{String(n + 1).padStart(2, "0")}</span>
+                <span className="line-clamp-2 min-w-0 flex-1">{x.title}</span>
+                {isQuestions && ready.has(ids[n]) && <Check className="mt-0.5 size-4 shrink-0 text-accent" aria-label="Ready" />}
+              </button>
             </li>
-          );
-        })}
-      </ol>
-    </div>
-  );
-}
+          ))}
+        </ul>
 
-function TrapRows({ traps }: { traps: string[] }) {
-  return (
-    <ul className="divide-y divide-line border-y border-line">
-      {traps.map((t) => (
-        <li key={t} className="py-4 leading-relaxed">
-          {t}
-        </li>
-      ))}
-    </ul>
+        <article className="min-w-0 rounded-2xl bg-raise p-6 md:p-8">
+          <p className="font-mono text-xs tracking-wide text-muted uppercase">
+            {label} {i + 1} of {items.length}
+          </p>
+          <h3 className="mt-3 font-display text-2xl leading-snug font-bold">{it.title}</h3>
+          {it.body && <p className="mt-4 max-w-[66ch] leading-relaxed">{it.body}</p>}
+          {it.hook && <p className="mt-5 border-l-4 border-accent pl-4 text-sm font-semibold">Remember: {it.hook}</p>}
+          {it.visual && <div className="mt-6 max-w-lg">{it.visual}</div>}
+          {isQuestions && (
+            <button
+              type="button"
+              aria-pressed={ready.has(ids[i])}
+              onClick={() => toggle(ids[i])}
+              className={`mt-6 inline-flex items-center gap-2 rounded-full border-2 px-4 py-2 text-sm font-semibold transition-colors ${ready.has(ids[i]) ? "border-accent bg-accent text-on-accent" : "border-ink hover:bg-canvas"}`}
+            >
+              <Check className="size-4" aria-hidden /> {ready.has(ids[i]) ? "Ready" : "Mark ready"}
+            </button>
+          )}
+        </article>
+      </div>
+    </div>
   );
 }

@@ -1,0 +1,83 @@
+title: Computer Networks
+slug: networks
+brief: How data travels from one machine to another - the layers, addressing, TCP and UDP, DNS, HTTP and TLS. The "what happens when you type a URL" question sits on top of all of it.
+say: Networks split communication into layers. IP addresses machines and routes packets across networks. TCP gives reliable, ordered delivery by using a handshake, acknowledgements and retransmission. UDP skips those guarantees for speed. Above them, DNS turns names into addresses, HTTP carries requests and responses, and TLS encrypts the connection.
+concepts:
+  - term: OSI and TCP/IP models
+    def: The OSI model has seven layers - physical, data link, network, transport, session, presentation, application. The TCP/IP model used in practice has four - link, internet, transport, application. Interviewers expect you to name the layers and say what each one does.
+    hook: "All People Seem To Need Data Processing: Application, Presentation, Session, Transport, Network, Data link, Physical."
+    visual: osi-stack
+  - term: IP address and routing
+    def: An IP address identifies a machine on a network at the network layer. Routers forward each packet one hop at a time towards the destination, using routing tables. IP is best effort - packets can be lost, duplicated or arrive out of order.
+  - term: MAC address and ARP
+    def: A MAC address identifies a network interface on the local link. ARP maps an IP address on the local network to a MAC address, so packets can reach the next hop.
+  - term: Port and socket
+    def: A port number identifies a program on a machine. A socket is the endpoint made of an IP address, a port and a protocol. A TCP connection is identified by its 4-tuple - source IP and port, and destination IP and port.
+  - term: TCP
+    def: Connection-oriented, reliable and ordered. It uses sequence numbers, acknowledgements, retransmission on loss, a checksum, flow control (the receiver's window) and congestion control (slow start and additive increase, multiplicative decrease) to avoid overloading the network.
+  - term: TCP three-way handshake
+    def: The client sends SYN, the server replies SYN-ACK, and the client sends ACK. That agrees the starting sequence numbers and confirms both sides can send and receive. Closing uses a four-step exchange with FIN packets.
+    hook: SYN, SYN-ACK, ACK. Hi, Hi back, got it. Then talk.
+    visual: tcp-handshake
+  - term: UDP
+    def: Connectionless and unreliable. No handshake, no ordering, no retransmission, and a small header. It suits DNS lookups, live video, voice and games, where a late packet is worse than a lost one. QUIC builds reliability on top of UDP.
+    hook: "TCP is a registered letter with proof of delivery. UDP is a postcard: fast, and nobody confirms it arrived."
+  - term: DNS
+    def: The Domain Name System turns names like example.com into IP addresses. A recursive resolver asks the root servers, then the top-level domain servers, then the authoritative server for the domain. Answers are cached for their TTL.
+  - term: DNS record types
+    def: A records map a name to an IPv4 address, AAAA to an IPv6 address, CNAME makes one name an alias for another, and MX names the mail servers for a domain.
+  - term: HTTP
+    def: The application protocol for the web. A client sends a request with a method, path and headers, and the server returns a status code and a body. HTTP itself is stateless, so cookies or tokens carry session state.
+  - term: HTTP versions
+    def: HTTP/1.1 uses keep-alive connections, but each connection handles one request at a time. HTTP/2 multiplexes many requests over one TCP connection and compresses headers. HTTP/3 runs over QUIC on UDP, which removes head-of-line blocking at the transport layer.
+    hook: HTTP/2 puts many requests on one TCP pipe, so one lost packet stalls them all. HTTP/3 uses QUIC, so a loss stalls only its own stream.
+  - term: Idempotency
+    def: A method is idempotent when doing it many times has the same effect as doing it once. GET, PUT and DELETE are idempotent. POST is not, which is why retrying a POST can create duplicates.
+    hook: GET, PUT and DELETE are safe to repeat. POST may create a second record.
+  - term: Status codes
+    def: 2xx success (200 OK, 201 Created), 3xx redirect (301 permanent, 302 temporary, 304 not modified), 4xx client error (400 bad request, 401 not authenticated, 403 not allowed, 404 not found, 409 conflict, 429 too many requests), 5xx server error (500, 502 bad gateway, 503 unavailable).
+    hook: 401 = who are you (not logged in). 403 = I know you, and you may not enter. 301 = moved for good. 302 = moved for now.
+  - term: TLS
+    def: Transport Layer Security encrypts a connection and proves the server's identity with a certificate. The handshake uses asymmetric cryptography to agree on a shared secret, then symmetric encryption protects the data, because symmetric encryption is much faster. TLS 1.3 completes in one round trip.
+  - term: NAT
+    def: Network Address Translation lets many private devices share one public IP address. The router rewrites addresses and ports, and keeps a table to send replies back to the right device.
+  - term: Latency and bandwidth
+    def: Latency is the time for one packet to travel, measured as round-trip time (RTT). Bandwidth is how much data can move per second. A small request on a high-latency link is slow even with high bandwidth.
+  - term: CORS
+    def: Cross-Origin Resource Sharing is a browser rule. A page on one origin can call an API on another origin only if that API sends headers such as Access-Control-Allow-Origin allowing it. It protects users, not servers.
+questions:
+  - q: What happens when you type a URL into a browser and press Enter?
+    visual: url-journey
+    a: The browser parses the URL and checks its cache. It resolves the host name with DNS to an IP address. It opens a TCP connection with the three-way handshake, and then a TLS handshake for HTTPS. It sends the HTTP request, the server returns a response, and the browser parses and renders the HTML, fetching CSS, JavaScript and images as it goes.
+  - q: What is the difference between TCP and UDP?
+    a: TCP is connection-oriented and gives reliable, ordered delivery with flow and congestion control, at the cost of a handshake and extra latency. UDP is connectionless and sends datagrams with no guarantees, which makes it faster and lighter. Use TCP for web pages and file transfer, and UDP for DNS, streaming, voice and games.
+  - q: Why does the TCP handshake need three steps?
+    a: Both sides must agree on their starting sequence numbers and confirm they can send and receive. The client sends SYN, the server answers with SYN-ACK to confirm and send its own number, and the client's ACK confirms that. Two steps would not let the client confirm the server received its number.
+  - q: How does TCP make sure data is reliable?
+    a: Each byte has a sequence number. The receiver acknowledges what it has received, and the sender retransmits anything not acknowledged in time. A checksum detects corruption, the receiver's window controls how fast data is sent (flow control), and congestion control slows the sender when the network drops packets.
+  - q: How does DNS resolution work?
+    a: The client asks its recursive resolver, which checks its cache. If the answer is missing, it asks a root server, which points to the top-level domain server (such as .com), which points to the domain's authoritative name server. The answer is returned and cached for its TTL.
+  - q: Compare HTTP/1.1, HTTP/2 and HTTP/3.
+    a: HTTP/1.1 sends one request at a time per connection and needs several connections for parallel work. HTTP/2 multiplexes many streams over one TCP connection and compresses headers, but a single lost packet still blocks all streams at the TCP level. HTTP/3 runs over QUIC on UDP, so a lost packet only blocks its own stream.
+  - q: What is the difference between GET and POST, and what does idempotent mean?
+    a: GET retrieves data and POST creates or submits data. An idempotent method gives the same result however many times it runs. GET, PUT and DELETE are idempotent, and POST is not, so retrying a POST can create a duplicate record unless the API uses an idempotency key.
+  - q: What is the difference between 401 and 403? Between 301 and 302? Between 502 and 503?
+    a: 401 means the client is not authenticated, so it should log in. 403 means the server knows who you are but you are not allowed. 301 is a permanent redirect that browsers and search engines cache, and 302 is temporary. 502 means a gateway got a bad response from an upstream server, and 503 means the server is overloaded or down for maintenance.
+  - q: How does HTTPS (TLS) keep a connection secure?
+    a: The server sends a certificate that a trusted authority signed. The client checks it, and both sides agree on a shared secret using asymmetric key exchange. From then on, the session is encrypted with fast symmetric keys derived from that secret. The certificate proves the server's identity, which protects against impersonation.
+  - q: What is the difference between latency and bandwidth?
+    a: Bandwidth is how much data a link can carry per second, and latency is how long one packet takes to get there. A large file benefits from bandwidth, while many small requests suffer from latency. Adding bandwidth does not fix a slow round trip.
+  - q: What do the layers of the OSI model do? Where do routers and switches sit?
+    a: Physical carries bits on the medium, data link moves frames between directly connected devices (switches work here, using MAC addresses), network routes packets across networks using IP addresses (routers work here), transport gives end-to-end delivery (TCP and UDP), and session, presentation and application support the program's communication.
+  - q: What is CORS and why does it exist?
+    a: CORS is the browser's rule that a web page can only read responses from another origin when that origin sends permission headers. It stops a malicious site from using your logged-in browser to read another site's data. It is enforced by the browser, not by the server, so it does not stop direct requests from tools like curl.
+  - q: Is HTTP stateless? How do websites remember you?
+    a: Yes, each HTTP request is independent. Sites keep state with cookies, which the browser sends back on each request, or with tokens such as JWTs in headers. The server may also store session data and give the client an ID to look it up.
+  - q: What is NAT and why is it used?
+    a: Network Address Translation lets many devices with private addresses share one public IP. The router rewrites the source address and port on outgoing traffic and keeps a table to forward replies to the correct device. It delays IPv4 exhaustion, but it complicates direct connections to devices behind it.
+traps:
+  - Saying HTTP is a transport protocol. HTTP runs on top of TCP (or QUIC), and it is an application-layer protocol.
+  - Saying TCP is always better. UDP is the right choice when a late packet is worse than a lost one.
+  - Forgetting DNS caching. Most of the speed of a repeat visit comes from caches at several levels.
+  - Mixing up 401 and 403, which is a common interview question.
+checked: 2026-11-01

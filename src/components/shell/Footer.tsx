@@ -19,6 +19,7 @@ const LINKS = [
       ["/skills", "All skills"],
       ["/resources", "Resource library"],
       ["/glossary", "Glossary"],
+      ["/interview-prep", "Interview prep"],
     ],
   },
   {

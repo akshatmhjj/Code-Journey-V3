@@ -1,0 +1,96 @@
+title: Operating Systems
+slug: os
+brief: How one machine runs many programs at once - processes, threads, scheduling, memory, synchronisation and deadlock. The questions here come up in almost every systems, backend and mobile interview.
+say: An operating system manages the CPU, memory and devices so many programs can share one machine safely. The core ideas are processes and threads, how the CPU is shared through scheduling, how memory is isolated through virtual memory, and how threads coordinate with locks so they do not corrupt shared data or deadlock.
+concepts:
+  - term: Process
+    def: A running program with its own address space, file descriptors and kernel bookkeeping (the PCB). Creating one is relatively heavy, and processes are isolated from each other, so one crash does not bring down another.
+  - term: Thread
+    def: A unit of execution inside a process. Threads in the same process share the heap, code and open files, but each has its own stack and registers. Creating and switching threads is cheaper than processes, but shared memory makes bugs easier to create.
+    hook: A process is a house. Its threads share the kitchen (heap) and each get a private bedroom (stack).
+    visual: process-thread
+  - term: Context switch
+    def: The OS saves the registers and program counter of the running task and loads those of the next one. It costs direct CPU time and indirect cost from cold caches. Too many switches reduce useful work.
+    hook: Save the old state, load the new one. The hidden cost is the cold cache afterwards.
+  - term: Process states
+    def: New, ready, running, waiting (blocked on I/O or a lock), terminated. A process moves ready to running when the scheduler picks it, and running to waiting when it blocks.
+  - term: Scheduling
+    def: Choosing which ready task runs next. First come first served is simple but lets long jobs block short ones. Shortest job first minimises average wait. Round robin gives each task a time quantum, which is fair and responsive. Priority scheduling risks starvation, which aging fixes.
+    hook: "FCFS: first come, first served. SJF: shortest job first. Round robin: a fixed slice each, in turn."
+    visual: scheduling-gantt
+  - term: Kernel mode and user mode
+    def: The CPU runs kernel code with full hardware access and user code with restricted access. A system call is the controlled jump from user mode into the kernel, for example to read a file. Interrupts and traps use the same mechanism.
+  - term: Virtual memory
+    def: Each process sees its own private address space. The OS maps those virtual addresses to physical memory through page tables. This gives isolation, lets programs use more memory than is installed (by swapping pages to disk), and lets processes share read-only code safely.
+  - term: Paging
+    def: Memory is split into fixed-size pages (often 4 KB) and frames. A page table maps each page to a frame. A page fault happens when the page is not in RAM, and the OS loads it. The TLB is a small hardware cache of recent translations, which keeps paging fast.
+  - term: Thrashing
+    def: When the working set of running programs does not fit in RAM, the system spends most of its time swapping pages in and out. Throughput collapses. The fix is less memory pressure, not a faster disk.
+    hook: "Too many pages needed and not enough RAM: the machine swaps more than it works."
+  - term: Page replacement
+    def: When memory is full, the OS picks a page to evict. FIFO is simple. LRU (least recently used) is a good approximation of the best choice. The optimal policy needs future knowledge, so it exists only as a benchmark.
+  - term: Mutex
+    def: A lock with ownership. Only the thread that locked it can unlock it. Use it to protect a critical section, so only one thread at a time updates shared data.
+    hook: "A mutex is one key: whoever takes it must give it back."
+  - term: Semaphore
+    def: A counter with wait and signal operations. A binary semaphore works like a lock. A counting semaphore limits how many threads can use a pool of resources at once, for example 5 open database connections. Any thread can signal it.
+    hook: "A semaphore is a count of parking spaces: any thread can take one or free one."
+  - term: Race condition
+    def: The result depends on the timing of threads. The classic case is two threads running counter++ at once - each reads the old value and writes back, so an increment is lost. The fix is a mutex, an atomic operation, or a design that avoids sharing.
+  - term: Spinlock
+    def: A lock where the thread busy-waits in a loop instead of sleeping. It suits very short critical sections on multi-core CPUs. For longer waits, a mutex that sleeps is better, because spinning wastes CPU time.
+    hook: Spin for a tiny wait, sleep for a long one.
+  - term: Deadlock
+    def: Threads wait on each other forever. Four conditions must all hold (the Coffman conditions) - mutual exclusion, hold and wait, no preemption, and circular wait. Breaking any one of them prevents deadlock.
+    hook: "MHNC: Mutual exclusion, Hold and wait, No preemption, Circular wait. Break any one to prevent it."
+    visual: deadlock-cycle
+  - term: Deadlock prevention
+    def: Break one condition in practice. Most often, acquire locks in a fixed global order, which breaks circular wait. Also use try-lock with timeouts and release locks you cannot get. The Banker's algorithm avoids deadlock by refusing requests that could lead to an unsafe state.
+    hook: "The usual fix: every thread takes locks in the same order, so a circle can never form."
+  - term: Concurrency and parallelism
+    def: Concurrency is structuring a program so many tasks make progress over time, possibly on one core. Parallelism is running tasks at the same instant on multiple cores. Concurrency is a design property, and parallelism is an execution property.
+  - term: Process creation
+    def: fork() copies the calling process, and exec() replaces its program with a new one. A shell runs a command by forking and then exec-ing in the child. The parent collects the child's exit status with wait().
+  - term: Zombie and orphan processes
+    def: A zombie has exited, but its parent has not called wait() yet, so its entry stays in the process table. An orphan has a parent that died first, so the init process (or launchd on macOS) adopts it.
+  - term: Inter-process communication
+    def: Ways processes share data. Pipes and sockets stream bytes. Message queues pass discrete messages. Shared memory is the fastest, but it needs synchronisation. Signals are small notifications.
+  - term: Stack and heap
+    def: Each thread has a stack for function calls and local variables, which is freed automatically when the function returns. The heap is shared memory for dynamically allocated data, freed by the programmer or a garbage collector. Stack overflow comes from deep recursion, and heap leaks come from allocations that are never freed.
+questions:
+  - q: What is the difference between a process and a thread?
+    a: A process is an isolated program with its own address space. A thread is a unit of execution inside a process that shares the process's memory with its sibling threads. Threads are cheaper to create and switch, but a bug in one thread can corrupt data that the others use, while a crashed process does not affect others.
+  - q: What happens during a context switch?
+    a: The OS saves the current task's registers, program counter and stack pointer into its PCB, picks the next task, loads that task's saved state, and resumes it. Switching between processes can also flush the TLB. The direct cost is small, but cache misses after the switch cost much more.
+  - q: Explain deadlock and the four conditions that cause it.
+    a: Deadlock is when a set of threads each hold a resource and wait for one another's, so none can proceed. The four conditions are mutual exclusion, hold and wait, no preemption, and circular wait. A simple example is thread A holding lock 1 and waiting for lock 2, while thread B holds lock 2 and waits for lock 1.
+  - q: How do you prevent deadlock in practice?
+    a: The most common fix is a global lock ordering, so every thread takes locks in the same order, which breaks circular wait. Other options are try-lock with a timeout, taking all locks at once, or keeping critical sections small. Detection and recovery are used in databases, which abort one transaction.
+  - q: What is the difference between a mutex and a semaphore?
+    a: A mutex is a lock with ownership, used for mutual exclusion, and only the owner unlocks it. A semaphore is a counter used for signalling or limiting access to a pool of resources, and any thread can signal it. A binary semaphore can look like a mutex, but it has no ownership.
+  - q: What is a race condition? Give an example and a fix.
+    a: A race condition is a bug where the result depends on the timing of threads. Two threads running counter++ at the same time can both read 5 and both write 6, losing one increment. The fix is to guard the update with a mutex, or use an atomic increment.
+  - q: What is a spinlock and when would you use one?
+    a: A spinlock makes a thread busy-wait until the lock is free, instead of sleeping. It is useful when the lock is held for a very short time on a multi-core CPU, because waking a sleeping thread costs more. For long holds it wastes CPU, so a mutex is better.
+  - q: What is virtual memory and why does an OS use it?
+    a: Virtual memory gives each process its own private address space, which the OS maps to physical RAM through page tables. It isolates processes from each other, lets a program use more memory than physically installed by paging to disk, and allows safe sharing of read-only code such as shared libraries.
+  - q: What is a page fault and what is thrashing?
+    a: A page fault happens when a program accesses a page that is not currently in RAM, and the OS loads it from disk. Thrashing happens when the running programs need more pages than RAM can hold, so the system spends most of its time moving pages in and out and makes little progress.
+  - q: What is the difference between concurrency and parallelism?
+    a: Concurrency means multiple tasks are in progress at the same time, interleaved on one or more cores. Parallelism means they run at the same instant on separate cores. A program can be concurrent without being parallel, for example on a single-core machine.
+  - q: What is a zombie process? What is an orphan?
+    a: A zombie is a child that has exited while its parent has not yet called wait(), so its exit status remains in the process table. An orphan is a process whose parent exited first, so the init process or launchd adopts it. Zombies are cleared by the parent calling wait().
+  - q: What is a system call?
+    a: A system call is how a user program asks the kernel for a service it cannot do itself, such as reading a file or creating a process. It switches the CPU from user mode to kernel mode through a trap, runs the kernel code, and returns to user mode.
+  - q: What is the difference between the stack and the heap?
+    a: The stack holds function call frames and local variables for each thread. Memory is pushed and popped automatically, and it is fast. The heap holds dynamically allocated objects with a lifetime that the program controls, and it is managed by the programmer or a garbage collector. Deep recursion overflows the stack, and forgotten allocations leak on the heap.
+  - q: What is the difference between FCFS, SJF and round robin scheduling?
+    a: First come first served runs tasks in arrival order, which is simple but lets one long task delay many short ones. Shortest job first gives the lowest average wait, but it needs job lengths and can starve long jobs. Round robin gives each task a fixed time slice, which is fair and responsive, but a very small slice adds switching overhead.
+  - q: What are the common ways processes communicate?
+    a: Pipes and sockets stream bytes between processes, message queues pass discrete messages, and shared memory lets processes read and write the same memory, which is fastest but needs synchronisation. Signals deliver simple notifications.
+traps:
+  - Saying threads are always faster. Creating threads is cheap, but shared state needs locks, and locks cost time and cause bugs.
+  - Calling a mutex and a semaphore the same thing. The key difference is ownership.
+  - Forgetting that a race condition can occur even with a single line of code, because counter++ is several machine steps.
+  - Saying deadlock is solved by a timeout alone. A timeout recovers from a deadlock, but ordered locking prevents it.
+checked: 2026-11-01

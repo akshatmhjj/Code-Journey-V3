@@ -41,7 +41,7 @@ export function MeView({ index }: { index: PathIndex }) {
   const list = progress ? milestones(progress) : [];
 
   useEffect(() => {
-    if (user === null) router.replace("/login");
+    if (user === null) router.replace("/login?reason=me");
   }, [user, router]);
 
   useEffect(() => {

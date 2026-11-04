@@ -21,7 +21,7 @@ export function SaveLook() {
     return (
       <p className="border-t border-line pt-4 text-sm text-muted">
         This look is saved on this device.{" "}
-        <Link href="/login" className="link font-semibold text-ink">
+        <Link href="/login?mode=signin" className="link font-semibold text-ink">
           Sign in
         </Link>{" "}
         to keep it everywhere.

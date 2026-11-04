@@ -18,6 +18,9 @@ export default function Glossary() {
         <Link href="/glossary/practice" className="btn btn-accent">
           Practise with flashcards
         </Link>
+        <Link href="/interview-prep" className="btn btn-line">
+          Core CS interview prep
+        </Link>
       </PageHead>
       <div className="wrap">
         <GlossaryBrowser terms={terms} />

@@ -28,7 +28,7 @@ export function SuggestResource({ skillSlug, skillTitle, existing }: { skillSlug
     return (
       <div className="mt-6 flex flex-wrap items-center justify-between gap-3 rounded-[var(--radius-md)] bg-surface px-5 py-4">
         {intro}
-        <Link href="/login" className="text-[15px] font-semibold hover:underline">
+        <Link href="/login?reason=suggest" className="text-[15px] font-semibold hover:underline">
           Sign in to suggest one
         </Link>
       </div>

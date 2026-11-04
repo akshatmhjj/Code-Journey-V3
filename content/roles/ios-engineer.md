@@ -55,7 +55,7 @@ market:
   - text: iOS users tend to spend more in apps, so many consumer and subscription businesses invest heavily in native iOS teams.
   - text: SwiftUI is Apple's recommended UI framework; most new iOS job posts expect it alongside UIKit knowledge for older code.
 adjacent: [cross-platform-mobile-engineer, android-engineer, frontend-engineer]
-updated: 2026-10-06
+updated: 2026-11-02
 ---
 
 ## Is this role for you?

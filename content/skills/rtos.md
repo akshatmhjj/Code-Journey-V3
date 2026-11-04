@@ -45,7 +45,7 @@ resources:
     provider: Memfault
     type: article
     cost: free
-checked: 2026-10-20
+checked: 2026-11-02
 ---
 
 ## In plain English

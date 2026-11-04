@@ -55,7 +55,7 @@ market:
   - text: Postings increasingly ask for automation and coding skills (SDET) rather than manual testing alone; Playwright has become a leading choice for new web automation.
   - text: Regulated industries - banking, healthcare, insurance - continue to hire dedicated QA teams.
 adjacent: [frontend-engineer, backend-engineer, devops-engineer]
-updated: 2026-10-06
+updated: 2026-11-02
 ---
 
 ## Is this role for you?

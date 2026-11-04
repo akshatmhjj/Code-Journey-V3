@@ -12,7 +12,7 @@ export function SaveResource({ url, title, skillSlug }: { url: string; title: st
   const cls = "relative z-10 grid size-9 place-items-center rounded-full border-2 transition-colors";
   if (!path.signedIn) {
     return (
-      <Link href="/login" title="Sign in to save resources" aria-label={`Sign in to save ${title}`} className={`${cls} border-line text-muted hover:border-ink hover:text-ink`}>
+      <Link href="/login?reason=save" title="Sign in to save resources" aria-label={`Sign in to save ${title}`} className={`${cls} border-line text-muted hover:border-ink hover:text-ink`}>
         <Bookmark size={16} />
       </Link>
     );

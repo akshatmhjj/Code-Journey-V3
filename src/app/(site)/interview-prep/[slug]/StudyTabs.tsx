@@ -6,8 +6,7 @@ import { useReady } from "@/lib/prep-progress";
 
 type Concept = { term: string; def: string; hook?: string; visual?: ReactNode };
 type Question = { q: string; a: string; visual?: ReactNode };
-type Tab = "concepts" | "questions" | "traps";
-
+type Tab = "concepts" | "questions" | "traps"
 /** One topic, in three tabs: concepts, questions and traps. Only one tab is on screen at a time. */
 export function StudyTabs({ slug, concepts, questions, traps }: { slug: string; concepts: Concept[]; questions: Question[]; traps: string[] }) {
   const [tab, setTab] = useState<Tab>("concepts");

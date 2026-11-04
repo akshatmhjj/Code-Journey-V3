@@ -13,6 +13,7 @@ const NAV = [
   { href: "/skills", label: "Skills" },
   { href: "/resources", label: "Resources" },
   { href: "/glossary", label: "Glossary" },
+  { href: "/interview-prep", label: "Interview prep" },
 ];
 
 /** Underline for a nav item. The look and the hover rule live in globals.css (`.nav-underline`). */

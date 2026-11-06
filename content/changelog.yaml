@@ -1,11 +1,41 @@
+- date: 2026-11-06
+  version: "2.0.0-beta.20"
+  title: System Design section
+  changes:
+    - type: added
+      text: "A new System Design section with 8 reading lines, from the building blocks of large systems to distributed systems and microservices. Each line lists its stops in the order to read them."
+    - type: added
+      text: "Every stop has its own page with a short summary, key ideas, what to read first and the terms it uses. Each one links to the original article, credited to its author."
+    - type: added
+      text: "A glossary of system design terms and a searchable list of every article, with level and topic filters."
+- date: 2026-11-04
+  version: "2.0.0-beta.19"
+  title: Interview prep as a metro line
+  changes:
+    - type: changed
+      text: "Interview prep topics show Concepts, Questions and Traps as a metro line. Pick a stop to read it beside the line on desktop, or under its name on a phone."
+    - type: added
+      text: "Interview prep is in the main menu, the footer and the phone menu, next to System design."
+    - type: fixed
+      text: "The split view for interview prep topics is back after a merge had replaced it with the older list."
 - date: 2026-11-02
   version: "2.0.0-beta.18"
   title: Links and pay rechecked
   changes:
     - type: changed
-      text: Every resource link was checked again. The Linux Journey course has moved to a new address, and the link now points there.
+      text: "Every resource link was checked again. The Linux Journey course has moved to a new address, and the link now points there."
     - type: changed
-      text: Pay figures for front-end and software developer roles were re-read from PayScale and the US Bureau of Labor Statistics, and match the sources.
+      text: "Pay figures for front-end and software developer roles were re-read from PayScale and the US Bureau of Labor Statistics, and match the sources."
+- date: 2026-11-01
+  version: "2.0.0-beta.18.1"
+  title: Core CS interview prep
+  changes:
+    - type: added
+      text: "A new Interview prep section with five core CS topics: operating systems, computer networks, databases, OOP and data structures and algorithms."
+    - type: added
+      text: "Each topic has a 60-second version, concepts with memory hooks, questions with model answers, and common traps."
+    - type: added
+      text: "Pictures for the hard ideas, such as the TCP handshake, B-trees, deadlocks and Big-O. Mark a question ready once you can answer it out loud. Ticks stay on your device."
 - date: 2026-10-08
   version: "2.0.0-beta.17"
   title: Install Code Journey as an app

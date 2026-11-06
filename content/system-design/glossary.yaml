@@ -1,0 +1,109 @@
+terms:
+  - id: hld
+    term: "High-level design (HLD)"
+    def: "The big picture of a system: the services, databases and queues, and how they talk to each other. It answers what the parts are, not how each part is coded."
+  - id: lld
+    term: "Low-level design (LLD)"
+    def: "The inside of one part of a system: its classes, interfaces and methods. Machine coding rounds are usually LLD."
+  - id: api
+    term: "API"
+    def: "The agreed way one piece of software asks another to do something, for example an HTTP endpoint that returns a user's profile."
+  - id: rest
+    term: "REST"
+    def: "A style for web APIs where things are resources with their own URLs, and standard HTTP methods such as GET and POST act on them."
+  - id: latency
+    term: "Latency"
+    def: "How long one request takes from start to finish. Lower is better."
+  - id: throughput
+    term: "Throughput"
+    def: "How much work a system completes in a given time, such as requests per second."
+  - id: availability
+    term: "Availability"
+    def: "The share of time a system is up and answering requests. Teams often talk about 'nines', for example 99.9 percent."
+  - id: scalability
+    term: "Scalability"
+    def: "How well a system keeps working as load grows. Scaling up means a bigger machine; scaling out means more machines."
+  - id: load-balancer
+    term: "Load balancer"
+    def: "A component that spreads incoming requests across several servers and stops sending traffic to servers that fail."
+  - id: cdn
+    term: "CDN"
+    def: "A content delivery network: servers around the world that keep copies of content close to users so pages and files load faster."
+  - id: cache
+    term: "Cache"
+    def: "A fast store that keeps a copy of data that is slow to fetch or compute, so the next request for it is quick."
+  - id: ttl
+    term: "TTL"
+    def: "Time to live: how long a cached copy may be used before it must be fetched again."
+  - id: eviction
+    term: "Cache eviction"
+    def: "The rule for deciding what to throw out when a cache is full. Least recently used (LRU) is the common one."
+  - id: consistent-hashing
+    term: "Consistent hashing"
+    def: "A way of placing keys on machines so that adding or removing a machine moves only a small share of the keys."
+  - id: sharding
+    term: "Sharding"
+    def: "Splitting one large dataset into pieces, called shards, and storing each piece on a different machine."
+  - id: replication
+    term: "Replication"
+    def: "Keeping copies of the same data on several machines, for safety and to share the read load."
+  - id: consensus
+    term: "Consensus"
+    def: "Getting several machines to agree on one value even when some of them fail. Raft and Paxos are well-known algorithms for it."
+  - id: quorum
+    term: "Quorum"
+    def: "The minimum number of machines that must agree for an operation to count, usually a majority."
+  - id: leader-election
+    term: "Leader election"
+    def: "How a group of machines chooses one of them to coordinate the others, and picks a new one if it fails."
+  - id: cap-theorem
+    term: "CAP theorem"
+    def: "When a network splits, a distributed system has to choose between staying consistent and staying available. It cannot guarantee both."
+  - id: eventual-consistency
+    term: "Eventual consistency"
+    def: "Copies of data may briefly disagree, but if nothing changes they all end up the same."
+  - id: idempotency
+    term: "Idempotency"
+    def: "An operation that gives the same result whether it runs once or many times. It makes retries safe."
+  - id: rate-limiting
+    term: "Rate limiting"
+    def: "Capping how many requests a user or client may make in a period, to protect a service from overload and abuse."
+  - id: token-bucket
+    term: "Token bucket"
+    def: "A rate limiting method: a bucket fills with tokens at a steady pace, and each request takes one. No tokens means the request waits or is refused."
+  - id: message-queue
+    term: "Message queue"
+    def: "A buffer where one part of a system leaves messages and another part picks them up later, so the two do not have to work at the same speed."
+  - id: fan-out
+    term: "Fan-out"
+    def: "Sending one event to many places, such as copying a new post into every follower's feed."
+  - id: websocket
+    term: "WebSocket"
+    def: "A long-lived connection between a browser and a server that lets either side send messages at any time. It is common in chat and live apps."
+  - id: index
+    term: "Database index"
+    def: "A sorted lookup structure that lets a database find rows without reading the whole table. It speeds up reads and costs a little on writes."
+  - id: acid
+    term: "ACID"
+    def: "The promises of a reliable database transaction: atomic, consistent, isolated and durable."
+  - id: saga
+    term: "Saga"
+    def: "A way to complete a job that spans several services as a series of steps, each with an undo step in case a later one fails."
+  - id: microservice
+    term: "Microservice"
+    def: "A small service that owns one business capability and its data, and is built and deployed on its own."
+  - id: heartbeat
+    term: "Heartbeat"
+    def: "A small message a machine sends at regular intervals to say it is alive. Silence for too long means a likely failure."
+  - id: geohash
+    term: "Geohash"
+    def: "A short string that stands for a small area of the map. Nearby places share the start of their geohash, which makes nearby searches cheap."
+  - id: back-pressure
+    term: "Back-pressure"
+    def: "Slowing down or refusing new work when a part of the system is overloaded, so the overload does not spread."
+  - id: jwt
+    term: "JWT"
+    def: "A signed token that carries a user's identity. A server can check the signature without looking anything up."
+  - id: observability
+    term: "Observability"
+    def: "How well you can tell what a running system is doing from its logs, metrics and traces."

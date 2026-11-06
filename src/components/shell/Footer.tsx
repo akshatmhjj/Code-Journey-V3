@@ -9,18 +9,29 @@ import { Ticket } from "./Ticket";
 
 const LINKS = [
   {
-    title: "Explore",
+    title: "Find a role",
     links: [
       ["/roles", "All roles"],
       ["/compass", "Compass quiz"],
       ["/roles/compare", "Compare roles"],
-      ["/market", "Pay by role"],
-      ["/gap", "Job post checker"],
       ["/switch", "Switch careers"],
+    ],
+  },
+  {
+    title: "Skills and money",
+    links: [
       ["/skills", "All skills"],
       ["/resources", "Resource library"],
+      ["/market", "Pay by role"],
+      ["/gap", "Job post checker"],
+    ],
+  },
+  {
+    title: "Learn",
+    links: [
       ["/glossary", "Glossary"],
       ["/interview-prep", "Interview prep"],
+      ["/system-design", "System design"],
     ],
   },
   {

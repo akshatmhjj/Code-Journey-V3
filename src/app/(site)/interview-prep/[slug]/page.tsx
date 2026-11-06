@@ -47,7 +47,8 @@ export default async function InterviewTopicPage({ params }: PageProps<"/intervi
   }));
 
   return (
-    <div className="mx-auto w-full max-w-3xl px-4 pt-8 pb-24 md:px-6 md:pt-12">
+    <div className="wrap pt-8 pb-24 md:pt-12">
+      <div className="mx-auto max-w-3xl">
       <Link href="/interview-prep" className="inline-flex items-center gap-2 text-sm font-semibold text-muted hover:text-ink">
         <ArrowLeft className="size-4" aria-hidden /> All topics
       </Link>
@@ -66,11 +67,13 @@ export default async function InterviewTopicPage({ params }: PageProps<"/intervi
         </h2>
         <p className="mt-2 text-lg leading-relaxed">{topic.say}</p>
       </section>
+      </div>
 
       <div className="mt-12">
         <StudyTabs slug={slug} concepts={concepts} questions={questions} traps={topic.traps} />
       </div>
 
+      <div className="mx-auto max-w-3xl">
       <nav aria-label="Other topics" className="mt-16 grid gap-4 border-t border-line pt-8 md:grid-cols-2">
         {prev ? (
           <Link href={`/interview-prep/${prev.slug}`} className="group">
@@ -93,6 +96,7 @@ export default async function InterviewTopicPage({ params }: PageProps<"/intervi
       </nav>
 
       <p className="mt-10 font-mono text-xs tracking-wide text-muted uppercase">Answers checked {checked}</p>
+      </div>
     </div>
   );
 }

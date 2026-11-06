@@ -1,0 +1,85 @@
+title: "LLD Classics"
+slug: "lld-classics"
+order: 3
+level: beginner
+purpose: "Object-oriented design ideas first, then the machine coding problems interviewers like to set."
+assumes: "You know classes, objects and interfaces in at least one language."
+outcome: "You can take a small problem, list its entities, draw the classes and relationships, and explain the patterns you chose."
+articles:
+  - id: lld-concepts
+    title: "LLD Concepts"
+    topic: "LLD"
+    date: 2026-05-16
+    level: beginner
+    source: "https://www.vidya-bodha.com/articles/lld-concepts"
+    why: "It gives you the vocabulary the other four problems use."
+    summary: "Core low-level design ideas: classes, relationships and the principles behind a structure that is easy to change."
+    points:
+      - "Model the nouns as classes and the verbs as methods."
+      - "Prefer composition over inheritance, and program to interfaces."
+      - "The SOLID principles keep a design easy to change."
+    terms: [lld, api]
+    needs: []
+  - id: parking-lot
+    title: "Design a Parking Lot"
+    topic: "LLD"
+    date: 2026-05-22
+    level: beginner
+    source: "https://www.vidya-bodha.com/articles/design-a-parking-lot"
+    why: "It is the standard first machine coding problem."
+    summary: "Designing a parking lot: vehicles, spots, tickets and fees."
+    points:
+      - "Start with the entities: vehicle, spot, ticket and lot."
+      - "Use inheritance or an enum for vehicle types, and a strategy for pricing."
+      - "Handle the edge cases: a full lot, a wrong spot size and a lost ticket."
+    terms: [lld]
+    needs: [lld-concepts]
+  - id: vending-machine
+    title: "Design a Vending Machine"
+    topic: "LLD"
+    date: 2026-05-29
+    level: beginner
+    source: "https://www.vidya-bodha.com/articles/design-a-vending-machine"
+    why: "It introduces the state pattern."
+    summary: "Designing a vending machine that moves through states."
+    points:
+      - "The machine is a state machine: idle, has money, dispensing."
+      - "The state pattern puts each state's behaviour in its own class."
+      - "Inventory and making change are separate responsibilities."
+    terms: [lld]
+    needs: [parking-lot]
+  - id: music-system
+    title: "Design a basic Music System"
+    topic: "LLD"
+    date: 2026-05-19
+    level: intermediate
+    source: "https://www.vidya-bodha.com/articles/design-a-basic-music-system"
+    why: "It adds collections, playback control and interfaces."
+    summary: "Designing a basic music player with playlists."
+    points:
+      - "Keep the library, the playlists and the player separate."
+      - "Use the observer or command pattern for playback events."
+      - "Keep the design open to new sources and new shuffle rules."
+    terms: [lld]
+    needs: [vending-machine]
+  - id: lld-youtube
+    title: "Design Youtube"
+    topic: "LLD"
+    date: 2026-05-28
+    level: intermediate
+    source: "https://www.vidya-bodha.com/articles/lld-design-youtube"
+    why: "It brings the earlier ideas together in a larger model."
+    summary: "A low-level design for a video platform with users, videos, comments and subscriptions."
+    points:
+      - "Model users, channels, videos, comments and playlists as separate classes with clear owners."
+      - "Decide where interfaces, repositories and services sit."
+      - "Plan for extension, such as new kinds of media."
+    terms: [lld]
+    needs: [music-system]
+checks:
+  - q: "What is the state pattern, and where would you use it?"
+    a: "It moves each state's behaviour into its own class, so an object changes how it acts as its state changes. A vending machine is the standard example."
+  - q: "Why prefer composition to inheritance?"
+    a: "Composition lets you swap parts at run time and avoids deep class trees that break whenever a parent changes."
+  - q: "What are the first steps in an LLD interview?"
+    a: "Clarify the requirements, list the entities and how they relate, then sketch the classes and interfaces before writing any methods."

@@ -1,0 +1,99 @@
+title: "Microservices"
+slug: "microservices"
+order: 6
+level: intermediate
+purpose: "When to split a monolith, where to draw the lines, and how services talk to each other and stay consistent."
+assumes: "You have built a normal web backend and know about APIs and databases."
+outcome: "You can argue when microservices are worth it, draw sensible boundaries, and choose how services communicate and share data."
+articles:
+  - id: ms-mental-model
+    title: "Mental Model for Microservices"
+    topic: "Microservices"
+    date: 2026-07-23
+    level: beginner
+    source: "https://x.com/Harry_The_Nerd/status/2080261902593065465"
+    why: "Start with what a microservice is and what it costs."
+    summary: "An introduction to microservices and the way of thinking behind them."
+    points:
+      - "A microservice owns one capability and its own data, and is deployed on its own."
+      - "You trade simple code for distributed-system problems."
+      - "Most teams should earn microservices, not start with them."
+    terms: [microservice]
+    needs: []
+  - id: monolith-to-microservices
+    title: "Monolith To Microservices"
+    topic: "Microservices"
+    date: 2026-07-24
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2080659276998291721"
+    why: "It shows how real systems move from one to the other in safe steps."
+    summary: "Going from a plain monolith to true microservices."
+    points:
+      - "Start with a well-structured monolith, because clear module boundaries come first."
+      - "Extract services gradually, for example with the strangler approach."
+      - "Move one capability at a time and keep the system working throughout."
+    terms: [microservice]
+    needs: [ms-mental-model]
+  - id: service-boundaries
+    title: "Service Decomposition And Boundaries"
+    topic: "Microservices"
+    date: 2026-07-25
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2080943768153596085"
+    why: "Where you draw the lines decides whether everything else is easy or painful."
+    summary: "How to decompose a system into services and where the boundaries should go."
+    points:
+      - "Draw boundaries around business capabilities, not technical layers."
+      - "A good boundary keeps most changes inside one service."
+      - "Chatty calls between two services usually mean the boundary is in the wrong place."
+    terms: [microservice]
+    needs: [monolith-to-microservices]
+  - id: inter-service-communication
+    title: "Inter-Service Communication"
+    topic: "Microservices"
+    date: 2026-07-26
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2081302031646806047"
+    why: "Once services are separate, they have to talk."
+    summary: "How services communicate with each other."
+    points:
+      - "Synchronous calls such as REST or gRPC are simple but tie services together in time."
+      - "Asynchronous messages decouple services and absorb bursts."
+      - "Timeouts, retries and circuit breakers stop one failure spreading."
+    terms: [message-queue, api, idempotency]
+    needs: [service-boundaries]
+  - id: data-ownership-read-models
+    title: "Data Ownership And Read Models"
+    topic: "Microservices"
+    date: 2026-07-27
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2081673770092433631"
+    why: "Separate services mean separate data, and that changes how you read it."
+    summary: "How services handle data when there is no shared database to fall back on."
+    points:
+      - "Each service owns its data, and others ask through its API, not its tables."
+      - "Read models or events copy the data other services need."
+      - "Accept that those copies can be briefly out of date."
+    terms: [eventual-consistency]
+    needs: [inter-service-communication]
+  - id: distributed-transactions-sagas
+    title: "Distributed Transactions, Sagas, and Consistency"
+    topic: "Microservices"
+    date: 2026-07-28
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2082019622224900154"
+    why: "The last problem: one business action that touches several services."
+    summary: "What happens when one business operation has to update data in several services and there is no shared database transaction."
+    points:
+      - "Without a shared transaction you need sagas: steps with compensating actions."
+      - "Choreography uses events. Orchestration uses a coordinator."
+      - "Make every step idempotent, because retries will happen."
+    terms: [saga, idempotency, acid]
+    needs: [data-ownership-read-models]
+checks:
+  - q: "When should you not use microservices?"
+    a: "When the team is small or the domain is not well understood. A modular monolith is easier to build, test and run, and can be split later."
+  - q: "How do you keep data consistent without a shared transaction?"
+    a: "Use a saga: a series of local transactions, each with a compensating action, and make every step idempotent so retries are safe."
+  - q: "Why prefer asynchronous messaging between some services?"
+    a: "It decouples them in time, so a slow or failed service does not block its callers, and queues absorb bursts of traffic."

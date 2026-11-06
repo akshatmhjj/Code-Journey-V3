@@ -14,7 +14,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     <PathProvider routes={routes}>
     <div>
       <PhoneHeader />
-      <Header roleTitles={net.roles.filter((r) => r.wave === 1).map((r) => r.title)} />
+      <Header />
       <main id="main">{children}</main>
       <Footer />
       <NetworkOverlay domains={net.domains} roles={net.roles} />

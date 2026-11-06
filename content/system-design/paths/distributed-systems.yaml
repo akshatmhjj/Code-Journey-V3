@@ -1,0 +1,129 @@
+title: "Distributed Systems"
+slug: "distributed-systems"
+order: 5
+level: advanced
+purpose: "A series on time, replication, consistency, consensus, partitioning and failure, meant to be read in order."
+assumes: "You are comfortable with databases and networking, and have read the Backend or Fundamentals path."
+outcome: "You can explain why distributed systems are hard and compare the standard tools for replication, consistency, consensus and failure handling."
+articles:
+  - id: ds-part-1
+    title: "Distributed Systems Part-1 (Introduction)"
+    topic: "Distributed Systems"
+    date: 2026-08-25
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2092234002610680246"
+    why: "It sets out why the rest of the series is needed."
+    summary: "Why distributed systems are hard, and the impossibility results that shape every design."
+    points:
+      - "Machines fail independently, and networks delay or drop messages."
+      - "No design escapes trade-offs, such as the CAP theorem and the limits on agreement under failure."
+      - "Assume that failure is normal, not exceptional."
+    terms: [cap-theorem, availability]
+    needs: []
+  - id: ds-part-2
+    title: "Distributed Systems Part-2 (Time, Order, and Causality)"
+    topic: "Distributed Systems"
+    date: 2026-08-27
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2092969096774287363"
+    why: "Before copying data you need a way to say which event came first."
+    summary: "Clocks drift, so how do you order events across machines?"
+    points:
+      - "Physical clocks disagree, so ordering by wall-clock time is unreliable."
+      - "Logical clocks and vector clocks capture which events could have affected which."
+      - "Know when you need a total order and when a causal order is enough."
+    terms: []
+    needs: [ds-part-1]
+  - id: ds-part-3
+    title: "Distributed Systems Part-3 (Replication Strategies)"
+    topic: "Distributed Systems"
+    date: 2026-08-29
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2093700736299487430"
+    why: "With a way to order events, you can copy data safely."
+    summary: "The main ways to replicate data, and what each one costs."
+    points:
+      - "Single-leader, multi-leader and leaderless replication trade consistency, availability and complexity."
+      - "Synchronous replication is safe but slow. Asynchronous replication is fast but can lose data."
+      - "Replication lag causes stale reads."
+    terms: [replication, eventual-consistency]
+    needs: [ds-part-2]
+  - id: ds-part-4
+    title: "Distributed Systems Part-4 (Consistency Models)"
+    topic: "Distributed Systems"
+    date: 2026-08-31
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2094422311906726202"
+    why: "Replication raises the question of what readers are promised."
+    summary: "The different consistency models and what each promises to a reader."
+    points:
+      - "Strong consistency makes the system behave like one copy. Weaker models allow stale reads for speed."
+      - "Linearizable, sequential, causal and eventual consistency form a spectrum."
+      - "Pick the weakest model your product can live with."
+    terms: [eventual-consistency, cap-theorem]
+    needs: [ds-part-3]
+  - id: ds-part-5
+    title: "Distributed Systems Part-5 (Consensus Algorithms)"
+    topic: "Distributed Systems"
+    date: 2026-09-02
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2095122732065443969"
+    why: "Strong consistency depends on machines agreeing, which is consensus."
+    summary: "How machines agree on a value even when some of them fail."
+    points:
+      - "Consensus lets machines agree on one value despite failures."
+      - "Paxos and Raft elect a leader and replicate a log using a majority quorum."
+      - "Consensus is costly, so use it for small, critical state and not for bulk data."
+    terms: [consensus, quorum, leader-election]
+    needs: [ds-part-4]
+  - id: ds-part-6
+    title: "Distributed Systems Part-6 (Partitioning and Sharding)"
+    topic: "Distributed Systems"
+    date: 2026-09-04
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2095844630399263161"
+    why: "When data outgrows one machine, you split it."
+    summary: "How to split data across many nodes so that no single machine has to hold all of it or serve all the traffic for it."
+    points:
+      - "Partitioning splits data over nodes by key range or by hash."
+      - "Hot spots and rebalancing are the main operating problems."
+      - "Secondary indexes and cross-shard queries are harder than single-key lookups."
+    terms: [sharding, consistent-hashing]
+    needs: [ds-part-5]
+  - id: ds-part-7
+    title: "Distributed Systems Part-7 (Failure Detection and Fault Tolerance)"
+    topic: "Distributed Systems"
+    date: 2026-09-05
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2096163179596525852"
+    why: "More machines means more failures, so you must notice and survive them."
+    summary: "How systems detect failures and keep running through them."
+    points:
+      - "Heartbeats and timeouts detect failures, but never perfectly."
+      - "Redundancy, retries with backoff and circuit breakers contain failures."
+      - "Design for graceful degradation, not for zero failures."
+    terms: [heartbeat, availability]
+    needs: [ds-part-6]
+  - id: ds-part-8
+    title: "Distributed Systems Part-8 (Distributed Transactions Revisited)"
+    topic: "Distributed Systems"
+    date: 2026-09-06
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2096575304722747738"
+    why: "It ties the series together by asking how to change data in several places at once."
+    summary: "Distributed transactions, and what real systems chose to do about them."
+    points:
+      - "Two-phase commit gives atomicity across nodes but blocks when the coordinator fails."
+      - "Sagas replace one big transaction with a series of steps and undo actions."
+      - "Study real case studies to see which trade-offs they chose."
+    terms: [saga, acid]
+    needs: [ds-part-7]
+checks:
+  - q: "What does the CAP theorem say?"
+    a: "When a network partition happens, a system has to choose between consistency and availability. It cannot keep both."
+  - q: "Why are timeouts an imperfect failure detector?"
+    a: "A slow node and a dead node look the same from outside, so a timeout can mark a healthy node as failed."
+  - q: "Why use consensus only for small amounts of data?"
+    a: "Every decision needs a majority round trip, so it is slow and limited by the leader. Use it for configuration and leadership, and use cheaper replication for bulk data."
+  - q: "What is a saga?"
+    a: "A series of local steps, each with an undo step, that replaces one big distributed transaction. If a step fails, the earlier steps are undone."

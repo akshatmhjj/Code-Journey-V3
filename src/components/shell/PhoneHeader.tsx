@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { BookOpen, Compass, IndianRupee, Layers, Map, MessageCircle, Palette, ScanSearch, Search, UserRound, X } from "lucide-react";
+import { BookOpen, Compass, GraduationCap, Layers, Map, MessageCircle, Network, Palette, Search, UserRound, X } from "lucide-react";
 import { Mark } from "@/components/brand/Logo";
 import { useUser } from "@/lib/supabase";
 import { useUI } from "./UIProvider";
@@ -16,9 +16,9 @@ const PLACES = [
   { href: "/roles", label: "Roles", Icon: Map },
   { href: "/skills", label: "Skills", Icon: Layers },
   { href: "/resources", label: "Resources", Icon: BookOpen },
-  { href: "/market", label: "Pay by role", Icon: IndianRupee },
+  { href: "/interview-prep", label: "Interview prep", Icon: GraduationCap },
   { href: "/compass", label: "Compass", Icon: Compass },
-  { href: "/gap", label: "Job post checker", Icon: ScanSearch },
+  { href: "/system-design", label: "System design", Icon: Network },
 ];
 
 const isActive = (path: string, href: string) => path === href || path.startsWith(href + "/");
@@ -98,7 +98,7 @@ export function PhoneHeader() {
   ];
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       {open && (
         <button
           aria-label="Close menu"

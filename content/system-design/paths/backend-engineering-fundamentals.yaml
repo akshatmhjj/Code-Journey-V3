@@ -1,0 +1,143 @@
+title: "Backend Engineering Fundamentals"
+slug: "backend-engineering-fundamentals"
+order: 4
+level: beginner
+purpose: "How a production backend works, from the first HTTP request through databases, caching and security."
+assumes: "You can write a simple server in any language."
+outcome: "You can follow a request through a backend and say where each concern belongs, from validation to caching to security."
+articles:
+  - id: http-routing
+    title: "HTTP & Routing"
+    topic: "Backend Engineering"
+    date: 2026-05-10
+    level: beginner
+    source: "https://x.com/Harry_The_Nerd/status/2053366145995178087"
+    why: "Every backend starts with a request."
+    summary: "How HTTP requests work and how a server routes them to code."
+    points:
+      - "A request has a method, a path, headers and sometimes a body. A response has a status code."
+      - "Routing maps a method and path to a handler."
+      - "Know the common status codes and which methods are idempotent."
+    terms: [api, idempotency]
+    needs: []
+  - id: serialization-auth
+    title: "Serialization, Deserialization, Authentication and Authorization"
+    topic: "Backend Engineering"
+    date: 2026-05-10
+    level: beginner
+    source: "https://x.com/Harry_The_Nerd/status/2053487726033559704"
+    why: "Once requests arrive, you must read the data and know who sent it."
+    summary: "How data is turned into bytes for the wire, and how a server knows who is calling and what they may do."
+    points:
+      - "Serialization turns objects into formats such as JSON. Deserialization reverses it."
+      - "Authentication proves who you are. Authorization decides what you may do."
+      - "Sessions and tokens are two ways to remember a signed-in user."
+    terms: [jwt, api]
+    needs: [http-routing]
+  - id: validation-middleware
+    title: "Validation, Transformation, Controllers, Middlewares"
+    topic: "Backend Engineering"
+    date: 2026-05-11
+    level: beginner
+    source: "https://x.com/Harry_The_Nerd/status/2053882356071911853"
+    why: "It shows the layers a request passes through before it reaches your logic."
+    summary: "Validating input, transforming it, and the layers a request passes through."
+    points:
+      - "Never trust input. Validate its shape and values at the edge."
+      - "Middleware runs shared steps such as logging and auth before the handler."
+      - "Keep controllers thin and let them call services."
+    terms: [api]
+    needs: [serialization-auth]
+  - id: rest-api-design
+    title: "Rest API Design"
+    topic: "Backend Engineering"
+    date: 2026-05-14
+    level: beginner
+    source: "https://x.com/Harry_The_Nerd/status/2054882198604628305"
+    why: "It pulls the earlier pieces into a clear, consistent API."
+    summary: "Principles for designing clear, consistent REST APIs."
+    points:
+      - "Model resources as nouns and use HTTP methods for the actions."
+      - "Use consistent status codes, pagination and error shapes."
+      - "Version your API so you can change it without breaking clients."
+    terms: [rest, api]
+    needs: [validation-middleware]
+  - id: databases-part-1
+    title: "Databases in Depth Part-1"
+    topic: "Backend Engineering"
+    date: 2026-07-05
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2073772366094602241"
+    why: "Most backends are only as good as their database use."
+    summary: "The first part of a deep look at how databases work inside."
+    points:
+      - "Storage engines lay data out in pages on disk, and the layout decides what is fast."
+      - "Indexes such as B-trees trade write cost for read speed."
+      - "Know when a query can use an index and when it has to scan."
+    terms: [index]
+    needs: [rest-api-design]
+  - id: databases-part-2
+    title: "Databases in Depth Part-2"
+    topic: "Backend Engineering"
+    date: 2026-07-11
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2075942037732667812"
+    why: "Next, what makes a group of changes safe."
+    summary: "Part two of the database deep dive."
+    points:
+      - "Transactions group changes so they succeed or fail together."
+      - "ACID describes what a reliable transaction promises."
+      - "Isolation levels trade safety against speed."
+    terms: [acid, index]
+    needs: [databases-part-1]
+  - id: databases-part-3
+    title: "Databases in Depth Part-3"
+    topic: "Backend Engineering"
+    date: 2026-07-13
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2076649413435687097"
+    why: "Finally, what to do when one database is not enough."
+    summary: "Part three of the database deep dive."
+    points:
+      - "Replication copies data to other machines for safety and for read scale."
+      - "Sharding splits data across machines when one machine is not enough."
+      - "Each choice brings consistency and operating costs."
+    terms: [replication, sharding]
+    needs: [databases-part-2]
+  - id: caching-queues-observability
+    title: "Caching, Task Queues, Error Handling, Logging, Monitoring"
+    topic: "Backend Engineering"
+    date: 2026-07-15
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2077400118647750968"
+    why: "These are the tools that keep a backend fast and visible."
+    summary: "Caching, background task queues, error handling, logging and monitoring."
+    points:
+      - "Cache what is read often and changes rarely, and decide how it is invalidated."
+      - "Task queues move slow work out of the request path."
+      - "Logs, metrics and alerts show you what the system is doing."
+    terms: [cache, message-queue, observability]
+    needs: [databases-part-3]
+  - id: security-scaling-concurrency
+    title: "Security, Scaling & Performance, Concurrency & Parallelism"
+    topic: "Backend Engineering"
+    date: 2026-07-16
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2077722979882963122"
+    why: "It closes the path with the concerns that grow as a system does."
+    summary: "Security, scaling, performance, and concurrency and parallelism."
+    points:
+      - "Defend against injection, broken auth and leaked secrets, and apply least privilege."
+      - "Scale up first, scale out when you must, and find the bottleneck before changing anything."
+      - "Concurrency is handling many things at once. Parallelism is doing many things at once."
+    terms: [scalability, throughput]
+    needs: [caching-queues-observability]
+checks:
+  - q: "What is the difference between authentication and authorization?"
+    a: "Authentication proves who the caller is. Authorization decides what that caller may do once you know who they are."
+  - q: "Why do queries use indexes, and what do they cost?"
+    a: "An index lets the database find rows without reading the whole table, which speeds up reads. It costs extra storage and slows writes, because the index must be updated too."
+  - q: "What belongs in middleware, and what belongs in a controller?"
+    a: "Middleware holds steps that apply to many routes, such as logging, auth and rate limits. A controller handles one route and passes the real work to a service."
+  - q: "Why move slow work to a task queue?"
+    a: "The request can return quickly, and the slow job runs in the background with retries, instead of making the user wait."

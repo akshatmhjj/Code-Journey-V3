@@ -1,0 +1,325 @@
+title: "HLD Interview Prep"
+slug: "hld-interview-prep"
+order: 2
+level: intermediate
+purpose: "The classic product design questions, from small warm-ups to the large systems that come up in senior loops, ending with a revision checklist."
+assumes: "You have read the Fundamentals path, or know load balancers, caches, queues and consistent hashing."
+outcome: "You can run a design interview from requirements to a defended design, and you know the mistakes that are easy to make."
+articles:
+  - id: bitly-pastebin
+    title: "Design Bit.ly and Pastebin"
+    topic: "HLD"
+    date: 2026-04-16
+    level: beginner
+    source: "https://www.vidya-bodha.com/articles/design-bit-ly-and-pastebin"
+    why: "A small, complete design is the best warm-up."
+    summary: "Designing a URL shortener and a paste-sharing service."
+    points:
+      - "Generate short unique keys, for example a counter in base62 or a hash, and handle collisions."
+      - "Reads vastly outnumber writes, so cache hot links and set a retention policy."
+      - "Redirect status codes and click analytics are the usual follow-up questions."
+    terms: [cache]
+    needs: [unique-id-generator]
+  - id: autocomplete
+    title: "Design Autocomplete For Search Engines"
+    topic: "HLD"
+    date: 2026-04-19
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2045906641967833171"
+    why: "It introduces low-latency reads over precomputed data."
+    summary: "Designing typeahead suggestions that return in a few milliseconds."
+    points:
+      - "A trie, or a precomputed store of top suggestions, maps each prefix to its best results."
+      - "Rankings are rebuilt offline from query logs, not computed on each keystroke."
+      - "Cache hot prefixes, and stop the client sending a request on every key press."
+    terms: [latency, cache]
+    needs: [distributed-cache]
+  - id: news-feed
+    title: "Design A News-Feed System"
+    topic: "HLD"
+    date: 2026-05-24
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2058553384735842654"
+    why: "Fan-out on write versus fan-out on read first appears here and comes back in later designs."
+    summary: "Designing a feed that shows each user the latest posts from the people they follow."
+    points:
+      - "Fan-out on write precomputes feeds. Fan-out on read builds them when the user opens the app."
+      - "Accounts with millions of followers need a hybrid approach because their fan-out is huge."
+      - "Cache ready-made feeds, and rank in a separate step."
+    terms: [fan-out, cache]
+    needs: [distributed-message-queue]
+  - id: chat-system
+    title: "Design A Chat System"
+    topic: "HLD"
+    date: 2026-06-01
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2061445321910284589"
+    why: "It adds real-time delivery on top of storage and queues."
+    summary: "Designing a real-time chat app with one-to-one and group messages."
+    points:
+      - "Persistent connections such as WebSockets push messages to users who are online."
+      - "Messages need ordering, delivery status and storage for users who are offline."
+      - "Group chats raise the fan-out and presence questions."
+    terms: [websocket, fan-out]
+    needs: [notification-system]
+  - id: twitter
+    title: "Design Twitter"
+    topic: "HLD"
+    date: 2026-06-20
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2068309801638195531"
+    why: "It puts the feed pattern to work in a full product."
+    summary: "Designing a microblogging platform with posts, follows, timelines and search."
+    points:
+      - "Timeline generation uses the hybrid fan-out from the news feed design."
+      - "Search and trending topics are separate pipelines fed by streams of events."
+      - "Counters such as likes and reposts are written heavily, so batch or shard them."
+    terms: [fan-out, cache]
+    needs: [news-feed]
+  - id: instagram
+    title: "Design Instagram"
+    topic: "HLD"
+    date: 2026-06-12
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2065074213665579192"
+    why: "The same feed ideas, plus large media files."
+    summary: "Designing a photo and video sharing platform."
+    points:
+      - "Store media in object storage and serve it through a CDN."
+      - "Process uploads asynchronously into several sizes and formats."
+      - "Keep metadata in a database, and keep feed ranking separate from the media path."
+    terms: [cdn, fan-out]
+    needs: [news-feed, cdn]
+  - id: reddit
+    title: "Design Reddit"
+    topic: "HLD"
+    date: 2026-06-18
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2067615247259811850"
+    why: "It moves from person-based feeds to communities and ranking."
+    summary: "Designing a forum and link-aggregation platform with voting and nested comments."
+    points:
+      - "Ranking combines votes with time decay and is recalculated often."
+      - "Nested comments need a tree storage model that is cheap to read."
+      - "Votes are a hot write path, so count them asynchronously."
+    terms: [cache]
+    needs: [twitter]
+  - id: proximity-service
+    title: "System Design Of A Proximity Service"
+    topic: "Engineering Articles"
+    date: 2026-08-22
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2091192716059459825"
+    why: "It teaches location search, which Tinder, Airbnb and Maps all need."
+    summary: "Designing a service that finds nearby places or people."
+    points:
+      - "Geohashes or quadtrees split the map so a search only looks at nearby cells."
+      - "Check the target cell and its neighbours so results near a cell edge are not missed."
+      - "Locations are read far more often than they change."
+    terms: [geohash]
+    needs: []
+  - id: tinder
+    title: "Design Tinder"
+    topic: "HLD"
+    date: 2026-06-13
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2065790968448909572"
+    why: "It applies proximity search to matching."
+    summary: "Designing a location-based matching app."
+    points:
+      - "Candidate profiles come from a proximity query, filtered by preferences."
+      - "Swipes are write-heavy and must be recorded so a mutual match is found quickly."
+      - "Do not show the same profile twice, and keep a recommendation queue ready ahead of the user."
+    terms: [geohash]
+    needs: [proximity-service]
+  - id: youtube
+    title: "Design Youtube"
+    topic: "HLD"
+    date: 2026-06-05
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2062909779576791167"
+    why: "Video adds storage, processing and delivery at huge scale."
+    summary: "Designing a video sharing and streaming platform."
+    points:
+      - "Uploads are transcoded into several resolutions and cut into chunks for adaptive streaming."
+      - "A CDN serves the video, and the origin only handles misses."
+      - "Metadata, recommendations and view counts are separate services."
+    terms: [cdn, latency]
+    needs: [instagram]
+  - id: spotify
+    title: "Design Spotify"
+    topic: "HLD"
+    date: 2026-06-08
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2063952850531897396"
+    why: "Similar to video, but with audio, playlists and offline use."
+    summary: "Designing a music streaming platform."
+    points:
+      - "Audio is chunked and served through a CDN, with the player buffering ahead."
+      - "Playlists, search and recommendations are separate services with their own stores."
+      - "Offline mode needs licensing checks and download management."
+    terms: [cdn]
+    needs: [youtube]
+  - id: netflix
+    title: "Design Netflix"
+    topic: "HLD"
+    date: 2026-06-28
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2071256571028648283"
+    why: "It pushes video delivery to its limit with its own edge network."
+    summary: "Designing a global subscription video streaming service."
+    points:
+      - "Content is placed on edge servers close to viewers before it is asked for."
+      - "Adaptive bitrate streaming adjusts quality to the viewer's connection."
+      - "Recommendations, playback and billing are independent services that must fail independently."
+    terms: [cdn, availability]
+    needs: [youtube]
+  - id: medium
+    title: "Design Medium"
+    topic: "HLD"
+    date: 2026-08-03
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2084263186199638124"
+    why: "A read-heavy publishing design with search and following."
+    summary: "Designing an open publishing and social journalism platform."
+    points:
+      - "Articles are written rarely and read often, so cache aggressively and serve from the edge."
+      - "Search indexes, tags and follows power discovery."
+      - "A rich editor needs drafts, autosave and revision history."
+    terms: [cache]
+    needs: [news-feed]
+  - id: leetcode
+    title: "Design Leetcode"
+    topic: "HLD"
+    date: 2026-08-01
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2083591314067927258"
+    why: "It introduces running untrusted code safely."
+    summary: "Designing a coding practice platform that runs user submissions."
+    points:
+      - "Submissions run in sandboxed containers with CPU, memory and time limits."
+      - "A queue spreads submissions over workers and hands the results back."
+      - "Contests create bursts of traffic that you must plan for."
+    terms: [message-queue]
+    needs: [notification-system]
+  - id: amazon
+    title: "Design Amazon"
+    topic: "HLD"
+    date: 2026-06-26
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2070543086258979132"
+    why: "It brings inventory, orders and payments together."
+    summary: "Designing an e-commerce platform."
+    points:
+      - "Catalogue and search are read-heavy. Inventory and orders need strong consistency."
+      - "Checkout is a multi-step flow that needs retries and idempotency."
+      - "Split the system into services around products, cart, orders and payments."
+    terms: [idempotency, acid]
+    needs: [notification-system]
+  - id: airbnb
+    title: "Design Airbnb"
+    topic: "HLD"
+    date: 2026-07-21
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2079561027788611975"
+    why: "Booking systems are all about not selling the same thing twice."
+    summary: "Designing a lodging booking platform."
+    points:
+      - "Search combines location, dates and filters."
+      - "Reservations must prevent double booking, using locks or conditional writes."
+      - "Payments and cancellations are long-running flows with several states."
+    terms: [idempotency, acid, geohash]
+    needs: [amazon, tinder]
+  - id: google-drive
+    title: "Design Google Drive"
+    topic: "HLD"
+    date: 2026-08-15
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2088619948113641872"
+    why: "File sync introduces chunking and conflict handling."
+    summary: "Designing a cloud file storage and sync service."
+    points:
+      - "Files are split into chunks, so only the changed parts are uploaded."
+      - "Metadata and file content are stored separately."
+      - "Sync across devices needs change notifications and conflict resolution."
+    terms: [replication]
+    needs: [instagram]
+  - id: google-docs
+    title: "Design Google Docs"
+    topic: "HLD"
+    date: 2026-08-11
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2087149020011774260"
+    why: "Real-time collaboration is the hardest case in the list."
+    summary: "Designing a real-time collaborative editor."
+    points:
+      - "Operational transformation or CRDTs let edits from different people merge cleanly."
+      - "A persistent connection per user carries edits and cursor positions."
+      - "Save history as a log of operations so you can replay and undo."
+    terms: [websocket, eventual-consistency]
+    needs: [chat-system, google-drive]
+  - id: google-maps
+    title: "Design Google Maps"
+    topic: "HLD"
+    date: 2026-09-20
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2101675662482571673"
+    why: "It combines location data with routing and live traffic."
+    summary: "Designing a mapping and navigation platform."
+    points:
+      - "Map tiles are pre-rendered and served from a CDN."
+      - "Routing runs shortest-path algorithms over a road graph, with traffic as changing edge weights."
+      - "Location updates from phones feed the traffic estimates."
+    terms: [cdn, geohash]
+    needs: [proximity-service]
+  - id: discord
+    title: "Design Discord"
+    topic: "HLD"
+    date: 2026-10-25
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2114362276316942758"
+    why: "It brings real-time chat together with voice and huge communities."
+    summary: "Designing a chat platform with servers, channels and voice."
+    points:
+      - "Very large servers need careful fan-out and presence handling."
+      - "Messages live in a store built for time-ordered writes."
+      - "Voice needs its own real-time media path."
+    terms: [websocket, fan-out]
+    needs: [chat-system]
+  - id: metrics-monitoring
+    title: "Design A Metrics Monitoring and Alerting System"
+    topic: "HLD"
+    date: 2026-10-10
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2108858835440119870"
+    why: "A different shape: heavy writes of time-series data."
+    summary: "Designing a system that collects, stores and alerts on metrics."
+    points:
+      - "Agents push metrics, or a collector pulls them, into a time-series database."
+      - "Downsampling and retention keep storage under control."
+      - "Alerts must be evaluated reliably and must not fire in floods."
+    terms: [observability]
+    needs: [distributed-message-queue]
+  - id: tricky-hld-patterns
+    title: "Tricky HLD Patterns for interviews"
+    topic: "HLD"
+    date: 2026-05-19
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2056739488114856226"
+    why: "Placed last as a revision checklist of patterns that are easy to miss."
+    summary: "Commonly missed patterns in high-level design interviews."
+    points:
+      - "Idempotency, back-pressure and retries are missed more often than database choices."
+      - "State your assumptions and numbers before you choose components."
+      - "Name the trade-off behind every choice."
+    terms: [idempotency, back-pressure]
+    needs: []
+checks:
+  - q: "What is the difference between fan-out on write and fan-out on read?"
+    a: "On write, a post is copied into each follower's feed when it is made, so reads are fast and writes are heavy. On read, the feed is built when the user opens it, so writes are cheap and reads are heavy. Real systems often mix both."
+  - q: "How do you avoid double booking in a reservation system?"
+    a: "Use a transaction or a conditional write that checks the slot is still free as it reserves it, and make the booking request idempotent so a retry does not create a second booking."
+  - q: "Why do geohashes help with nearby searches?"
+    a: "They turn a location into a short string where nearby places share a prefix, so you can look at one cell and its neighbours instead of scanning every place."
+  - q: "What should you do first in a design interview?"
+    a: "Clarify the requirements and estimate the scale. The numbers justify each component you choose later."

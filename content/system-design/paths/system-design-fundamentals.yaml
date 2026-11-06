@@ -1,0 +1,199 @@
+title: "System Design Fundamentals"
+slug: "system-design-fundamentals"
+order: 1
+level: beginner
+purpose: "The building blocks almost every large system is made of, in an order where each article leans on the one before it."
+assumes: "You can read code and know what a web server and a database do. No system design experience is needed."
+outcome: "You can name the standard building blocks, say what problem each one solves, and explain how they fit together in a simple design."
+articles:
+  - id: system-design-for-beginners
+    title: "System Design for Beginners: How to Start With HLD and LLD"
+    topic: "Engineering Articles"
+    date: 2026-09-13
+    level: beginner
+    source: "https://x.com/Harry_The_Nerd/status/2099048223797043656"
+    why: "Start here. It sets out how HLD and LLD differ and how to approach a design."
+    summary: "An introduction to system design for newcomers: what HLD and LLD mean and how to begin on a design question."
+    points:
+      - "HLD is the big picture of services, databases and how they talk. LLD is the inside of one service: classes and interfaces."
+      - "Begin every design by pinning down requirements and scale before drawing any boxes."
+      - "Estimate rough numbers such as users, requests per second and storage, so each choice has a reason."
+    terms: [hld, lld, scalability]
+    needs: []
+  - id: load-balancer
+    title: "Design a Load Balancer"
+    topic: "HLD"
+    date: 2026-04-21
+    level: beginner
+    source: "https://x.com/Harry_The_Nerd/status/2046465659551576395"
+    why: "The simplest building block, and the first one traffic meets."
+    summary: "How load balancers spread requests over servers, and how you would design one from scratch."
+    points:
+      - "A load balancer hides many servers behind one address and removes a single point of failure."
+      - "Algorithms such as round robin, least connections and hashing trade simplicity for fairness."
+      - "Health checks take dead servers out of rotation. Layer 4 balancers see connections; layer 7 balancers see requests."
+    terms: [load-balancer, availability]
+    needs: [system-design-for-beginners]
+  - id: cdn
+    title: "Design a Content Delivery Network"
+    topic: "HLD"
+    date: 2026-04-21
+    level: beginner
+    source: "https://x.com/Harry_The_Nerd/status/2046578404758295032"
+    why: "Another layer in front of your servers, built to cut distance and load."
+    summary: "How a content delivery network keeps copies of content near users, and what happens on a cache hit or a miss."
+    points:
+      - "Edge servers hold copies of static content close to users, which cuts latency and load on the origin."
+      - "Cache rules such as TTL and invalidation decide how fresh the content stays."
+      - "Pull CDNs fetch on the first request. Push CDNs are loaded in advance."
+    terms: [cdn, cache, ttl, latency]
+    needs: [load-balancer]
+  - id: redis-guide
+    title: "A Complete Guide to Redis"
+    topic: "Engineering Articles"
+    date: 2026-05-31
+    level: intermediate
+    source: "https://www.vidya-bodha.com/articles/a-complete-guide-to-redis"
+    why: "Redis turns up in caches, rate limiters and queues, so know it before the designs that use it."
+    summary: "A guide to what Redis is, how it keeps data in memory, and the jobs it is commonly given."
+    points:
+      - "Redis keeps data in memory, so reads and writes are very fast. It offers strings, hashes, lists, sets and sorted sets."
+      - "Persistence by snapshot or append-only log is optional, so know what you lose on a crash."
+      - "Common jobs are caching, counters, rate limiting, session storage and simple queues."
+    terms: [cache, ttl, eviction]
+    needs: [system-design-for-beginners]
+  - id: rate-limiter
+    title: "Design A Rate Limiter"
+    topic: "HLD"
+    date: 2026-04-18
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2045533839649624096"
+    why: "It needs a fast shared counter, which is the job you just saw Redis do."
+    summary: "How to design a rate limiter that protects a service from too many requests, and which algorithm to pick."
+    points:
+      - "Common algorithms are token bucket, leaky bucket, fixed window and sliding window."
+      - "Counters must be shared across servers, so a fast store such as Redis is typical."
+      - "Decide what happens when the limit is hit, and where the limiter sits: gateway, service or client."
+    terms: [rate-limiting, token-bucket]
+    needs: [redis-guide, load-balancer]
+  - id: consistent-hashing
+    title: "Design Consistent Hashing"
+    topic: "HLD"
+    date: 2026-05-20
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2057098732328648808"
+    why: "You need it before any design that spreads data over many machines."
+    summary: "How consistent hashing places keys on a ring so that adding or removing a node moves only a small share of the data."
+    points:
+      - "Plain modulo hashing remaps almost every key when the number of nodes changes."
+      - "A hash ring puts nodes and keys on a circle, and each key goes to the next node clockwise."
+      - "Virtual nodes even out the load and make rebalancing smoother."
+    terms: [consistent-hashing, sharding]
+    needs: [system-design-for-beginners]
+  - id: distributed-cache
+    title: "Design A Distributed Cache"
+    topic: "HLD"
+    date: 2026-04-25
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2048052028174463278"
+    why: "It joins the cache idea with consistent hashing to spread the data."
+    summary: "How a caching layer spread over many machines is organised, and how it stays useful as it grows."
+    points:
+      - "Keys are spread across cache nodes with consistent hashing."
+      - "An eviction policy such as LRU and a TTL decide what stays in memory."
+      - "Plan for stampedes, hot keys and what happens when a node dies."
+    terms: [cache, eviction, consistent-hashing, ttl]
+    needs: [consistent-hashing, redis-guide]
+  - id: distributed-kv-store
+    title: "Design a Distributed Key-Value store"
+    topic: "HLD"
+    date: 2026-04-23
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2047329176982827353"
+    why: "It takes the same spreading idea and adds replication and failure handling."
+    summary: "How to build a key-value store that partitions and replicates data across machines."
+    points:
+      - "Partition the data with consistent hashing and keep several replicas of each partition."
+      - "Quorum reads and writes let you tune between consistency and availability."
+      - "Conflicts are resolved with versioning, and stale replicas are repaired in the background."
+    terms: [replication, quorum, eventual-consistency, cap-theorem]
+    needs: [consistent-hashing, distributed-cache]
+  - id: unique-id-generator
+    title: "Design A Unique ID Generator in Distributed Systems"
+    topic: "HLD"
+    date: 2026-05-21
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2057461354114728238"
+    why: "Many of the designs ahead need ids that stay unique across machines."
+    summary: "How to make unique ids across many servers without one shared counter, including Snowflake-style ids."
+    points:
+      - "A database auto-increment breaks down once there is more than one writer."
+      - "Snowflake-style ids pack a timestamp, a machine id and a sequence number into one number."
+      - "Clock drift and the number of machines are the limits to design around."
+    terms: [scalability]
+    needs: [system-design-for-beginners]
+  - id: kafka-crash-course
+    title: "Apache Kafka: Crash Course"
+    topic: "Engineering Articles"
+    date: 2026-06-03
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2062165677033820383"
+    why: "Learn the tool first, then see how a queue is designed."
+    summary: "A crash course on Apache Kafka: topics, partitions, producers and consumers."
+    points:
+      - "Kafka stores messages in an ordered log split into partitions, which lets it scale."
+      - "Consumers track their own position, so messages can be replayed."
+      - "Consumer groups share a topic's partitions so the work is spread across consumers."
+    terms: [message-queue]
+    needs: [system-design-for-beginners]
+  - id: distributed-message-queue
+    title: "Design A Distributed Message Queue"
+    topic: "HLD"
+    date: 2026-10-04
+    level: advanced
+    source: "https://x.com/Harry_The_Nerd/status/2106418481130516785"
+    why: "It builds on Kafka's ideas to show what it takes to design a queue yourself."
+    summary: "How to design a distributed message queue and streaming service like Kafka."
+    points:
+      - "Partitioned, replicated logs give you scale and durability."
+      - "Delivery guarantees (at most once, at least once, exactly once) cost different amounts of complexity."
+      - "Plan for ordering, consumer groups, retention and what happens when a broker fails."
+    terms: [message-queue, replication, idempotency, back-pressure]
+    needs: [kafka-crash-course, consistent-hashing]
+  - id: notification-system
+    title: "Design A Notification System"
+    topic: "HLD"
+    date: 2026-04-16
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2044839667267494292"
+    why: "It uses a queue to turn one event into email, push and SMS."
+    summary: "How to design a notification system that sends push, SMS and email at scale."
+    points:
+      - "A queue sits between the services that raise events and the senders for each channel."
+      - "Retries, deduplication and user preferences stop messages being lost, doubled or unwanted."
+      - "Third-party providers are slow and unreliable, so isolate each channel from the others."
+    terms: [message-queue, idempotency, fan-out]
+    needs: [distributed-message-queue]
+  - id: authentication-system
+    title: "Design an Authentication System"
+    topic: "HLD"
+    date: 2026-04-27
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2048758919770816850"
+    why: "Last, because it touches caches, sessions and tokens you have now met."
+    summary: "How to design sign-in and session handling for a system with many users."
+    points:
+      - "Sessions keep state on the server. Tokens such as JWTs keep it in the token."
+      - "Passwords are stored as slow, salted hashes and never in plain text."
+      - "Rate-limit sign-in attempts, support token refresh and revocation, and plan for logout."
+    terms: [jwt, rate-limiting]
+    needs: [rate-limiter]
+checks:
+  - q: "Why does a load balancer need health checks?"
+    a: "So it stops sending traffic to a server that has failed. Without them, some users would keep hitting a dead server."
+  - q: "What problem does consistent hashing solve?"
+    a: "With plain modulo hashing, changing the number of nodes remaps almost every key. A hash ring moves only a small share, so adding or removing a node is cheap."
+  - q: "What does a CDN cache, and how does it stay fresh?"
+    a: "Mostly static content such as images and scripts, stored on servers near users. TTL values and explicit invalidation control how long a copy is served."
+  - q: "Why put a queue in front of a notification sender?"
+    a: "It absorbs bursts, lets the senders retry failures, and stops a slow provider from blocking the service that raised the event."

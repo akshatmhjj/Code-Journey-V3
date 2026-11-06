@@ -1,0 +1,83 @@
+title: "Extra reads"
+slug: "extra-reads"
+order: 8
+level: intermediate
+purpose: "Articles that sit outside the core paths: how languages run your code, how to write about what you learn, and two certification exam guides."
+assumes: "You are comfortable with at least one programming language."
+outcome: "You understand what Python and JavaScript do when they run your code, and you have a plan for writing and for two certification exams."
+articles:
+  - id: technical-writing
+    title: "How To Get Started With Writing- Technical and Creative"
+    topic: "Engineering Articles"
+    date: 2026-07-01
+    level: beginner
+    source: "https://x.com/Harry_The_Nerd/status/2072219094728978564"
+    why: "Writing about what you learn is the best way to find the gaps."
+    summary: "Advice on getting started with technical and creative writing."
+    points:
+      - "Write to explain something you have just learned. Teaching is the best test."
+      - "Short and regular beats long and rare."
+      - "Edit for one reader, not for everyone."
+    terms: []
+    needs: []
+  - id: python-internals
+    title: "Python's Inner Working - Behind The Scenes"
+    topic: "Engineering Articles"
+    date: 2026-07-17
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2078116519029129646"
+    why: "Knowing what the interpreter does explains many Python surprises."
+    summary: "How Python runs your code under the hood."
+    points:
+      - "Source code is compiled to bytecode, which the interpreter then runs."
+      - "Memory is managed with reference counting plus a collector for cycles."
+      - "The Global Interpreter Lock limits how many threads run Python code at the same time."
+    terms: []
+    needs: []
+  - id: javascript-execution
+    title: "How JavaScript Executes The Code - Behind The Scenes"
+    topic: "Engineering Articles"
+    date: 2026-07-09
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2075158256826335454"
+    why: "The event loop is behind most JavaScript timing questions."
+    summary: "How the JavaScript engine runs code under the hood."
+    points:
+      - "The engine parses and compiles code, then runs it in an execution context with a call stack."
+      - "The event loop lets one thread handle asynchronous work using queues."
+      - "Know the difference between the microtask queue and the macrotask queue."
+    terms: []
+    needs: []
+  - id: aws-saa-c03
+    title: "AWS Certified Solutions Architect - Associate SAA-C03 Exam Tricks"
+    topic: "Engineering Articles"
+    date: 2026-06-16
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2066793644783513735"
+    why: "It applies cloud design ideas to a certification."
+    summary: "Tips and tricks for passing the AWS SAA-C03 exam."
+    points:
+      - "Know the main service families: compute, storage, networking, databases and security."
+      - "Questions turn on trade-offs such as cost, durability and availability."
+      - "Practise with timed questions."
+    terms: [availability]
+    needs: []
+  - id: claude-architect-exam
+    title: "A Complete Guide For Claude Certified Architect Foundations (CCA-F) Exam"
+    topic: "Engineering Articles"
+    date: 2026-06-22
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2069050669487809004"
+    why: "A study guide for a second certification."
+    summary: "A study guide for the Claude Certified Architect Foundations exam."
+    points:
+      - "Read the exam outline first and study to it."
+      - "Practise with sample questions and time yourself."
+      - "Revise the areas you missed, not the ones you already know."
+    terms: []
+    needs: []
+checks:
+  - q: "What does the event loop do in JavaScript?"
+    a: "It lets one thread handle asynchronous work. While waiting on I/O the thread runs other tasks, and callbacks are queued and run when the call stack is empty."
+  - q: "What is the GIL in Python?"
+    a: "A lock in the standard CPython interpreter that lets only one thread run Python bytecode at a time, which limits CPU-bound work in threads."

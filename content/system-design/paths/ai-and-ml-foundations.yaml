@@ -1,0 +1,57 @@
+title: "AI and ML Foundations"
+slug: "ai-and-ml-foundations"
+order: 7
+level: beginner
+purpose: "The vocabulary and core ideas of modern AI, plus one real machine learning system design."
+assumes: "No machine learning background."
+outcome: "You can read AI articles without getting lost, explain what machine learning is, and describe how a recommendation system is built."
+articles:
+  - id: ai-terminology
+    title: "AI Terminology Explained"
+    topic: "AI Engineering"
+    date: 2026-08-13
+    level: beginner
+    source: "https://x.com/Harry_The_Nerd/status/2087837722098700421"
+    why: "Learn the words first, so the rest reads easily."
+    summary: "A complete beginner's glossary of AI terms."
+    points:
+      - "AI contains machine learning, which contains deep learning."
+      - "Terms such as model, training, inference, token, embedding and prompt come up everywhere."
+      - "Training builds a model from data. Inference uses the finished model."
+    terms: []
+    needs: []
+  - id: machine-learning-intro
+    title: "Everything About Machine Learning"
+    topic: "Machine Learning"
+    date: 2026-08-08
+    level: beginner
+    source: "https://x.com/Harry_The_Nerd/status/2086085446300533025"
+    why: "It explains the core idea behind the terms."
+    summary: "An introduction to machine learning."
+    points:
+      - "Models learn patterns from data instead of following hand-written rules."
+      - "Supervised, unsupervised and reinforcement learning solve different kinds of problems."
+      - "Splitting data into train and test sets shows whether a model generalises."
+    terms: []
+    needs: [ai-terminology]
+  - id: netflix-recommendation
+    title: "Netflix Recommendation System - Machine Learning System Design"
+    topic: "Engineering Articles"
+    date: 2026-06-24
+    level: intermediate
+    source: "https://x.com/Harry_The_Nerd/status/2069785739810705773"
+    why: "It shows machine learning working inside a large product."
+    summary: "An ML system design breakdown of a recommendation engine."
+    points:
+      - "Recommendation systems combine candidate generation, ranking and re-ranking."
+      - "Signals include watch history, ratings and context."
+      - "Offline evaluation and online experiments check whether a change helps."
+    terms: []
+    needs: [machine-learning-intro, netflix]
+checks:
+  - q: "What is the difference between training and inference?"
+    a: "Training builds a model by learning from data. Inference uses the finished model to make predictions on new inputs."
+  - q: "Why split data into train and test sets?"
+    a: "The test set is data the model has never seen, so its score shows how well the model works on new inputs, not just on the examples it learned from."
+  - q: "What are the usual stages of a recommendation system?"
+    a: "Candidate generation narrows millions of items to a few hundred, ranking scores them, and re-ranking adjusts the final list for variety and rules."

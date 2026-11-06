@@ -14,25 +14,14 @@ const NAV = [
   { href: "/resources", label: "Resources" },
   { href: "/glossary", label: "Glossary" },
   { href: "/interview-prep", label: "Interview prep" },
+  { href: "/system-design", label: "System design" },
 ];
 
 /** Underline for a nav item. The look and the hover rule live in globals.css (`.nav-underline`). */
 const NAV_UNDERLINE = "nav-underline";
 
 /** Cycles role names in the search box: "I want to become a Data Analyst". */
-function useRotating(items: string[], ms = 2800) {
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const t = setInterval(() => setI((n) => (n + 1) % items.length), ms);
-    return () => clearInterval(t);
-  }, [items.length, ms]);
-  return items[i];
-}
 
-function article(word: string) {
-  return /^[AEIOU]/i.test(word) ? "an" : "a";
-}
 
 /**
  * Scroll state without re-rendering on every frame: `scrolled` flips once past the top,
@@ -85,28 +74,24 @@ function useGlide(path: string) {
   return { nav, glide, moveTo, rest };
 }
 
-export function Header({ roleTitles }: { roleTitles: string[] }) {
+export function Header() {
   const ui = useUI();
   const user = useUser();
   const path = usePathname();
-  const role = useRotating(roleTitles);
   const bar = useRef<HTMLDivElement>(null);
   const scrolled = useScroll(bar);
   const { nav, glide, moveTo, rest } = useGlide(path);
-  const [mac, setMac] = useState(true);
-  // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => setMac(/Mac|iPhone|iPad/.test(navigator.platform)), []);
 
   return (
     // Desktop and tablet only; phones get PhoneHeader.
-    <header className="sticky top-0 z-40 hidden h-[var(--header-h)] px-2 pt-2 sm:px-3 md:block">
+    <header className="sticky top-0 z-40 hidden h-[var(--header-h)] px-2 pt-2 sm:px-3 lg:block">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-ink focus:px-3 focus:py-2 focus:text-canvas">
         Skip to content
       </a>
       <div
         ref={bar}
         data-scrolled={scrolled}
-        className="group/bar relative mx-auto flex h-[60px] max-w-[1240px] items-center gap-3 rounded-[30px] border-2 border-transparent px-2 transition-[max-width,background-color,border-color,box-shadow,padding] duration-500 ease-[cubic-bezier(.2,.8,.2,1)] sm:px-4 lg:gap-5 data-[scrolled=true]:max-w-[1120px] data-[scrolled=true]:border-ink data-[scrolled=true]:bg-[color-mix(in_oklab,var(--canvas)_86%,transparent)] data-[scrolled=true]:shadow-[0_10px_30px_-12px_rgb(0_0_0/0.35)] data-[scrolled=true]:backdrop-blur-xl"
+        className="group/bar relative mx-auto flex h-[60px] max-w-[1240px] items-center gap-3 rounded-[30px] border-2 border-transparent px-2 transition-[max-width,background-color,border-color,box-shadow,padding] duration-500 ease-[cubic-bezier(.2,.8,.2,1)] sm:px-4 lg:gap-3 xl:gap-5 data-[scrolled=true]:max-w-[1120px] data-[scrolled=true]:border-ink data-[scrolled=true]:bg-[color-mix(in_oklab,var(--canvas)_86%,transparent)] data-[scrolled=true]:shadow-[0_10px_30px_-12px_rgb(0_0_0/0.35)] data-[scrolled=true]:backdrop-blur-xl"
       >
         <Link href="/" aria-label="Code Journey home" className="group shrink-0 rounded-full px-1">
           <Logo />
@@ -114,18 +99,10 @@ export function Header({ roleTitles }: { roleTitles: string[] }) {
 
         <button
           onClick={() => ui.open("search")}
-          className="ml-1 hidden h-11 min-w-0 flex-1 items-center gap-3 rounded-full border-2 border-ink bg-canvas pr-2 pl-4 text-left transition-[background-color,transform] duration-200 hover:-translate-y-px hover:bg-raise md:flex lg:max-w-[400px]"
+          className="ml-1 hidden size-11 shrink-0 place-items-center rounded-full transition-colors duration-200 hover:bg-raise md:grid"
           aria-label="Search roles, skills and resources"
         >
           <Search size={18} className="shrink-0" />
-          <span className="hidden min-w-0 flex-1 truncate text-[15px] text-muted lg:inline xl:hidden">Search roles, skills…</span>
-          <span className="flex min-w-0 flex-1 items-baseline gap-1 overflow-hidden text-[15px] whitespace-nowrap text-muted lg:hidden xl:flex">
-            I want to become {article(role)}
-            <span key={role} className="cj-roll truncate font-semibold text-ink">
-              {role}
-            </span>
-          </span>
-          <kbd className="hidden shrink-0 rounded-full border border-line-strong px-2 py-0.5 font-mono text-[11px] text-muted lg:inline">{mac ? "⌘K" : "Ctrl K"}</kbd>
         </button>
 
         <nav ref={nav} aria-label="Main" onMouseLeave={rest} className="relative ml-auto hidden items-center lg:flex">
